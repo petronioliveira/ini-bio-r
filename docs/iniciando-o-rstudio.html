@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | BIOESTATÍSTICA USANDO O R</title>
-  <meta name="description" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <title>Capítulo 3 Iniciando o RStudio | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 3 Iniciando o RStudio | BIOESTATÍSTICA USANDO O R" />
   <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:title" content="Capítulo 3 Iniciando o RStudio | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta name="twitter:title" content="Capítulo 3 Iniciando o RStudio | BIOESTATÍSTICA USANDO O R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="ambiente-do-r.html"/>
+<link rel="next" href="matemática-básica-no-rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -257,19 +257,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="iniciando-o-rstudio" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo  3</span> Iniciando o <em>RStudio</em><a href="iniciando-o-rstudio.html#iniciando-o-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="interface-do-rstudio" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Interface do <em>RStudio</em><a href="iniciando-o-rstudio.html#interface-do-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ao abrir o <strong>RStudio</strong>, você verá a seguinte tela. As cores e fontes podem variar dependendo do seu sistema operacional, mas o layout será o mesmo.</p>
+<span class="math inline">\(~\)</span>
+<center>
+<p><img src="https://i.imgur.com/DDwe5uI.png" /></p>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<p>Os quadros coloridos (vermelho, azul e amarelo) foram acrescentados para melhor identificação dos painéis principais.<br />
+No <span style="color:red"> Console </span> os comandos serão executados e é onde aparecerá a saída com os resultados.<br />
+No <span style="color:blue"> Ambiente </span> aparecerá uma lista organizada do que foi criados, bem como as variáveis.<br />
+Na janela em <span style="color:gold"> amarelo </span> estão os gráficos criados (aba <em>Plots</em>), os arquivos do computador (aba <em>Files</em>), os pacotes baixados (aba <em>Packages</em>), a ajuda (aba <em>Help</em>) e o visualizador (aba <em>Viewer</em>).</p>
+Um quarto painel aparece quando se cria um novo <strong>R Script</strong>. Este é criado através do menu <em>File</em> &gt; <em>New File</em> &gt; <em>R Script</em> ou clicando no botão verde com o sinal (+), na barra de ferramentas de acesso rápido, na parte superior à esquerda. Ao criar um novo <em>R Script</em>, o painel do script, espécie de bloco de notas, será aberto.<br />
+<span class="math inline">\(~\)</span>
+<center>
+<p><img src="https://i.imgur.com/kzxtXQu.png" /></p>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<p>Apesar de ser possível escrever seus códicos e executá-los diretamente no <em>Console</em>, preferencialmente, digite-os neste novo painel e envie para serem executados no <em>Console</em>, utilizando o botão <span style="color:blue"> Run </span> ou o atalho <span style="color:blue"> Ctrl + Enter </span>.</p>
+<p>Quando o <strong>R Script</strong> é aberto, ele aparece sem título (<strong>Untitled1</strong>) e ao salvá-lo devemos dar um título. A partir daí, ele estrá disponível para ser novamente utilizado. Esta é uma das diferenças importantes com o <em>Console</em>. Todos os comandos usados no <em>Console</em> não podem ser salvos, porisso o <em>Console</em> é utilizado para realizar comandos temporários e rápidos que não necessitam ser salvos.<br />
+Os nossos scripts devem ser salvos em um diretório relacionados a eles. O ideal é criarmos um novo projeto para cada análise.</p>
+</div>
+<div id="iniciando-um-novo-projeto" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Iniciando um novo projeto<a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quando começamos um trabalho com um novo banco de dados, um <em>Novo Projeto</em> deve ser criado. Para isso, clicar <em>File</em> &gt; <em>New Project</em> ou clicar no menu que está na parte superior, à direita, <em>Project (none)</em> &gt; <em>New Project…</em>. Abrirá a janela abaixo. Clique em <em>New Directory</em> para criar um novo diretório. Por exemplo, para as aulas de <strong>Bioestatística usando o R</strong>, pode-se criar um diretório com este nome ou qualquer outro nome.</p>
+<span class="math inline">\(~\)</span>
+<center>
+<p><img src="https://i.imgur.com/6N4p3VY.png" /></p>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<p>Quaisquer documentos Excel ou arquivos de texto associados podem ser salvos nesta nova pasta e facilmente acessados de dentro de R, indo ao menu <em>Project (none)</em> &gt; <em>Open Project…</em>. Você pode então realizar análises de dados ou produzir visualizações com seus dados importados.</p>
+</div>
+<div id="primeiro-script" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Primeiro Script<a href="iniciando-o-rstudio.html#primeiro-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O <em>R Script</em>, como foi dito antes, é o local preferido para entrar com os comandos. Inserir 3 ou mais caracteres de um comando em um script abrirá o menu de comando sugerido. Este menu sugere comandos ou nomes de variáveis que você pretendeu digitar, junto com uma descrição e uso sugerido. Vamos imaginar que queremos saber o logaritimo na base 10 de um número. Quando digitamos dentro do <em>R Script</em> a palavra <span style="color:blue"> log </span>, abre-se o menu de autocompletar, como mostrado na figura.</p>
+<span class="math inline">\(~\)</span>
+<center>
+<p><img src="https://i.imgur.com/iJLDHtx.png" /></p>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<p>Completando o <em>R Script</em> e executando, veremos o resultado no no Console:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="iniciando-o-rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Selecione, Copie e cole em um <em>R Script</em> os comandos abaixo. Execute-os clicando no botão <span style="color:blue"> Run </span> ou usando o atalho <span style="color:blue"> Ctrl + Enter </span>.Veja os resultados no seu <em>Console</em>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="iniciando-o-rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">500</span></span>
+<span id="cb3-2"><a href="iniciando-o-rstudio.html#cb3-2" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span><span class="fu">cumsum</span> (<span class="fu">sample</span> (<span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,<span class="dv">500</span>, <span class="at">rep=</span><span class="cn">TRUE</span>))</span>
+<span id="cb3-3"><a href="iniciando-o-rstudio.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (x,y<span class="sc">/</span><span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>, </span>
+<span id="cb3-4"><a href="iniciando-o-rstudio.html#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab=</span><span class="st">&quot;Probabilidade&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Lançamentos da moeda&quot;</span>,</span>
+<span id="cb3-5"><a href="iniciando-o-rstudio.html#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylim=</span><span class="fu">c</span> (<span class="fl">0.3</span>,<span class="fl">0.8</span>), <span class="at">xlim=</span><span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">500</span>), </span>
+<span id="cb3-6"><a href="iniciando-o-rstudio.html#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">pch=</span><span class="dv">16</span>, </span>
+<span id="cb3-7"><a href="iniciando-o-rstudio.html#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)</span>
+<span id="cb3-8"><a href="iniciando-o-rstudio.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Complicado? Sim, a primeira vista parece complicado, complexo, mas à medida que os conhecimentos forem se acumulando estes comandos ficarão simples.<br />
+Na aba <em>Plot</em>, no painel inferior, à direita, aparecerá o resultado dos comandos acima que deve ser:</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<blockquote>
+<p><font size=2><strong>Observação</strong>: É importante o acompanhamento do tutorial com o <em>RStudio</em> aberto. Crie um <em>R Script</em>. Copie os comandos do tutorial (retangulos cinza claro) e execute os mesmos para ver o resultado no <em>Console</em> ou na aba <em>Plots</em>. Compare com o tutorial.</p>
+</blockquote>
+<span class="math inline">\(~\)</span>
+<center>
+<p><img src="https://i.imgur.com/s4kS2qv.png" /></p>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="ambiente-do-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="matemática-básica-no-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +362,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/03-iniRStudio.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -308,7 +370,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/03-iniRStudio.Rmd",
 "text": null
 },
 "download": null,

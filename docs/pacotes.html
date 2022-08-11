@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | BIOESTATÍSTICA USANDO O R</title>
-  <meta name="description" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <title>Capítulo 5 Pacotes | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 5 Pacotes | BIOESTATÍSTICA USANDO O R" />
   <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:title" content="Capítulo 5 Pacotes | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta name="twitter:title" content="Capítulo 5 Pacotes | BIOESTATÍSTICA USANDO O R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="matemática-básica-no-rstudio.html"/>
+<link rel="next" href="funções.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -257,19 +257,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="pacotes" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo  5</span> Pacotes<a href="pacotes.html#pacotes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Para que o <strong>R</strong> cumpra a sua função de dialogar com o usuário para realizar análises estatística e construir gráficos, ele necessita ter instalado <strong>pacotes</strong>. Quando se instala o <strong>R</strong> básico, ele vem com vários pacotes que permitem uma grande quantidade de análises. Entretanto, à medida que vamos utilizando o <strong>R</strong>, torna-se necessário instalar novos pacotes criados pela comunidade do R. Esses novos pacotes contêm novas funções e novos comandos que aumentarão a funcionalidade do <strong>R</strong>.<br />
+Um <strong>pacote</strong> é uma coleção de <em>funções</em>, <em>dados</em> e <em>documentação</em> que expande os recursos do <strong>R</strong> base. O uso dos pacotes é a chave para o uso bem-sucedido do <strong>R</strong>. Eles são instalados à medida que o trabalho com o <strong>R</strong> exigir.</p>
+<div id="repositórios-de-pacotes" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Repositórios de pacotes<a href="pacotes.html#repositórios-de-pacotes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quando identificamos a necessisdade de um novo pacote, precisamos saber onde ele se encontra. O principal repositório de pacotes é o CRAN (<em>Comprehensible R Archive Network</em>). Para acessar este repositório, use o <a href="https://cran.r-project.org/mirrors.html">link</a> e escolha um espelho (<em>0-Cloud</em> ou o mais próximo geograficamente de você).<br />
+Estando na página do <strong>CRAN</strong>, no menu, à esquerda, clique em <span style="color:blue"> <strong>Packages</strong> </span>. Isto o colocará na página dos <em>Contributed Packages</em>, onde a maioria dos pacotes podem ser encontrados em <span style="color:blue"> <strong>Table of available packages, sorted by name</strong> </span>. També é possível clicar em <span style="color:blue"> <strong>CRAN Task Views</strong> </span>, onde encontramos os pacotes separados por tópicos.</p>
+</div>
+<div id="instalação-de-um-pacote" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Instalação de um pacote<a href="pacotes.html#instalação-de-um-pacote" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uma maneira simples de instalar um pacote é usar a função <code>install.packges ()</code>, colocando entre os parênteses o nome do pacote entre aspas. Por exemplo, para instalar um pacote bastante utilizado na construção de gráficos:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="pacotes.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<p>No painel inferior direito, na aba <span style="color:blue"> <strong>Packages</strong> </span> é possível ver todos os pacotes instalados. Nesta aba, na parte superior, à esquerda, existe um botão <em>Install</em>. Clicando nele, abre-se a caixa de diálogo <em>Install Packages</em>. Escreva o nome do pacote que deseja instalar no campo <em>Package</em>s e clique em instalar. Isso instalará o pacote que você pesquisou ou fornecerá uma lista de pacotes correspondentes com base no que foi digitado. Por padrão, o <em>R Studio</em> busca no repositório CRAN e salva no diretório onde está instalado o <strong>R</strong>. Certifique-se que a caixa <em>Install dependencies</em> esteja marcada (Figura 1).</p>
+<span class="math inline">\(~\)</span>
+<center>
+<div class="figure">
+<img src="https://i.imgur.com/1UX7WJE.png" alt="" />
+<p class="caption">Figura 1. Install Packages</p>
+</div>
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<p>Uma outra forma de abrir a caixa de diálogo da Figura 1 é ir em <em>Tools</em> na barra de menus e clicar em <em>Install Packages…</em>.<br />
+Assim que ele estiver instalado, o pacote aparecerá na aba <em>Packages</em>, o nome do pacote. Os pacotes somente precisam ser instalados apenas uma vez. Entretanto, quando o <strong>R</strong> for atualizado para uma nova versão, os pacotes deverão ser novamente instalados. Um pacote do <strong>R</strong> base não precisa ser instalado.</p>
+</div>
+<div id="carregar-um-pacote" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Carregar um pacote<a href="pacotes.html#carregar-um-pacote" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para utilizar um pacote instalado, há necessidade de carregá-lo. Para isso, existem duas maneiras mais frequentes, uma usando a função <code>library ()</code> e outra usando a função <code>require ()</code>. Para carregar o pacote <code>ggplot2</code>, procede-se da seguinte maneira:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="pacotes.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (ggplot2)</span></code></pre></div>
+<p>Ou</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="pacotes.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span> (ggplot2)</span></code></pre></div>
+<p>Existe pouca diferença entre elas. Se você usar a <code>library (ggplot2)</code> e o <code>ggplot2</code> não tiver sido instalado, seu programa irá parar com a mensagem <span style="color:red"> Error in library(ggplot2) : there is no package called ‘ggplot2’ </span>. Se você usar <code>require (ggplot2)</code>, receberá um aviso (<span style="color:red"> Warning message: </span>), mas não uma mensagem de erro. Na prática, toinnn…
+Uma maneira de evitar as mensagens, se isso preocupa você, é usar o seguinte comando:</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="pacotes.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;ggplot2&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb80-2"><a href="pacotes.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Estes comandos irão instalar o <code>ggpplot2</code> se ele não estiver instalado e, depois, irão carregá-lo. Se ele já estiver instalado, será simplesmente carregado.</p>
+<p>NOTA: Esta é uma outra característica importante do <strong>R</strong>: existe múltiplas maneiras de se fazer a mesma coisa! A escolha é nossa!</p>
+<p>Outra maneira de carregar o pacote é, na aba <em>Pacakges</em>, <strong>User Library</strong> e clicar no pacote desejado. Observe no <em>Console</em> que aparece a execução de <code>library (ggplot2)</code>, carregando o pacote <code>ggplot2</code>.</p>
+<p>Para conhecer todas as funcionalidades e documentação de um pacote, podemos usar a função <code>help ()</code>:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="pacotes.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> ggplot2)</span></code></pre></div>
+<p>Ou, simplesmente</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="pacotes.html#cb82-1" aria-hidden="true" tabindex="-1"></a>?ggplot2</span></code></pre></div>
+<div id="carregar-mais-de-um-pacote" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Carregar mais de um pacote<a href="pacotes.html#carregar-mais-de-um-pacote" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>usar uma das funções <code>libraries ()</code> ou <code>packages ()</code>do pacote <code>easypackages</code>:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="pacotes.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;easypackages&quot;</span>)</span>
+<span id="cb83-2"><a href="pacotes.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(easypackages)</span></code></pre></div>
+<p>Com o pacote <code>easypackages</code> instalado, basta usar a função <code>libraries()</code>, com o nome dos pacotes entre aspas.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="pacotes.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">libraries</span>(<span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;car&quot;</span>)</span></code></pre></div>
+<p>O mesmo pode ser feito com a função <code>packages ()</code>.</p>
+<p>Outro pacote que gerencia pacotes do <em>R</em> é o <code>pacman</code>. Este pacote tem uma função <code>p_load ()</code> que instala e carrega um ou mais pacotes.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="pacotes.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)</span>
+<span id="cb85-2"><a href="pacotes.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span></code></pre></div>
+<p>Com o <code>pacman</code> instalado, usar a função <code>p_load()</code>, escrevendo o nome dos pacotes sem necessidade de aspas:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="pacotes.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(readxl, dplyr, ggplot2, car)</span></code></pre></div>
+<p>Ou:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="pacotes.html#cb87-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, dplyr, ggplot2, car)</span></code></pre></div>
+<p>O pacote <code>pacman</code> tem outas funções, entre elas uma que atualiza os pacotes: <code>p_update()</code>. Se usada sem especificar o pacote , ela atualiza todos. Para saber mais sobre o pacote <code>pacman</code>, use a ajuda.</p>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="matemática-básica-no-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="funções.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +356,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/05-pacotes.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -308,7 +364,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/05-pacotes.Rmd",
 "text": null
 },
 "download": null,

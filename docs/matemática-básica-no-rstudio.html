@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 4 Matemática Básica no RStudio | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 4 Matemática Básica no RStudio | BIOESTATÍSTICA USANDO O R" />
+  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 4 Matemática Básica no RStudio | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 4 Matemática Básica no RStudio | BIOESTATÍSTICA USANDO O R" />
+  
+  
+  
+
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
+
+
+<meta name="date" content="2022-08-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="iniciando-o-rstudio.html"/>
+<link rel="next" href="pacotes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioestatisticaR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matemática-básica-no-rstudio" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Capítulo  4</span> Matemática Básica no <em>RStudio</em><a href="matemática-básica-no-rstudio.html#matemática-básica-no-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="operadores" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Operadores<a href="matemática-básica-no-rstudio.html#operadores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para termos uma visão geral dos operadores usados para realizar operações com variáveis e valores, clique <a href="https://www.w3schools.com/r/r_operators.asp">aqui</a></p>
+<p>Por exemplo, o operador <span class="math inline">\(+\)</span> (adição) é usado para somar dois valores:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="matemática-básica-no-rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div id="operadores-aritméticos" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Operadores aritméticos<a href="matemática-básica-no-rstudio.html#operadores-aritméticos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No <em>R</em>, você pode usar operadores aritméticos para realizar operações matemáticas comuns</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="left">Nome</th>
+<th align="center">Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">+</td>
+<td align="left">adição</td>
+<td align="center"><span class="math inline">\(x + y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="left">subtração</td>
+<td align="center"><span class="math inline">\(x - y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">*</td>
+<td align="left">multiplicação</td>
+<td align="center"><span class="math inline">\(x*y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">/</td>
+<td align="left">divisão</td>
+<td align="center"><span class="math inline">\(x/y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">^</td>
+<td align="left">expoente</td>
+<td align="center"><span class="math inline">\(x^y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">%%</td>
+<td align="left">módulo (resto da divisão)</td>
+<td align="center">x%%y</td>
+</tr>
+<tr class="odd">
+<td align="center">%/%</td>
+<td align="left">divisão inteira</td>
+<td align="center">x%/%y</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="matemática-básica-no-rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="matemática-básica-no-rstudio.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="matemática-básica-no-rstudio.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="matemática-básica-no-rstudio.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="matemática-básica-no-rstudio.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">^</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 1e+05</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="matemática-básica-no-rstudio.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%%</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="matemática-básica-no-rstudio.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%/%</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>O resultado da 5ª operação é exibido como notação científica, onde <span class="math inline">\(e+05\)</span> significa <span class="math inline">\(10^5\)</span>.</p>
+</div>
+<div id="operadores-de-atribuição" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Operadores de atribuição<a href="matemática-básica-no-rstudio.html#operadores-de-atribuição" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Operadores de atribuição são usados para atribuir valores a variáveis:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="matemática-básica-no-rstudio.html#cb20-1" aria-hidden="true" tabindex="-1"></a>minha_var <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb20-2"><a href="matemática-básica-no-rstudio.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="ot">-&gt;</span>  minha_var</span>
+<span id="cb20-3"><a href="matemática-básica-no-rstudio.html#cb20-3" aria-hidden="true" tabindex="-1"></a>minha_var <span class="co"># imprime minha_var</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>É possível, como vimos, mudar a direção do operador de atribuição.</p>
+<center>
+x &lt;- 5 é igual a 5 -&gt; x
+<center>
+</div>
+<div id="operadores-de-comparação" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Operadores de comparação<a href="matemática-básica-no-rstudio.html#operadores-de-comparação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>São usados para comparar dois valores.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="left">Nome</th>
+<th align="center">Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">==</td>
+<td align="left">igual</td>
+<td align="center"><span class="math inline">\(x == y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">!=</td>
+<td align="left">não é igual</td>
+<td align="center"><span class="math inline">\(x != y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;</td>
+<td align="left">maior que</td>
+<td align="center"><span class="math inline">\(x&gt;y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">&lt;</td>
+<td align="left">menor que</td>
+<td align="center"><span class="math inline">\(x&lt;y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">&gt;=</td>
+<td align="left">maior ou igual que</td>
+<td align="center"><span class="math inline">\(x&gt;=y\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">&lt;=</td>
+<td align="left">menor ou igual que</td>
+<td align="center"><span class="math inline">\(x&lt;=y\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="matemática-básica-no-rstudio.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="matemática-básica-no-rstudio.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">==</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="matemática-básica-no-rstudio.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">!=</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="matemática-básica-no-rstudio.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="matemática-básica-no-rstudio.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">&gt;=</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="operadores-lógicos" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Operadores lógicos<a href="matemática-básica-no-rstudio.html#operadores-lógicos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Operadores lógicos são usados para combinar declarações condicionais:</p>
+<table>
+<colgroup>
+<col width="37%" />
+<col width="62%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Operador</th>
+<th align="left">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">&amp;</td>
+<td align="left">Operador lógico E (AND). Retorna TRUE se ambos os elementos forem TRUE</td>
+</tr>
+<tr class="even">
+<td align="center">&amp;&amp;</td>
+<td align="left">Operador lógico E (AND) - Retorna TRUE se ambas as instruções forem TRUE</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(|\)</span></td>
+<td align="left">Operador lógico OU (OR). Retorna TRUE se uma das instruções for TRUE</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(||\)</span></td>
+<td align="left">Operador lógico OU (OR). Retorna TRUE se uma das instruções for TRUE</td>
+</tr>
+<tr class="odd">
+<td align="center">!</td>
+<td align="left">Operador lógico NÃO (NOT). Retorna FALSE se a instrução for TRUE</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="matemática-básica-no-rstudio.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">==</span> <span class="dv">6</span> <span class="sc">&amp;</span> <span class="dv">7</span> <span class="sc">==</span> <span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="matemática-básica-no-rstudio.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span> <span class="sc">==</span> <span class="dv">6</span> <span class="sc">|</span> <span class="dv">7</span> <span class="sc">==</span> <span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="logarítimo" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Logarítimo<a href="matemática-básica-no-rstudio.html#logarítimo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="matemática-básica-no-rstudio.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span> (<span class="dv">10</span>)         <span class="co"># log natural</span></span></code></pre></div>
+<pre><code>## [1] 2.302585</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="matemática-básica-no-rstudio.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span> (<span class="dv">10</span>)       <span class="co"># log base 10</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="raiz-quadrada" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Raiz quadrada<a href="matemática-básica-no-rstudio.html#raiz-quadrada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="matemática-básica-no-rstudio.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="dv">81</span>)</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+</div>
+<div id="resultado-absoluto" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Resultado absoluto<a href="matemática-básica-no-rstudio.html#resultado-absoluto" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="matemática-básica-no-rstudio.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="potenciação" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Potenciação<a href="matemática-básica-no-rstudio.html#potenciação" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="matemática-básica-no-rstudio.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="matemática-básica-no-rstudio.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 1e+05</code></pre>
+</div>
+<div id="exercícios" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Exercícios<a href="matemática-básica-no-rstudio.html#exercícios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\((1 + 3 + 2 + 12 + 8)/5\)</span></li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="matemática-básica-no-rstudio.html#cb48-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">12</span> <span class="sc">+</span> <span class="dv">8</span>)<span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 5.2</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(1 + 3 + 2 + 12 + 8/5\)</span></li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="matemática-básica-no-rstudio.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">12</span> <span class="sc">+</span> <span class="dv">8</span><span class="sc">/</span><span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 19.6</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(((2 - 1)^2 + (1 - 3)^2)^{1/2}\)</span></li>
+</ol>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="matemática-básica-no-rstudio.html#cb52-1" aria-hidden="true" tabindex="-1"></a>((<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span> )<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2.236068</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(\sqrt{(4 + 3)(2 + 1)}\)</span></li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="matemática-básica-no-rstudio.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>((<span class="dv">4</span> <span class="sc">+</span> <span class="dv">3</span>)<span class="sc">*</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] 4.582576</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(1 + 2 \times 3^4\)</span></li>
+</ol>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="matemática-básica-no-rstudio.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span><span class="sc">^</span><span class="dv">4</span></span></code></pre></div>
+<pre><code>## [1] 163</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(\pi \times 2\)</span></li>
+</ol>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="matemática-básica-no-rstudio.html#cb58-1" aria-hidden="true" tabindex="-1"></a>pi</span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="matemática-básica-no-rstudio.html#cb60-1" aria-hidden="true" tabindex="-1"></a>pi<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 6.283185</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(4^3 + 3^{2 + 1}\)</span></li>
+</ol>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="matemática-básica-no-rstudio.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">^</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 145</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(e^2\)</span></li>
+</ol>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="matemática-básica-no-rstudio.html#cb64-1" aria-hidden="true" tabindex="-1"></a>e<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<p>Como o número de Euler(<em>e</em>) é uma constante matemática como o <span class="math inline">\(\pi\)</span>. Entretanto, ao contrário do <span class="math inline">\(\pi\)</span>, ela não está incluída no <em>R</em> e a execução do comando retorna uma mensagem de erro. Deve-se criar o objeto <em>e</em> e dar um valor igual a exponencial de 1 que é o número de Euler:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="matemática-básica-no-rstudio.html#cb65-1" aria-hidden="true" tabindex="-1"></a>e <span class="ot">=</span> <span class="fu">exp</span>(<span class="dv">1</span>)</span>
+<span id="cb65-2"><a href="matemática-básica-no-rstudio.html#cb65-2" aria-hidden="true" tabindex="-1"></a>e</span></code></pre></div>
+<pre><code>## [1] 2.718282</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="matemática-básica-no-rstudio.html#cb67-1" aria-hidden="true" tabindex="-1"></a>e<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 7.389056</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: x = 34. y = 47, <span class="math inline">\(\sqrt{x \times y}\)</span></li>
+</ol>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="matemática-básica-no-rstudio.html#cb69-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">34</span></span>
+<span id="cb69-2"><a href="matemática-básica-no-rstudio.html#cb69-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">47</span></span>
+<span id="cb69-3"><a href="matemática-básica-no-rstudio.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(x <span class="sc">*</span> y)</span></code></pre></div>
+<pre><code>## [1] 39.97499</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>Coloque em linguagem do R: <span class="math inline">\(\pi \times 10 -log_{10}2\)</span></li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="matemática-básica-no-rstudio.html#cb71-1" aria-hidden="true" tabindex="-1"></a>pi<span class="sc">*</span><span class="dv">10</span> <span class="sc">-</span> <span class="fu">log</span>(<span class="dv">2</span>,<span class="dv">10</span>)       <span class="co"># Ou</span></span></code></pre></div>
+<pre><code>## [1] 31.1149</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="matemática-básica-no-rstudio.html#cb73-1" aria-hidden="true" tabindex="-1"></a>pi <span class="sc">*</span> <span class="dv">10</span> <span class="sc">-</span> <span class="fu">log10</span>(<span class="dv">2</span>)      <span class="co"># Ou</span></span></code></pre></div>
+<pre><code>## [1] 31.1149</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="matemática-básica-no-rstudio.html#cb75-1" aria-hidden="true" tabindex="-1"></a>pi <span class="sc">*</span> <span class="dv">10</span> <span class="sc">-</span> <span class="fu">log</span> (<span class="dv">2</span>, <span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 31.1149</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="iniciando-o-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="pacotes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/04-matematica.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/04-matematica.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

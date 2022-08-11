@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | BIOESTATÍSTICA USANDO O R</title>
-  <meta name="description" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <title>Capítulo 6 Funções | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 6 Funções | BIOESTATÍSTICA USANDO O R" />
   <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:title" content="Capítulo 6 Funções | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | BIOESTATÍSTICA USANDO O R" />
+  <meta name="twitter:title" content="Capítulo 6 Funções | BIOESTATÍSTICA USANDO O R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="pacotes.html"/>
+<link rel="next" href="manipulando-dados-no-rstudio.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -257,19 +257,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="funções" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo  6</span> Funções<a href="funções.html#funções" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="o-que-são-funções" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> O que são funções?<a href="funções.html#o-que-são-funções" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As funções automatizam as tarefas no <strong>R</strong>. Elas podem ser criadas pelo pesquisador, de acordo com as suas necessidades. Entretanto, na maioria das vezes, elas são encontradas prontas, fazendo parte de um pacote. Pacotes contêm muitas funções que para serem executadas necessitam que o pacote esteja instalado e carregado. As funções para exercerem a sua ação devem receber dentro delas (entre parênteses) os argumentos que ela exige.
+Por exemplo, a função <code>mean ()</code>, contida no <strong>R</strong> base, calcula a média de uma série de números (vetor numérico):</p>
+<p>É possível colocar este vetor em um objeto que pode receber qualquer nome, por exemplo, um conjunto de seis números, concatenados pela função <code>c ()</code>, que receberão o nome de <code>meus_dados</code>:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="funções.html#cb88-1" aria-hidden="true" tabindex="-1"></a>meus_dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
+<span id="cb88-2"><a href="funções.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(meus_dados)</span></code></pre></div>
+<pre><code>## [1] 6.166667</code></pre>
+<p>A execução da função <code>mean ()</code>, retorna o resultado arredondado de 6.17. Este mesmo resultado poderia ser obtido colocando o vetor dentro da função:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="funções.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>))</span></code></pre></div>
+<pre><code>## [1] 6.166667</code></pre>
+<p>Para se saber quais argumentos necessários para uma determinada função basta consulta a ajuda, onde se encontrará a documentação da mesma:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="funções.html#cb92-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
+<p>Os principais argumentos da função <code>mean ()</code> são:</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="81%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argumento</th>
+<th align="left">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">x</td>
+<td align="left">é um objeto R, numérico</td>
+</tr>
+<tr class="even">
+<td align="left">trim</td>
+<td align="left">é a fração das observações (varia de 0 a 0,5) extraída de cada extremidade de x para calcular a média aparada</td>
+</tr>
+<tr class="odd">
+<td align="left">na.rm</td>
+<td align="left">valor lógico (TRUE ou FALSE) que indicam se os valores “perdidos” (NA) devem ser removidos antes que o cálculo continue</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="criando-funções" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Criando funções<a href="funções.html#criando-funções" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="fórmula-geral" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Fórmula geral<a href="funções.html#fórmula-geral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As funções têm uma fórmula geral:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="funções.html#cb93-1" aria-hidden="true" tabindex="-1"></a>nome.da.função <span class="ot">&lt;-</span> <span class="cf">function</span> (x){transformar x}</span></code></pre></div>
+<p>Por exemplo, a área de um circulo é igual a <span class="math inline">\(\pi\)</span> x raio^2. Usando o R para calcular a área do círculo, podemos criar uma função que faça este trabalho:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="funções.html#cb94-1" aria-hidden="true" tabindex="-1"></a>area.circ <span class="ot">&lt;-</span> <span class="cf">function</span>(r){</span>
+<span id="cb94-2"><a href="funções.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi<span class="sc">*</span>r<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb94-3"><a href="funções.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(area)                </span>
+<span id="cb94-4"><a href="funções.html#cb94-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Ao executar essa função, é possível usá-la para calcular a área de um círculo, cujo raio é igual a 5 cm:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="funções.html#cb95-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb95-2"><a href="funções.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">area.circ</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 78.53982</code></pre>
+</div>
+<div id="outros-exemplos" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Outros exemplos<a href="funções.html#outros-exemplos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos criar uma função para o Indice de Massa Corporal, sabendo que ele é igual ao peso (kg) dividido pela altura^2:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="funções.html#cb97-1" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="cf">function</span>(peso, altura){</span>
+<span id="cb97-2"><a href="funções.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> peso<span class="sc">/</span>altura<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb97-3"><a href="funções.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
+<span id="cb97-4"><a href="funções.html#cb97-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Logo, o IMC de um indivíduo que tenha 67 kg e 1,7 m é:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="funções.html#cb98-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span>  <span class="dv">67</span></span>
+<span id="cb98-2"><a href="funções.html#cb98-2" aria-hidden="true" tabindex="-1"></a>altura <span class="ot">&lt;-</span>  <span class="fl">1.70</span></span>
+<span id="cb98-3"><a href="funções.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">imc</span>(<span class="dv">67</span>, <span class="fl">1.70</span>)</span></code></pre></div>
+<pre><code>## [1] 23.18339</code></pre>
+</div>
+<div id="ativação-de-uma-função" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Ativação de uma função<a href="funções.html#ativação-de-uma-função" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para ativar uma função previamente criada, usa-se a função nativa `source ()´. O argumento desta função é o caminho (diretório) onde se encontra a função buscada. Por exemplo, temos uma função para calcular o coeficiente de variação (coef_var):</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="funções.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Estatística/Bioestatística usando o R/Funções/coef_var.R&quot;</span>)</span></code></pre></div>
+<p>Vamos supor que tenhamos o seguinte conjunto de dados, referentes aos pesos de recém-nascidos a termo:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="funções.html#cb101-1" aria-hidden="true" tabindex="-1"></a>pesoRN <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">3340</span>,<span class="dv">3345</span>,<span class="dv">3750</span>,<span class="dv">3650</span>,<span class="dv">3220</span>,<span class="dv">4070</span>,<span class="dv">3380</span>,<span class="dv">3970</span>,<span class="dv">3060</span>,<span class="dv">3180</span>,  </span>
+<span id="cb101-2"><a href="funções.html#cb101-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2865</span>,<span class="dv">2815</span>,<span class="dv">3245</span>,<span class="dv">2051</span>,<span class="dv">2630</span>)</span>
+<span id="cb101-3"><a href="funções.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span>(pesoRN)</span></code></pre></div>
+<pre><code>## [1] 16.16144</code></pre>
+<p>Isto significa que o desvio padrão dos pesos dos recém-nascidos equivale a aproximadamente 16% da sua média.</p>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="pacotes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manipulando-dados-no-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +380,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/06-funcoes.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -308,7 +388,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/06-funcoes.Rmd",
 "text": null
 },
 "download": null,
