@@ -296,8 +296,8 @@ Por exemplo, o vetor contendo 5 valores numéricos 1 , 2, 3, 4 e 5.</p>
 <p>Os vetores podem ser combinados por meio da função <code>cbind ()</code>. Por exemplo, os dois vetores <code>nomeAlunos</code> e <code>numChamada</code> são combinados em um novo vetor contendo elementos de ambos os vetores.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="manipulando-dados-no-rstudio.html#cb119-1" aria-hidden="true" tabindex="-1"></a>escola <span class="ot">&lt;-</span> <span class="fu">c</span>(nomeAlunos, numChamada)</span>
 <span id="cb119-2"><a href="manipulando-dados-no-rstudio.html#cb119-2" aria-hidden="true" tabindex="-1"></a>escola</span></code></pre></div>
-<pre><code>##  [1] &quot;Gabriel&quot; &quot;Felix&quot;   &quot;Geraldo&quot; &quot;Nadine&quot;  &quot;Silvia&quot;  &quot;Clara&quot;   &quot;3&quot;      
-##  [8] &quot;2&quot;       &quot;4&quot;       &quot;5&quot;       &quot;6&quot;       &quot;1&quot;</code></pre>
+<pre><code>##  [1] &quot;Gabriel&quot; &quot;Felix&quot;   &quot;Geraldo&quot; &quot;Nadine&quot;  &quot;Silvia&quot;  &quot;Clara&quot;  
+##  [7] &quot;3&quot;       &quot;2&quot;       &quot;4&quot;       &quot;5&quot;       &quot;6&quot;       &quot;1&quot;</code></pre>
 <p>Escrito dessa maneira, a variável <code>escola</code> tem pouca utilidade. Se usarmos a função<code>matrix ()</code> que é uma estrutura bidimensional que necessita atributos de dimensão como numero de linhas (<code>nrow =</code>) e número de colunas (<code>ncol =</code>)</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="manipulando-dados-no-rstudio.html#cb121-1" aria-hidden="true" tabindex="-1"></a>escola <span class="ot">&lt;-</span> <span class="fu">matrix</span>(escola, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb121-2"><a href="manipulando-dados-no-rstudio.html#cb121-2" aria-hidden="true" tabindex="-1"></a>escola</span></code></pre></div>
