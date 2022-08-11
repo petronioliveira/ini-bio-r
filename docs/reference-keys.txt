@@ -1,3 +1,17 @@
 down-the-rabbit-hole
 the-pool-of-tears
 a-caucus-race-and-a-long-tale
+dados
+o-que-são-dado
+população-e-amostra
+estimativas-e-parâmetros
+escalas-de-medição
+escala-nominal
+escala-ordinal
+escala-intervalar
+escala-de-razão
+tipos-de-variáveis
+variáveis-numéricas
+variáveis-categóricas
+variáveis-dependentes-e-independentes
+leitura-adicional

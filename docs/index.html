@@ -72,7 +72,26 @@
 <li><a href="./">BioestatisticaR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Down the rabbit-hole</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="the-pool-of-tears.html"><a href="the-pool-of-tears.html"><i class="fa fa-check"></i><b>2</b> The pool of tears</a></li>
 <li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
 <li class="divider"></li>
@@ -99,9 +118,135 @@
 <p class="author"><em>Petrônio Fagundes de Oliveira Filho</em></p>
 <p class="date"><em>2022-08-11</em></p>
 </div>
-<div id="down-the-rabbit-hole" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Capítulo  1</span> Down the rabbit-hole<a href="index.html#down-the-rabbit-hole" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="dados" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Capítulo  1</span> Dados<a href="index.html#dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="o-que-são-dado" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> O que são dado?<a href="index.html#o-que-são-dado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Em qualquer lugar que depositarmos o nosso olhar, encontramos uma infinidade de dados e seus resumos estatísticos e interpretações. Por exemplo:</p>
+<p><strong>Exemplo 1.1: PIB dos EUA cai há dois trimestres</strong><br />
+“Dados divulgados ontem pelo departamento de Comércio mostram que o PIB caiu 0,9%, na comparação anualizada, e 0,2% em relação ao 1º trimestre” <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. A esta notícia segue-se a interpretação da Casa Branca de que a economia dos EUA não se encontra em uma recessão.<br />
+Isso pode ser verdade? Aparentemente, é o desejo do presidente Biden. Não temos outras informações para melhor analisar os dados.</p>
+<p><strong>Exemplo 1.2: Prevalência, mortalidade e fatores de risco associados aos nascimentos de prematuros</strong> Um estudo realizado em Pelotas, RS buscou verificar a prevalência, mortalidade e fatores de risco associados aos nascimentos de prematuros de muito baixo peso ao nascer (MBPN) ao longo de 33 anos<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Este estudo incluiu uma série de quatro estudos transversais utilizando dados das entrevistas perinatais das coortes de nascimento da cidade de Pelotas coletados em 1982, 1993, 2004 e 2015, envolvendo19.625 recém-nascidos.<br />
+Em 1982, 1993, 2004 e 2015 ocorreram, respectivamente, 5.909, 5.232, 4.226 e 4.258 nascimentos. A prevalência de prematuros de muito baixo peso ao nascer naqueles anos foi, respectivamente, de 1,1% (n = 64), 0,9% (n = 46), 1,4% (n = 61) e 1,3% (n = 54). A tendência de aumento durante o período não alcançou significância estatística (P = 0,11). Entre os fatores de risco, a renda familiar nos três quintis mais pobres esteve associada a prevalências cerca de duas vezes mais altas do que no quintil mais rico (p = 0,003). A mortalidade por 1.000 nascidos vivos para os neonatos com peso &lt; 1500 g caiu de 688 para 259 por mil ao longo dos anos (p &lt; 0,001), mas ainda representa 61% dos óbitos neonatais em 2015.
+Aqui, temos uma pesquisa científica com dados relevantes em Saúde Pública.</p>
+<p>Como vemos, as pesquisas manuseiam dados. Cada conjunto de dados está relacionado às variáveis que estão sendo estudadas em uma pesquisa. <a href="anchor">Variável</a> é toda característica ou condição de interesse que pode de ser mensurada ou observada em cada elemento de uma amostra ou população. Como o próprio nome diz, seus valores são passíveis variar de um indivíduo a outro ou no mesmo indivíduo. Em contraste com a variável, o valor de uma constante é fixo. As variáveis podem ter valores numéricos ou não numéricos. O resultado da mensuração ou observação de uma variável é denominado <a href="anchor">dado</a> .</p>
+</div>
+<div id="população-e-amostra" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> População e Amostra<a href="index.html#população-e-amostra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na pesquisa em saúde, a não ser quando se realiza um censo, coleta-se dados de um subconjunto de indivíduos denominado de <a href="anchor">amostra</a>, pertencente a um grupo maior, conhecido como <a href="anchor">população</a>. A população de interesse é, geralmente, chamada de <a href="anchor">população-alvo</a>. A amostra para ser representativa da população deve ter as mesmas características desta. A partir dos dados encontrados na amostra, presume-se o resultado é condizente com a população. Este processo é denominado de <a href="anchor">inferência estatística</a>. O interesse na amostra não está propriamente nela, mas na informação que ela fornece ao investigador sobre a população de onde ela provém. A amostra fornece estimativas (estatísticas) da população.<br />
+Em decorrência do acaso, diferentes amostras de uma mesma população fornecem resultados diferentes. Este fato deve ser levado em consideração ao usar uma amostra para fazer inferência sobre uma população. Este fenômeno é denominado de <a href="anchor">variação amostral</a> ou <a href="anchor">erro amostral</a> e é a essência da estatística. O grau de certeza na inferência estatística depende da representatividade da amostra.<br />
+O processo de obtenção da amostra é chamado de <a href="anchor">amostragem</a>. Mesmo que este processo seja adequado, a amostra nunca será uma cópia perfeita da população de onde ela foi extraída. Desta forma, em qualquer conclusão baseada em dados de uma amostra, sempre haverá o que é conhecido como erro amostral. Este erro deve ser tratado estatisticamente tendo em mente a teoria da amostragem, baseada em probabilidades.</p>
+</div>
+<div id="estimativas-e-parâmetros" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Estimativas e Parâmetros<a href="index.html#estimativas-e-parâmetros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="anchor">Estimativa</a> é uma característica que resume os dados de uma amostra (estatística amostral) e o <a href="anchor">parâmetro</a> é uma característica estabelecida para toda a população. Os valores dos parâmetros são normalmente desconhecidos, porque é inviável medir uma população inteira. A estimativa é um valor aproximado do parâmetro. As estimativas são representadas por letras romanas e os parâmetros por letras gregas (Tabela 1.1). Na maioria dos estudos, são utilizadas amostras que fornecem estimativas que, para serem representativas da população, devem ser probabilísticas. Ou seja, a amostra deve ser recrutada de forma aleatória, permitindo que cada um dos membros da população tenha a mesma probabilidade de ser incluído na amostra. Além disso, uma amostra deve ter um tamanho adequado para permitir inferências válidas.</p>
+<p><strong>Tabela 1.1</strong> Estimativas (estatísticas amostrais) e parâmetros.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Medidas</th>
+<th align="center">Estimativas</th>
+<th align="center">Parâmetros</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Média</td>
+<td align="center"><span class="math inline">\(\overline{x}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Desvio Padrão</td>
+<td align="center"><em>s</em></td>
+<td align="center"><span class="math inline">\(\sigma\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Variância</td>
+<td align="center"><span class="math inline">\(s^2\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Proporção</td>
+<td align="center"><span class="math inline">\(\hat{p}\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Número de elementos</td>
+<td align="center"><span class="math inline">\(n\)</span></td>
+<td align="center"><span class="math inline">\(N\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="escalas-de-medição" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Escalas de medição<a href="index.html#escalas-de-medição" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Em um estudo científico, há necessidade de registrar os dados para que eles representem acuradamente as variáveis observadas. Este registro de valores necessita de escalas de medição. <a href="anchor">Mensuração</a> ou <a href="anchor">medição</a> é o processo de atribuir números ou rótulos a objetos, pessoas, estados ou eventos de acordo com regras específicas para representar quantidades ou qualidades dos dados. Para a mensuração das variáveis são usadas as escalas nominal, ordinal, intervalar e de razão.</p>
+<div id="escala-nominal" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Escala Nominal<a href="index.html#escala-nominal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As escalas nominais são meramente classificativas, permitindo descrever as variáveis ou designar os sujeitos, sem recurso à quantificação. É o nível mais elementar de representação. São usados nomes, números ou outros símbolos para designar a variável. Os números, quando usados, representam códigos e como tal não permitem operações matemáticas. As variáveis nominais não podem ser ordenadas. Podem apenas ser comparadas utilizando as relações de igualdade ou de diferença, através de <a href="anchor">contagens</a>. Os números atribuídos às variáveis servem como identificação, ou para associá-la uma dada categoria. As categorias de uma escala nominal são exaustivas e mutuamente exclusivas.<br />
+Quando existem duas categorias, a variável é dita dicotômica e com três ou mais categorias, politômicas. Os nomes e símbolos que designam as categorias podem ser intercambiáveis sem alterar a informação essencial.
+<em>Exemplos</em>: Tipos sanguíneos: A, B, AB, O; variáveis dicotômicas: morto/vivo, homem/mulher, sim/não; cor dos olhos, etc.</p>
+</div>
+<div id="escala-ordinal" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Escala Ordinal<a href="index.html#escala-ordinal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As variáveis são medidas em uma escala ordinal quando ocorre uma ordem, crescente ou decrescente, inerente entre as categorias, estabelecida sob determinado critério. A diferença entre as categorias não é necessariamente igual e nem sempre mensuráveis. Geralmente, designam-se os valores de uma escala ordinal em termos de numerais ou postos (ranks), sendo estes apenas modos diferentes de expressar o mesmo tipo de dados. Também não faz sentido realizar operações matemática com variáveis ordinais. Pode-se continuar a usar contagem.
+<em>Exemplos</em>: classe social (baixa, média, alta); estado geral do paciente: bom, regular, mau; estágios do câncer: 0, 1, 2, 3 e 4; escore de Apgar: 0, 1, 2… 10.</p>
+</div>
+<div id="escala-intervalar" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Escala Intervalar<a href="index.html#escala-intervalar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma escala intervalar contém todas as características das escalas ordinais com a diferença de que se conhece as distâncias entre quaisquer números. Em outras palavras, existe um espectro ordenado com intervalos quantificáveis. Este tipo de escala permite que se verifique a ordem e a diferença entre as variáveis, porém não tem um zero verdadeiro, o zero é arbitrário.
+O <em>exemplo</em> clássico é a mensuração da temperatura, usando as escalas de: Celsius ou Fahrenheit. Aqui é legítimo ordenar, fazer soma ou médias. No entanto, 0ºC não significa ausência de temperatura, portanto a operação divisão não é possível. Uma temperatura de 40ºC não é o dobro de 20ºC. Se 40ºC e 20ºC forem transformados para a escala Fahrenheit, passarão, respectivamente, para 104ºF e 68ºF e, sem dúvida, 104 não é o dobro de 68!</p>
+</div>
+<div id="escala-de-razão" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Escala de Razão<a href="index.html#escala-de-razão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Há um espectro ordenado com intervalos quantificáveis como na escala intervalar. Entretanto, as medidas iniciam a partir de um zero verdadeiro e a escala tem intervalos iguais, permitindo as comparações de magnitude entre os valores. Refletem a quantidade real de uma variável, permitindo qualquer operação matemática.<br />
+Os dados tanto na escala intervalar como na de razão, podem ser contínuos ou discretos. Dados contínuos necessitam de instrumentos para a sua mensuração e assumem qualquer valor em um certo intervalo. Por exemplo, o tempo para terminar qualquer tarefa pode assumir qualquer valor, 10 min, 20 min, 35 min, etc., de acordo com o tipo de tarefa. Outros exemplos: peso, dosagem de colesterol, glicemia. Dados discretos possuem valores iguais a números inteiros, não existindo valores intermediários. A mensuração é feita através da contagem. Por exemplo: número de filhos, número de fraturas, número de pessoas.</p>
+</div>
+</div>
+<div id="tipos-de-variáveis" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Tipos de Variáveis<a href="index.html#tipos-de-variáveis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A primeira etapa na descrição e análise dos dados é classificar as variáveis, pois a apresentação dos dados e os métodos estatísticos variam de acordo com os seus tipos. As variáveis, primariamente, podem ser divididas em dois tipos: numéricas ou quantitativas e categóricas ou qualitativas.</p>
+<div id="variáveis-numéricas" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Variáveis Numéricas<a href="index.html#variáveis-numéricas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As variáveis numéricas são classificadas em dois tipos de acordo com a escala de mensuração: continuas e discretas.<br />
+As <a href="anchor">variáveis contínuas</a> são aquelas cujos dados foram mensurados em uma escala intervalar ou de razão, podendo assumir como visto, qualquer valor dentro de um intervalo de números reais, dependendo da precisão do instrumento de medição. O tratamento estatístico tanto para variável intervalar como de a razão é o mesmo. A diferença entre elas está na presença do zero absoluto. As variáveis numéricas contínuas têm unidade de medida. Por exemplo, um menino de 4 anos tem 104 cm.
+Uma variável numérica é considerada <a href="anchor">discreta</a> quando é apenas possível quantificar os resultados possíveis através do processo de contagem. Também têm unidades de medida – “número de elementos”.</p>
+</div>
+<div id="variáveis-categóricas" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Variáveis Categóricas<a href="index.html#variáveis-categóricas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As variáveis categóricas ou qualitativas são de dois tipos: nominal e ordinal, de acordo com a escala de mensuração. Um tipo particularmente comum é uma variável binária (também conhecida como variável dicotômica), que tem apenas dois valores possíveis. Por exemplo, o sexo é masculino ou feminino. Este tipo de variável é bastante utilizado na área da saúde, em Epidemiologia. As variáveis nominais não têm quaisquer unidades de medida e a nominação das categorias é completamente arbitrária e pertencer a uma categoria não significa ter maior importância do que pertencer à outra.<br />
+Uma variável é dita ordinal quando ocorre uma ordem inerente ou hierarquia entre as categorias. Do mesmo modo que as variáveis nominais, as variáveis ordinais não têm unidades de medida. Entretanto, a ordenação das categorias não é arbitrária. Assim, é possível ordená-las de modo lógico. Um exemplo comum de uma variável categórica ordinal é a classe social, que tem um ordenamento natural da maioria dos mais desfavorecidos para os mais ricos. As escalas, como a escore de Apgar e a escala de coma de Glasgow, também são variáveis ordinais. Mesmo que pareçam numéricas, elas apenas mostram uma ordem no estado dos pacientes. O escore de Apgar é uma escala, desenvolvida para a avaliação clínica do recém-nascido imediatamente após o nascimento. Originalmente, a escala foi usada para avaliar a adaptação imediata do recém-nascido à vida extrauterina. A pontuação pode variar de zero a 10. Uma pontuação igual ou maior do que oito, indica um recém-nascido normal. Uma pontuação de sete ou menos pode significar depressão do sistema nervoso e abaixo de quatro, depressão grave.
+As variáveis ordinais, da mesma forma que as nominais, não são números reais e não convém aplicar as regras da aritmética básica para estes tipos de dados. Este fato gera uma limitação na análise dos dados.</p>
+</div>
+</div>
+<div id="variáveis-dependentes-e-independentes" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Variáveis dependentes e independentes<a href="index.html#variáveis-dependentes-e-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>De um modo geral as pesquisas são realizadas para testar as hipóteses dos pesquisadores e, para isso, eles medem variáveis com a finalidade de compará-las. A maioria das hipóteses podem ser expressas por duas variáveis: uma variável explicativa ou preditora e uma variável desfecho.
+A <a href="anchor">variável preditora</a> ou explanatória é a que se acredita ser a causa e também é conhecida como variável independente, porque o seu valor não depende de outras variáveis. Em Epidemiologia, é com frequência referida como exposição ou fator de risco. A <a href="anchor">variável desfecho</a> é aquela que é o efeito, consequência ou resultado da ação de outra variável, por isso, também chamada de variável dependente. Em estudo que tenta verificar se o tabagismo, durante a gestação, pode interferir no peso do recém-nascido, tem o fumo (variável categórica) como variável preditora (exposição ou fator de risco) e o peso do recém-nascido (variável numérica contínua) como variável desfecho.</p>
+</div>
+<div id="leitura-adicional" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Leitura Adicional<a href="index.html#leitura-adicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Altman DG. <strong>Practical Statistics for Medical Research</strong>. London: Chapman &amp; Hall/CRC; 1991. Types of data; p.10-8.</li>
+<li>Kirkwood BR, Sterne JAC. <strong>Essential Medical Statistics</strong>. Fourth Edition. Oxford: Blackwell Science Ltd; 2003. Defining the data; p.9-14.</li>
+<li>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2015. Natureza dos dados;p.3-6.</li>
+</ol>
+<p></br>
+</br></p>
 
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Valor Econômico, Sexta-feira, 29 de julho de 2022, Ano 23, Número 5552<a href="index.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Victora JD, Silveira MF, Tonial CT, Victora CG, Barros FC, Horta BL, et al. Prevalence, mortality and risk factors associated with very low birth weight preterm infants: an analysis of 33 years. J Pediatr (Rio J). 2020;96:327-32<a href="index.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -163,6 +308,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

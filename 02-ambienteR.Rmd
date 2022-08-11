@@ -1,0 +1,52 @@
+# Ambiente do R
+
+## Instalação do software R no Windows
+
+O R é o programa "cérebro" necessário para as análises de dados que serão realizadas. Este tutorial visa auxiliar na instalação. Assista o [vídeo](https://www.youtube.com/watch?v=xxmqTA8MkCA) e/ou use o tutorial como guia.
+
+* Baixe a última versão do instalador do **R** diretamente do repositório oficial, usando o [link](<https://cran.r-project.org/bin/windows/base/>).  
+* Após clicar em <span style="color:blue"> Download R 4.2.1 for Windows </span> (última versão do **R**, nesta data), você deve salvar o arquivo `R-4.2.1-win.exe` em qualquer diretório (eu uso: `"C:\Users\T.S\Downloads\R-4.2.1-win.exe"`. Ao fazer isso,  aparece na tela de seu computador,no canto esquerdo, em baixo, o arquivo salvo. Execute este arquivo com um clique sobre ele.  
+* Aparecerá na tela uma imagem perguntando <span style="color:green">"Deseja permitir que este aplicativo faça alterações no seu dispositivo?"</span>. Clique em <span style="color:blue"> Sim </span>.
+* A seguir o Instalador pedirá para escolher o Idioma. Selecione Português Brasileiro.  
+* Em sequência aparecerão informações sobre o diretório no qual o **R** será instalado em seu computador. Recomenda-se aceitar a configuração padrão sugerida pelo instalador do software.  
+* A próxima janela pedirá para personalizar os componentes que serão instalados. Recomenda-se usar as configurações sugeridas pelo instalador que irá reconhecer automaticamente.  
+* A partir daqui, siga as recomendações padrão propostas pelo instalador até completar a instalação, clicando em <span style="color:blue"> Concluir </span> (Figura 1).
+
+
+$~$
+<center>
+
+![Figura 1. Término da Instalação](https://i.imgur.com/6rOqk1d.png) 
+ 
+</center> 
+$~$
+ 
+*** 
+## Instalação do R Studio no Windows
+
+Siga os seguintes passos para a instalação do **R Studio** que é o "gerente" e "porta voz" do **R**. O tutorial do vídeo também mostra os passos a serem realizados.
+
+* Clique sobre este [link](https://www.rstudio.com/products/rstudio/download/#download) e realize o download para o seu sistema operacional do `RStudio-2022.07.1-554`, da mesma maneira que para o **R**.  
+* Abra o arquivo executável baixado, no canto esquerdo embaixo.  
+* Será repetida a mesma pergunta feita para o **R**. Clique <span style="color:blue"> Sim </span>.  
+* Siga os passos apresentados pelo instalador, lendo com atenção. 
+* Aguarde a conclusão da instalação e clique em <span style="color:blue"> Terminar </span>.  
+
+Para verifcar se a instalação foi concluída com sucesso, abra o **R Studio** através do menu Iniciar do Windows ou clicando no ícone do **R Studio**. Segue a imagem da tela que será aberta (Figura 2).
+
+
+$~$
+<center>
+
+![Figura 2. Tela Inicial do **R Studio**](https://i.imgur.com/8TmnTYs.png) 
+ 
+</center> 
+$~$
+
+O painel da esquerda é o *Console*  é a parte do **R Studio** que dialoga com o **R**. Pode-se dizer que é a mais importante, pois é nele que os códigos são executados. Quando o programa é aberto, aparece a versão corrente do **R** e algumas informações sobre o mesmo. Se isto acontecer, é sinal de que está tudo certo!  
+No painel superior, à direita, é o *ambiente de trabalho* e *histórico* dos comandos.  
+No painel inferior, à direita, encontramos os *gráficos*, os *arquivos*, a *ajuda* e os *pacotes* instalados, além do *visualizador*.
+Em outro *post* e à medida que as aulas acontecerem, mostraremos as funcionalidades do **R Studio**. O objetivo agora é apenas instalar e apresentar o **R Studio**.  
+É importante salientar que o **R Studio** funciona apenas com o **R** instalado, não havendo necessidade de carregar o **R** para que isso aconteça. Basta carregar o **R Studio** e *voilá*!
+
+Recomenda-se baixar para um diretório específico, por exemplo, *Bioestatística_R*. Abra o arquivo a partir dele para que os comandos possam ser executados. Usar sempre este diretório para o seu trabalho com Bioestatística

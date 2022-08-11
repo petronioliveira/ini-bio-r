@@ -1,0 +1,238 @@
+# Sumarização dos dados
+
+Um conjunto de dados brutos devem ser descritos, organizando-os em forma de tabelas e de gráficos que dão uma “imagem” dos dados, permitindo que se observe o seu aspecto e como eles se comportam.  
+As maneiras mais usadas para resumir o conjunto de dados são:
+
+* Primeiro, um valor em torno do qual os dados têm uma tendência para se reunir ou se agrupar, denominado de medida sumária de localização ou medida de tendência central. 
+* Em segundo lugar, um valor que mede o grau em que os dados se dispersam, denominado de medida de dispersão ou variabilidade.  
+
+Para trabalhar nesta seção, vamos usar os seguintes pacotes:
+
+```{r }
+pacman::p_load(dplyr, readxl, psych)
+```
+
+E o arquivo `dadosMater15.xlsx`que pode ser obtido [aqui](https://github.com/petronioliveira/Arquivos/raw/master/dadosMater15.xlsx) e baixado para o seu diretório de trabalho.
+
+Agora, vamos criar um objeto, `mater15`, para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
+
+```{r }
+mater15 <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater15.xlsx")
+```
+
+O caminho (*path*), usado no comando, é o do arquivo no computador do autor. Você deverá escrever o caminho no seu computador. Observe o uso de barra comum (não invertida). Se o arquivo foi baixado no diretório de trabalho ativo, basta escrever `"dadosMater15.xlsx"`.
+
+## Medidas de tendência central
+### Média
+
+A média ( $\overline{x}$ ) é a mais usada medida de tendência central. Ela é calculada pela razão entre a soma de todas as observações de um conjunto de dados e o total de observações.  
+Com os dados dos pesos dos recém-nascidos (`pesoRN`) do arquivo `dadosMater15.xlsx`, podemos calcular a média aritmética, usando a função `mean ()`. A média é mais adequada para medidas numéricas simétricas.
+
+```{r}
+mean(mater15$pesoRN)
+```
+
+Se no conjunto de dados houvesse algum valor ausente (*missing*), o comando mostraria o resultado como NA (*not available*). Para corrigir isto, basta colocar o argumento `na.rm = TRUE` na função `mean()`. Assim, o **R** vai retornar a média, ignorando os valores ausentes.  
+
+```{r}
+mean (mater15$pesoRN, na.rm = TRUE)
+```
+
+### Mediana
+
+A mediana (Md) representa o valor central em uma série ordenada de valores. Assim, metade dos valores será igual ou menor que o valor mediano e a outra metade igual ou maior do que ele.  
+No **R**, usa-se a função `median ()` para calcular o valor da mediana. Vanos utilizar a variável `mater15$apgar1`. Como o Apgar é um escore, a medida resumidora mais adequada é a mediana. Em primeiro lugar verifica-se a presença NA:  
+
+```{r}
+summary (mater15$apgar1)
+```
+
+Não existe dados omissos nessa amostra. Portanto, o uso do argumento `na.rm = TRUE` é desnecessário.
+
+```{r}
+median (mater15$apgar1)
+```
+
+### Moda
+
+Moda (Mo) é o valor que ocorre com maior frequência em um conjunto de dados. Tem o menor nível de sofisticação. É usada primariamente para dados nominais porque há simplesmente contagem dos valores. Ao contrário das outras medidas de tendência central, a moda não informa nada sobre a ordem das variáveis ou variação dentro das variáveis.  
+O **R** não tem uma função embutida padrão para calcular a moda. Portanto, há necessidade de ser criada uma função de usuário para calcular a moda.  
+
+Foi criada uma função para calcular a moda:  
+
+```{r}
+moda <- function(x) {
+  z <- table(as.vector(x))
+  names(z)[z == max(z)]}
+```
+
+Usando esta função pode-se calcular a moda para a variável `mater15$apgar1`. 
+
+```{r}
+moda (mater15$apgar1) 
+```
+
+A moda para essa variável é igual a mediana.
+
+### Quantil
+
+Uma medida de localização bastante utilizada são os [quantis](anchor) que são pontos estabelecidos em intervalos regulares que dividem a amostra em subconjuntos iguais. Se estes subconjuntos são em número de 100, são denominados de [percentis](anchor); se são em número de em 10, são os [decis](anchor) e em número de 4, são os [quartis](anchor). 
+A função apropriada no **R** para obter o quantil é `quantile ()`. Para determinar os três quartis do peso dos recém-nascidos (`mater15$pexoRN`), usa-se:
+
+```{r}
+quantile (mater15$pesoRN, c (0.25, 0.50, 0.75))
+```
+
+Observe que o percentil 50º é igual a mediana. O percentil 75º é o ponto do conjunto de dados onde 75% dos recém-nascidos têm um peso inferior a 3515,0g e 25% está acima deste valor.
+
+### Média aparada
+
+As médias aparadas são estimadores robustos da tendência central. Para calcular uma média aparada, é removida uma quantidade predeterminada de observações em cada lado de uma distribuição e realizada a média das observações restantes. Um exemplo de média aparada é a própria mediana.   
+A base **R** tem como calcular a média aparada acrescentando o argumento `trim =`, proporção a ser aparada. Se for aparado 20%, usa-se `trim = 0.2`. isto significa que serão removidos 20% dos dados dos dois extremos. No caso da amostra de 15 recém-nascidos, serão removidos três valores mais baixos e três valores mais altos, passando a mostra a ter 9 valores, e a média aparada será a média destes 9 valores. O comando para obter a média aparada é:
+
+```{r}
+mean (mater15$pesoRN, na.rm = TRUE, trim = 0.20)
+```
+
+## Medidas de Dispersão
+### Amplitude  
+
+A amplitude de um grupo de medições é definida como a diferença entre a maior observação e a menor.  
+No conjunto de dados dos pesos dos recém-nascidos, a amplitude pode ser obtida, no *R*, com a função `range ()`, que retorna o valor mínimo e o máximo.
+
+```{r}
+range (mater15$pesoRN, na.rm = TRUE)
+```
+
+### Intervalo Interquartil
+      
+A intervalo interquartil (IIQ), também conhecido como amplitude interquartil (AIQ) é uma forma de média aparada. É simplesmente a diferença entre o terceiro e o primeiro quartil, ou seja, a diferença entre o percentil 75 e o percentil 25. 
+Considere a escolaridade (`anosEst`) das parturientes da amostra `dadosMater15.xlsx`. Os percentis 25 e 75 são obtidos por:
+
+```{r}
+quantile (mater15$anosEst, c(0.25,0.75))
+```
+
+Também podeser usada a função `summary ()`:
+
+```{r}
+summary(mater15$anosEst)
+```
+
+Portanto, o IIQ está entre 6 a 8 anos de estudo ou, 8 – 6 = 2 anos de estudos completos. Em outras palavras, 50% das mulheres desta amostra têm de 6 a 8 anos de estudo.
+
+### Variância e Desvio Padrão
+
+A variância e o desvio padrão fornecem uma indicação de quão aglomerados em torno da média os dados de uma amostra estão. Estes tipos de medidas representam desvios da média.  
+No **R** existem as funções `sd ()` e `var ()`, também incluídas no **R** base, que facilmente calculam essas medidas de dispersão. Usando a variável `mater15$pesoRN`, tem-se:
+
+```{r}
+sd (mater15$pesoRN)
+var(mater15$pesoRN)
+```
+
+O desvio padrão é a raiz quadrada da variância:
+
+```{r}
+sqrt (var(mater15$pesoRN))
+```
+
+A variância e desvio padrão são medidas de variabilidade. Representam quão bem a média representa os dados. Informa se ela está funcionando bem como modelo. Pequenos desvios padrão mostram que existe pouca variabilidade nos dados, que eles se aproximam da média. Quando existe um grande desvio padrão, a média não é muito precisa para representar os dados.
+
+### Coeficiente de Variação
+
+O desvio padrão por si só tem limitações. Um desvio padrão de duas unidades pode ser considerado pequeno para um conjunto de valores cuja média é 100. Entretanto, se a média for 5, ele se torna muito grande. Além disso, o desvio padrão por ser expresso na mesma unidade dos dados, não permite aplicá-lo na comparação de dois ou mais conjunto de dados que têm unidades diferentes.
+Para eliminar essas limitações, é possível caracterizar a dispersão ou variabilidade dos dados em termos relativos, usando uma medida denominada Coeficiente de Variação (CV), também conhecido como como Desvio Padrão Relativo ou Coeficiente de Variação de Pearson. É expresso, em geral como uma porcentagem, sendo definido como a razão do desvio padrão pela média:
+
+$$
+CV = \frac{s}{\overline{x}}
+$$
+
+Multiplicando o valor da equação por 100 tem-se o CV percentual.  
+O **R** não possui uma função específica para calcular o CV. Foi criada uma função específica para isso,já multiplicada por 100.
+
+```{r}
+coef_var <- function (valores) {
+  (sd(valores, na.rm=T) / mean(valores, na.rm=T))*100}
+```
+
+Portanto, o CV da variável `mater15$pesoRN` é igual a:
+
+```{r}
+coef_var (mater15$pesoRN)
+```
+
+Se usarmos outra variável do banco de dados, por exemplo, mater15$idadeMae, o CV será igual a:
+
+```{r}
+coef_var (mater15$idadeMae)
+```
+
+O peso do recem-nascido tem um CV = `r round(coef_var (mater15$pesoRN), 1)` e a idade materna um CV = `r round(coef_var (mater15$idadeMae), 1)`, mostrando que esta tem uma maior variabilidade. Quanto menor o desvio padrão, menor o CV e, consequentemente, menor a variabilidade. Um CV $\ge$ 50%, sugere que a variável tenha uma distribuição assimétrica.
+
+## Funções descritivas no R
+
+### Funções `describe` e `describeBy`
+
+Essas funções pertencem ao pacote `psych` e podem ser usada para se obter medidas descritivas, como média, desvion padrão, mediana, média aparada (padrão = 0.1),desvio absoluto mediano, , mínimo, máximo, assimetria (skew), curtose, erro padrão:
+
+```{r}
+describe (mater15$pesoRN)
+```
+
+A variável `sexo` do recém-nascido encontra-se no banco de dados como uma variável numérica:
+
+```{r}
+class (mater15$sexo)
+```
+E deve ser transformada para se conhecer o peso dos recém-nascidos por sexo:
+
+```{r}
+mater15$sexo <- factor (mater15$sexo, 
+                        label = c ("masculino", "feminino"))
+```
+
+Depois da transformação, podemos usar a função describeBy () para obter o peso para cada sexo:
+
+```{r}
+describeBy (mater15$pesoRN, 
+            group = mater15$sexo)
+```
+
+### Funções `group_by` e `summarise` 
+
+Essas funções estão contidas no pacote `dplyr` (clique [aqui](https://www.dropbox.com/s/9geund7drwdvi2x/Manipulando-Dados-com-o-dplyr.html?dl=0) para explorar mais este pacote). Elas podem ser usadas juntas com o operador [pipe](anchor).  Este é utilizado para encadear funções, ou seja, chama-se uma função e, em seguida, passar o resultado para outra função e dessa para outra, de uma forma que seja facilmente legível. Por exemplo:
+
+```{r}
+mater15 %>% 
+  group_by(sexo) %>% 
+  summarise (n = n (),
+             media = mean(pesoRN),
+             dp = sd (pesoRN),
+             mediana = median(pesoRN),
+             IQQ = IQR (pesoRN),
+             cv = coef_var (pesoRN))
+```
+
+
+Os comandos chamam o banco de dado `mater15`, filtram a variável `sexo` deste banco e depois calculam varias medidas decritivas da variável `pesoRN.`
+
+### Função `summary`
+
+A função `summary ()` fornece a os quantis, o máximo, o mínimo e a média de uma variável ou do banco de dados.
+
+```{r}
+summary(mater15$idadeMae)
+```
+
+
+
+Para maiores esclarecimentos, consulte:
+
+<https://statsandr.com/blog/descriptive-statistics-in-r/>  
+<http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics>
+<https://learningstatisticswithr.com/book/descriptives.html>
+
+
+</br>
+</br>
