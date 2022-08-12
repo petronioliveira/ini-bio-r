@@ -302,13 +302,9 @@ Depois das transformações, as variáveis passaram a ser classificadas como fat
 ### Salvando os arquivos no seu diretório
 
 Crie um diretório de trabalho em seu computador. Coloque um nome sugestivo, por exemplo, [Bioestatística_R](anchor) e salve todos os arquivos, relacionados ao tema, nele.
-Para obter o arquivo `dadosMater.xlsx`, você deve clicar [aqui](https://www.dropbox.com/scl/fi/0mz1dwtm01z8q8o58uxjd/dadosMater.xlsx?dl=0&rlkey=erd5da8fcr4ufq8cl2ea3hnii) e baixar para o para seu diretório de trabalho. Este link abrirá o arquivo a partir do *Dropbox*. Siga os seguintes passos:
+Para obter o arquivo `dadosMater.xlsx`, você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx) e baixar para o para seu diretório de trabalho, por exemplo, [Bioestatística_R](anchor).
 
-* Clique nos ... (três pontos) à direita;  
-* No menu que aparece, escolha a opção <span style="color:green"> “Baixar” </span>; 
-* Clique nesta opção e baixe o arquivo para seu diretório de trabalho ou seu projeto (aconselhado), por exemplo, [Bioestatística_R](anchor).
-
-Para o arquivo `dadosMater15.csv`, clique [aqui](https://www.dropbox.com/s/40shte83egniw38/dadosMater15.csv?dl=0) e proceda da mesma maneira que para o `dadosMater.xlsx`.
+Para o arquivo `dadosMater15.csv`, clique [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.csv) e proceda da mesma maneira que para o `dadosMater.xlsx`.
 
 Feito! Os arquivos `dadosMater.xlsx` e `dadosMater15.csv`, agora, estão em seu diretório de trabalho, prontos para serem manipulados!
 

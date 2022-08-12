@@ -12,7 +12,7 @@ Para trabalhar nesta seção, vamos usar os seguintes pacotes:
 pacman::p_load(dplyr, readxl, psych)
 ```
 
-E o arquivo `dadosMater15.xlsx`que pode ser obtido [aqui](https://github.com/petronioliveira/Arquivos/raw/master/dadosMater15.xlsx) e baixado para o seu diretório de trabalho.
+E o arquivo `dadosMater15.xlsx`que pode ser obtido [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx) e baixado para o seu diretório de trabalho.
 
 Agora, vamos criar um objeto, `mater15`, para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
 
@@ -20,7 +20,7 @@ Agora, vamos criar um objeto, `mater15`, para receber os dados, a partir do dire
 mater15 <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater15.xlsx")
 ```
 
-O caminho (*path*), usado no comando, é o do arquivo no computador do autor. Você deverá escrever o caminho no seu computador. Observe o uso de barra comum (não invertida). Se o arquivo foi baixado no diretório de trabalho ativo, basta escrever `"dadosMater15.xlsx"`.
+O caminho (*path*), usado no comando, é o do arquivo no computador do autor. Você deverá escrever o caminho no seu computador. Observe o uso de barra comum (não invertida). Se o arquivo foi baixado no diretório de trabalho ativo, como vimos na Capítulo 7, basta escrever `"dadosMater15.xlsx"`.
 
 ## Medidas de tendência central
 ### Média
