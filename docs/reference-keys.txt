@@ -68,3 +68,16 @@ funções-descritivas-no-r
 funções-describe-e-describeby
 funções-group_by-e-summarise
 função-summary
+tabelas
+pacotes-necessários
+carregar-os-dados
+exploração-ddos-dados
+visão-geral
+transformações-das-variáveis
+tabela-de-frequência
+tabela-de-frequência-para-dados-categóricos
+tabela-de-contingência-ou-cruzada
+tabela-de-frequência-para-dados-numéricos
+construção-de-uma-tabela-com-o-pacote-gt
+tabelas-com-o-pacote-getsummary
+salvando-a-tabela

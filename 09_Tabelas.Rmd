@@ -1,0 +1,291 @@
+# Tabelas  
+
+## Pacotes necessários  
+
+carregue os bancos de dados que serão utilizados neste capítulo.
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(readxl, dplyr, gmodels, gt, gtsummary, flextable)
+```
+
+## Carregar os dados
+
+Para obter os dados você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx) e baixar para o seu diretório de trabalho o arquivo `dadosMater.xlsx`.
+
+Crie um objeto `mater` para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
+
+```{r}
+mater <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx")
+```
+
+
+
+## Exploração ddos dados
+
+### Visão Geral 
+
+Uma visão geral do banco de dados pode ser conseguida com a função `glimpse ()` do pacote `dplyr`:
+
+```{r}
+glimpse (mater)
+```
+
+Temos 30 variáveis (colunas) que podem ser manipuladas, reduzidas ou aumentadas, de acordo com o objetivo da análise. Essas variáveis estão todas colocadas como numéricas, quando, na realidade, várias delas são categóricas. 
+
+### Transformações das variáveis
+
+A primeira tarefa é transformar algumas variáveis numéricas que se encontram como categóricas, usando a função `factor ()`.
+
+```{r}
+mater$sexo <- factor (mater$sexo,
+                      levels = c(1,2),
+                      labels = c ("masc", "fem")) 
+
+mater$cor <- factor (mater$cor,
+                     levels = c(1,2),
+                     labels = c ("branca", "não branca"))
+
+mater$tipoParto <- factor (mater$tipoParto,
+                           levels = c(1,2),
+                           labels = c ("normal", "cesareo"))
+
+mater$utiNeo <- factor (mater$utiNeo,
+                        levels = c (1, 2),
+                        labels = c ("sim", "não"))
+
+mater$eCivil <- factor (mater$eCivil,
+                        levels = c (1, 2),
+                        labels = c ("solteira", "casada"))
+
+mater$fumo <- factor (mater$fumo,
+                        levels = c (1, 2),
+                        labels = c ("sim", "não"))
+
+mater$obito <- factor (mater$obito,
+                        levels = c (1, 2),
+                        labels = c ("sim", "não"))
+```
+
+A seguir, vamos reduzir o número de variáveis, apenas como demostração didática, criando um novo banco de dados que será denominado de `mater1`. Isso será feito pela função `select ()` do pacote `dplyr´. Como argumentos da dunção, colocamos o nome da variável precedido do sinal de menos. Poderia ser feito, colocando como argumentos o nome das variáveis que permanecem no banco de dados.
+
+```{r}
+mater1 <- mater %>% 
+  select (-quantFumo, -droga, -pcRN, -apgar5, -hiv, -sifilis, -rubeola, - toxo, -infCong)
+
+glimpse (mater1)
+```
+
+Agora, temos um banco de dados com `r ncol(mater1)` colunas, onde as variáveis categóricas aparecem como fatores.
+
+## Tabela de Frequência
+
+Uma das maneiras mais frequentes de observar o comportamento de uma variável, ou de um conjunto de variáveis, é construir uma **tabela de frequência**.  
+A tabela de frequência agrupa os dados por categorias ou classes, contabilizando o número de ocorrências em cada categoria.
+
+### Tabela de frequência para dados categóricos
+
+A maneira mais simples é usar a função `table ()` e `prop.table ()` que fornecem a frequência absluta e a relativa, respectivamente, associada a ele, vamos usar a função `round()` para reduzir os digitos decimais a 3:
+
+```{r}
+tab1 <- table(mater1$sexo)
+tab1
+```
+
+```{r}
+round (prop.table(tab1),3)
+```
+
+Ou seja, o banco de dados mater1 representa os nascimentos de 731 (53,4%) meninos e 637 meninas (45,6%).  
+
+Outro exemplo,
+
+```{r}
+tab2 <- table(mater1$tipoParto)
+tab2
+```
+
+```{r}
+round (prop.table(tab2), 3)
+```
+
+Observamos que o índice de cesarianas, nesta maternidade, é bem alto e igual a 40,6% dos nascimentos.
+
+### Tabela de contingência ou cruzada
+
+Por exemplo, o cruzamento de duas variáveis, chamada de tabela 2 x 2. Podemos usar também a função `table ()` e `prop.table ()`:
+
+```{r}
+tab3 <- table(mater1$sexo, mater1$utiNeo)
+tab3
+
+round(prop.table(tab3), 3)
+```
+
+Existe uma função denominada `CrossTable ()`, do pacote  `gmodels`, bastante completa, que faz a tabulação cruzada com testes de independência para  fatores. Necessita de vários argumentos:
+
+```{r}
+CrossTable(mater1$sexo,
+           mater1$utiNeo,
+           prop.r = TRUE,
+           prop.c = FALSE,
+           prop.t = FALSE,
+           chisq = TRUE,
+           prop.chisq = FALSE)
+```
+
+Onde `prop.r = TRUE` é para que a função entregue as proporções na linha. O argumento `chisq = TRUE` exibirá o resultado de um teste de Qui-Quadrado. Os argumentos `prop.c` (proporções na coluna), `prop.t` (proporçõe no total) e `prop.chisq` (contribuição do qui-quadrado de cada célula será incluída) foram colocados como `FALSE`. Os demais argumentos serão melhor discutidos quando do estudo do Qui-Quadrado. Para mais informações consulte a ajuda da função.  
+O Qui-Quadrado de Pearson com correção mostrou um valor *P*=0,46, ou seja, maior que 0,05 e, portanto, não existe, estatisticamente, uma diferença entre os meninos e as meninas quanto à ida para UTI Neonatal.  
+
+### Tabela de frequência para dados numéricos
+
+Quando se tem uma variável quantitativa, por exemplo, escolaridade (`anosEst`), fica difícil fazer uma distribuição como a feita anteriormente:
+
+```{r}
+table(mater1$anosEst)
+```
+
+A saída deste comando tem interpretação difícil. O ideal é categorizarmos a variável `anosEst` de acordo com os níveis escolares oficiais: fundamental, medio e superior. Para isso, seguimos alguns passos:
+
+* **Passo 1**: analisar a amplitude da variável
+
+```{r}
+range (mater1$anosEst)
+```
+
+* **Passo 2**: estabelecer a quantidade de categorias. 
+
+Escolhemos 3 categorias: *Fundamental*, *Médio* e *Superior*
+
+* **Passo 3**: criação da tabela com as categorias, usando a função `cut ()`. Esta função tem vários argumentos:
+
+Argumento | Significado
+:--- | :-----------
+x | um vetor numérico que será convertido em fator por classes;
+breaks | vetor numérico de dois ou mais pontos de corte exclusivos ou um único número (maior ou igual a 2) dando o número de intervalos nos quais x deve ser cortado;
+labels | rotulos para os n´veis das categorias;
+include.lowest | argumento lógico, sendo [TRUE](anchor) indicativo de inclusão dos limites;
+right | argumento lógico, sendo o padrão igual a [TRUE](anchor), indicando que os intervalos devem ser fechados à direita e aberto à esquerda ([[)](anchor)) ou se [FALSE](anchor), abertos à direita e fechados à esquerda;
+ordered_result | argummento lógico, [TRUE](anchor) se o resultado deve ser ordenado.
+      |
+
+Vamos estabelecer que até 9 anos de estudo, temos o ensino fundamental; de 10 a 12 anos, o ensino médio e a partir de 13 anos, o ensino superior. Ou seja, o argumento `breaks = c(0, 10, 13, 18)`. No exemplo, foi usado `right = FALSE` e, em consequência, o intervalo 0 – 9, incluirá o 0 e excluirá o 9, o intervalo 9 a 12, incluirá o 9 e excluirá o 12 e o último intervalo incluirá o 12 e excluirá o 18, que é o valor mais alto. Em função disso, foi incluído mais um argumento `include.lowest=TRUE`, para incluir o valor 18. 
+
+```{r}
+escolaridade <- cut (mater1$anosEst,
+                     breaks= c (0,10,13,18),
+                     right = FALSE,
+                     labels = c("Fundamental",
+                                "Médio",
+                                "Superior"),
+                     include.lowest = TRUE)                 
+
+table(escolaridade)
+```
+      
+Quando se tem uma variável quantitativa e não se dispõe de um critério pré-estabelecido  do número de classes, como no caso da escolaridade, devemos estabelecer um número de classes. 
+O número adequado de categorias pode ser dado pela *Regra de Sturges* ou por um outro critério que tenha alguma lógica, de acordo com o objetivo do estudo. A regra de Sturges tem a seguinte fórmula, onde *n* é total de observações (casos).  
+
+$$
+k = 1+1.322 \ log_{10}(n)
+$$
+
+O **R** possui a função `nclass.Sturges()` para este cálculo. Entretanto, ela é pouco usada. O bom-senso do pesquisador é a regra principal. Por exemplo, se quisermos ver a distribuição da renda familiar (em salários mínimos), variável `renda` no banco de dados `mater1`, podemos usar, os seguintes passos: 
+
+* **Passo 1**: analisar a amplitude da variável
+
+```{r}
+range (mater1$renda)
+```
+
+* **Passo 2**: estabelecer a quantidade de categorias. 
+
+Como a renda mais alta é 11, vamos criar 5 classes.
+
+* **Passo 3**: criação da tabela com as categorias, usando a função `cut ()` e a função `seq()`, onde `by =` é o incremento da sequência. 
+
+```{r}
+rendaCateg <- cut (mater$renda,
+              right = FALSE, 
+              include.lowest = TRUE,
+              seq(0, 12, by = 3)) 
+tab_renda <- table(rendaCateg)
+tab_renda
+```
+
+Este resultado mostra que 1144 dessas famílias tinham uma renda inferior a 3 salários mínimos e somente 5 famílias tinham uma renda acima de 9 salários mínimos. Ou seja, a distribuição da renda familiar é bastante assimétrica, com a maioria com uma renda abaixo de 3 salários mínimos.
+
+## Construção de uma tabela com o pacote `gt`
+
+Transformando a `tab_renda`, obtida anteriormente, usando a função `as.data.frame ()`, temos:
+
+```{r}
+tab_renda <- as.data.frame(tab_renda)
+
+class (tab_renda)
+
+colnames(tab_renda) <- c("Renda", "Frequência")
+
+tab_renda
+```
+
+Após, usa-se a função `gt()` para construir a tabela:
+
+```{r}
+gt_renda <- gt(tab_renda) %>% 
+  tab_header(title = md("**Renda Familiar**"),
+             subtitle = "Salários Mínimos")
+
+gt_renda
+```
+
+## Tabelas com o pacote `getsummary`
+
+Vamos construir uma tabela com as informações dos recém-nascidos do banco de dados `mater`. Inicialmente, criaremos um banco de dados, `materRN`, da seguinte modo:
+
+```{r}
+materRN <- mater %>% 
+  select(pesoRN, compRN, sexo, apgar1, ig, tipoParto, utiNeo, obito)
+
+glimpse (materRN)
+```
+
+```{r}
+tab <- materRN %>% 
+  tbl_summary(by = sexo,
+              label = list (pesoRN ~ "Peso de Nascimento (g)",
+                            compRN ~ "Comprimento ao nascer (cm)",
+                            apgar1 ~ "Escore de Apgar no 1º min",
+                            ig ~ "Idade Gestacional",
+                            tipoParto ~ "Tipo de Parto",
+                            utiNeo ~ "Necessidade de UTI",
+                            obito ~ "Mortalidade"),
+              missing_text = "Dados ausentes") %>%
+  bold_labels() %>% 
+  modify_header(update = list(label ~ "**Características**",
+                              stat_1 ~ "**Masculino** (N = 731)",
+                              stat_2 ~ "**Feminino** (N = 637)")) %>% 
+  add_p(pvalue_fun = function(x) style_pvalue(x, digits = 3))
+tab
+```
+ 
+## Salvando a tabela 
+
+```{r}
+library (flextable)
+
+tb <- as_flex_table(tab)
+
+save_as_docx(tb, path = "RN.docx")
+save_as_pptx(tb, path = "RN.pptx")
+```
+
+Para maiores esclarecimentos, consulte:
+
+<https://statsandr.com/blog/descriptive-statistics-in-r/>
+<http://www.danieldsjoberg.com/gtsummary/>
+
+
+
+</br>
+</br>
+
