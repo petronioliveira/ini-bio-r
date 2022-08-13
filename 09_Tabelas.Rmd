@@ -30,7 +30,7 @@ Uma visão geral do banco de dados pode ser conseguida com a função `glimpse (
 glimpse (mater)
 ```
 
-Temos 30 variáveis (colunas) que podem ser manipuladas, reduzidas ou aumentadas, de acordo com o objetivo da análise. Essas variáveis estão todas colocadas como numéricas, quando, na realidade, várias delas são categóricas. 
+Temos 30 variáveis (colunas) que podem ser manipuladas, reduzidas ou aumentadas, de acordo com o objetivo da análise. Essas variáveis estão todas colocadas como numéricas (`dbl`), quando, na realidade, várias delas são categóricas. 
 
 ### Transformações das variáveis
 
@@ -283,7 +283,6 @@ Para maiores esclarecimentos, consulte:
 
 <https://statsandr.com/blog/descriptive-statistics-in-r/>
 <http://www.danieldsjoberg.com/gtsummary/>
-
 
 
 </br>
