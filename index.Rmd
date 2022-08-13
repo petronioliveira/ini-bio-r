@@ -87,7 +87,7 @@ A [variável preditora](anchor) ou explanatória é a que se acredita ser a caus
 
 1.	Altman DG. **Practical Statistics for Medical Research**. London: Chapman & Hall/CRC; 1991. Types of data; p.10-8.
 2.	Kirkwood BR, Sterne JAC. **Essential Medical Statistics**. Fourth Edition. Oxford: Blackwell Science Ltd; 2003. Defining the data; p.9-14.
-3.	Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2015. Natureza dos dados;p.3-6.
+3.	Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Natureza dos dados;p.3-6.
 
 
 </br>
