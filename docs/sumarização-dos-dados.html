@@ -4,32 +4,34 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 1 Sumarização dos dados | 08-sumarizandoDados.knit</title>
-  <meta name="description" content="" />
+  <title>Capítulo 8 Sumarização dos dados | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 8 Sumarização dos dados | BIOESTATÍSTICA USANDO O R" />
   <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 1 Sumarização dos dados | 08-sumarizandoDados.knit" />
+  <meta property="og:title" content="Capítulo 8 Sumarização dos dados | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 1 Sumarização dos dados | 08-sumarizandoDados.knit" />
+  <meta name="twitter:title" content="Capítulo 8 Sumarização dos dados | BIOESTATÍSTICA USANDO O R" />
   
   
   
 
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
 
 
+<meta name="date" content="2022-08-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="manipulando-dados-no-rstudio.html"/>
+<link rel="next" href="tabelas.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -134,29 +136,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">BioestatisticaR</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path=""><a href="#sumarização-dos-dados"><i class="fa fa-check"></i><b>1</b> Sumarização dos dados</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path=""><a href="#medidas-de-tendência-central"><i class="fa fa-check"></i><b>1.1</b> Medidas de tendência central</a>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path=""><a href="#média"><i class="fa fa-check"></i><b>1.1.1</b> Média</a></li>
-<li class="chapter" data-level="1.1.2" data-path=""><a href="#mediana"><i class="fa fa-check"></i><b>1.1.2</b> Mediana</a></li>
-<li class="chapter" data-level="1.1.3" data-path=""><a href="#moda"><i class="fa fa-check"></i><b>1.1.3</b> Moda</a></li>
-<li class="chapter" data-level="1.1.4" data-path=""><a href="#quantil"><i class="fa fa-check"></i><b>1.1.4</b> Quantil</a></li>
-<li class="chapter" data-level="1.1.5" data-path=""><a href="#média-aparada"><i class="fa fa-check"></i><b>1.1.5</b> Média aparada</a></li>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path=""><a href="#medidas-de-dispersão"><i class="fa fa-check"></i><b>1.2</b> Medidas de Dispersão</a>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path=""><a href="#amplitude"><i class="fa fa-check"></i><b>1.2.1</b> Amplitude</a></li>
-<li class="chapter" data-level="1.2.2" data-path=""><a href="#intervalo-interquartil"><i class="fa fa-check"></i><b>1.2.2</b> Intervalo Interquartil</a></li>
-<li class="chapter" data-level="1.2.3" data-path=""><a href="#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>1.2.3</b> Variância e Desvio Padrão</a></li>
-<li class="chapter" data-level="1.2.4" data-path=""><a href="#coeficiente-de-variação"><i class="fa fa-check"></i><b>1.2.4</b> Coeficiente de Variação</a></li>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path=""><a href="#funções-descritivas-no-r"><i class="fa fa-check"></i><b>1.3</b> Funções descritivas no R</a>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path=""><a href="#funções-describe-e-describeby"><i class="fa fa-check"></i><b>1.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
-<li class="chapter" data-level="1.3.2" data-path=""><a href="#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>1.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
-<li class="chapter" data-level="1.3.3" data-path=""><a href="#função-summary"><i class="fa fa-check"></i><b>1.3.3</b> Função <code>summary</code></a></li>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -169,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
           </h1>
         </div>
 
@@ -177,10 +276,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<!--bookdown:title:end-->
-<!--bookdown:title:start-->
-<div id="sumarização-dos-dados" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Capítulo  1</span> Sumarização dos dados<a href="#sumarização-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="sumarização-dos-dados" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Capítulo  8</span> Sumarização dos dados<a href="sumarização-dos-dados.html#sumarização-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Um conjunto de dados brutos devem ser descritos, organizando-os em forma de tabelas e de gráficos que dão uma “imagem” dos dados, permitindo que se observe o seu aspecto e como eles se comportam.<br />
 As maneiras mais usadas para resumir o conjunto de dados são:</p>
 <ul>
@@ -188,101 +285,101 @@ As maneiras mais usadas para resumir o conjunto de dados são:</p>
 <li>Em segundo lugar, um valor que mede o grau em que os dados se dispersam, denominado de medida de dispersão ou variabilidade.</li>
 </ul>
 <p>Para trabalhar nesta seção, vamos usar os seguintes pacotes:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, readxl, psych)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="sumarização-dos-dados.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr, readxl, psych)</span></code></pre></div>
 <p>E o arquivo <code>dadosMater15.xlsx</code>que pode ser obtido <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx">aqui</a> e baixado para o seu diretório de trabalho.</p>
 <p>Agora, vamos criar um objeto, <code>mater15</code>, para receber os dados, a partir do diretório de trabalho, executando o seguinte código:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mater15 <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater15.xlsx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="sumarização-dos-dados.html#cb2-1" aria-hidden="true" tabindex="-1"></a>mater15 <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater15.xlsx&quot;</span>)</span></code></pre></div>
 <p>O caminho (<em>path</em>), usado no comando, é o do arquivo no computador do autor. Você deverá escrever o caminho no seu computador. Observe o uso de barra comum (não invertida). Se o arquivo foi baixado no diretório de trabalho ativo, como vimos na Capítulo 7, basta escrever <code>"dadosMater15.xlsx"</code>.</p>
-<div id="medidas-de-tendência-central" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Medidas de tendência central<a href="#medidas-de-tendência-central" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="média" class="section level3 hasAnchor" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Média<a href="#média" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="medidas-de-tendência-central" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Medidas de tendência central<a href="sumarização-dos-dados.html#medidas-de-tendência-central" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="média" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Média<a href="sumarização-dos-dados.html#média" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A média ( <span class="math inline">\(\overline{x}\)</span> ) é a mais usada medida de tendência central. Ela é calculada pela razão entre a soma de todas as observações de um conjunto de dados e o total de observações.<br />
 Com os dados dos pesos dos recém-nascidos (<code>pesoRN</code>) do arquivo <code>dadosMater15.xlsx</code>, podemos calcular a média aritmética, usando a função <code>mean ()</code>. A média é mais adequada para medidas numéricas simétricas.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="sumarização-dos-dados.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
 <pre><code>## [1] 3238.067</code></pre>
 <p>Se no conjunto de dados houvesse algum valor ausente (<em>missing</em>), o comando mostraria o resultado como NA (<em>not available</em>). Para corrigir isto, basta colocar o argumento <code>na.rm = TRUE</code> na função <code>mean()</code>. Assim, o <strong>R</strong> vai retornar a média, ignorando os valores ausentes.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="sumarização-dos-dados.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 3238.067</code></pre>
 </div>
-<div id="mediana" class="section level3 hasAnchor" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Mediana<a href="#mediana" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="mediana" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Mediana<a href="sumarização-dos-dados.html#mediana" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A mediana (Md) representa o valor central em uma série ordenada de valores. Assim, metade dos valores será igual ou menor que o valor mediano e a outra metade igual ou maior do que ele.<br />
 No <strong>R</strong>, usa-se a função <code>median ()</code> para calcular o valor da mediana. Vanos utilizar a variável <code>mater15$apgar1</code>. Como o Apgar é um escore, a medida resumidora mais adequada é a mediana. Em primeiro lugar verifica-se a presença NA:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (mater15<span class="sc">$</span>apgar1)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="sumarização-dos-dados.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (mater15<span class="sc">$</span>apgar1)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   4.000   8.000   8.000   7.667   8.500   9.000</code></pre>
 <p>Não existe dados omissos nessa amostra. Portanto, o uso do argumento <code>na.rm = TRUE</code> é desnecessário.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span> (mater15<span class="sc">$</span>apgar1)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="sumarização-dos-dados.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span> (mater15<span class="sc">$</span>apgar1)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
 </div>
-<div id="moda" class="section level3 hasAnchor" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> Moda<a href="#moda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="moda" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Moda<a href="sumarização-dos-dados.html#moda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Moda (Mo) é o valor que ocorre com maior frequência em um conjunto de dados. Tem o menor nível de sofisticação. É usada primariamente para dados nominais porque há simplesmente contagem dos valores. Ao contrário das outras medidas de tendência central, a moda não informa nada sobre a ordem das variáveis ou variação dentro das variáveis.<br />
 O <strong>R</strong> não tem uma função embutida padrão para calcular a moda. Portanto, há necessidade de ser criada uma função de usuário para calcular a moda.</p>
 <p>Foi criada uma função para calcular a moda:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">as.vector</span>(x))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(z)[z <span class="sc">==</span> <span class="fu">max</span>(z)]}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="sumarização-dos-dados.html#cb11-1" aria-hidden="true" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb11-2"><a href="sumarização-dos-dados.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">as.vector</span>(x))</span>
+<span id="cb11-3"><a href="sumarização-dos-dados.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(z)[z <span class="sc">==</span> <span class="fu">max</span>(z)]}</span></code></pre></div>
 <p>Usando esta função pode-se calcular a moda para a variável <code>mater15$apgar1</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moda</span> (mater15<span class="sc">$</span>apgar1) </span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="sumarização-dos-dados.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">moda</span> (mater15<span class="sc">$</span>apgar1) </span></code></pre></div>
 <pre><code>## [1] &quot;8&quot;</code></pre>
 <p>A moda para essa variável é igual a mediana.</p>
 </div>
-<div id="quantil" class="section level3 hasAnchor" number="1.1.4">
-<h3><span class="header-section-number">1.1.4</span> Quantil<a href="#quantil" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="quantil" class="section level3 hasAnchor" number="8.1.4">
+<h3><span class="header-section-number">8.1.4</span> Quantil<a href="sumarização-dos-dados.html#quantil" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Uma medida de localização bastante utilizada são os <a href="anchor">quantis</a> que são pontos estabelecidos em intervalos regulares que dividem a amostra em subconjuntos iguais. Se estes subconjuntos são em número de 100, são denominados de <a href="anchor">percentis</a>; se são em número de em 10, são os <a href="anchor">decis</a> e em número de 4, são os <a href="anchor">quartis</a>.
 A função apropriada no <strong>R</strong> para obter o quantil é <code>quantile ()</code>. Para determinar os três quartis do peso dos recém-nascidos (<code>mater15$pexoRN</code>), usa-se:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span> (mater15<span class="sc">$</span>pesoRN, <span class="fu">c</span> (<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="sumarização-dos-dados.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span> (mater15<span class="sc">$</span>pesoRN, <span class="fu">c</span> (<span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>##    25%    50%    75% 
 ## 2962.5 3245.0 3515.0</code></pre>
 <p>Observe que o percentil 50º é igual a mediana. O percentil 75º é o ponto do conjunto de dados onde 75% dos recém-nascidos têm um peso inferior a 3515,0g e 25% está acima deste valor.</p>
 </div>
-<div id="média-aparada" class="section level3 hasAnchor" number="1.1.5">
-<h3><span class="header-section-number">1.1.5</span> Média aparada<a href="#média-aparada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="média-aparada" class="section level3 hasAnchor" number="8.1.5">
+<h3><span class="header-section-number">8.1.5</span> Média aparada<a href="sumarização-dos-dados.html#média-aparada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As médias aparadas são estimadores robustos da tendência central. Para calcular uma média aparada, é removida uma quantidade predeterminada de observações em cada lado de uma distribuição e realizada a média das observações restantes. Um exemplo de média aparada é a própria mediana.<br />
 A base <strong>R</strong> tem como calcular a média aparada acrescentando o argumento <code>trim =</code>, proporção a ser aparada. Se for aparado 20%, usa-se <code>trim = 0.2</code>. isto significa que serão removidos 20% dos dados dos dois extremos. No caso da amostra de 15 recém-nascidos, serão removidos três valores mais baixos e três valores mais altos, passando a mostra a ter 9 valores, e a média aparada será a média destes 9 valores. O comando para obter a média aparada é:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">trim =</span> <span class="fl">0.20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="sumarização-dos-dados.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">trim =</span> <span class="fl">0.20</span>)</span></code></pre></div>
 <pre><code>## [1] 3253.889</code></pre>
 </div>
 </div>
-<div id="medidas-de-dispersão" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Medidas de Dispersão<a href="#medidas-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="amplitude" class="section level3 hasAnchor" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Amplitude<a href="#amplitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="medidas-de-dispersão" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Medidas de Dispersão<a href="sumarização-dos-dados.html#medidas-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="amplitude" class="section level3 hasAnchor" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Amplitude<a href="sumarização-dos-dados.html#amplitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A amplitude de um grupo de medições é definida como a diferença entre a maior observação e a menor.<br />
 No conjunto de dados dos pesos dos recém-nascidos, a amplitude pode ser obtida, no <em>R</em>, com a função <code>range ()</code>, que retorna o valor mínimo e o máximo.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="sumarização-dos-dados.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span> (mater15<span class="sc">$</span>pesoRN, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 2051 4070</code></pre>
 </div>
-<div id="intervalo-interquartil" class="section level3 hasAnchor" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Intervalo Interquartil<a href="#intervalo-interquartil" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="intervalo-interquartil" class="section level3 hasAnchor" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Intervalo Interquartil<a href="sumarização-dos-dados.html#intervalo-interquartil" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A intervalo interquartil (IIQ), também conhecido como amplitude interquartil (AIQ) é uma forma de média aparada. É simplesmente a diferença entre o terceiro e o primeiro quartil, ou seja, a diferença entre o percentil 75 e o percentil 25.
 Considere a escolaridade (<code>anosEst</code>) das parturientes da amostra <code>dadosMater15.xlsx</code>. Os percentis 25 e 75 são obtidos por:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span> (mater15<span class="sc">$</span>anosEst, <span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="sumarização-dos-dados.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span> (mater15<span class="sc">$</span>anosEst, <span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>## 25% 75% 
 ##   6   8</code></pre>
 <p>Também podeser usada a função <code>summary ()</code>:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mater15<span class="sc">$</span>anosEst)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="sumarização-dos-dados.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mater15<span class="sc">$</span>anosEst)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##       4       6       7       7       8      11</code></pre>
 <p>Portanto, o IIQ está entre 6 a 8 anos de estudo ou, 8 – 6 = 2 anos de estudos completos. Em outras palavras, 50% das mulheres desta amostra têm de 6 a 8 anos de estudo.</p>
 </div>
-<div id="variância-e-desvio-padrão" class="section level3 hasAnchor" number="1.2.3">
-<h3><span class="header-section-number">1.2.3</span> Variância e Desvio Padrão<a href="#variância-e-desvio-padrão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="variância-e-desvio-padrão" class="section level3 hasAnchor" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Variância e Desvio Padrão<a href="sumarização-dos-dados.html#variância-e-desvio-padrão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A variância e o desvio padrão fornecem uma indicação de quão aglomerados em torno da média os dados de uma amostra estão. Estes tipos de medidas representam desvios da média.<br />
 No <strong>R</strong> existem as funções <code>sd ()</code> e <code>var ()</code>, também incluídas no <strong>R</strong> base, que facilmente calculam essas medidas de dispersão. Usando a variável <code>mater15$pesoRN</code>, tem-se:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="sumarização-dos-dados.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
 <pre><code>## [1] 523.318</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="sumarização-dos-dados.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
 <pre><code>## [1] 273861.8</code></pre>
 <p>O desvio padrão é a raiz quadrada da variância:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="fu">var</span>(mater15<span class="sc">$</span>pesoRN))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="sumarização-dos-dados.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span> (<span class="fu">var</span>(mater15<span class="sc">$</span>pesoRN))</span></code></pre></div>
 <pre><code>## [1] 523.318</code></pre>
 <p>A variância e desvio padrão são medidas de variabilidade. Representam quão bem a média representa os dados. Informa se ela está funcionando bem como modelo. Pequenos desvios padrão mostram que existe pouca variabilidade nos dados, que eles se aproximam da média. Quando existe um grande desvio padrão, a média não é muito precisa para representar os dados.</p>
 </div>
-<div id="coeficiente-de-variação" class="section level3 hasAnchor" number="1.2.4">
-<h3><span class="header-section-number">1.2.4</span> Coeficiente de Variação<a href="#coeficiente-de-variação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="coeficiente-de-variação" class="section level3 hasAnchor" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Coeficiente de Variação<a href="sumarização-dos-dados.html#coeficiente-de-variação" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>O desvio padrão por si só tem limitações. Um desvio padrão de duas unidades pode ser considerado pequeno para um conjunto de valores cuja média é 100. Entretanto, se a média for 5, ele se torna muito grande. Além disso, o desvio padrão por ser expresso na mesma unidade dos dados, não permite aplicá-lo na comparação de dois ou mais conjunto de dados que têm unidades diferentes.
 Para eliminar essas limitações, é possível caracterizar a dispersão ou variabilidade dos dados em termos relativos, usando uma medida denominada Coeficiente de Variação (CV), também conhecido como como Desvio Padrão Relativo ou Coeficiente de Variação de Pearson. É expresso, em geral como uma porcentagem, sendo definido como a razão do desvio padrão pela média:</p>
 <p><span class="math display">\[
@@ -290,36 +387,36 @@ CV = \frac{s}{\overline{x}}
 \]</span></p>
 <p>Multiplicando o valor da equação por 100 tem-se o CV percentual.<br />
 O <strong>R</strong> não possui uma função específica para calcular o CV. Foi criada uma função específica para isso,já multiplicada por 100.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>coef_var <span class="ot">&lt;-</span> <span class="cf">function</span> (valores) {</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sd</span>(valores, <span class="at">na.rm=</span>T) <span class="sc">/</span> <span class="fu">mean</span>(valores, <span class="at">na.rm=</span>T))<span class="sc">*</span><span class="dv">100</span>}</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="sumarização-dos-dados.html#cb30-1" aria-hidden="true" tabindex="-1"></a>coef_var <span class="ot">&lt;-</span> <span class="cf">function</span> (valores) {</span>
+<span id="cb30-2"><a href="sumarização-dos-dados.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">sd</span>(valores, <span class="at">na.rm=</span>T) <span class="sc">/</span> <span class="fu">mean</span>(valores, <span class="at">na.rm=</span>T))<span class="sc">*</span><span class="dv">100</span>}</span></code></pre></div>
 <p>Portanto, o CV da variável <code>mater15$pesoRN</code> é igual a:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="sumarização-dos-dados.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
 <pre><code>## [1] 16.16144</code></pre>
 <p>Se usarmos outra variável do banco de dados, por exemplo, mater15$idadeMae, o CV será igual a:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span> (mater15<span class="sc">$</span>idadeMae)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sumarização-dos-dados.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span> (mater15<span class="sc">$</span>idadeMae)</span></code></pre></div>
 <pre><code>## [1] 25.83343</code></pre>
 <p>O peso do recem-nascido tem um CV = 16.2 e a idade materna um CV = 25.8, mostrando que esta tem uma maior variabilidade. Quanto menor o desvio padrão, menor o CV e, consequentemente, menor a variabilidade. Um CV <span class="math inline">\(\ge\)</span> 50%, sugere que a variável tenha uma distribuição assimétrica.</p>
 </div>
 </div>
-<div id="funções-descritivas-no-r" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Funções descritivas no R<a href="#funções-descritivas-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="funções-describe-e-describeby" class="section level3 hasAnchor" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Funções <code>describe</code> e <code>describeBy</code><a href="#funções-describe-e-describeby" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="funções-descritivas-no-r" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Funções descritivas no R<a href="sumarização-dos-dados.html#funções-descritivas-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="funções-describe-e-describeby" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Funções <code>describe</code> e <code>describeBy</code><a href="sumarização-dos-dados.html#funções-describe-e-describeby" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Essas funções pertencem ao pacote <code>psych</code> e podem ser usada para se obter medidas descritivas, como média, desvion padrão, mediana, média aparada (padrão = 0.1),desvio absoluto mediano, , mínimo, máximo, assimetria (skew), curtose, erro padrão:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="sumarização-dos-dados.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span> (mater15<span class="sc">$</span>pesoRN)</span></code></pre></div>
 <pre><code>##    vars  n    mean     sd median trimmed    mad  min  max range skew kurtosis
 ## X1    1 15 3238.07 523.32   3245 3265.38 563.39 2051 4070  2019 -0.4     -0.3
 ##        se
 ## X1 135.12</code></pre>
 <p>A variável <code>sexo</code> do recém-nascido encontra-se no banco de dados como uma variável numérica:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (mater15<span class="sc">$</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="sumarização-dos-dados.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span> (mater15<span class="sc">$</span>sexo)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>E deve ser transformada para se conhecer o peso dos recém-nascidos por sexo:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mater15<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span> (mater15<span class="sc">$</span>sexo, </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="fu">c</span> (<span class="st">&quot;masculino&quot;</span>, <span class="st">&quot;feminino&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sumarização-dos-dados.html#cb39-1" aria-hidden="true" tabindex="-1"></a>mater15<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span> (mater15<span class="sc">$</span>sexo, </span>
+<span id="cb39-2"><a href="sumarização-dos-dados.html#cb39-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label =</span> <span class="fu">c</span> (<span class="st">&quot;masculino&quot;</span>, <span class="st">&quot;feminino&quot;</span>))</span></code></pre></div>
 <p>Depois da transformação, podemos usar a função describeBy () para obter o peso para cada sexo:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span> (mater15<span class="sc">$</span>pesoRN, </span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> mater15<span class="sc">$</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="sumarização-dos-dados.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describeBy</span> (mater15<span class="sc">$</span>pesoRN, </span>
+<span id="cb40-2"><a href="sumarização-dos-dados.html#cb40-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> mater15<span class="sc">$</span>sexo)</span></code></pre></div>
 <pre><code>## 
 ##  Descriptive statistics by group 
 ## group: masculino
@@ -334,17 +431,17 @@ O <strong>R</strong> não possui uma função específica para calcular o CV. Fo
 ##       se
 ## X1 150.4</code></pre>
 </div>
-<div id="funções-group_by-e-summarise" class="section level3 hasAnchor" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Funções <code>group_by</code> e <code>summarise</code><a href="#funções-group_by-e-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="funções-group_by-e-summarise" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Funções <code>group_by</code> e <code>summarise</code><a href="sumarização-dos-dados.html#funções-group_by-e-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Essas funções estão contidas no pacote <code>dplyr</code> (clique <a href="https://www.dropbox.com/s/9geund7drwdvi2x/Manipulando-Dados-com-o-dplyr.html?dl=0">aqui</a> para explorar mais este pacote). Elas podem ser usadas juntas com o operador <a href="anchor">pipe</a>. Este é utilizado para encadear funções, ou seja, chama-se uma função e, em seguida, passar o resultado para outra função e dessa para outra, de uma forma que seja facilmente legível. Por exemplo:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mater15 <span class="sc">%&gt;%</span> </span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span> (),</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">media =</span> <span class="fu">mean</span>(pesoRN),</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">dp =</span> <span class="fu">sd</span> (pesoRN),</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">mediana =</span> <span class="fu">median</span>(pesoRN),</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">IQQ =</span> <span class="fu">IQR</span> (pesoRN),</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">cv =</span> <span class="fu">coef_var</span> (pesoRN))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="sumarização-dos-dados.html#cb42-1" aria-hidden="true" tabindex="-1"></a>mater15 <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="sumarização-dos-dados.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="sumarização-dos-dados.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">n =</span> <span class="fu">n</span> (),</span>
+<span id="cb42-4"><a href="sumarização-dos-dados.html#cb42-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">media =</span> <span class="fu">mean</span>(pesoRN),</span>
+<span id="cb42-5"><a href="sumarização-dos-dados.html#cb42-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">dp =</span> <span class="fu">sd</span> (pesoRN),</span>
+<span id="cb42-6"><a href="sumarização-dos-dados.html#cb42-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">mediana =</span> <span class="fu">median</span>(pesoRN),</span>
+<span id="cb42-7"><a href="sumarização-dos-dados.html#cb42-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">IQQ =</span> <span class="fu">IQR</span> (pesoRN),</span>
+<span id="cb42-8"><a href="sumarização-dos-dados.html#cb42-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">cv =</span> <span class="fu">coef_var</span> (pesoRN))</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 7
 ##   sexo          n media    dp mediana   IQQ    cv
 ##   &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -352,10 +449,10 @@ O <strong>R</strong> não possui uma função específica para calcular o CV. Fo
 ## 2 feminino      7 3161.  398.   3340   522.  12.6</code></pre>
 <p>Os comandos chamam o banco de dado <code>mater15</code>, filtram a variável <code>sexo</code> deste banco e depois calculam varias medidas decritivas da variável <code>pesoRN.</code></p>
 </div>
-<div id="função-summary" class="section level3 hasAnchor" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Função <code>summary</code><a href="#função-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="função-summary" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Função <code>summary</code><a href="sumarização-dos-dados.html#função-summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A função <code>summary ()</code> fornece a os quantis, o máximo, o mínimo e a média de uma variável ou do banco de dados.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mater15<span class="sc">$</span>idadeMae)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="sumarização-dos-dados.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mater15<span class="sc">$</span>idadeMae)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   19.00   20.50   23.00   24.87   26.50   40.00</code></pre>
 <p>Para maiores esclarecimentos, consulte:</p>
@@ -364,6 +461,7 @@ O <strong>R</strong> não possui uma função específica para calcular o CV. Fo
 <a href="https://learningstatisticswithr.com/book/descriptives.html" class="uri">https://learningstatisticswithr.com/book/descriptives.html</a></p>
 <p></br>
 </br></p>
+
 </div>
 </div>
 </div>
@@ -372,8 +470,8 @@ O <strong>R</strong> não possui uma função específica para calcular o CV. Fo
           </div>
         </div>
       </div>
-
-
+<a href="manipulando-dados-no-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tabelas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -404,7 +502,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/08-sumarizandoDados.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -412,11 +510,14 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/%s",
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/08-sumarizandoDados.Rmd",
 "text": null
 },
 "download": null,
-"search": false,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
