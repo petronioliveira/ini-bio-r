@@ -98,3 +98,14 @@ gráfico-de-barras-lado-a-lado
 gráfico-de-barras-com-variáveis-discretas
 gráfico-de-barras-simples-com-o-ggplot2
 leitura-adicional-2
+visão-geral-do-dadosmater.xlsx
+gráfico-de-barra-de-erro
+exploração-e-manipulação-arquivo-rnt.xlsx
+resumos-numericos
+extrair-dois-subconjuntos-de-dados-meninos-e-meninas
+resumos-numéricos-dos-dois-subgrupos
+criação-do-gráfico-de-barra-de-erro
+gráfico-de-barra-de-erro-com-o-ggplot2
+construção-do-gráfico
+gráfico-com-apenas-as-barras-superiores
+gráfico-de-barra-de-erro-com-a-função-lineplot.ci

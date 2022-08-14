@@ -10,7 +10,7 @@ pacman::p_load(readxl, dplyr, gmodels, gt, gtsummary, flextable)
 
 ## Carregar os dados
 
-Para obter os dados você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx) e baixar para o seu diretório de trabalho o arquivo `dadosMater.xlsx`.
+Para obter os dados você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx) e baixar para o seu diretório de trabalho o arquivo `dadosMater.xlsx`.
 
 Crie um objeto `mater` para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
 
