@@ -23,7 +23,7 @@
 <meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
 
 
-<meta name="date" content="2022-08-11" />
+<meta name="date" content="2022-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,6 +238,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
+<li class="chapter" data-level="9.8" data-path="tabelas.html"><a href="tabelas.html#leitura-adicional-1"><i class="fa fa-check"></i><b>9.8</b> Leitura Adicional</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -264,14 +284,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As funções automatizam as tarefas no <strong>R</strong>. Elas podem ser criadas pelo pesquisador, de acordo com as suas necessidades. Entretanto, na maioria das vezes, elas são encontradas prontas, fazendo parte de um pacote. Pacotes contêm muitas funções que para serem executadas necessitam que o pacote esteja instalado e carregado. As funções para exercerem a sua ação devem receber dentro delas (entre parênteses) os argumentos que ela exige.
 Por exemplo, a função <code>mean ()</code>, contida no <strong>R</strong> base, calcula a média de uma série de números (vetor numérico):</p>
 <p>É possível colocar este vetor em um objeto que pode receber qualquer nome, por exemplo, um conjunto de seis números, concatenados pela função <code>c ()</code>, que receberão o nome de <code>meus_dados</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="funções.html#cb88-1" aria-hidden="true" tabindex="-1"></a>meus_dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
-<span id="cb88-2"><a href="funções.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(meus_dados)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="funções.html#cb1-1" aria-hidden="true" tabindex="-1"></a>meus_dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
+<span id="cb1-2"><a href="funções.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(meus_dados)</span></code></pre></div>
 <pre><code>## [1] 6.166667</code></pre>
 <p>A execução da função <code>mean ()</code>, retorna o resultado arredondado de 6.17. Este mesmo resultado poderia ser obtido colocando o vetor dentro da função:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="funções.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="funções.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>))</span></code></pre></div>
 <pre><code>## [1] 6.166667</code></pre>
 <p>Para se saber quais argumentos necessários para uma determinada função basta consulta a ajuda, onde se encontrará a documentação da mesma:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="funções.html#cb92-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="funções.html#cb5-1" aria-hidden="true" tabindex="-1"></a>?mean</span></code></pre></div>
 <p>Os principais argumentos da função <code>mean ()</code> são:</p>
 <table>
 <colgroup>
@@ -287,7 +307,7 @@ Por exemplo, a função <code>mean ()</code>, contida no <strong>R</strong> base
 <tbody>
 <tr class="odd">
 <td align="left">x</td>
-<td align="left">é um objeto R, numérico</td>
+<td align="left">é um objeto <strong>R</strong>, numérico</td>
 </tr>
 <tr class="even">
 <td align="left">trim</td>
@@ -305,38 +325,38 @@ Por exemplo, a função <code>mean ()</code>, contida no <strong>R</strong> base
 <div id="fórmula-geral" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Fórmula geral<a href="funções.html#fórmula-geral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As funções têm uma fórmula geral:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="funções.html#cb93-1" aria-hidden="true" tabindex="-1"></a>nome.da.função <span class="ot">&lt;-</span> <span class="cf">function</span> (x){transformar x}</span></code></pre></div>
-<p>Por exemplo, a área de um circulo é igual a <span class="math inline">\(\pi\)</span> x raio^2. Usando o R para calcular a área do círculo, podemos criar uma função que faça este trabalho:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="funções.html#cb94-1" aria-hidden="true" tabindex="-1"></a>area.circ <span class="ot">&lt;-</span> <span class="cf">function</span>(r){</span>
-<span id="cb94-2"><a href="funções.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi<span class="sc">*</span>r<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb94-3"><a href="funções.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(area)                </span>
-<span id="cb94-4"><a href="funções.html#cb94-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="funções.html#cb6-1" aria-hidden="true" tabindex="-1"></a>nome.da.função <span class="ot">&lt;-</span> <span class="cf">function</span> (x){transformar x}</span></code></pre></div>
+<p>Por exemplo, a área de um circulo é igual a <span class="math inline">\(\pi\times raio^2\)</span>. Usando o <strong>R</strong> para calcular a área do círculo, podemos criar uma função que faça este trabalho:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="funções.html#cb7-1" aria-hidden="true" tabindex="-1"></a>area.circ <span class="ot">&lt;-</span> <span class="cf">function</span>(r){</span>
+<span id="cb7-2"><a href="funções.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> pi<span class="sc">*</span>r<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb7-3"><a href="funções.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(area)                </span>
+<span id="cb7-4"><a href="funções.html#cb7-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Ao executar essa função, é possível usá-la para calcular a área de um círculo, cujo raio é igual a 5 cm:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="funções.html#cb95-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb95-2"><a href="funções.html#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">area.circ</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="funções.html#cb8-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb8-2"><a href="funções.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">area.circ</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 78.53982</code></pre>
 </div>
 <div id="outros-exemplos" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Outros exemplos<a href="funções.html#outros-exemplos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Podemos criar uma função para o Indice de Massa Corporal, sabendo que ele é igual ao peso (kg) dividido pela altura^2:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="funções.html#cb97-1" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="cf">function</span>(peso, altura){</span>
-<span id="cb97-2"><a href="funções.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> peso<span class="sc">/</span>altura<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb97-3"><a href="funções.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
-<span id="cb97-4"><a href="funções.html#cb97-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Podemos criar uma função para o Indice de Massa Corporal, sabendo que ele é igual ao peso (kg) dividido pela <span class="math inline">\(altura^2\)</span>, em metros:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="funções.html#cb10-1" aria-hidden="true" tabindex="-1"></a>imc <span class="ot">&lt;-</span> <span class="cf">function</span>(peso, altura){</span>
+<span id="cb10-2"><a href="funções.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> peso<span class="sc">/</span>altura<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb10-3"><a href="funções.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res)</span>
+<span id="cb10-4"><a href="funções.html#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Logo, o IMC de um indivíduo que tenha 67 kg e 1,7 m é:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="funções.html#cb98-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span>  <span class="dv">67</span></span>
-<span id="cb98-2"><a href="funções.html#cb98-2" aria-hidden="true" tabindex="-1"></a>altura <span class="ot">&lt;-</span>  <span class="fl">1.70</span></span>
-<span id="cb98-3"><a href="funções.html#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">imc</span>(<span class="dv">67</span>, <span class="fl">1.70</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="funções.html#cb11-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span>  <span class="dv">67</span></span>
+<span id="cb11-2"><a href="funções.html#cb11-2" aria-hidden="true" tabindex="-1"></a>altura <span class="ot">&lt;-</span>  <span class="fl">1.70</span></span>
+<span id="cb11-3"><a href="funções.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">imc</span>(<span class="dv">67</span>, <span class="fl">1.70</span>)</span></code></pre></div>
 <pre><code>## [1] 23.18339</code></pre>
 </div>
 <div id="ativação-de-uma-função" class="section level3 hasAnchor" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Ativação de uma função<a href="funções.html#ativação-de-uma-função" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para ativar uma função previamente criada, usa-se a função nativa `source ()´. O argumento desta função é o caminho (diretório) onde se encontra a função buscada. Por exemplo, temos uma função para calcular o coeficiente de variação (coef_var):</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="funções.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Estatística/Bioestatística usando o R/Funções/coef_var.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="funções.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Estatística/Bioestatística usando o R/Funções/coef_var.R&quot;</span>)</span></code></pre></div>
 <p>Vamos supor que tenhamos o seguinte conjunto de dados, referentes aos pesos de recém-nascidos a termo:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="funções.html#cb101-1" aria-hidden="true" tabindex="-1"></a>pesoRN <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">3340</span>,<span class="dv">3345</span>,<span class="dv">3750</span>,<span class="dv">3650</span>,<span class="dv">3220</span>,<span class="dv">4070</span>,<span class="dv">3380</span>,<span class="dv">3970</span>,<span class="dv">3060</span>,<span class="dv">3180</span>,  </span>
-<span id="cb101-2"><a href="funções.html#cb101-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2865</span>,<span class="dv">2815</span>,<span class="dv">3245</span>,<span class="dv">2051</span>,<span class="dv">2630</span>)</span>
-<span id="cb101-3"><a href="funções.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span>(pesoRN)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="funções.html#cb14-1" aria-hidden="true" tabindex="-1"></a>pesoRN <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="dv">3340</span>,<span class="dv">3345</span>,<span class="dv">3750</span>,<span class="dv">3650</span>,<span class="dv">3220</span>,<span class="dv">4070</span>,<span class="dv">3380</span>,<span class="dv">3970</span>,<span class="dv">3060</span>,<span class="dv">3180</span>,  </span>
+<span id="cb14-2"><a href="funções.html#cb14-2" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2865</span>,<span class="dv">2815</span>,<span class="dv">3245</span>,<span class="dv">2051</span>,<span class="dv">2630</span>)</span>
+<span id="cb14-3"><a href="funções.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">coef_var</span>(pesoRN)</span></code></pre></div>
 <pre><code>## [1] 16.16144</code></pre>
 <p>Isto significa que o desvio padrão dos pesos dos recém-nascidos equivale a aproximadamente 16% da sua média.</p>
 

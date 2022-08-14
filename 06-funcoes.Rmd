@@ -28,7 +28,7 @@ Os principais argumentos da função `mean ()` são:
 
 Argumento | Significado
 :- | :--------
-x         | é um objeto R, numérico
+x         | é um objeto **R**, numérico
 trim      | é a fração das observações (varia de 0 a 0,5) extraída de cada extremidade de x para calcular a média aparada
 na.rm     | valor lógico (TRUE ou FALSE) que indicam se os valores "perdidos" (NA) devem ser removidos antes que o cálculo continue
 
@@ -43,7 +43,7 @@ As funções têm uma fórmula geral:
 nome.da.função <- function (x){transformar x}
 ```
 
-Por exemplo, a área de um circulo é igual a $\pi$ x raio^2. Usando o R para calcular a área do círculo, podemos criar uma função que faça este trabalho:
+Por exemplo, a área de um circulo é igual a $\pi\times raio^2$. Usando o **R** para calcular a área do círculo, podemos criar uma função que faça este trabalho:
 
 ```{r}
 area.circ <- function(r){
@@ -61,7 +61,7 @@ area.circ(5)
 
 ### Outros exemplos
 
-Podemos criar uma função para o Indice de Massa Corporal, sabendo que ele é igual ao peso (kg) dividido pela altura^2:
+Podemos criar uma função para o Indice de Massa Corporal, sabendo que ele é igual ao peso (kg) dividido pela $altura^2$, em metros:
 
 ```{r}
 imc <- function(peso, altura){
