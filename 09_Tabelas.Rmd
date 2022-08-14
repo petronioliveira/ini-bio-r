@@ -279,9 +279,14 @@ save_as_docx(tb, path = "RN.docx")
 save_as_pptx(tb, path = "RN.pptx")
 ```
 
-Para maiores esclarecimentos, consulte:
+## Leitura Adicional  
 
-<https://statsandr.com/blog/descriptive-statistics-in-r/>
+1. Kabacof RI. **R in Action: Data analysis and graphics with R**. Shelter Island, NY: Manning Publications Co; 2011.Frequency and contingency tables;p.149-159.
+2.	Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Tabelas;p.9-12.
+3. Sjoberg DD, Whiting K, Curry M, Lavery JA, Larmarange J. Reproducible summary tables with the gtsummary package. **The R Journal** 2021;13:570–80. https://doi.org/10.32614/RJ-2021-053.	
+4. Soettewey A. Descriptive statistics in R. **Stats and R**
+, Louvain-la-Neuve, Bélgica, 22 de janeiro de 2020. Disponível em: <https://statsandr.com/blog/descriptive-statistics-in-r/>. Acesso em: 13 de agosto de 2022.
+
 <http://www.danieldsjoberg.com/gtsummary/>
 
 

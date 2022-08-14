@@ -81,3 +81,4 @@ tabela-de-frequência-para-dados-numéricos
 construção-de-uma-tabela-com-o-pacote-gt
 tabelas-com-o-pacote-getsummary
 salvando-a-tabela
+leitura-adicional-1
