@@ -1,0 +1,375 @@
+# Gráficos  
+
+## Pacotes necessários
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(readxl, dplyr, plotrix, ggplot2, forcats)
+```
+
+## Carregar os Dados
+
+Como exemplo, será usado um arquivo com observações de 1368 nascimentos da maternidade escola do Hospital Geral de Caxias do Sul, contendo 30 variáveis.
+
+Para obter os dados você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx) e baixar para o seu diretório de trabalho o arquivo `dadosMater.xlsx`.
+
+Crie um objeto `mater` para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
+
+```{r}
+mater <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx")
+```
+
+## Exploração do banco de dados
+
+### Visão Geral do banco de dados
+
+Inicialmente, vamos ter uma visão geral do banco de dados, usando a função `glimpse ()`, do pacote `dplyr`. Ela nos mostra como os dados estão dispostos e a classe de cada variável. O banco tem 1368 linhas (casos) e 30 colunas (variáveis). Todas as variáveis estão como numéricas (dbl).
+
+```{r}
+glimpse (mater)
+```
+
+### Transformação e criação de variáveis
+
+Vamos começar limitando o banco de dados, selecionando apenas  as variáveis que serão usados neste tutorial:  
+
+```{r}
+mater1 <- mater %>% 
+  select(idadeMae, anosEst, fumo, para)
+
+glimpse(mater1)
+```
+A seguir, vamos transformar a variável `fumo` como fator e criar duas novas variáveis a partir das variáveis `idadeMae` e `anosEst`, que também serão fatores:
+
+```{r}
+mater1$fumo <- factor (mater1$fumo,
+                       levels = c(1, 2),
+                       labels = c("sim", "não"))
+
+mater1$categIdade <- cut (mater$idadeMae, 
+                          breaks=c (13,20,36,46), 
+                          labels = c ("<20a", "20-35a", ">35a"),
+                          right = FALSE,
+                          ordered_result = TRUE,
+                          include.lowest = TRUE)
+
+mater1$escolaridade <- cut (mater1$anosEst,
+                            breaks= c (0,10,13,18),
+                            right = FALSE,
+                            labels = c("Fundamental",
+                                       "Médio",
+                                       "Superior"),
+                            include.lowest = TRUE)
+
+glimpse (mater1)
+```
+ 
+## Gráfico de Setores (Pizza)
+
+Cada segmento (fatia) do gráfico de pizza deve ser proporcional à frequência da categoria que representa. A desvantagem do gráfico de pizza é que ele só pode representar uma variável, portanto, há necessidade de um gráfico separado para cada variável que se deseja representar. Além disso, um gráfico de pizza pode perder clareza se ele é usado para representar mais do que quatro ou cinco categorias.  
+Os gráficos de pizza são amplamente conhecidos como uma maneira ruim de 
+visualizar informações.  
+
+Com variável `mater1$escolaridade` e, usando a função `table ()`, criamos uma tabela (`tab_escola`):
+
+```{r}
+tab_escola <- table(mater1$escolaridade)
+
+tab_escola
+```
+Ou
+
+```{r eval=FALSE}
+tab_escola <- xtabs(~mater1$escolaridade, data = mater)
+
+tab_escola
+```
+
+Usando as informações da `tab_escola`, cria-se o vetor `escola`:
+
+```{r}
+escola <- c(983, 358, 27)
+```
+
+Com a função `pie ()`, vamos construir o gráfico de setores:
+
+```{r}
+pie (escola, 
+     labels = c ("Fundamental", 
+                 "Médio", 
+                 "Superior"),
+     main = NULL,
+     col = c ("skyblue", 
+              "cyan", 
+              "lightblue1"))
+```
+
+É possível, também, construir uma pizza em 3 D, usando a função `pie3D ()` do pacote `plotrix`:
+
+```{r}
+pie3D (escola, 
+       labels = c("Fundamental", 
+                  "Médio", 
+                  "Superior"), 
+       radius = 0.9, 
+       explode = 0.1, 
+       col = c ("skyblue", 
+                "cyan", 
+                "lightblue1"),  
+       main="Grau de Instrução das Parturientes")
+```
+
+### Gráfico de setores com o ggplot2
+
+Inicialmente, cria-se um dataframe, que chamaremos de `df_escola`, onde grupo são as categorias de escolaridade, n é a frequência de cada categoria e pro é a proporção de cada categoria (frequência de cada categoria dividido pelo total):
+
+```{r}
+df_escola <- data.frame(
+  grupo = c("Fundamental", "Médio", "Superior"),
+  n = c (983, 358, 27),
+  prop = round(c((983/1368)*100, (358/1368)*100, (27/1368)*100),1))
+
+df_escola
+```
+
+Vamos agora transformar o dataframe criado, usando as funções `arrange ()`, que colocará as categorias em ordem descentente, e `mutate ()`, que calculará a posição dos rótulos no eixo y. Ambas funções pertecem ao pacote `dplyr`:
+
+```{r}
+df_escola <- df_escola %>%
+  arrange(desc(grupo)) %>%
+  mutate(lab.ypos = cumsum(prop) - 0.5*prop)
+
+df_escola
+```
+
+Para criar  gráfico de pizza com o ggplot2, usaremos como função chave o `geom_bar ()` + `coord_polar ()`. Adicionremos texto com a função `geom_text ()` e as cores de preenchimento com `scale_color_manual ()`. Será aplicado por último `theme_void ()` para remover eixos, fundos, etc.
+
+As cores escolhidas são colocas em objeto `minhas_cores`:
+
+```{r}
+minhas_cores <- c("steelblue", "salmon", "yellow")
+```
+
+**Gráfico**
+
+```{r}
+ggplot(df_escola, aes(x = "", y = prop, fill = grupo)) +
+  geom_bar(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0)+
+  geom_text(aes(y = lab.ypos, label = prop), color = "black", size = 5)+
+  scale_fill_manual(values = minhas_cores) +
+  theme_void()
+  
+```
+
+Voltaremos ao `ggplot2` mais adiante.
+
+### Uma variação do gráfico de pizza: gráfico de rosca (*Donut chart*)
+
+```{r}
+ggplot(df_escola, aes(x = 2, y = prop, fill = grupo)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 0)+
+  geom_text(aes(y = lab.ypos, label = prop), color = "black", size = 5)+
+  scale_fill_manual(values = minhas_cores) +
+  theme_void()+
+  xlim(0.5, 2.5)
+```
+
+
+## Gráficos de Barras
+
+### Gráfico de Barras Simples
+
+Começamos construindo uma tabela usando a variável `mater1$categIdade`:
+
+ 
+```{r}
+tab_idade <- table(mater1$categIdade)
+```
+
+Após, usando a função `barplot ()`, construímos o gráfico de barras:
+
+```{r}
+barplot(tab_idade)
+```
+
+A seguir, usando outros argumentos próprios da função, melhoramos o aspecto do gráfico. O argumento `ylim =` vai corrigir o limite do eixo y que ficou em 800 e deveria ser 1000; `col =` tornará as barras de cor azul metálico (*steelblue*); `ylab =` e `xlab =` colocam rótulos nos eixos; `las = 1` faz o texto do eixo y ficar horizontal e `cex.lab = 1.2` aumenta o texto dos rótulos em 20%. A função `box (bty = "L")` (opcional) faz os eixos se encontraren em 0.
+
+```{r}
+barplot(tab_idade, 
+        ylim = c (0,1000), 
+        col= "steelblue", 
+        border = "black", 
+        ylab = "Frequência absoluta", 
+        xlab = "Faixa etária", 
+        cex.lab = 1.2,
+        las = 1)
+box(bty = "L")
+```
+
+Além disso, é possível fazer outras alterações para tornar o gráfico mais informativo, como as frequência de cada barra colocada no topo das mesmas:
+
+* **1º Passo**: Criar um gráfico de barras , colocando-o em um objeto `x`, que conterá a coordenada *X* do centro de cada uma das barras. Para verificar isso basta executar o objeto `x`:
+
+* **2º Passo**: colocar a tabela tab_idade com um objeto `y` da classe matriz:
+
+* **3º Passo**: usar a funçãoo `text ()` para colocar os valores:
+
+
+```{r}
+x <- barplot(tab_idade, 
+             ylim = c (0,1000), 
+             col= "springgreen", 
+             border = "black", 
+             ylab = "Frequência absoluta", 
+             xlab = "Faixa etária", 
+             cex.lab = 1.2,
+             las = 1)
+box(bty = "L")
+
+y <- as.matrix(tab_idade)
+
+text (x, y, labels = as.character(y), adj = c(0.5, 2), col = "black")
+```
+
+O gráfico de barras simples pode ser construído com as barras horizontais. Basta usar o argumento `horiz = TRUE` e adaptando os eixoa *x* e *y*, para essa situação:
+
+```{r}
+barplot(tab_idade, 
+        xlim = c (0,1000), 
+        col= "salmon", 
+        border = "black", 
+        ylab= "", 
+        xlab = "Frequência absoluta", 
+        cex.lab = 1.3, 
+        horiz=TRUE,
+        las = 1)
+box(bty = "L")
+```
+
+### Gráfico de Barras Empilhadas
+
+Para este tipo de apresentação usamos, praticamente, os mesmos argumentos vistos para gerar um gráfico de barra simples. Como existem duas variáveis, há necessidade de avisar ao **R** como elas devem aparecer. Para isso, foi usado o argumento `beside = FALSE`, que informa que as barras não estarão uma ao lado da outra e sim empilhadas. O padrão é as barras ficarem uma ao lado da outra. Acresscenta-se uma legenda com a função `legend()` na parte superior esquerda (*topleft*). O argumento `bty = "n"` informa que não queremos um quadro ao redor da legenda e `fill = c ("dimgrey", "salmon")` são as cores das barras.
+
+```{r}
+tab_fumo <- table (mater1$fumo, mater1$categIdade)
+
+tab_fumo
+```
+
+
+```{r}
+barplot (tab_fumo,  
+         beside=FALSE, 
+         ylim = c (0,1000), 
+         xlab="Faixa Etária das gestantes", 
+         ylab = "Frequência", 
+         col = c ("dimgrey", "salmon"),  
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+box(bty = "L")
+
+legend (legend=c ("Fumantes", "Não Fumantes"), 
+        fill = c ("dimgrey", "salmon"), 
+        bty="n", 
+        cex = 1,
+        "topleft")
+```
+
+
+### Gráfico de Barras Lado a Lado
+
+É igual a anterior, apenas com o argumento `beside = TRUE`.
+
+```{r}
+barplot (tab_fumo,  
+         beside=TRUE, 
+         ylim = c (0,800), 
+         xlab="Faixa Etária das gestantes", 
+         ylab = "Frequência", 
+         col = c ("dimgrey", "salmon"),  
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+box(bty = "L")
+
+legend (legend=c ("Fumantes", "Não Fumantes"), 
+        fill = c ("dimgrey", "salmon"), 
+        bty="n", 
+        cex = 1,
+        "topleft")
+
+```
+
+
+### Gráfico de barras com variáveis discretas
+
+A variável para é uma variável numérica discreta e, para representá-la o mais adequado é usar um gráfico de barras simples.
+
+```{r}
+tab_filhos<- table (mater1$para) 
+
+barplot (tab_filhos, 
+         col = "salmon", 
+         xlab="Número de filhos anteriores ao atual", 
+         ylab = "Frequência",
+         ylim = c(0, 500),
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+```
+
+
+### Gráfico de Barras Simples com o ggplot2
+
+Ele segue as seguintes etapas:
+
+* Crie os dados como um data.frame
+
+```{r}
+table(mater1$categIdade)
+
+df_idade <- data.frame (
+  categ = c ("<20a", "20-35a", ">35a"),
+  freq = c (219, 992, 157))
+
+df_idade
+```
+
+Para a construção do gráfico:
+
+* Comece chamando a função `ggplot ()`;
+* Em seguida, especifique o objeto de dados, `df_idade`. Tem que ser um dataframe. Necessita uma variável numérica(`freq`) e outra categórica (`categ`);
+* Então vem a estética, definida na função `aes ()`: defina a variável categórica para o eixo X, use a numérica para o eixo Y
+* Finalmente, chame `geom_bar ()` . Você deve especificar `stat = "identity"` para este tipo de conjunto de dados e a largura das barras `width = 0.7`.
+* Para controlar outros aspectos:
+   - Cores: `color =` é para a borda da barra e `fill =` é a cor do preenchimento. Para estabelecer a cor de cada barra manualmnete, use `scale_fill_manual()`;
+   - Para remover a legenda, use `theme(legend.position = "none")`
+   - Pa um aspecto clássico, use `theme_classic ()`;
+   - Para colocar as frequências no topo das barras, use `geom_text ()`;
+   - para que as barras fiquem horizontais, usar `coord_flip ()`, fazendo ajustes para o texto das frequências e para os rótulos dos eixos.
+
+
+```{r}
+df_idade %>% 
+  mutate(categ = factor(categ, levels=c("<20a", "20-35a", ">35a"))) %>% 
+  ggplot(aes(x = categ, y=freq, fill = categ)) +
+  geom_bar(stat = "identity", width = 0.7) +
+  ylab("Frequência") +
+  xlab("Idade da Parturiente") +
+  scale_fill_manual(values = c("lightsalmon1", "salmon", "lightsalmon4")) +
+  theme_classic() +
+  theme(legend.position="none") +
+  geom_text(aes(label=paste0(freq)), vjust=1.5, colour="white")
+```
+
+## Leitura Adicional  
+
+1. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/barplot.html>. Acesso em 14/08/2022.  
+
+2. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_bar.html> Acesso em 14/08/2022
+
+
+</br>
+</br>

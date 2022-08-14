@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 10 Gráficos | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 10 Gráficos | BIOESTATÍSTICA USANDO O R" />
+  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 10 Gráficos | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 10 Gráficos | BIOESTATÍSTICA USANDO O R" />
+  
+  
+  
+
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
+
+
+<meta name="date" content="2022-08-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="tabelas.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioestatisticaR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
+<li class="chapter" data-level="9.8" data-path="tabelas.html"><a href="tabelas.html#leitura-adicional-1"><i class="fa fa-check"></i><b>9.8</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>10</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gráficos.html"><a href="gráficos.html#pacotes-necessários-1"><i class="fa fa-check"></i><b>10.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="10.2" data-path="gráficos.html"><a href="gráficos.html#carregar-os-dados-1"><i class="fa fa-check"></i><b>10.2</b> Carregar os Dados</a></li>
+<li class="chapter" data-level="10.3" data-path="gráficos.html"><a href="gráficos.html#exploração-do-banco-de-dados"><i class="fa fa-check"></i><b>10.3</b> Exploração do banco de dados</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="gráficos.html"><a href="gráficos.html#visão-geral-do-banco-de-dados"><i class="fa fa-check"></i><b>10.3.1</b> Visão Geral do banco de dados</a></li>
+<li class="chapter" data-level="10.3.2" data-path="gráficos.html"><a href="gráficos.html#transformação-e-criação-de-variáveis"><i class="fa fa-check"></i><b>10.3.2</b> Transformação e criação de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>10.4</b> Gráfico de Setores (Pizza)</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-com-o-ggplot2"><i class="fa fa-check"></i><b>10.4.1</b> Gráfico de setores com o ggplot2</a></li>
+<li class="chapter" data-level="10.4.2" data-path="gráficos.html"><a href="gráficos.html#uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart"><i class="fa fa-check"></i><b>10.4.2</b> Uma variação do gráfico de pizza: gráfico de rosca (<em>Donut chart</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-barras"><i class="fa fa-check"></i><b>10.5</b> Gráficos de Barras</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples"><i class="fa fa-check"></i><b>10.5.1</b> Gráfico de Barras Simples</a></li>
+<li class="chapter" data-level="10.5.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-empilhadas"><i class="fa fa-check"></i><b>10.5.2</b> Gráfico de Barras Empilhadas</a></li>
+<li class="chapter" data-level="10.5.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-lado-a-lado"><i class="fa fa-check"></i><b>10.5.3</b> Gráfico de Barras Lado a Lado</a></li>
+<li class="chapter" data-level="10.5.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-com-variáveis-discretas"><i class="fa fa-check"></i><b>10.5.4</b> Gráfico de barras com variáveis discretas</a></li>
+<li class="chapter" data-level="10.5.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples-com-o-ggplot2"><i class="fa fa-check"></i><b>10.5.5</b> Gráfico de Barras Simples com o ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.6</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gráficos" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Capítulo  10</span> Gráficos<a href="gráficos.html#gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pacotes-necessários-1" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Pacotes necessários<a href="gráficos.html#pacotes-necessários-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="gráficos.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, dplyr, plotrix, ggplot2, forcats)</span></code></pre></div>
+</div>
+<div id="carregar-os-dados-1" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Carregar os Dados<a href="gráficos.html#carregar-os-dados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como exemplo, será usado um arquivo com observações de 1368 nascimentos da maternidade escola do Hospital Geral de Caxias do Sul, contendo 30 variáveis.</p>
+<p>Para obter os dados você deve clicar <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater15.xlsx">aqui</a> e baixar para o seu diretório de trabalho o arquivo <code>dadosMater.xlsx</code>.</p>
+<p>Crie um objeto <code>mater</code> para receber os dados, a partir do diretório de trabalho, executando o seguinte código:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="gráficos.html#cb2-1" aria-hidden="true" tabindex="-1"></a>mater <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exploração-do-banco-de-dados" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Exploração do banco de dados<a href="gráficos.html#exploração-do-banco-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="visão-geral-do-banco-de-dados" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Visão Geral do banco de dados<a href="gráficos.html#visão-geral-do-banco-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inicialmente, vamos ter uma visão geral do banco de dados, usando a função <code>glimpse ()</code>, do pacote <code>dplyr</code>. Ela nos mostra como os dados estão dispostos e a classe de cada variável. O banco tem 1368 linhas (casos) e 30 colunas (variáveis). Todas as variáveis estão como numéricas (dbl).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="gráficos.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (mater)</span></code></pre></div>
+<pre><code>## Rows: 1,368
+## Columns: 30
+## $ id        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+## $ idadeMae  &lt;dbl&gt; 42, 29, 19, 31, 34, 29, 30, 34, 17, 32, 32, 31, 32, 19, 40, …
+## $ altura    &lt;dbl&gt; 1.65, 1.66, 1.72, 1.55, 1.60, 1.50, 1.54, 1.63, 1.68, 1.50, …
+## $ peso      &lt;dbl&gt; 69.9, 78.0, 81.0, 74.0, 60.0, 60.0, 75.5, 61.0, 57.0, 70.0, …
+## $ ganhoPeso &lt;dbl&gt; 3.9, 16.5, 5.0, 43.0, 15.0, 11.4, 10.5, 9.0, 15.0, 11.4, 18.…
+## $ anosEst   &lt;dbl&gt; 3, 11, 9, 5, 7, 8, 4, 6, 10, 1, 4, 4, 18, 8, 2, 7, 3, 7, 11,…
+## $ cor       &lt;dbl&gt; 2, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, …
+## $ eCivil    &lt;dbl&gt; 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, …
+## $ renda     &lt;dbl&gt; 1.45, 2.41, 1.93, 1.45, 0.48, 0.96, 1.20, 2.41, 2.17, 0.72, …
+## $ fumo      &lt;dbl&gt; 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, …
+## $ quantFumo &lt;dbl&gt; 0, 0, 0, 0, 0, 10, 20, 0, 0, 0, 0, 0, 0, 0, 5, 0, 10, 0, 0, …
+## $ prenatal  &lt;dbl&gt; 2, 1, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, …
+## $ para      &lt;dbl&gt; 5, 0, 0, 1, 2, 1, 2, 1, 0, 4, 1, 4, 0, 1, 6, 0, 3, 0, 1, 1, …
+## $ droga     &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, …
+## $ ig        &lt;dbl&gt; 29, 33, 33, 33, 33, 33, 33, 33, 34, 34, 35, 35, 35, 35, 36, …
+## $ tipoParto &lt;dbl&gt; 2, 2, 1, 1, 2, 1, 2, 1, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, …
+## $ pesoPla   &lt;dbl&gt; 224, 1118, 452, 432, 574, 600, 632, 710, 600, 310, 690, 522,…
+## $ sexo      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, …
+## $ pesoRN    &lt;dbl&gt; 1035, 2300, 1580, 1840, 2475, 1830, 1800, 2200, 2180, 1685, …
+## $ compRN    &lt;dbl&gt; 35.5, 45.0, 39.0, 41.0, 47.0, 41.0, 44.0, 44.0, 47.0, 48.0, …
+## $ pcRN      &lt;dbl&gt; 28, 32, 28, 32, 32, 29, 32, 32, 30, 27, 33, 32, 34, 34, 34, …
+## $ apgar1    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 5, 5…
+## $ apgar5    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 7, 8…
+## $ utiNeo    &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 1, 2, 2, …
+## $ obito     &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ hiv       &lt;dbl&gt; 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ sifilis   &lt;dbl&gt; 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, …
+## $ rubeola   &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ toxo      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, …
+## $ infCong   &lt;dbl&gt; 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, …</code></pre>
+</div>
+<div id="transformação-e-criação-de-variáveis" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Transformação e criação de variáveis<a href="gráficos.html#transformação-e-criação-de-variáveis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos começar limitando o banco de dados, selecionando apenas as variáveis que serão usados neste tutorial:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="gráficos.html#cb5-1" aria-hidden="true" tabindex="-1"></a>mater1 <span class="ot">&lt;-</span> mater <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="gráficos.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(idadeMae, anosEst, fumo, para)</span>
+<span id="cb5-3"><a href="gráficos.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="gráficos.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mater1)</span></code></pre></div>
+<pre><code>## Rows: 1,368
+## Columns: 4
+## $ idadeMae &lt;dbl&gt; 42, 29, 19, 31, 34, 29, 30, 34, 17, 32, 32, 31, 32, 19, 40, 1…
+## $ anosEst  &lt;dbl&gt; 3, 11, 9, 5, 7, 8, 4, 6, 10, 1, 4, 4, 18, 8, 2, 7, 3, 7, 11, …
+## $ fumo     &lt;dbl&gt; 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2…
+## $ para     &lt;dbl&gt; 5, 0, 0, 1, 2, 1, 2, 1, 0, 4, 1, 4, 0, 1, 6, 0, 3, 0, 1, 1, 2…</code></pre>
+<p>A seguir, vamos transformar a variável <code>fumo</code> como fator e criar duas novas variáveis a partir das variáveis <code>idadeMae</code> e <code>anosEst</code>, que também serão fatores:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="gráficos.html#cb7-1" aria-hidden="true" tabindex="-1"></a>mater1<span class="sc">$</span>fumo <span class="ot">&lt;-</span> <span class="fu">factor</span> (mater1<span class="sc">$</span>fumo,</span>
+<span id="cb7-2"><a href="gráficos.html#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb7-3"><a href="gráficos.html#cb7-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;sim&quot;</span>, <span class="st">&quot;não&quot;</span>))</span>
+<span id="cb7-4"><a href="gráficos.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="gráficos.html#cb7-5" aria-hidden="true" tabindex="-1"></a>mater1<span class="sc">$</span>categIdade <span class="ot">&lt;-</span> <span class="fu">cut</span> (mater<span class="sc">$</span>idadeMae, </span>
+<span id="cb7-6"><a href="gráficos.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">breaks=</span><span class="fu">c</span> (<span class="dv">13</span>,<span class="dv">20</span>,<span class="dv">36</span>,<span class="dv">46</span>), </span>
+<span id="cb7-7"><a href="gráficos.html#cb7-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span> (<span class="st">&quot;&lt;20a&quot;</span>, <span class="st">&quot;20-35a&quot;</span>, <span class="st">&quot;&gt;35a&quot;</span>),</span>
+<span id="cb7-8"><a href="gráficos.html#cb7-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-9"><a href="gráficos.html#cb7-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">ordered_result =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-10"><a href="gráficos.html#cb7-10" aria-hidden="true" tabindex="-1"></a>                          <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-11"><a href="gráficos.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="gráficos.html#cb7-12" aria-hidden="true" tabindex="-1"></a>mater1<span class="sc">$</span>escolaridade <span class="ot">&lt;-</span> <span class="fu">cut</span> (mater1<span class="sc">$</span>anosEst,</span>
+<span id="cb7-13"><a href="gráficos.html#cb7-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">breaks=</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">13</span>,<span class="dv">18</span>),</span>
+<span id="cb7-14"><a href="gráficos.html#cb7-14" aria-hidden="true" tabindex="-1"></a>                            <span class="at">right =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-15"><a href="gráficos.html#cb7-15" aria-hidden="true" tabindex="-1"></a>                            <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Fundamental&quot;</span>,</span>
+<span id="cb7-16"><a href="gráficos.html#cb7-16" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Médio&quot;</span>,</span>
+<span id="cb7-17"><a href="gráficos.html#cb7-17" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">&quot;Superior&quot;</span>),</span>
+<span id="cb7-18"><a href="gráficos.html#cb7-18" aria-hidden="true" tabindex="-1"></a>                            <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-19"><a href="gráficos.html#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="gráficos.html#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (mater1)</span></code></pre></div>
+<pre><code>## Rows: 1,368
+## Columns: 6
+## $ idadeMae     &lt;dbl&gt; 42, 29, 19, 31, 34, 29, 30, 34, 17, 32, 32, 31, 32, 19, 4…
+## $ anosEst      &lt;dbl&gt; 3, 11, 9, 5, 7, 8, 4, 6, 10, 1, 4, 4, 18, 8, 2, 7, 3, 7, …
+## $ fumo         &lt;fct&gt; não, não, não, não, não, sim, sim, não, não, não, não, nã…
+## $ para         &lt;dbl&gt; 5, 0, 0, 1, 2, 1, 2, 1, 0, 4, 1, 4, 0, 1, 6, 0, 3, 0, 1, …
+## $ categIdade   &lt;ord&gt; &gt;35a, 20-35a, &lt;20a, 20-35a, 20-35a, 20-35a, 20-35a, 20-35…
+## $ escolaridade &lt;fct&gt; Fundamental, Médio, Fundamental, Fundamental, Fundamental…</code></pre>
+</div>
+</div>
+<div id="gráfico-de-setores-pizza" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Gráfico de Setores (Pizza)<a href="gráficos.html#gráfico-de-setores-pizza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada segmento (fatia) do gráfico de pizza deve ser proporcional à frequência da categoria que representa. A desvantagem do gráfico de pizza é que ele só pode representar uma variável, portanto, há necessidade de um gráfico separado para cada variável que se deseja representar. Além disso, um gráfico de pizza pode perder clareza se ele é usado para representar mais do que quatro ou cinco categorias.<br />
+Os gráficos de pizza são amplamente conhecidos como uma maneira ruim de
+visualizar informações.</p>
+<p>Com variável <code>mater1$escolaridade</code> e, usando a função <code>table ()</code>, criamos uma tabela (<code>tab_escola</code>):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="gráficos.html#cb9-1" aria-hidden="true" tabindex="-1"></a>tab_escola <span class="ot">&lt;-</span> <span class="fu">table</span>(mater1<span class="sc">$</span>escolaridade)</span>
+<span id="cb9-2"><a href="gráficos.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="gráficos.html#cb9-3" aria-hidden="true" tabindex="-1"></a>tab_escola</span></code></pre></div>
+<pre><code>## 
+## Fundamental       Médio    Superior 
+##         983         358          27</code></pre>
+<p>Ou</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="gráficos.html#cb11-1" aria-hidden="true" tabindex="-1"></a>tab_escola <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>mater1<span class="sc">$</span>escolaridade, <span class="at">data =</span> mater)</span>
+<span id="cb11-2"><a href="gráficos.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="gráficos.html#cb11-3" aria-hidden="true" tabindex="-1"></a>tab_escola</span></code></pre></div>
+<p>Usando as informações da <code>tab_escola</code>, cria-se o vetor <code>escola</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="gráficos.html#cb12-1" aria-hidden="true" tabindex="-1"></a>escola <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">983</span>, <span class="dv">358</span>, <span class="dv">27</span>)</span></code></pre></div>
+<p>Com a função <code>pie ()</code>, vamos construir o gráfico de setores:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="gráficos.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span> (escola, </span>
+<span id="cb13-2"><a href="gráficos.html#cb13-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">labels =</span> <span class="fu">c</span> (<span class="st">&quot;Fundamental&quot;</span>, </span>
+<span id="cb13-3"><a href="gráficos.html#cb13-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Médio&quot;</span>, </span>
+<span id="cb13-4"><a href="gráficos.html#cb13-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;Superior&quot;</span>),</span>
+<span id="cb13-5"><a href="gráficos.html#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-6"><a href="gráficos.html#cb13-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span> (<span class="st">&quot;skyblue&quot;</span>, </span>
+<span id="cb13-7"><a href="gráficos.html#cb13-7" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;cyan&quot;</span>, </span>
+<span id="cb13-8"><a href="gráficos.html#cb13-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;lightblue1&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>É possível, também, construir uma pizza em 3 D, usando a função <code>pie3D ()</code> do pacote <code>plotrix</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="gráficos.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie3D</span> (escola, </span>
+<span id="cb14-2"><a href="gráficos.html#cb14-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Fundamental&quot;</span>, </span>
+<span id="cb14-3"><a href="gráficos.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Médio&quot;</span>, </span>
+<span id="cb14-4"><a href="gráficos.html#cb14-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;Superior&quot;</span>), </span>
+<span id="cb14-5"><a href="gráficos.html#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">radius =</span> <span class="fl">0.9</span>, </span>
+<span id="cb14-6"><a href="gráficos.html#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">explode =</span> <span class="fl">0.1</span>, </span>
+<span id="cb14-7"><a href="gráficos.html#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span> (<span class="st">&quot;skyblue&quot;</span>, </span>
+<span id="cb14-8"><a href="gráficos.html#cb14-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;cyan&quot;</span>, </span>
+<span id="cb14-9"><a href="gráficos.html#cb14-9" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;lightblue1&quot;</span>),  </span>
+<span id="cb14-10"><a href="gráficos.html#cb14-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">main=</span><span class="st">&quot;Grau de Instrução das Parturientes&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div id="gráfico-de-setores-com-o-ggplot2" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Gráfico de setores com o ggplot2<a href="gráficos.html#gráfico-de-setores-com-o-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inicialmente, cria-se um dataframe, que chamaremos de <code>df_escola</code>, onde grupo são as categorias de escolaridade, n é a frequência de cada categoria e pro é a proporção de cada categoria (frequência de cada categoria dividido pelo total):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="gráficos.html#cb15-1" aria-hidden="true" tabindex="-1"></a>df_escola <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-2"><a href="gráficos.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">grupo =</span> <span class="fu">c</span>(<span class="st">&quot;Fundamental&quot;</span>, <span class="st">&quot;Médio&quot;</span>, <span class="st">&quot;Superior&quot;</span>),</span>
+<span id="cb15-3"><a href="gráficos.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">c</span> (<span class="dv">983</span>, <span class="dv">358</span>, <span class="dv">27</span>),</span>
+<span id="cb15-4"><a href="gráficos.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prop =</span> <span class="fu">round</span>(<span class="fu">c</span>((<span class="dv">983</span><span class="sc">/</span><span class="dv">1368</span>)<span class="sc">*</span><span class="dv">100</span>, (<span class="dv">358</span><span class="sc">/</span><span class="dv">1368</span>)<span class="sc">*</span><span class="dv">100</span>, (<span class="dv">27</span><span class="sc">/</span><span class="dv">1368</span>)<span class="sc">*</span><span class="dv">100</span>),<span class="dv">1</span>))</span>
+<span id="cb15-5"><a href="gráficos.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="gráficos.html#cb15-6" aria-hidden="true" tabindex="-1"></a>df_escola</span></code></pre></div>
+<pre><code>##         grupo   n prop
+## 1 Fundamental 983 71.9
+## 2       Médio 358 26.2
+## 3    Superior  27  2.0</code></pre>
+<p>Vamos agora transformar o dataframe criado, usando as funções <code>arrange ()</code>, que colocará as categorias em ordem descentente, e <code>mutate ()</code>, que calculará a posição dos rótulos no eixo y. Ambas funções pertecem ao pacote <code>dplyr</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="gráficos.html#cb17-1" aria-hidden="true" tabindex="-1"></a>df_escola <span class="ot">&lt;-</span> df_escola <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="gráficos.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(grupo)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="gráficos.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lab.ypos =</span> <span class="fu">cumsum</span>(prop) <span class="sc">-</span> <span class="fl">0.5</span><span class="sc">*</span>prop)</span>
+<span id="cb17-4"><a href="gráficos.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="gráficos.html#cb17-5" aria-hidden="true" tabindex="-1"></a>df_escola</span></code></pre></div>
+<pre><code>##         grupo   n prop lab.ypos
+## 1    Superior  27  2.0     1.00
+## 2       Médio 358 26.2    15.10
+## 3 Fundamental 983 71.9    64.15</code></pre>
+<p>Para criar gráfico de pizza com o ggplot2, usaremos como função chave o <code>geom_bar ()</code> + <code>coord_polar ()</code>. Adicionremos texto com a função <code>geom_text ()</code> e as cores de preenchimento com <code>scale_color_manual ()</code>. Será aplicado por último <code>theme_void ()</code> para remover eixos, fundos, etc.</p>
+<p>As cores escolhidas são colocas em objeto <code>minhas_cores</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="gráficos.html#cb19-1" aria-hidden="true" tabindex="-1"></a>minhas_cores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;yellow&quot;</span>)</span></code></pre></div>
+<p><strong>Gráfico</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="gráficos.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_escola, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> grupo)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="gráficos.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="gráficos.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb20-4"><a href="gráficos.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> lab.ypos, <span class="at">label =</span> prop), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb20-5"><a href="gráficos.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> minhas_cores) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="gráficos.html#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Voltaremos ao <code>ggplot2</code> mais adiante.</p>
+</div>
+<div id="uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Uma variação do gráfico de pizza: gráfico de rosca (<em>Donut chart</em>)<a href="gráficos.html#uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="gráficos.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_escola, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> grupo)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="gráficos.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="gráficos.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>)<span class="sc">+</span></span>
+<span id="cb21-4"><a href="gráficos.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> lab.ypos, <span class="at">label =</span> prop), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb21-5"><a href="gráficos.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> minhas_cores) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="gráficos.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()<span class="sc">+</span></span>
+<span id="cb21-7"><a href="gráficos.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="gráficos-de-barras" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Gráficos de Barras<a href="gráficos.html#gráficos-de-barras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gráfico-de-barras-simples" class="section level3 hasAnchor" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> Gráfico de Barras Simples<a href="gráficos.html#gráfico-de-barras-simples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Começamos construindo uma tabela usando a variável <code>mater1$categIdade</code>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="gráficos.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tab_idade <span class="ot">&lt;-</span> <span class="fu">table</span>(mater1<span class="sc">$</span>categIdade)</span></code></pre></div>
+<p>Após, usando a função <code>barplot ()</code>, construímos o gráfico de barras:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="gráficos.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab_idade)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>A seguir, usando outros argumentos próprios da função, melhoramos o aspecto do gráfico. O argumento <code>ylim =</code> vai corrigir o limite do eixo y que ficou em 800 e deveria ser 1000; <code>col =</code> tornará as barras de cor azul metálico (<em>steelblue</em>); <code>ylab =</code> e <code>xlab =</code> colocam rótulos nos eixos; <code>las = 1</code> faz o texto do eixo y ficar horizontal e <code>cex.lab = 1.2</code> aumenta o texto dos rótulos em 20%. A função <code>box (bty = "L")</code> (opcional) faz os eixos se encontraren em 0.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="gráficos.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab_idade, </span>
+<span id="cb24-2"><a href="gráficos.html#cb24-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">1000</span>), </span>
+<span id="cb24-3"><a href="gráficos.html#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span> <span class="st">&quot;steelblue&quot;</span>, </span>
+<span id="cb24-4"><a href="gráficos.html#cb24-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb24-5"><a href="gráficos.html#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Frequência absoluta&quot;</span>, </span>
+<span id="cb24-6"><a href="gráficos.html#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Faixa etária&quot;</span>, </span>
+<span id="cb24-7"><a href="gráficos.html#cb24-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.lab =</span> <span class="fl">1.2</span>,</span>
+<span id="cb24-8"><a href="gráficos.html#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb24-9"><a href="gráficos.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Além disso, é possível fazer outras alterações para tornar o gráfico mais informativo, como as frequência de cada barra colocada no topo das mesmas:</p>
+<ul>
+<li><p><strong>1º Passo</strong>: Criar um gráfico de barras , colocando-o em um objeto <code>x</code>, que conterá a coordenada <em>X</em> do centro de cada uma das barras. Para verificar isso basta executar o objeto <code>x</code>:</p></li>
+<li><p><strong>2º Passo</strong>: colocar a tabela tab_idade com um objeto <code>y</code> da classe matriz:</p></li>
+<li><p><strong>3º Passo</strong>: usar a funçãoo <code>text ()</code> para colocar os valores:</p></li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="gráficos.html#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">barplot</span>(tab_idade, </span>
+<span id="cb25-2"><a href="gráficos.html#cb25-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">ylim =</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">1000</span>), </span>
+<span id="cb25-3"><a href="gráficos.html#cb25-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">col=</span> <span class="st">&quot;springgreen&quot;</span>, </span>
+<span id="cb25-4"><a href="gráficos.html#cb25-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">border =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb25-5"><a href="gráficos.html#cb25-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">ylab =</span> <span class="st">&quot;Frequência absoluta&quot;</span>, </span>
+<span id="cb25-6"><a href="gráficos.html#cb25-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">&quot;Faixa etária&quot;</span>, </span>
+<span id="cb25-7"><a href="gráficos.html#cb25-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">cex.lab =</span> <span class="fl">1.2</span>,</span>
+<span id="cb25-8"><a href="gráficos.html#cb25-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb25-9"><a href="gráficos.html#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb25-10"><a href="gráficos.html#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="gráficos.html#cb25-11" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(tab_idade)</span>
+<span id="cb25-12"><a href="gráficos.html#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-13"><a href="gráficos.html#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span> (x, y, <span class="at">labels =</span> <span class="fu">as.character</span>(y), <span class="at">adj =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">2</span>), <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>O gráfico de barras simples pode ser construído com as barras horizontais. Basta usar o argumento <code>horiz = TRUE</code> e adaptando os eixoa <em>x</em> e <em>y</em>, para essa situação:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="gráficos.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab_idade, </span>
+<span id="cb26-2"><a href="gráficos.html#cb26-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlim =</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">1000</span>), </span>
+<span id="cb26-3"><a href="gráficos.html#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span> <span class="st">&quot;salmon&quot;</span>, </span>
+<span id="cb26-4"><a href="gráficos.html#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb26-5"><a href="gráficos.html#cb26-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb26-6"><a href="gráficos.html#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Frequência absoluta&quot;</span>, </span>
+<span id="cb26-7"><a href="gráficos.html#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex.lab =</span> <span class="fl">1.3</span>, </span>
+<span id="cb26-8"><a href="gráficos.html#cb26-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">horiz=</span><span class="cn">TRUE</span>,</span>
+<span id="cb26-9"><a href="gráficos.html#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb26-10"><a href="gráficos.html#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-empilhadas" class="section level3 hasAnchor" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> Gráfico de Barras Empilhadas<a href="gráficos.html#gráfico-de-barras-empilhadas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para este tipo de apresentação usamos, praticamente, os mesmos argumentos vistos para gerar um gráfico de barra simples. Como existem duas variáveis, há necessidade de avisar ao <strong>R</strong> como elas devem aparecer. Para isso, foi usado o argumento <code>beside = FALSE</code>, que informa que as barras não estarão uma ao lado da outra e sim empilhadas. O padrão é as barras ficarem uma ao lado da outra. Acresscenta-se uma legenda com a função <code>legend()</code> na parte superior esquerda (<em>topleft</em>). O argumento <code>bty = "n"</code> informa que não queremos um quadro ao redor da legenda e <code>fill = c ("dimgrey", "salmon")</code> são as cores das barras.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="gráficos.html#cb27-1" aria-hidden="true" tabindex="-1"></a>tab_fumo <span class="ot">&lt;-</span> <span class="fu">table</span> (mater1<span class="sc">$</span>fumo, mater1<span class="sc">$</span>categIdade)</span>
+<span id="cb27-2"><a href="gráficos.html#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="gráficos.html#cb27-3" aria-hidden="true" tabindex="-1"></a>tab_fumo</span></code></pre></div>
+<pre><code>##      
+##       &lt;20a 20-35a &gt;35a
+##   sim   35    235   31
+##   não  184    757  126</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="gráficos.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span> (tab_fumo,  </span>
+<span id="cb29-2"><a href="gráficos.html#cb29-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">beside=</span><span class="cn">FALSE</span>, </span>
+<span id="cb29-3"><a href="gráficos.html#cb29-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylim =</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">1000</span>), </span>
+<span id="cb29-4"><a href="gráficos.html#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Faixa Etária das gestantes&quot;</span>, </span>
+<span id="cb29-5"><a href="gráficos.html#cb29-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Frequência&quot;</span>, </span>
+<span id="cb29-6"><a href="gráficos.html#cb29-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">c</span> (<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;salmon&quot;</span>),  </span>
+<span id="cb29-7"><a href="gráficos.html#cb29-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.lab =</span> <span class="fl">1.2</span>, </span>
+<span id="cb29-8"><a href="gráficos.html#cb29-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.axis =</span> <span class="fl">1.2</span>, </span>
+<span id="cb29-9"><a href="gráficos.html#cb29-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.names =</span> <span class="fl">1.2</span>)</span>
+<span id="cb29-10"><a href="gráficos.html#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb29-11"><a href="gráficos.html#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="gráficos.html#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span> (<span class="at">legend=</span><span class="fu">c</span> (<span class="st">&quot;Fumantes&quot;</span>, <span class="st">&quot;Não Fumantes&quot;</span>), </span>
+<span id="cb29-13"><a href="gráficos.html#cb29-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="fu">c</span> (<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;salmon&quot;</span>), </span>
+<span id="cb29-14"><a href="gráficos.html#cb29-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">bty=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb29-15"><a href="gráficos.html#cb29-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb29-16"><a href="gráficos.html#cb29-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;topleft&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-lado-a-lado" class="section level3 hasAnchor" number="10.5.3">
+<h3><span class="header-section-number">10.5.3</span> Gráfico de Barras Lado a Lado<a href="gráficos.html#gráfico-de-barras-lado-a-lado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>É igual a anterior, apenas com o argumento <code>beside = TRUE</code>.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="gráficos.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span> (tab_fumo,  </span>
+<span id="cb30-2"><a href="gráficos.html#cb30-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">beside=</span><span class="cn">TRUE</span>, </span>
+<span id="cb30-3"><a href="gráficos.html#cb30-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylim =</span> <span class="fu">c</span> (<span class="dv">0</span>,<span class="dv">800</span>), </span>
+<span id="cb30-4"><a href="gráficos.html#cb30-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Faixa Etária das gestantes&quot;</span>, </span>
+<span id="cb30-5"><a href="gráficos.html#cb30-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Frequência&quot;</span>, </span>
+<span id="cb30-6"><a href="gráficos.html#cb30-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">c</span> (<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;salmon&quot;</span>),  </span>
+<span id="cb30-7"><a href="gráficos.html#cb30-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.lab =</span> <span class="fl">1.2</span>, </span>
+<span id="cb30-8"><a href="gráficos.html#cb30-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.axis =</span> <span class="fl">1.2</span>, </span>
+<span id="cb30-9"><a href="gráficos.html#cb30-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.names =</span> <span class="fl">1.2</span>)</span>
+<span id="cb30-10"><a href="gráficos.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb30-11"><a href="gráficos.html#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="gráficos.html#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span> (<span class="at">legend=</span><span class="fu">c</span> (<span class="st">&quot;Fumantes&quot;</span>, <span class="st">&quot;Não Fumantes&quot;</span>), </span>
+<span id="cb30-13"><a href="gráficos.html#cb30-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="fu">c</span> (<span class="st">&quot;dimgrey&quot;</span>, <span class="st">&quot;salmon&quot;</span>), </span>
+<span id="cb30-14"><a href="gráficos.html#cb30-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">bty=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb30-15"><a href="gráficos.html#cb30-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb30-16"><a href="gráficos.html#cb30-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;topleft&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-com-variáveis-discretas" class="section level3 hasAnchor" number="10.5.4">
+<h3><span class="header-section-number">10.5.4</span> Gráfico de barras com variáveis discretas<a href="gráficos.html#gráfico-de-barras-com-variáveis-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A variável para é uma variável numérica discreta e, para representá-la o mais adequado é usar um gráfico de barras simples.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="gráficos.html#cb31-1" aria-hidden="true" tabindex="-1"></a>tab_filhos<span class="ot">&lt;-</span> <span class="fu">table</span> (mater1<span class="sc">$</span>para) </span>
+<span id="cb31-2"><a href="gráficos.html#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="gráficos.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span> (tab_filhos, </span>
+<span id="cb31-4"><a href="gráficos.html#cb31-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="st">&quot;salmon&quot;</span>, </span>
+<span id="cb31-5"><a href="gráficos.html#cb31-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab=</span><span class="st">&quot;Número de filhos anteriores ao atual&quot;</span>, </span>
+<span id="cb31-6"><a href="gráficos.html#cb31-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;Frequência&quot;</span>,</span>
+<span id="cb31-7"><a href="gráficos.html#cb31-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">500</span>),</span>
+<span id="cb31-8"><a href="gráficos.html#cb31-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.lab =</span> <span class="fl">1.2</span>, </span>
+<span id="cb31-9"><a href="gráficos.html#cb31-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.axis =</span> <span class="fl">1.2</span>, </span>
+<span id="cb31-10"><a href="gráficos.html#cb31-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex.names =</span> <span class="fl">1.2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-barras-simples-com-o-ggplot2" class="section level3 hasAnchor" number="10.5.5">
+<h3><span class="header-section-number">10.5.5</span> Gráfico de Barras Simples com o ggplot2<a href="gráficos.html#gráfico-de-barras-simples-com-o-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ele segue as seguintes etapas:</p>
+<ul>
+<li>Crie os dados como um data.frame</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="gráficos.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mater1<span class="sc">$</span>categIdade)</span></code></pre></div>
+<pre><code>## 
+##   &lt;20a 20-35a   &gt;35a 
+##    219    992    157</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="gráficos.html#cb34-1" aria-hidden="true" tabindex="-1"></a>df_idade <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb34-2"><a href="gráficos.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">categ =</span> <span class="fu">c</span> (<span class="st">&quot;&lt;20a&quot;</span>, <span class="st">&quot;20-35a&quot;</span>, <span class="st">&quot;&gt;35a&quot;</span>),</span>
+<span id="cb34-3"><a href="gráficos.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">freq =</span> <span class="fu">c</span> (<span class="dv">219</span>, <span class="dv">992</span>, <span class="dv">157</span>))</span>
+<span id="cb34-4"><a href="gráficos.html#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="gráficos.html#cb34-5" aria-hidden="true" tabindex="-1"></a>df_idade</span></code></pre></div>
+<pre><code>##    categ freq
+## 1   &lt;20a  219
+## 2 20-35a  992
+## 3   &gt;35a  157</code></pre>
+<p>Para a construção do gráfico:</p>
+<ul>
+<li>Comece chamando a função <code>ggplot ()</code>;</li>
+<li>Em seguida, especifique o objeto de dados, <code>df_idade</code>. Tem que ser um dataframe. Necessita uma variável numérica(<code>freq</code>) e outra categórica (<code>categ</code>);</li>
+<li>Então vem a estética, definida na função <code>aes ()</code>: defina a variável categórica para o eixo X, use a numérica para o eixo Y</li>
+<li>Finalmente, chame <code>geom_bar ()</code> . Você deve especificar <code>stat = "identity"</code> para este tipo de conjunto de dados e a largura das barras <code>width = 0.7</code>.</li>
+<li>Para controlar outros aspectos:
+<ul>
+<li>Cores: <code>color =</code> é para a borda da barra e <code>fill =</code> é a cor do preenchimento. Para estabelecer a cor de cada barra manualmnete, use <code>scale_fill_manual()</code>;</li>
+<li>Para remover a legenda, use <code>theme(legend.position = "none")</code></li>
+<li>Pa um aspecto clássico, use <code>theme_classic ()</code>;</li>
+<li>Para colocar as frequências no topo das barras, use <code>geom_text ()</code>;</li>
+<li>para que as barras fiquem horizontais, usar <code>coord_flip ()</code>, fazendo ajustes para o texto das frequências e para os rótulos dos eixos.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="gráficos.html#cb36-1" aria-hidden="true" tabindex="-1"></a>df_idade <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="gráficos.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">categ =</span> <span class="fu">factor</span>(categ, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;&lt;20a&quot;</span>, <span class="st">&quot;20-35a&quot;</span>, <span class="st">&quot;&gt;35a&quot;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="gráficos.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categ, <span class="at">y=</span>freq, <span class="at">fill =</span> categ)) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="gráficos.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="gráficos.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="gráficos.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Idade da Parturiente&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="gráficos.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;lightsalmon1&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;lightsalmon4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb36-8"><a href="gráficos.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb36-9"><a href="gráficos.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="gráficos.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">paste0</span>(freq)), <span class="at">vjust=</span><span class="fl">1.5</span>, <span class="at">colour=</span><span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+</div>
+<div id="leitura-adicional-2" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Leitura Adicional<a href="gráficos.html#leitura-adicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Holtz Y. Barplot.<strong>The R Graph Gallery. </strong> Disponível em: <a href="https://www.r-graph-gallery.com/barplot.html" class="uri">https://www.r-graph-gallery.com/barplot.html</a>. Acesso em 14/08/2022.</p></li>
+<li><p>H. Wickham. <strong>ggplot2: Elegant Graphics for Data Analysis</strong>. Springer-Verlag New York, 2016. Disponível em: <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="uri">https://ggplot2.tidyverse.org/reference/geom_bar.html</a> Acesso em 14/08/2022</p></li>
+</ol>
+<p></br>
+</br></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tabelas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/10-graficos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/10-graficos.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
