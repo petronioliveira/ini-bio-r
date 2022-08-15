@@ -109,3 +109,12 @@ gráfico-de-barra-de-erro-com-o-ggplot2
 construção-do-gráfico
 gráfico-com-apenas-as-barras-superiores
 gráfico-de-barra-de-erro-com-a-função-lineplot.ci
+histograma
+histograma-simples
+histograma-com-curva-normal-sobreposta
+componentes-do-histograma
+construção-de-um-histograma-usando-os-componentes
+histograma-usando-o-ggplot2
+histograma-por-grupos
+gráficos-de-densidade
+restaurando-o-padrão-de-notação-científica

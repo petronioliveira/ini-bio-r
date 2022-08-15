@@ -527,6 +527,223 @@ lineplot.CI (dados$sexo,
 
 O argumento `type = "p"` determina um gráfico com pontos, mas sem linha de união. Se for substituído  por `type = "l"`, aparecem apenas as linhas de união e `type = "b"`, aparecem ambos.
 
+## Histograma
+
+O **histograma** é uma ferramenta gráfica que fornece informações sobre o formato da distribuição e dispersão dos dados, permitindo verificar se existe ou não simetria. É usado para dados contínuos.  
+No histograma as frequências observadas são representadas por intervalos de classes de ocorrência que estão no eixo *x* e a altura das barras, representando a frequência de cada intervalo, no eixo *y*. A área de cada barra é proporcional à porcentagem de observações de cada intervalo.  
+O **R** base possui uma função, denominada de hist () que constroi o histograma e possui vários argumentos:  
+
+Argumento | Significado
+:--- | :-----------
+x | um vetor numérico usado na construção do histograma;
+breaks | especifica a quantidade de barras;
+freq | lógico; se [TRUE](anchor), o gráfico do histograma é uma representação de frequências, o componente de contagens do resultado; se [FALSE](anchor), densidades de probabilidade, densidade de componentes, são plotados. O padrão é [TRUE](anchor);
+col | cor a ser usada para preencher as barras. O padrão de NULL produz barras não preenchidas;
+border | cor da borda ao redor das barras. O padrão é usar a cor de primeiro plano padrão;
+main, xlab, ylab | rótulo do título, do eixo *x* e do eixo *y*;
+xlim, ylim  | limites do eixo *x* e do eixo *y*.
+... |
+     |
+### Histograma Simples
+
+Fazer um sumário dos dados para se ter uma ideia de como eles se comportam. Para isso, usar a função `summary ()` que nos entrega os valores mínimo, máximo, média, mediana e os percentis 25 e 75:
+
+```{r}
+summary(dados$pesoRN)
+```
+
+Vamos construir um histograma com a função `hist ()`:
+
+```{r}
+hist(dados$pesoRN)
+```
+
+Observando o histograma gerado, verifica-se alguns incovenientes que podem ser melhorados para tornar a sua aparência mais agradável.
+
+* Os eixos apresentam textos com o nome da variável no eixo *x* e em língua inglesa no eixo *y*;
+* O eixo *y* tem um limite superior menor do que a barra mais alta;
+* O gráfico é entregue na cor cinza, que conforme o interesse pode ser modificada;
+* O número de barras pode ser modificado com o argumento `breaks`. Existe uma função no **R** que permite calcular o número de intervalos, usando a *regra de Sturges*. Entretanto, na maioria das vezes, é o objetivo do estudo quem determina o número de barras e nem sempre o **R** obedece ao argumento `breaks =` . 
+
+```{r}
+nclass.Sturges(dados$pesoRN)
+```
+
+A função `nclass.Sturges()` fornece um resultado igual a 12.
+
+```{r}
+hist(dados$pesoRN,
+     breaks = 12,
+     ylim = c (0, 500),
+     xlim = c (1000, 5000),
+     main= NULL, 
+     ylab = "Frequência", 
+     xlab = "Peso do Recém-nascido (g)",
+     col = "steelblue",
+     las = 1)
+box(bty = "L")
+```
+
+Observa-se que o histograma fica igual ao anterior, mudando a cor das barras, o limite do eixo *y* e os rótulos dos eixos. O **R** não modificou o número de barras. *Modifique o número de barras e veja o que acontece!*
+     
+### Histograma com curva normal sobreposta
+
+Eventualmente, para melhor comparar a distribuição dos dados, usamos uma curva normal sobreposta que servirá de indicador.
+
+**1º Passo:**   
+Construir um histograma de densidade, que é a proporção de todas as observações que se enquadram dentro do intervalo. Na função `hist ()`, modificar o argumento  para `freq = TRUE`.
+
+**2º Passo:**   
+Adicionar uma curva normal ao histograma, usando a função `curve ()`. Calcular antes a média e o desvio padrão da variável `dados$pesoRN`.
+Como os valores da densidade no eixo *y* estão como notação científica ($4e-04 = 4.10^{-4}$) , usamos a função `options(scipen = 999)` para remover e para retornar ao padrão, no final, usar `options (scipen = 0, digits = 7)`:
+
+```{r}
+mu <- mean(dados$pesoRN)
+dp <- sd(dados$pesoRN)
+
+options (scipen = 999)
+
+hist(dados$pesoRN,
+     xlim = c(1000, 5000),
+     ylim = c(0, 0.001),
+     main= NULL, 
+     ylab = "Densidade", 
+     xlab = "Peso do Recém-nascido (g)",
+     col ="steelblue",
+     freq = FALSE,            
+     border = "white")
+box (bty = "L")
+
+curve (dnorm (x, 
+              mean=mu, 
+              sd=dp), 
+       col="red", 
+       lty=1,
+       lwd=2,
+       add=TRUE)
+
+```
+
+### Componentes do Histograma
+
+Ao se criar um objeto da classe `histogram`, podemos verificar uma lista de componentes do mesmo, colocando o mesmo em um objeto, no exemplo, `h`.
+
+```{r }
+h <- hist(dados$pesoRN,
+          breaks = 8,
+          xlim = c(1000, 5000),
+          ylim = c(0, 500),
+          main= NULL, 
+          ylab = "Frequência", 
+          xlab = "Peso do Recém-nascido (g)",
+          col ="seagreen2",
+          freq = TRUE,           
+          border = "white")
+      box (bty = "L")
+```
+
+```{r}
+h
+```
+Estes componentes podem ser usados para outras análises.
+
+### Construção de um histograma usando os componentes
+
+Pode-se colocar os valores correspondentes às barras usando os componentes do histograma.
+
+```{r}
+hist(dados$pesoRN,
+     breaks = 8,
+     ylim = c(0, 500),
+     xlim = c(1000, 5000),
+     main= NULL, 
+     ylab = "Frequência", 
+     xlab = "Peso do Recém-nascido (g)",
+     col = "salmon")
+box (bty = "L")
+
+text (h$mids, h$counts, labels = h$counts, adj= c(0.5, -0.5))
+```
+
+
+## Histograma usando o `ggplot2`
+
+A função `geom_histogram ()` do pacote `ggplot2` é usada para a construção do histograma.
+
+```{r}
+dados %>% 
+  ggplot(aes(x=pesoRN))+
+  geom_histogram(color = "black", 
+                 fill = "lightblue",
+                 breaks = seq(1000, 5000, 250)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Peso do Recém-nascido (g)")
+```
+
+Podemos acrescentar uma linha na média com a função `geom_vline ()`: 
+
+```{r}
+dados %>% 
+  ggplot(aes(x=pesoRN))+
+  geom_histogram(color = "black", 
+                 fill = "peachpuff",
+                 breaks = seq(1000, 5000, 250)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Peso do Recém-nascido (g)") +
+  geom_vline(aes (xintercept = mean(pesoRN)),
+             color = "red", 
+             linetype = "dashed", 
+             size = 1)
+```
+
+### Histograma por grupos 
+
+Usando o peso dos recém-nascidos(`pesoRN`) e o `sexo` do banco de dados `RNT`, vamos calcular a média e o desvio padrão por sexo, usando o pacote `dplyr`:
+
+```{r}
+medias <- dados %>% 
+  group_by(sexo) %>% 
+  summarise(media = mean(pesoRN),
+            DP = sd (pesoRN))
+medias 
+```
+
+Construção dos histogramas sobrepostos com suas respectivas médias:
+
+```{r}
+ggplot(dados, aes(x=pesoRN, fill=sexo)) +
+  geom_histogram(position = "identity", bins = 20) +
+  scale_fill_manual(values=c("lightskyblue1", "pink2")) +
+  theme_classic() +
+  geom_vline(data=medias, aes(xintercept=media, color=sexo),
+             linetype="dashed") +
+  xlab("Peso do Recém-nascido (g)") +
+  ylab ("Frequência")
+```
+
+## Gráficos de Densidade
+
+```{r}
+plot (density(dados$pesoRN),
+      frame = FALSE,
+      ylim = c(0, 0.001),
+      main = "",
+      ylab = "Densidade",
+      xlab = "Peso do recém-nascido (g)")
+polygon (density (dados$pesoRN), col= "turquoise")
+box (bty = "L")
+```
+
+## Restaurando o padrão de notação científica
+
+Como vimos no 2º Passo da construção do histograma com curva normal sobreposta, usou-se a função `options(scipen = 999)` que , agora, vamos voltar ao padrão, usando  o comando:
+
+```{r}
+options (scipen= 0, digits= 7)
+```
+
 ## Leitura Adicional  
 
 1. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/barplot.html>. Acesso em 14/08/2022.  
@@ -534,6 +751,10 @@ O argumento `type = "p"` determina um gráfico com pontos, mas sem linha de uni�
 2. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/4-barplot-with-error-bar.html>. Acesso em 14/08/2022.  
 
 3. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_bar.html> Acesso em 14/08/2022
+
+4. Kassambara A. ggplot2 histogram plot : Quick start guide. **STHDA - Statistical tools for high-throughput data analysis**. Disponível em: <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>. Acesso em 15/08/2022.
+
+5. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Gráficos;p.13-24.
 
 
 </br>
