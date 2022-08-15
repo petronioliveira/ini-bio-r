@@ -295,15 +295,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.9.1" data-path="gráficos.html"><a href="gráficos.html#histograma-simples"><i class="fa fa-check"></i><b>10.9.1</b> Histograma Simples</a></li>
 <li class="chapter" data-level="10.9.2" data-path="gráficos.html"><a href="gráficos.html#histograma-com-curva-normal-sobreposta"><i class="fa fa-check"></i><b>10.9.2</b> Histograma com curva normal sobreposta</a></li>
 <li class="chapter" data-level="10.9.3" data-path="gráficos.html"><a href="gráficos.html#componentes-do-histograma"><i class="fa fa-check"></i><b>10.9.3</b> Componentes do Histograma</a></li>
-<li class="chapter" data-level="10.9.4" data-path="gráficos.html"><a href="gráficos.html#construção-de-um-histograma-usando-os-componentes"><i class="fa fa-check"></i><b>10.9.4</b> Construção de um histograma usando os componentes</a></li>
+<li class="chapter" data-level="10.9.4" data-path="gráficos.html"><a href="gráficos.html#histograma-usando-o-ggplot2"><i class="fa fa-check"></i><b>10.9.4</b> Histograma usando o <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.9.5" data-path="gráficos.html"><a href="gráficos.html#histograma-por-grupos"><i class="fa fa-check"></i><b>10.9.5</b> Histograma por grupos</a></li>
 </ul></li>
-<li class="chapter" data-level="10.10" data-path="gráficos.html"><a href="gráficos.html#histograma-usando-o-ggplot2"><i class="fa fa-check"></i><b>10.10</b> Histograma usando o <code>ggplot2</code></a>
-<ul>
-<li class="chapter" data-level="10.10.1" data-path="gráficos.html"><a href="gráficos.html#histograma-por-grupos"><i class="fa fa-check"></i><b>10.10.1</b> Histograma por grupos</a></li>
-</ul></li>
-<li class="chapter" data-level="10.11" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>10.11</b> Gráficos de Densidade</a></li>
-<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#restaurando-o-padrão-de-notação-científica"><i class="fa fa-check"></i><b>10.12</b> Restaurando o padrão de notação científica</a></li>
-<li class="chapter" data-level="10.13" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.13</b> Leitura Adicional</a></li>
+<li class="chapter" data-level="10.10" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>10.10</b> Gráficos de Densidade</a></li>
+<li class="chapter" data-level="10.11" data-path="gráficos.html"><a href="gráficos.html#restaurando-o-padrão-de-notação-científica"><i class="fa fa-check"></i><b>10.11</b> Restaurando o padrão de notação científica</a></li>
+<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.12</b> Leitura Adicional</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -1019,9 +1016,8 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 ## attr(,&quot;class&quot;)
 ## [1] &quot;histogram&quot;</code></pre>
 <p>Estes componentes podem ser usados para outras análises.</p>
-</div>
-<div id="construção-de-um-histograma-usando-os-componentes" class="section level3 hasAnchor" number="10.9.4">
-<h3><span class="header-section-number">10.9.4</span> Construção de um histograma usando os componentes<a href="gráficos.html#construção-de-um-histograma-usando-os-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="construção-de-um-histograma-usando-os-componentes" class="section level4 hasAnchor" number="10.9.3.1">
+<h4><span class="header-section-number">10.9.3.1</span> Construção de um histograma usando os componentes<a href="gráficos.html#construção-de-um-histograma-usando-os-componentes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pode-se colocar os valores correspondentes às barras usando os componentes do histograma.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="gráficos.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(dados<span class="sc">$</span>pesoRN,</span>
 <span id="cb66-2"><a href="gráficos.html#cb66-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">8</span>,</span>
@@ -1037,8 +1033,8 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 </div>
 </div>
-<div id="histograma-usando-o-ggplot2" class="section level2 hasAnchor" number="10.10">
-<h2><span class="header-section-number">10.10</span> Histograma usando o <code>ggplot2</code><a href="gráficos.html#histograma-usando-o-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="histograma-usando-o-ggplot2" class="section level3 hasAnchor" number="10.9.4">
+<h3><span class="header-section-number">10.9.4</span> Histograma usando o <code>ggplot2</code><a href="gráficos.html#histograma-usando-o-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A função <code>geom_histogram ()</code> do pacote <code>ggplot2</code> é usada para a construção do histograma.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="gráficos.html#cb67-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
 <span id="cb67-2"><a href="gráficos.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>pesoRN))<span class="sc">+</span></span>
@@ -1063,8 +1059,9 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 <span id="cb68-11"><a href="gráficos.html#cb68-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
 <span id="cb68-12"><a href="gráficos.html#cb68-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
-<div id="histograma-por-grupos" class="section level3 hasAnchor" number="10.10.1">
-<h3><span class="header-section-number">10.10.1</span> Histograma por grupos<a href="gráficos.html#histograma-por-grupos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="histograma-por-grupos" class="section level3 hasAnchor" number="10.9.5">
+<h3><span class="header-section-number">10.9.5</span> Histograma por grupos<a href="gráficos.html#histograma-por-grupos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Usando o peso dos recém-nascidos(<code>pesoRN</code>) e o <code>sexo</code> do banco de dados <code>RNT</code>, vamos calcular a média e o desvio padrão por sexo, usando o pacote <code>dplyr</code>:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="gráficos.html#cb69-1" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
 <span id="cb69-2"><a href="gráficos.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
@@ -1088,8 +1085,8 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 </div>
 </div>
-<div id="gráficos-de-densidade" class="section level2 hasAnchor" number="10.11">
-<h2><span class="header-section-number">10.11</span> Gráficos de Densidade<a href="gráficos.html#gráficos-de-densidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gráficos-de-densidade" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> Gráficos de Densidade<a href="gráficos.html#gráficos-de-densidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="gráficos.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(dados<span class="sc">$</span>pesoRN),</span>
 <span id="cb72-2"><a href="gráficos.html#cb72-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb72-3"><a href="gráficos.html#cb72-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.001</span>),</span>
@@ -1100,13 +1097,13 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 <span id="cb72-8"><a href="gráficos.html#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span> (<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 </div>
-<div id="restaurando-o-padrão-de-notação-científica" class="section level2 hasAnchor" number="10.12">
-<h2><span class="header-section-number">10.12</span> Restaurando o padrão de notação científica<a href="gráficos.html#restaurando-o-padrão-de-notação-científica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="restaurando-o-padrão-de-notação-científica" class="section level2 hasAnchor" number="10.11">
+<h2><span class="header-section-number">10.11</span> Restaurando o padrão de notação científica<a href="gráficos.html#restaurando-o-padrão-de-notação-científica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Como vimos no 2º Passo da construção do histograma com curva normal sobreposta, usou-se a função <code>options(scipen = 999)</code> que , agora, vamos voltar ao padrão, usando o comando:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="gráficos.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span> (<span class="at">scipen=</span> <span class="dv">0</span>, <span class="at">digits=</span> <span class="dv">7</span>)</span></code></pre></div>
 </div>
-<div id="leitura-adicional-2" class="section level2 hasAnchor" number="10.13">
-<h2><span class="header-section-number">10.13</span> Leitura Adicional<a href="gráficos.html#leitura-adicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="leitura-adicional-2" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Leitura Adicional<a href="gráficos.html#leitura-adicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Holtz Y. Barplot.<strong>The R Graph Gallery. </strong> Disponível em: <a href="https://www.r-graph-gallery.com/barplot.html" class="uri">https://www.r-graph-gallery.com/barplot.html</a>. Acesso em 14/08/2022.</p></li>
 <li><p>Holtz Y. Barplot.<strong>The R Graph Gallery. </strong> Disponível em: <a href="https://www.r-graph-gallery.com/4-barplot-with-error-bar.html" class="uri">https://www.r-graph-gallery.com/4-barplot-with-error-bar.html</a>. Acesso em 14/08/2022.</p></li>

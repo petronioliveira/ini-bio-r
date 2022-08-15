@@ -647,7 +647,7 @@ h
 ```
 Estes componentes podem ser usados para outras análises.
 
-### Construção de um histograma usando os componentes
+#### Construção de um histograma usando os componentes
 
 Pode-se colocar os valores correspondentes às barras usando os componentes do histograma.
 
@@ -666,7 +666,7 @@ text (h$mids, h$counts, labels = h$counts, adj= c(0.5, -0.5))
 ```
 
 
-## Histograma usando o `ggplot2`
+### Histograma usando o `ggplot2`
 
 A função `geom_histogram ()` do pacote `ggplot2` é usada para a construção do histograma.
 
