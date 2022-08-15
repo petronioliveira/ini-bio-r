@@ -1,0 +1,925 @@
+--- 
+title: "BIOESTATÍSTICA USANDO O R"
+author: "Petrônio Fagundes de Oliveira Filho"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+
+# Dados
+
+Placeholder
+
+
+## O que são dado? 
+## População e Amostra
+## Estimativas e Parâmetros  
+## Escalas de medição
+### Escala Nominal  
+### Escala Ordinal
+### Escala Intervalar  
+### Escala de Razão  
+## Tipos de Variáveis  
+### Variáveis Numéricas  
+### Variáveis Categóricas  
+## Variáveis dependentes e independentes  
+## Leitura Adicional  
+
+<!--chapter:end:index.Rmd-->
+
+
+# Ambiente do R
+
+Placeholder
+
+
+## Instalação do software R no Windows
+## Instalação do R Studio no Windows
+
+<!--chapter:end:02-ambienteR.Rmd-->
+
+
+# Iniciando o *RStudio*
+
+Placeholder
+
+
+## Interface do *RStudio*
+## Iniciando um novo projeto
+## Primeiro Script
+
+<!--chapter:end:03-iniRStudio.Rmd-->
+
+
+# Matemática Básica no *RStudio*
+
+Placeholder
+
+
+## Operadores  
+### Operadores aritméticos
+### Operadores de atribuição
+### Operadores de comparação
+### Operadores lógicos
+## Logarítimo
+## Raiz quadrada
+## Resultado absoluto
+## Potenciação
+## Exercícios
+
+<!--chapter:end:04-matematica.Rmd-->
+
+
+# Pacotes
+
+Placeholder
+
+
+## Repositórios de pacotes
+## Instalação de um pacote
+## Carregar um pacote
+### Carregar mais de um pacote
+
+<!--chapter:end:05-pacotes.Rmd-->
+
+
+# Funções
+
+Placeholder
+
+
+## O que são funções?
+## Criando funções
+### Fórmula geral
+### Outros exemplos
+### Ativação de uma função
+
+<!--chapter:end:06-funcoes.Rmd-->
+
+
+# Manipulando Dados no RStudio
+
+Placeholder
+
+
+## Vetores
+## Objetos
+## Manipulando dados numéricos
+## Manipulando dados categóricos
+## Dataframes ou Banco de dados
+### Criando um banco de dados
+### Salvando os arquivos no seu diretório
+### Importando um banco de dados
+#### Importando dados de um arquivo CSV
+#### Importando dados de um arquivo Excel
+
+<!--chapter:end:07-manipulandoDados.Rmd-->
+
+
+# Sumarização dos dados
+
+Placeholder
+
+
+## Medidas de tendência central
+### Média
+### Mediana
+### Moda
+### Quantil
+### Média aparada
+## Medidas de Dispersão
+### Amplitude  
+### Intervalo Interquartil
+### Variância e Desvio Padrão
+### Coeficiente de Variação
+## Funções descritivas no R
+### Funções `describe` e `describeBy`
+### Funções `group_by` e `summarise` 
+### Função `summary`
+
+<!--chapter:end:08-sumarizandoDados.Rmd-->
+
+
+# Tabelas  
+
+Placeholder
+
+
+## Pacotes necessários  
+## Carregar os dados
+## Exploração ddos dados
+### Visão Geral 
+### Transformações das variáveis
+## Tabela de Frequência
+### Tabela de frequência para dados categóricos
+### Tabela de contingência ou cruzada
+### Tabela de frequência para dados numéricos
+## Construção de uma tabela com o pacote `gt`
+## Tabelas com o pacote `getsummary`
+## Salvando a tabela 
+## Leitura Adicional  
+
+<!--chapter:end:09-tabelas.Rmd-->
+
+# Gráficos  
+
+## Pacotes necessários
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(readxl, dplyr, plotrix, ggplot2, forcats, Hmisc, sciplot, plyr)
+```
+
+## Carregar os Dados
+
+Para este capítulo, serão usados dados da maternidade escola do Hospital Geral de Caxias do Sul, incluídos nos arquivos [dadosMater](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx) e [dadosRNT](https://github.com/petronioliveira/Arquivos/blob/main/dadosRNT.xlsx).
+
+Estes arquivos devem ser baixados para o seu diretório de trabalho.
+
+Crie um objeto `mater` para receber os dadosMater.xlsx e um com o nome RNT para receber os dadosRNT, a partir do diretório de trabalho, executando os seguinte códigos:
+
+```{r}
+mater <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx")
+RNT <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosRNT.xlsx")
+```
+
+## Visão Geral do `dadosMater.xlsx`
+
+Inicialmente, vamos ter uma visão geral do banco de dados, usando a função `glimpse ()`, do pacote `dplyr`. Ela nos mostra como os dados estão dispostos e a classe de cada variável. O banco tem 1368 linhas (casos) e 30 colunas (variáveis). Todas as variáveis estão como numéricas (dbl).
+
+```{r}
+glimpse (mater)
+```
+
+### Transformação e criação de variáveis
+
+Vamos começar limitando o banco de dados, selecionando apenas  as variáveis que serão usados neste tutorial:  
+
+```{r}
+mater1 <- mater %>% 
+  select(idadeMae, anosEst, fumo, para)
+
+glimpse(mater1)
+```
+A seguir, vamos transformar a variável `fumo` como fator e criar duas novas variáveis a partir das variáveis `idadeMae` e `anosEst`, que também serão fatores:
+
+```{r}
+mater1$fumo <- factor (mater1$fumo,
+                       levels = c(1, 2),
+                       labels = c("sim", "não"))
+
+mater1$categIdade <- cut (mater$idadeMae, 
+                          breaks=c (13,20,36,46), 
+                          labels = c ("<20a", "20-35a", ">35a"),
+                          right = FALSE,
+                          ordered_result = TRUE,
+                          include.lowest = TRUE)
+
+mater1$escolaridade <- cut (mater1$anosEst,
+                            breaks= c (0,10,13,18),
+                            right = FALSE,
+                            labels = c("Fundamental",
+                                       "Médio",
+                                       "Superior"),
+                            include.lowest = TRUE)
+
+glimpse (mater1)
+```
+ 
+## Gráfico de Setores (Pizza)
+
+Cada segmento (fatia) do gráfico de pizza deve ser proporcional à frequência da categoria que representa. A desvantagem do gráfico de pizza é que ele só pode representar uma variável, portanto, há necessidade de um gráfico separado para cada variável que se deseja representar. Além disso, um gráfico de pizza pode perder clareza se ele é usado para representar mais do que quatro ou cinco categorias.  
+Os gráficos de pizza são amplamente conhecidos como uma maneira ruim de 
+visualizar informações.  
+
+Com variável `mater1$escolaridade` e, usando a função `table ()`, criamos uma tabela (`tab_escola`):
+
+```{r}
+tab_escola <- table(mater1$escolaridade)
+tab_escola
+```
+Ou
+
+```{r eval=FALSE}
+tab_escola <- xtabs(~mater1$escolaridade, data = mater)
+tab_escola
+```
+
+Usando as informações da `tab_escola`, cria-se o vetor `escola`:
+
+```{r}
+escola <- c(983, 358, 27)
+```
+
+Com a função `pie ()`, vamos construir o gráfico de setores:
+
+```{r}
+pie (escola, 
+     labels = c ("Fundamental", 
+                 "Médio", 
+                 "Superior"),
+     main = NULL,
+     col = c ("skyblue", 
+              "cyan", 
+              "lightblue1"))
+```
+
+É possível, também, construir uma pizza em 3 D, usando a função `pie3D ()` do pacote `plotrix`:
+
+```{r}
+pie3D (escola, 
+       labels = c("Fundamental", 
+                  "Médio", 
+                  "Superior"), 
+       radius = 0.9, 
+       explode = 0.1, 
+       col = c ("skyblue", 
+                "cyan", 
+                "lightblue1"),  
+       main="Grau de Instrução das Parturientes")
+```
+
+### Gráfico de setores com o ggplot2
+
+Inicialmente, cria-se um dataframe, que chamaremos de `df_escola`, onde grupo são as categorias de escolaridade, n é a frequência de cada categoria e pro é a proporção de cada categoria (frequência de cada categoria dividido pelo total):
+
+```{r}
+df_escola <- data.frame(
+  grupo = c("Fundamental", "Médio", "Superior"),
+  n = c (983, 358, 27),
+  prop = round(c((983/1368)*100, (358/1368)*100, (27/1368)*100),1))
+df_escola
+```
+
+Vamos agora transformar o dataframe criado, usando as funções `arrange ()`, que colocará as categorias em ordem descentente, e `mutate ()`, que calculará a posição dos rótulos no eixo y. Ambas funções pertecem ao pacote `dplyr`:
+
+```{r}
+df_escola <- df_escola %>%
+  arrange(desc(grupo)) %>%
+  mutate(lab.ypos = cumsum(prop) - 0.5*prop)
+df_escola
+```
+
+Para criar  gráfico de pizza com o ggplot2, usaremos como função chave o `geom_bar ()` + `coord_polar ()`. Adicionremos texto com a função `geom_text ()` e as cores de preenchimento com `scale_color_manual ()`. Será aplicado por último `theme_void ()` para remover eixos, fundos, etc.
+
+As cores escolhidas são colocas em objeto `minhas_cores`:
+
+```{r}
+minhas_cores <- c("steelblue", "salmon", "yellow")
+```
+
+**Gráfico**
+
+```{r}
+ggplot(df_escola, aes(x = "", y = prop, fill = grupo)) +
+  geom_bar(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0)+
+  geom_text(aes(y = lab.ypos, label = prop), color = "black", size = 5)+
+  scale_fill_manual(values = minhas_cores) +
+  theme_void()
+  
+```
+
+Voltaremos ao `ggplot2` mais adiante.
+
+### Uma variação do gráfico de pizza: gráfico de rosca (*Donut chart*)
+
+```{r}
+ggplot(df_escola, aes(x = 2, y = prop, fill = grupo)) +
+  geom_bar(stat = "identity", color = "white") +
+  coord_polar(theta = "y", start = 0)+
+  geom_text(aes(y = lab.ypos, label = prop), color = "black", size = 5)+
+  scale_fill_manual(values = minhas_cores) +
+  theme_void()+
+  xlim(0.5, 2.5)
+```
+
+
+## Gráficos de Barras
+
+### Gráfico de Barras Simples
+
+Começamos construindo uma tabela usando a variável `mater1$categIdade`:
+
+```{r}
+tab_idade <- table(mater1$categIdade)
+```
+
+Após, usando a função `barplot ()`, construímos o gráfico de barras:
+
+```{r}
+barplot(tab_idade)
+```
+
+A seguir, usando outros argumentos próprios da função, melhoramos o aspecto do gráfico. O argumento `ylim =` vai corrigir o limite do eixo y que ficou em 800 e deveria ser 1000; `col =` tornará as barras de cor azul metálico (*steelblue*); `ylab =` e `xlab =` colocam rótulos nos eixos; `las = 1` faz o texto do eixo y ficar horizontal e `cex.lab = 1.2` aumenta o texto dos rótulos em 20%. A função `box (bty = "L")` (opcional) faz os eixos se encontraren em 0.
+
+```{r}
+barplot(tab_idade, 
+        ylim = c (0,1000), 
+        col= "steelblue", 
+        border = "black", 
+        ylab = "Frequência absoluta", 
+        xlab = "Faixa etária", 
+        cex.lab = 1.2,
+        las = 1)
+box(bty = "L")
+```
+
+Além disso, é possível fazer outras alterações para tornar o gráfico mais informativo, como as frequência de cada barra colocada no topo das mesmas:
+
+* **1º Passo**: Criar um gráfico de barras , colocando-o em um objeto `x`, que conterá a coordenada *X* do centro de cada uma das barras. Para verificar isso basta executar o objeto `x`:
+
+* **2º Passo**: colocar a tabela tab_idade com um objeto `y` da classe matriz:
+
+* **3º Passo**: usar a funçãoo `text ()` para colocar os valores:
+
+```{r}
+x <- barplot(tab_idade, 
+             ylim = c (0,1000), 
+             col= "springgreen", 
+             border = "black", 
+             ylab = "Frequência absoluta", 
+             xlab = "Faixa etária", 
+             cex.lab = 1.2,
+             las = 1)
+box(bty = "L")
+
+y <- as.matrix(tab_idade)
+
+text (x, y, labels = as.character(y), adj = c(0.5, 2), col = "black")
+```
+
+O gráfico de barras simples pode ser construído com as barras horizontais. Basta usar o argumento `horiz = TRUE` e adaptando os eixoa *x* e *y*, para essa situação:
+
+```{r}
+barplot(tab_idade, 
+        xlim = c (0,1000), 
+        col= "salmon", 
+        border = "black", 
+        ylab= "", 
+        xlab = "Frequência absoluta", 
+        cex.lab = 1.3, 
+        horiz=TRUE,
+        las = 1)
+box(bty = "L")
+```
+
+### Gráfico de Barras Empilhadas
+
+Para este tipo de apresentação usamos, praticamente, os mesmos argumentos vistos para gerar um gráfico de barra simples. Como existem duas variáveis, há necessidade de avisar ao **R** como elas devem aparecer. Para isso, foi usado o argumento `beside = FALSE`, que informa que as barras não estarão uma ao lado da outra e sim empilhadas. O padrão é as barras ficarem uma ao lado da outra. Acresscenta-se uma legenda com a função `legend()` na parte superior esquerda (*topleft*). O argumento `bty = "n"` informa que não queremos um quadro ao redor da legenda e `fill = c ("dimgrey", "salmon")` são as cores das barras.
+
+```{r}
+tab_fumo <- table (mater1$fumo, mater1$categIdade)
+tab_fumo
+
+barplot (tab_fumo,  
+         beside=FALSE, 
+         ylim = c (0,1000), 
+         xlab="Faixa Etária das gestantes", 
+         ylab = "Frequência", 
+         col = c ("dimgrey", "salmon"),  
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+box(bty = "L")
+
+legend (legend=c ("Fumantes", "Não Fumantes"), 
+        fill = c ("dimgrey", "salmon"), 
+        bty="n", 
+        cex = 1,
+        "topleft")
+```
+
+### Gráfico de Barras Lado a Lado
+
+É igual a anterior, apenas com o argumento `beside = TRUE`.
+
+```{r}
+barplot (tab_fumo,  
+         beside=TRUE, 
+         ylim = c (0,800), 
+         xlab="Faixa Etária das gestantes", 
+         ylab = "Frequência", 
+         col = c ("dimgrey", "salmon"),  
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+box(bty = "L")
+
+legend (legend=c ("Fumantes", "Não Fumantes"), 
+        fill = c ("dimgrey", "salmon"), 
+        bty="n", 
+        cex = 1,
+        "topleft")
+```
+
+### Gráfico de barras com variáveis discretas
+
+A variável para é uma variável numérica discreta e, para representá-la o mais adequado é usar um gráfico de barras simples.
+
+```{r}
+tab_filhos<- table (mater1$para) 
+
+barplot (tab_filhos, 
+         col = "salmon", 
+         xlab="Número de filhos anteriores ao atual", 
+         ylab = "Frequência",
+         ylim = c(0, 500),
+         cex.lab = 1.2, 
+         cex.axis = 1.2, 
+         cex.names = 1.2)
+```
+
+### Gráfico de Barras Simples com o ggplot2
+
+Ele segue as seguintes etapas:
+
+* Crie os dados como um data.frame
+
+```{r}
+table(mater1$categIdade)
+
+df_idade <- data.frame (
+  categ = c ("<20a", "20-35a", ">35a"),
+  freq = c (219, 992, 157))
+
+df_idade
+```
+
+Para a construção do gráfico:
+
+* Comece chamando a função `ggplot ()`;
+* Em seguida, especifique o objeto de dados, `df_idade`. Tem que ser um dataframe. Necessita uma variável numérica(`freq`) e outra categórica (`categ`);
+* Então vem a estética, definida na função `aes ()`: defina a variável categórica para o eixo X, use a numérica para o eixo Y
+* Finalmente, chame `geom_bar ()` . Você deve especificar `stat = "identity"` para este tipo de conjunto de dados e a largura das barras `width = 0.7`.
+* Para controlar outros aspectos:
+   - Cores: `color =` é para a borda da barra e `fill =` é a cor do preenchimento. Para estabelecer a cor de cada barra manualmnete, use `scale_fill_manual()`;
+   - Para remover a legenda, use `theme(legend.position = "none")`
+   - Pa um aspecto clássico, use `theme_classic ()`;
+   - Para colocar as frequências no topo das barras, use `geom_text ()`;
+   - para que as barras fiquem horizontais, usar `coord_flip ()`, fazendo ajustes para o texto das frequências e para os rótulos dos eixos.
+
+```{r}
+df_idade %>% 
+  mutate(categ = factor(categ, levels=c("<20a", "20-35a", ">35a"))) %>% 
+  ggplot(aes(x = categ, y=freq, fill = categ)) +
+  geom_bar(stat = "identity", width = 0.7) +
+  ylab("Frequência") +
+  xlab("Idade da Parturiente") +
+  scale_fill_manual(values = c("lightsalmon1", "salmon", "lightsalmon4")) +
+  theme_classic() +
+  theme(legend.position="none") +
+  geom_text(aes(label=paste0(freq)), vjust=1.5, colour="white")
+```
+
+## Gráfico de barra de erro
+
+### Exploração e manipulação arquivo `RNT.xlsx`
+
+O arquivo `RNT.xlsx` tem a seguinte estruturs:
+
+```{r}
+glimpse (RNT)
+```
+
+Vamos selecionar apenas as variáveis `pesoRN` e `sexo` que serão recebidas por um objeto de nome `dados`:
+
+```{r}
+dados <- RNT %>% select(pesoRN, sexo)
+
+glimpse (dados)
+```
+
+Observamos que a variável `sexo` está como numérica e deve ser transformada para fator:
+
+```{r}
+dados$sexo <- factor (dados$sexo, 
+                levels = c(1, 2), 
+                label = c("masc", "fem"))
+
+glimpse (dados)
+```
+
+Agora, temos um conjunto de dados com uma variável numérica (`pesoRN`) e uma variável categórica (`sexo`), como fator.
+
+#### Resumos numericos
+
+Vamos conhecer o resumo numérico da variável `pesoRN`, usando as funções `group_by ()` e `summarise ()` do pacote `dplyr`:  
+
+```{r}
+resumo <- dados %>% 
+  group_by(sexo) %>% 
+  summarise(n = n (),
+            media = mean(pesoRN),
+            dp = sd (pesoRN),
+            mediana = median (pesoRN),
+            IIQ = IQR (pesoRN)) %>% 
+  mutate(ep = dp/sqrt(n)) %>% 
+  mutate(me = ep * qt(1 - (0.05/2), n - 1))
+resumo
+```
+
+Este resumo fornece o *n*, a *média*, o *desvio padrão*, a *mediana*, o *intervalo interquartil*, o *erro padrão* e a *margem de erro*.
+
+#### Extrair dois subconjuntos de dados: meninos e meninas
+
+```{r}
+meninas <- dados %>% filter(sexo == "fem")
+
+meninos <- dados %>% filter(sexo == "masc")
+```
+
+#### Resumos numéricos dos dois subgrupos
+
+```{r}
+n1 <- nrow (meninos)
+n2 <- nrow (meninas)
+
+mu_m <- mean(meninos$pesoRN)
+mu_f <- mean(meninas$pesoRN)
+
+dp_m <- sd(meninos$pesoRN)
+dp_f <- sd(meninas$pesoRN)
+
+ep_m <- dp_m/sqrt(n1)
+ep_f <- dp_f/sqrt(n2)
+```
+
+### Criação do gráfico de barra de erro
+
+Vamos seguir as seguintes etapas:
+
+**1ª Etapa:**  
+
+* Criação de um  vetor que recebe o nome `barras` com as médias dos subgrupos; 
+* Este vetor será usado na construção do gráfico de barras;
+* Incluir este em outro objeto, denominado de `bp`, que receberá o gráfico de barras.   
+
+**2ª Etapa:**  
+
+* Calcular a margem de erro ($me = 1.96 × dp$) em cada um dos grupos; 
+* Com as margens de erro construir os limites do intervalo de confiança (${média} \pm {me}$).  
+
+**3ª Etapa:**  
+
+* Adcionar ao gráfico de barras os limites calculados, usando a função `errbar ()` do pacote `Hmisc`.
+
+```{r}
+barras <- c (mu_m, mu_f)
+
+bp <- barplot(barras, 
+              ylim=c(0,4500), 
+              ylab = "Peso do Recém-nascido (g)",
+              cex.lab = 1.3,
+              cex.axis = 1.3,
+              cex.names = 1.3,
+              space = c(0,0.5),
+              names.arg=c("Meninos", "Meninas"), 
+              col = c("lightblue", " pink2"))
+box(bty = "L")
+
+me_m <-  1.96 * dp_m
+me_f <- 1.96 * dp_f
+
+lim_inf <- c(mu_m - me_m, mu_f - me_f)
+round (lim_inf, 2)
+lim_sup <- c(mu_m + me_m, mu_f + me_f)
+round (lim_sup, 2)  
+
+errbar(bp, barras, lim_sup, lim_inf, add=TRUE, xlab=NULL)
+```
+
+**OBS.:** Foram usados os desvios padrão na construção da margem de erro, mas o IC95% usa o erro padrão. Entretanto, como este é muito menor que o dp, optou-se pelo dp, por uma questão didática.
+
+## Gráfico de barra de erro com o `ggplot2`
+
+Vamos usar os mesmos dados anteriores e o resumo numérico do `resumo`.
+
+### Construção do gráfico
+
+Primeiro se constroi uma camada criando um gráfico de barra com a função `geom_bar ()`. Após, usando a função `geom_errorbar ()`, cria-se as barras de erro e a função `geom_point ()` coloca um ponto no valor das médias. Os demais comandos são os rótulos e tamanho dos textos, bem como o tema usado (`theme_classic()`):  
+
+```{r}
+p<- ggplot(resumo, aes(x=sexo, y=media, fill=sexo)) + 
+  geom_bar(stat="identity", width = 0.4, color="black") +
+  geom_point() +
+  geom_errorbar(aes(ymin=media-dp, ymax=media+dp), width=0.1,
+                position=position_identity()) +
+  scale_fill_manual(values=c("lightskyblue1","pink2"))+
+  theme(legend.position="none")
+print(p)
+# Final
+p+labs(title="Peso do RN por Sexo", x="", y = "Peso do Recém-nascido (g)")+
+  theme_classic() +
+  theme(legend.position="none")
+```
+
+### Gráfico com apenas as barras superiores
+
+```{r}
+ggplot(resumo, aes(x=sexo, y=media, fill=sexo)) + 
+  geom_bar(stat="identity", width = 0.4, color="black") +
+  geom_point() +
+  geom_errorbar(aes(ymin=media, ymax=media+dp), width=0.1,
+                position=position_dodge(.9)) +
+  labs(title="Peso do RN por Sexo", x="", y = "Peso do Recém-nascido (g)")+
+  theme_classic() +
+  theme(legend.position="none") +
+  scale_fill_manual(values=c("lightskyblue1","pink2"))
+```
+
+
+## Gráfico de Barra de Erro com a Função `lineplot.CI ()`
+
+Uma função simples para realizar um gráfico com barra de erro é a `lineplot.CI ()` do pacote `sciplot`.
+
+Vamos criar o mesmo gráfico anterior, peso médio do recém-nascido por sexo, usando o erro padrão. O padrão é retornar ${média} \pm {ep}$. Entretanto, isto pode ser modificado com o argumento `ci.fun=` que usa a margem de erro, ou seja, $me = 1.96 × ep$.  
+
+```{r}
+lineplot.CI (dados$sexo, 
+             dados$pesoRN,
+             type = "p",
+             xlab="", 
+             ylab="Peso do RN (g)",
+             lty = 2,
+             las = 1,
+             lwd = 3,
+             err.col =  c("lightskyblue","pink3"),
+             ci.fun= function(x) c(mean(x)-se(x)*qnorm(0.975),
+                                   mean(x)+se(x)*qnorm(0.975)))
+```
+
+O argumento `type = "p"` determina um gráfico com pontos, mas sem linha de união. Se for substituído  por `type = "l"`, aparecem apenas as linhas de união e `type = "b"`, aparecem ambos.
+
+## Histograma
+
+O **histograma** é uma ferramenta gráfica que fornece informações sobre o formato da distribuição e dispersão dos dados, permitindo verificar se existe ou não simetria. É usado para dados contínuos.  
+No histograma as frequências observadas são representadas por intervalos de classes de ocorrência que estão no eixo *x* e a altura das barras, representando a frequência de cada intervalo, no eixo *y*. A área de cada barra é proporcional à porcentagem de observações de cada intervalo.  
+O **R** base possui uma função, denominada de hist () que constroi o histograma e possui vários argumentos:  
+
+Argumento | Significado
+:--- | :-----------
+x | um vetor numérico usado na construção do histograma;
+breaks | especifica a quantidade de barras;
+freq | lógico; se [TRUE](anchor), o gráfico do histograma é uma representação de frequências, o componente de contagens do resultado; se [FALSE](anchor), densidades de probabilidade, densidade de componentes, são plotados. O padrão é [TRUE](anchor);
+col | cor a ser usada para preencher as barras. O padrão de NULL produz barras não preenchidas;
+border | cor da borda ao redor das barras. O padrão é usar a cor de primeiro plano padrão;
+main, xlab, ylab | rótulo do título, do eixo *x* e do eixo *y*;
+xlim, ylim  | limites do eixo *x* e do eixo *y*.
+... |
+     |
+### Histograma Simples
+
+Fazer um sumário dos dados para se ter uma ideia de como eles se comportam. Para isso, usar a função `summary ()` que nos entrega os valores mínimo, máximo, média, mediana e os percentis 25 e 75:
+
+```{r}
+summary(dados$pesoRN)
+```
+
+Vamos construir um histograma com a função `hist ()`:
+
+```{r}
+hist(dados$pesoRN)
+```
+
+Observando o histograma gerado, verifica-se alguns incovenientes que podem ser melhorados para tornar a sua aparência mais agradável.
+
+* Os eixos apresentam textos com o nome da variável no eixo *x* e em língua inglesa no eixo *y*;
+* O eixo *y* tem um limite superior menor do que a barra mais alta;
+* O gráfico é entregue na cor cinza, que conforme o interesse pode ser modificada;
+* O número de barras pode ser modificado com o argumento `breaks`. Existe uma função no **R** que permite calcular o número de intervalos, usando a *regra de Sturges*. Entretanto, na maioria das vezes, é o objetivo do estudo quem determina o número de barras e nem sempre o **R** obedece ao argumento `breaks =` . 
+
+```{r}
+nclass.Sturges(dados$pesoRN)
+```
+
+A função `nclass.Sturges()` fornece um resultado igual a 12.
+
+```{r}
+hist(dados$pesoRN,
+     breaks = 12,
+     ylim = c (0, 500),
+     xlim = c (1000, 5000),
+     main= NULL, 
+     ylab = "Frequência", 
+     xlab = "Peso do Recém-nascido (g)",
+     col = "steelblue",
+     las = 1)
+box(bty = "L")
+```
+
+Observa-se que o histograma fica igual ao anterior, mudando a cor das barras, o limite do eixo *y* e os rótulos dos eixos. O **R** não modificou o número de barras. *Modifique o número de barras e veja o que acontece!*
+     
+### Histograma com curva normal sobreposta
+
+Eventualmente, para melhor comparar a distribuição dos dados, usamos uma curva normal sobreposta que servirá de indicador.
+
+**1º Passo:**   
+Construir um histograma de densidade, que é a proporção de todas as observações que se enquadram dentro do intervalo. Na função `hist ()`, modificar o argumento  para `freq = TRUE`.
+
+**2º Passo:**   
+Adicionar uma curva normal ao histograma, usando a função `curve ()`. Calcular antes a média e o desvio padrão da variável `dados$pesoRN`.
+Como os valores da densidade no eixo *y* estão como notação científica ($4e-04 = 4.10^{-4}$) , usamos a função `options(scipen = 999)` para remover e para retornar ao padrão, no final, usar `options (scipen = 0, digits = 7)`:
+
+```{r}
+mu <- mean(dados$pesoRN)
+dp <- sd(dados$pesoRN)
+
+options (scipen = 999)
+
+hist(dados$pesoRN,
+     xlim = c(1000, 5000),
+     ylim = c(0, 0.001),
+     main= NULL, 
+     ylab = "Densidade", 
+     xlab = "Peso do Recém-nascido (g)",
+     col ="steelblue",
+     freq = FALSE,            
+     border = "white")
+box (bty = "L")
+
+curve (dnorm (x, 
+              mean=mu, 
+              sd=dp), 
+       col="red", 
+       lty=1,
+       lwd=2,
+       add=TRUE)
+
+```
+
+### Componentes do Histograma
+
+Ao se criar um objeto da classe `histogram`, podemos verificar uma lista de componentes do mesmo, colocando o mesmo em um objeto, no exemplo, `h`.
+
+```{r }
+h <- hist(dados$pesoRN,
+          breaks = 8,
+          xlim = c(1000, 5000),
+          ylim = c(0, 500),
+          main= NULL, 
+          ylab = "Frequência", 
+          xlab = "Peso do Recém-nascido (g)",
+          col ="seagreen2",
+          freq = TRUE,           
+          border = "white")
+      box (bty = "L")
+```
+
+```{r}
+h
+```
+Estes componentes podem ser usados para outras análises.
+
+### Construção de um histograma usando os componentes
+
+Pode-se colocar os valores correspondentes às barras usando os componentes do histograma.
+
+```{r}
+hist(dados$pesoRN,
+     breaks = 8,
+     ylim = c(0, 500),
+     xlim = c(1000, 5000),
+     main= NULL, 
+     ylab = "Frequência", 
+     xlab = "Peso do Recém-nascido (g)",
+     col = "salmon")
+box (bty = "L")
+
+text (h$mids, h$counts, labels = h$counts, adj= c(0.5, -0.5))
+```
+
+
+## Histograma usando o `ggplot2`
+
+A função `geom_histogram ()` do pacote `ggplot2` é usada para a construção do histograma.
+
+```{r}
+dados %>% 
+  ggplot(aes(x=pesoRN))+
+  geom_histogram(color = "black", 
+                 fill = "lightblue",
+                 breaks = seq(1000, 5000, 250)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Peso do Recém-nascido (g)")
+```
+
+Podemos acrescentar uma linha na média com a função `geom_vline ()`: 
+
+```{r}
+dados %>% 
+  ggplot(aes(x=pesoRN))+
+  geom_histogram(color = "black", 
+                 fill = "peachpuff",
+                 breaks = seq(1000, 5000, 250)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Peso do Recém-nascido (g)") +
+  geom_vline(aes (xintercept = mean(pesoRN)),
+             color = "red", 
+             linetype = "dashed", 
+             size = 1)
+```
+
+### Histograma por grupos 
+
+Usando o peso dos recém-nascidos(`pesoRN`) e o `sexo` do banco de dados `RNT`, vamos clacular a média e o desvio padrão por sexo, usando o pacote `plyr`:
+
+```{r}
+media <- dados %>% 
+  ddply("sexo", summarise, medias = mean(pesoRN))
+
+media
+```
+
+Construção dos histogramas sobrepostos com suas respectivas médias:
+
+```{r}
+ggplot(dados, aes(x=pesoRN, fill=sexo)) +
+  geom_histogram(position = "identity", bins = 20) +
+  scale_fill_manual(values=c("lightskyblue1", "pink2")) +
+  theme_classic() +
+  geom_vline(data=media, aes(xintercept=medias, color=sexo),
+             linetype="dashed") +
+  xlab("Peso do Recém-nascido (g)") +
+  ylab ("Frequência")
+```
+
+## Gráficos de Densidade
+
+```{r}
+plot (density(dados$pesoRN),
+      frame = FALSE,
+      ylim = c(0, 0.001),
+      main = "",
+      ylab = "Densidade",
+      xlab = "Peso do recém-nascido (g)")
+polygon (density (dados$pesoRN), col= "turquoise")
+box (bty = "L")
+```
+
+## Restaurando o padrão de notação científica
+
+Como vimos no 2º Passo da construção do histograma com curva normal sobreposta, usou-se a função `options(scipen = 999)` que , agora, vamos voltar ao padrão, usando  o comando:
+
+```{r}
+options (scipen= 0, digits= 7)
+```
+
+## Leitura Adicional  
+
+1. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/barplot.html>. Acesso em 14/08/2022.  
+
+2. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/4-barplot-with-error-bar.html>. Acesso em 14/08/2022.  
+
+3. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_bar.html> Acesso em 14/08/2022
+
+4. Kassambara A. ggplot2 histogram plot : Quick start guide. **STHDA - Statistical tools for high-throughput data analysis**. Disponível em: <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>. Acesso em 15/08/2022.
+
+5. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Gráficos;p.13-24.
+
+
+</br>
+</br>
+
+<!--chapter:end:10-graficos.Rmd-->
+
