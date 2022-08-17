@@ -289,7 +289,7 @@ legend (legend=c ("Fumantes", "Não Fumantes"),
         "topleft")
 ```
 
-### Gráfico de barras com variáveis discretas
+### Gráfico de Barras com Variáveis Discretas
 
 A variável para é uma variável numérica discreta e, para representá-la o mais adequado é usar um gráfico de barras simples.
 
@@ -348,9 +348,9 @@ df_idade %>%
   geom_text(aes(label=paste0(freq)), vjust=1.5, colour="white")
 ```
 
-## Gráfico de barra de erro
+## Gráfico de Barra de Erro
 
-### Exploração e manipulação arquivo `RNT.xlsx`
+### Exploração e Manipulação Arquivo `RNT.xlsx`
 
 O arquivo `RNT.xlsx` tem a seguinte estruturs:
 
@@ -378,7 +378,7 @@ glimpse (dados)
 
 Agora, temos um conjunto de dados com uma variável numérica (`pesoRN`) e uma variável categórica (`sexo`), como fator.
 
-#### Resumos numericos
+#### Resumos Numericos
 
 Vamos conhecer o resumo numérico da variável `pesoRN`, usando as funções `group_by ()` e `summarise ()` do pacote `dplyr`:  
 
@@ -397,7 +397,7 @@ resumo
 
 Este resumo fornece o *n*, a *média*, o *desvio padrão*, a *mediana*, o *intervalo interquartil*, o *erro padrão* e a *margem de erro*.
 
-#### Extrair dois subconjuntos de dados: meninos e meninas
+#### Extrair Dois Subconjuntos de dados: meninos e meninas
 
 ```{r}
 meninas <- dados %>% filter(sexo == "fem")
@@ -405,7 +405,7 @@ meninas <- dados %>% filter(sexo == "fem")
 meninos <- dados %>% filter(sexo == "masc")
 ```
 
-#### Resumos numéricos dos dois subgrupos
+#### Resumos Numéricos dos dois subgrupos
 
 ```{r}
 n1 <- nrow (meninos)
@@ -421,7 +421,7 @@ ep_m <- dp_m/sqrt(n1)
 ep_f <- dp_f/sqrt(n2)
 ```
 
-### Criação do gráfico de barra de erro
+### Criação do Gráfico de Barra de Erro
 
 Vamos seguir as seguintes etapas:
 
@@ -467,7 +467,7 @@ errbar(bp, barras, lim_sup, lim_inf, add=TRUE, xlab=NULL)
 
 **OBS.:** Foram usados os desvios padrão na construção da margem de erro, mas o IC95% usa o erro padrão. Entretanto, como este é muito menor que o dp, optou-se pelo dp, por uma questão didática.
 
-## Gráfico de barra de erro com o `ggplot2`
+## Gráfico de Barra de Erro com o `ggplot2`
 
 Vamos usar os mesmos dados anteriores e o resumo numérico do `resumo`.
 
@@ -736,12 +736,384 @@ polygon (density (dados$pesoRN), col= "turquoise")
 box (bty = "L")
 ```
 
-## Restaurando o padrão de notação científica
+**Restaurando o padrão de notação científica**
 
 Como vimos no 2º Passo da construção do histograma com curva normal sobreposta, usou-se a função `options(scipen = 999)` que , agora, vamos voltar ao padrão, usando  o comando:
 
 ```{r}
 options (scipen= 0, digits= 7)
+```
+
+## Boxplot
+
+O **boxplot** descreve a distribuição de uma variável contínua exibindo o resumo de cinco números: mínimo, 1º quartil (percentil 25), mediana (percentil 50), 3ª quartil (percentil 75) e máximo. Pode também apresentar observações atípicas (*outliers*), valores fora do intervalo de ± 1,5 o intervalo interquartil, em geral, representados por (o). Valores que estão acima ou abaixo de 3 vezes o IIQ são considerados extremos, representados por (*). 
+
+$~$
+<center>
+
+![](https://github.com/petronioliveira/Arquivos/blob/main/Boxplot.png)
+ 
+</center> 
+$~$
+
+### Boxplot com a função nativa 
+
+O **R** possui uma função no pacote básico denominada `boxplot ()` que constroi o gráfico.
+
+```{r}
+boxplot (dados$pesoRN)
+```
+
+Este boxplot pode ser modificado, alterando alguns argumentos como colocação de um título no gráfico, eótulos nos eixos e mudança na cor. Os argumento `cex.lab`, `cex.axis` e `cex.names` estabelecem o tamanho fontes. Por exemplo, está igual a 1 e para aumentar em 20%, usamos 1.2.
+
+```{r}
+boxplot (dados$pesoRN, 
+         col = "lightblue2", 
+         main = "RN a termo", 
+         ylab = "Peso do Recém-nascido (g)",
+         border = "black",
+         cex.lab = 1, 
+         cex.axis = 1, 
+         cex.names = 1)
+```
+
+### Estatísticas do boxplot
+
+A função `boxplot.stats ()` do pacote grDevices fornece as estatísticas do boxplot, facilitando a interpretação do mesmo, de modo semelhante ao visto para o histograma.
+
+```{r}
+boxplot.stats (dados$pesoRN)
+```
+* $stats = é o resumo dos 5 números: mínimo, percentil 25, mediana, percentil 75 e máximo
+* $n = nº de obs; 
+* $conf = limite inf/sup do entalhe se houver;
+* $out = são os *outliers*
+
+
+### Múltiplos boxplots
+
+Os boxplots são muito usados na comparação de grupos. A necessidade mais comum é ordenar as categorias de acordo com o aumento da mediana, mas isto é opcional. Permite identificar rapidamente qual grupo tem o maior valor e como as categorias são classificadas.
+
+```{r}
+boxplot (dados$pesoRN ~ dados$sexo, 
+         col = c("lightblue2", "pink"), 
+         ylab = "Peso do Recém-nascido (g)", 
+         xlab = "Sexo",
+         ylim = c(1000, 5000),
+         border = "black",
+         cex.lab = 1, 
+         cex.axis = 1, 
+         cex.names = 1)
+```
+
+Podemos fazer um entalhe (*notch*) que podem ser interpretados como um intervalo de comparação em torno dos valores medianos. É calculado pela fórmula :$mediana \pm 1.57\times IIQ/\sqrt{n}$. No nosso exemplo, observe que o entalhe nos meninos está um pouco acima do das meninas..
+
+```{r}
+boxplot (dados$pesoRN ~ dados$sexo, 
+         col = c("lightblue2", "pink"), 
+         ylab = "Peso do Recém-nascido (g)", 
+         xlab = "Sexo",
+         ylim = c(1000, 5000),
+         border = "black",
+         cex.lab = 1, 
+         cex.axis = 1, 
+         cex.names = 1,
+         notch = TRUE)
+```
+
+### Boxplots com `stripcharts`
+
+A função `stripcharts ()` permite criar um gráfico de dispersão unidimensional sobre o boxplot. Você também pode personalizar o símbolo (pontos) para criar o gráfico, a largura da linha e sua cor com os argumentos `pch`, `lwd` e `col`, respectivamente. Alguns símbolos, como `pch = 21 a 25` permitem que você modifique a cor de fundo do símbolo com o argumento `bg`. O argumento `vertical = TRUE`, coloca os pontos na vertical sobreposto ao boxplot, quando o argumento `add = TRUE`. O argumento `cex = 0.3` é o tamanho dos pontos e `method = "jitter"`, espalha os pontos.
+
+```{r}
+boxplot (dados$pesoRN ~ dados$sexo, 
+         col = c("lightblue2", "pink"), 
+         ylab = "Peso do Recém-nascido (g)", 
+         xlab = "Sexo",
+         border = "black",
+         cex.lab = 1, 
+         cex.axis = 1, 
+         cex.names = 1,
+         pch = 20,
+         cex = 0.8,
+         outline = TRUE)
+
+stripchart(dados$pesoRN ~ dados$sexo,
+           method = "jitter",
+           main=NULL,
+           col = c("blue", "red"),
+           vertical=TRUE,
+           pch=16,
+           cex = 0.3,
+           add = TRUE)
+```
+
+### Boxplots horizontais
+
+Para criar um boxplot horizontal, usamos o argumento `horizontal = TRUE` e invertemos os rotulos dos eixos *x* e *y*.
+
+```{r}
+boxplot (dados$pesoRN ~ dados$sexo, 
+         col = c("lightblue2", "pink2"), 
+         xlab = "Peso do Recém-nascido (g)", 
+         ylab = "Sexo",
+         horizontal = TRUE,
+         border = "black",
+         cex.lab = 1, 
+         cex.axis = 1, 
+         cex.names = 1,
+         pch = 20,
+         cex = 0.8)
+```
+
+
+### Boxplot com o `ggplot2`
+
+#### Boxplot único
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_boxplot ()
+```
+
+Algumas modificações:
+
+1. Adicionar a barra de erro com o `geom_errorbar ()`  
+2. No `geom_boxplot()` os argumento que determinam a largura da caixa e o formato, o tamanho e a cor dos *outliers*.   
+3. Acrescentar a camada `labs ()`, modificandor o nome dos eixos `y` e `x`.   
+4. Para mudar o aspecto, removendo o fundo cinza do padrão do `ggplot2`, altera-se o `theme ()` para um dos múltiplos possíveis.
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", width = 0.2) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2) +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  theme_classic()
+```
+
+5. Para remover os *outliers* (apesar de não ser recomendado!), basta substituir a cor do argumento `outliers.color` por `NA`.
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", width = 0.2) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "NA", 
+                outlier.shape = 1,
+                outlier.size = 2) +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  theme_classic()
+```
+
+6. Podemos inserir a média no gráfico, usando o `geom_point ()`, após a camafa do `geom_boxplot()`:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", width = 0.2) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  theme_classic()
+```
+
+7. Uma outra modificação que pode ser feita é alterar o comprimento dos "bigodes", cujo padrão é 1,5 vezes o intervalo interquartil (IIQ), usando o argumento `coef` do `geom_boxplot ()`. **Importante**: para coincidir com as barras de erro, devemos também alterar o `coef` do `geom_errorbar ()` para o mesmo valor.
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 3) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 3) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  theme_classic()
+```
+
+Observe que os *outliers* desapareceram, significando que não existem *outliers* extremos.  
+
+8. Da mesma forma que nos comandos básicos, é possível colocar o boxplot na posição horizontal, usando a camada `coord_flip()`:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 1.5) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  coord_flip() + 
+  theme_classic()
+```
+
+**Obs.**: O `coef` voltou para o padrão de 1.5, como idealizado pelo importante estatístico americano John Wilder Tukey (1915 - 2000).  
+9. Para evitar a sobreposição dos *outliers* pode-se usar o `geom_boxplot_jitter ()`, do pacote `ggrastr`, no lugar da camada `geom_boxplot ()`.
+
+```{r}
+pacman::p_load(ggrastr)
+
+dados %>% 
+  ggplot(aes(x = "", y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot_jitter (width = 0.6, 
+                       fill = "grey90",
+                       outlier.color = "red", 
+                       outlier.shape = 1,
+                       outlier.size = 2,
+                       coef = 1.5,
+                       outlier.jitter.height = 0,
+                       outlier.jitter.width = 0.02) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "Todos os RN") +
+  theme_classic()
+```
+
+#### Boxplot por grupos
+
+A função `geom_boxplot ()`, usada para criar o boxplot único, permite criar mais de um boxplot, colocando no eixo `x` a variável separadora, no exemplo, `sexo`: 
+
+```{r}
+dados %>% 
+  ggplot(aes(x = sexo, y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot (width = 0.6,
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 1.5) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "") + 
+  theme_classic()
+```
+
+Podemos mudar o rótulos do eixo `x` sem mudar no banco de dados, substituindo `masc` por `Meninos` e `fem` por `Meninas`, simplemente modificando os rótulos no argumento `labels` da função `scale_x_discrete ()` em uma nova camada.
+
+```{r}
+dados %>% 
+  ggplot(aes(x = sexo, y = pesoRN)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot (width = 0.6, 
+                fill = "grey90",
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 1.5) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "") + 
+  scale_x_discrete (labels = c("Meninos", "Meninas")) +
+  theme_classic()
+```
+
+Se quisermos colocar cores diferentes para cada uma das caixas, adicionamos o argumento `fill` no `aes ()`, removendo o mesmo argumento do `geom_boxplot ()`:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = sexo, y = pesoRN, fill = sexo)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot (width = 0.6,
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 1.5) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "") + 
+  scale_x_discrete (labels = c("Meninos", "Meninas")) +
+  theme_classic()
+```
+
+Agora, vamos remover a legenda com a função `theme(legend.position = "none"`,  estabelecer as cores para o preenchimento das caixas manualmente com a função `scale_fill_manual ()`:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = sexo, y = pesoRN, fill = sexo)) +
+  geom_errorbar(stat = "boxplot", 
+                width = 0.2,
+                coef = 1.5) +
+  geom_boxplot (width = 0.6,
+                outlier.color = "red", 
+                outlier.shape = 1,
+                outlier.size = 2,
+                coef = 1.5) + 
+  scale_fill_manual(values = c("cyan", "salmon")) +
+  geom_point(stat = "summary", 
+             fun = "mean", 
+             shape = 19,
+             size = 3, 
+             color = "red") +
+  labs(y = "Peso do Recém-nascido (g)",
+       x = "") + 
+  scale_x_discrete (labels = c("Meninos", "Meninas")) +
+  theme_classic() +
+  theme(legend.position="none")
 ```
 
 ## Leitura Adicional  

@@ -118,3 +118,12 @@ histograma-usando-o-ggplot2
 histograma-por-grupos
 gráficos-de-densidade
 restaurando-o-padrão-de-notação-científica
+boxplot
+boxplot-com-a-função-nativa
+estatísticas-do-boxplot
+múltiplos-boxplots
+boxplots-com-stripcharts
+boxplots-horizontais
+boxplot-com-o-ggplot2
+boxplot-único
+boxplot-por-grupos
