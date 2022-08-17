@@ -127,3 +127,7 @@ boxplots-horizontais
 boxplot-com-o-ggplot2
 boxplot-único
 boxplot-por-grupos
+gráfico-de-dispersão-scatterplot
+mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica
+adição-da-reta-de-ajuste
+gráfico-de-dispersão-com-o-ggplot2

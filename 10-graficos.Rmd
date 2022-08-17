@@ -361,7 +361,7 @@ glimpse (RNT)
 Vamos selecionar apenas as variáveis `pesoRN` e `sexo` que serão recebidas por um objeto de nome `dados`:
 
 ```{r}
-dados <- RNT %>% select(pesoRN, sexo)
+dados <- RNT %>% select(pesoRN, compRN, sexo)
 
 glimpse (dados)
 ```
@@ -1116,17 +1116,174 @@ dados %>%
   theme(legend.position="none")
 ```
 
+## Gráfico de Dispersão (`Scatterplot`)  
+
+Um gráfico de dispersão (**Scatterplot**) exibe a relação entre duas variáveis numéricas. Cada ponto representa uma observação. Suas posições nos eixos x (horizontal) e y (vertical) representam os valores das duas variáveis. 
+O **R* Base é uma boa opção para construir um gráfico de dispersão, usando a função `plot ()`. Ambas as variáveis numéricas do banco de dados devem ser especificadas nos argumentos *x* e *y*.  
+Vamos verificar se existe uma correlação entre o comprimento e o peso dos recém-nascidos:
+
+```{r}
+plot (x = dados$compRN,
+      y = dados$pesoRN,
+      ylab = "Peso de Recém-nascido (g)",
+      xlab = "Comprimento do Recém-nascido (cm)",
+      las = 1)
+```
+
+Este mesmo gráfico pode ser obtido, usando uma fórmula `y~x`:
+
+```{r eval=FALSE}
+plot (pesoRN ~ compRN,
+      data = dados,
+      ylab = "Peso de Recém-nascido (g)",
+      xlab = "Comprimento do Recém-nascido (cm)",
+      las = 1,
+      bty = "L")
+```
+
+Como acontece na maioria dos gráficos básicos, também podemos melhorar o aspecto do *scatterplot*, tornando os pontos sólidos, cloridos, etc.
+
+```{r}
+plot (pesoRN ~ compRN,
+      data = dados,
+      col = "steelblue",
+      ylab = "Peso de Recém-nascido (g)",
+      xlab = "Comprimento do Recém-nascido (cm)",
+      las = 1,
+      bty = "L",
+      pch = 19,
+      cex = 1,
+      cex.lab = 1,
+      cex.axis = 0.8)
+```
+
+Como os pontos estão aglomerados, devido a quantidade, pode tentar espalhar, usando a função `jitter ()` na variável `compRN`. O argumento 10 é variável e significa o grau de espalhamento:
+
+```{r}
+plot (jitter(dados$compRN,10),
+      dados$pesoRN,
+      col = "steelblue",
+      ylab = "Peso de Recém-nascido (g)",
+      xlab = "Comprimento do Recém-nascido (cm)",
+      las = 1,
+      bty = "L",
+      pch = 19,
+      cex = 1,
+      cex.lab = 1.2,
+      cex.axis = 0.8)
+```
+
+### Mapeamento dos pontos de acordo com uma variável categórica
+
+Inicialmente, vamos criar um vetor para representar as cores, de acordo com o sexo (meninos = azul; meninas = rosa). Usamos a função `unclass(dados$sexo)` para discriminar os sexos.
+
+
+
+```{r}
+cores <- c("steelblue", "pink3")
+
+plot(x = jitter(dados$compRN, 10), 
+  y = dados$pesoRN,
+  bg = cores[ unclass(dados$sexo) ],
+  ylab = "Peso de Recém-nascido (g)",
+  xlab = "Comprimento do Recém-nascido (cm)",
+  las = 1,
+  bty = "L",
+  cex = 2,
+  pch=21,
+  cex.lab = 1,
+  cex.axis = 0.8)
+
+legend (legend=c ("Meninos", "Meninas"), 
+        fill = cores, 
+        bty="n", 
+        cex = 1,
+        "topleft")
+```
+
+
+### Adição da reta de ajuste
+
+Uma linha reta de ajuste dos dados pode ser acrescentada usando a função `abline ()`, associada a função `lm ()`. Um modelo típico lm (*linear model*) tem o formato resposta (*y*) ~ preditor (*x*). Mais detalhes sobre o modelo de ajuste linear na regressão linear.
+
+```{r}
+# Construção do gráfico de dispersão
+plot (jitter(dados$compRN,10),
+      dados$pesoRN,
+      col = "steelblue",
+      ylab = "Peso de Recém-nascido (g)",
+      xlab = "Comprimento do Recém-nascido (cm)",
+      las = 1,
+      bty = "L",
+      pch = 16,
+      cex = 1,
+      cex.lab = 1,
+      cex.axis = 0.8)
+
+# Criação do modelo de ajuste
+modelo <- lm (dados$pesoRN ~ dados$compRN)
+
+# Adição da reta, usando o modelo
+abline (modelo, 
+        col="red", 
+        lwd=2, 
+        lty = 2)
+```
+
+Se executarmos o modelo, obtemos os parâmetros para a construção da equação da regressão linear:
+
+```{r}
+summary(modelo)
+```
+
+A equação de predição da regressão linear permite que sabendo o valor do comprimento é possível prever o peso do recem-nascido:
+
+$$
+\hat{y} = b_{0}+ b_{1}\times x
+$$
+Desta forma, substituindo pelos valores contidos nas estimativas da tabela dos coeficientes do sumário do modelo, um bebê com 50 cm terá um peso de aproximadamente:
+
+$$
+\hat{y} = -3416.45 + 137.67\times 50 = 3467.05
+$$
+
+### Gráfico de Dispersão com o `ggplot2`
+
+Para a construção de um gráfico de dispersão, usando o ggplot2, usamos a função `geom_point ()`. Um gráfico de dispersão simples é obtido como se segue:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = compRN,  y = pesoRN)) +
+  geom_point()
+```
+
+Modifica-se o tamanho e formato do ponto com:
+
+```{r}
+dados %>% 
+  ggplot(aes(x = compRN,  y = pesoRN)) +
+  geom_point(size = 2, shape = 16) +
+  ylab("Peso do RN (g)") +
+  xlab("Comprimento do RN (cm)") +
+  theme_classic()
+```
+
+
 ## Leitura Adicional  
 
 1. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/barplot.html>. Acesso em 14/08/2022.  
 
 2. Holtz Y. Barplot.**The R Graph Gallery.  ** Disponível em: <https://www.r-graph-gallery.com/4-barplot-with-error-bar.html>. Acesso em 14/08/2022.  
 
-3. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_bar.html> Acesso em 14/08/2022
+3. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_bar.html> Acesso em 14/08/2022.
 
-4. Kassambara A. ggplot2 histogram plot : Quick start guide. **STHDA - Statistical tools for high-throughput data analysis**. Disponível em: <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>. Acesso em 15/08/2022.
+4. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_boxplot.html> Acesso em 17/08/2022.
 
-5. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Gráficos;p.13-24.
+5. H. Wickham. **ggplot2: Elegant Graphics for Data Analysis**. Springer-Verlag New York, 2016. Disponível em: <https://ggplot2.tidyverse.org/reference/geom_point.html> Acesso em 17/08/2022.
+
+6. Kassambara A. ggplot2 histogram plot : Quick start guide. **STHDA - Statistical tools for high-throughput data analysis**. Disponível em: <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>. Acesso em 15/08/2022.
+
+7. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Gráficos;p.13-24.
 
 
 </br>

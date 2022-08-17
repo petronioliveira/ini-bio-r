@@ -308,7 +308,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.11.5" data-path="gráficos.html"><a href="gráficos.html#boxplots-horizontais"><i class="fa fa-check"></i><b>10.11.5</b> Boxplots horizontais</a></li>
 <li class="chapter" data-level="10.11.6" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-o-ggplot2"><i class="fa fa-check"></i><b>10.11.6</b> Boxplot com o <code>ggplot2</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.12</b> Leitura Adicional</a></li>
+<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-scatterplot"><i class="fa fa-check"></i><b>10.12</b> Gráfico de Dispersão (<code>Scatterplot</code>)</a>
+<ul>
+<li class="chapter" data-level="10.12.1" data-path="gráficos.html"><a href="gráficos.html#mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica"><i class="fa fa-check"></i><b>10.12.1</b> Mapeamento dos pontos de acordo com uma variável categórica</a></li>
+<li class="chapter" data-level="10.12.2" data-path="gráficos.html"><a href="gráficos.html#adição-da-reta-de-ajuste"><i class="fa fa-check"></i><b>10.12.2</b> Adição da reta de ajuste</a></li>
+<li class="chapter" data-level="10.12.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-com-o-ggplot2"><i class="fa fa-check"></i><b>10.12.3</b> Gráfico de Dispersão com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.13" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.13</b> Leitura Adicional</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -709,12 +715,13 @@ visualizar informações.</p>
 ## $ toxo      &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
 ## $ infCong   &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, …</code></pre>
 <p>Vamos selecionar apenas as variáveis <code>pesoRN</code> e <code>sexo</code> que serão recebidas por um objeto de nome <code>dados</code>:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gráficos.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> RNT <span class="sc">%&gt;%</span> <span class="fu">select</span>(pesoRN, sexo)</span>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gráficos.html#cb39-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> RNT <span class="sc">%&gt;%</span> <span class="fu">select</span>(pesoRN, compRN, sexo)</span>
 <span id="cb39-2"><a href="gráficos.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="gráficos.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
 <pre><code>## Rows: 1,085
-## Columns: 2
+## Columns: 3
 ## $ pesoRN &lt;dbl&gt; 3285, 3100, 3100, 2800, 3270, 1440, 3365, 3650, 2605, 3200, 340…
+## $ compRN &lt;dbl&gt; 48.5, 47.0, 47.0, 48.0, 49.0, 41.5, 50.0, 48.0, 46.0, 50.0, 49.…
 ## $ sexo   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
 <p>Observamos que a variável <code>sexo</code> está como numérica e deve ser transformada para fator:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gráficos.html#cb41-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span> (dados<span class="sc">$</span>sexo, </span>
@@ -723,8 +730,9 @@ visualizar informações.</p>
 <span id="cb41-4"><a href="gráficos.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-5"><a href="gráficos.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
 <pre><code>## Rows: 1,085
-## Columns: 2
+## Columns: 3
 ## $ pesoRN &lt;dbl&gt; 3285, 3100, 3100, 2800, 3270, 1440, 3365, 3650, 2605, 3200, 340…
+## $ compRN &lt;dbl&gt; 48.5, 47.0, 47.0, 48.0, 49.0, 41.5, 50.0, 48.0, 46.0, 50.0, 49.…
 ## $ sexo   &lt;fct&gt; masc, masc, masc, masc, masc, masc, masc, masc, masc, masc, mas…</code></pre>
 <p>Agora, temos um conjunto de dados com uma variável numérica (<code>pesoRN</code>) e uma variável categórica (<code>sexo</code>), como fator.</p>
 <div id="resumos-numericos" class="section level4 hasAnchor" number="10.6.1.1">
@@ -1454,12 +1462,153 @@ Como os valores da densidade no eixo <em>y</em> estão como notação científic
 </div>
 </div>
 </div>
-<div id="leitura-adicional-2" class="section level2 hasAnchor" number="10.12">
-<h2><span class="header-section-number">10.12</span> Leitura Adicional<a href="gráficos.html#leitura-adicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gráfico-de-dispersão-scatterplot" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Gráfico de Dispersão (<code>Scatterplot</code>)<a href="gráficos.html#gráfico-de-dispersão-scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Um gráfico de dispersão (<strong>Scatterplot</strong>) exibe a relação entre duas variáveis numéricas. Cada ponto representa uma observação. Suas posições nos eixos x (horizontal) e y (vertical) representam os valores das duas variáveis.
+O **R* Base é uma boa opção para construir um gráfico de dispersão, usando a função <code>plot ()</code>. Ambas as variáveis numéricas do banco de dados devem ser especificadas nos argumentos <em>x</em> e <em>y</em>.<br />
+Vamos verificar se existe uma correlação entre o comprimento e o peso dos recém-nascidos:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="gráficos.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (<span class="at">x =</span> dados<span class="sc">$</span>compRN,</span>
+<span id="cb93-2"><a href="gráficos.html#cb93-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> dados<span class="sc">$</span>pesoRN,</span>
+<span id="cb93-3"><a href="gráficos.html#cb93-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb93-4"><a href="gráficos.html#cb93-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb93-5"><a href="gráficos.html#cb93-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>Este mesmo gráfico pode ser obtido, usando uma fórmula <code>y~x</code>:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="gráficos.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (pesoRN <span class="sc">~</span> compRN,</span>
+<span id="cb94-2"><a href="gráficos.html#cb94-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dados,</span>
+<span id="cb94-3"><a href="gráficos.html#cb94-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb94-4"><a href="gráficos.html#cb94-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb94-5"><a href="gráficos.html#cb94-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb94-6"><a href="gráficos.html#cb94-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span></code></pre></div>
+<p>Como acontece na maioria dos gráficos básicos, também podemos melhorar o aspecto do <em>scatterplot</em>, tornando os pontos sólidos, cloridos, etc.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="gráficos.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (pesoRN <span class="sc">~</span> compRN,</span>
+<span id="cb95-2"><a href="gráficos.html#cb95-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> dados,</span>
+<span id="cb95-3"><a href="gráficos.html#cb95-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb95-4"><a href="gráficos.html#cb95-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb95-5"><a href="gráficos.html#cb95-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb95-6"><a href="gráficos.html#cb95-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb95-7"><a href="gráficos.html#cb95-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">bty =</span> <span class="st">&quot;L&quot;</span>,</span>
+<span id="cb95-8"><a href="gráficos.html#cb95-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb95-9"><a href="gráficos.html#cb95-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb95-10"><a href="gráficos.html#cb95-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.lab =</span> <span class="dv">1</span>,</span>
+<span id="cb95-11"><a href="gráficos.html#cb95-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>Como os pontos estão aglomerados, devido a quantidade, pode tentar espalhar, usando a função <code>jitter ()</code> na variável <code>compRN</code>. O argumento 10 é variável e significa o grau de espalhamento:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="gráficos.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">jitter</span>(dados<span class="sc">$</span>compRN,<span class="dv">10</span>),</span>
+<span id="cb96-2"><a href="gráficos.html#cb96-2" aria-hidden="true" tabindex="-1"></a>      dados<span class="sc">$</span>pesoRN,</span>
+<span id="cb96-3"><a href="gráficos.html#cb96-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb96-4"><a href="gráficos.html#cb96-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb96-5"><a href="gráficos.html#cb96-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb96-6"><a href="gráficos.html#cb96-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb96-7"><a href="gráficos.html#cb96-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">bty =</span> <span class="st">&quot;L&quot;</span>,</span>
+<span id="cb96-8"><a href="gráficos.html#cb96-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb96-9"><a href="gráficos.html#cb96-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb96-10"><a href="gráficos.html#cb96-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.lab =</span> <span class="fl">1.2</span>,</span>
+<span id="cb96-11"><a href="gráficos.html#cb96-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<div id="mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica" class="section level3 hasAnchor" number="10.12.1">
+<h3><span class="header-section-number">10.12.1</span> Mapeamento dos pontos de acordo com uma variável categórica<a href="gráficos.html#mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Inicialmente, vamos criar um vetor para representar as cores, de acordo com o sexo (meninos = azul; meninas = rosa). Usamos a função <code>unclass(dados$sexo)</code> para discriminar os sexos.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="gráficos.html#cb97-1" aria-hidden="true" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;pink3&quot;</span>)</span>
+<span id="cb97-2"><a href="gráficos.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="gráficos.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> <span class="fu">jitter</span>(dados<span class="sc">$</span>compRN, <span class="dv">10</span>), </span>
+<span id="cb97-4"><a href="gráficos.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> dados<span class="sc">$</span>pesoRN,</span>
+<span id="cb97-5"><a href="gráficos.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg =</span> cores[ <span class="fu">unclass</span>(dados<span class="sc">$</span>sexo) ],</span>
+<span id="cb97-6"><a href="gráficos.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb97-7"><a href="gráficos.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb97-8"><a href="gráficos.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb97-9"><a href="gráficos.html#cb97-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bty =</span> <span class="st">&quot;L&quot;</span>,</span>
+<span id="cb97-10"><a href="gráficos.html#cb97-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="dv">2</span>,</span>
+<span id="cb97-11"><a href="gráficos.html#cb97-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">pch=</span><span class="dv">21</span>,</span>
+<span id="cb97-12"><a href="gráficos.html#cb97-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.lab =</span> <span class="dv">1</span>,</span>
+<span id="cb97-13"><a href="gráficos.html#cb97-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span>
+<span id="cb97-14"><a href="gráficos.html#cb97-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-15"><a href="gráficos.html#cb97-15" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span> (<span class="at">legend=</span><span class="fu">c</span> (<span class="st">&quot;Meninos&quot;</span>, <span class="st">&quot;Meninas&quot;</span>), </span>
+<span id="cb97-16"><a href="gráficos.html#cb97-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> cores, </span>
+<span id="cb97-17"><a href="gráficos.html#cb97-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">bty=</span><span class="st">&quot;n&quot;</span>, </span>
+<span id="cb97-18"><a href="gráficos.html#cb97-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb97-19"><a href="gráficos.html#cb97-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;topleft&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+</div>
+<div id="adição-da-reta-de-ajuste" class="section level3 hasAnchor" number="10.12.2">
+<h3><span class="header-section-number">10.12.2</span> Adição da reta de ajuste<a href="gráficos.html#adição-da-reta-de-ajuste" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uma linha reta de ajuste dos dados pode ser acrescentada usando a função <code>abline ()</code>, associada a função <code>lm ()</code>. Um modelo típico lm (<em>linear model</em>) tem o formato resposta (<em>y</em>) ~ preditor (<em>x</em>). Mais detalhes sobre o modelo de ajuste linear na regressão linear.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="gráficos.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do gráfico de dispersão</span></span>
+<span id="cb98-2"><a href="gráficos.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">jitter</span>(dados<span class="sc">$</span>compRN,<span class="dv">10</span>),</span>
+<span id="cb98-3"><a href="gráficos.html#cb98-3" aria-hidden="true" tabindex="-1"></a>      dados<span class="sc">$</span>pesoRN,</span>
+<span id="cb98-4"><a href="gráficos.html#cb98-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb98-5"><a href="gráficos.html#cb98-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;Peso de Recém-nascido (g)&quot;</span>,</span>
+<span id="cb98-6"><a href="gráficos.html#cb98-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">&quot;Comprimento do Recém-nascido (cm)&quot;</span>,</span>
+<span id="cb98-7"><a href="gráficos.html#cb98-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">las =</span> <span class="dv">1</span>,</span>
+<span id="cb98-8"><a href="gráficos.html#cb98-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">bty =</span> <span class="st">&quot;L&quot;</span>,</span>
+<span id="cb98-9"><a href="gráficos.html#cb98-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb98-10"><a href="gráficos.html#cb98-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex =</span> <span class="dv">1</span>,</span>
+<span id="cb98-11"><a href="gráficos.html#cb98-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.lab =</span> <span class="dv">1</span>,</span>
+<span id="cb98-12"><a href="gráficos.html#cb98-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">cex.axis =</span> <span class="fl">0.8</span>)</span>
+<span id="cb98-13"><a href="gráficos.html#cb98-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-14"><a href="gráficos.html#cb98-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Criação do modelo de ajuste</span></span>
+<span id="cb98-15"><a href="gráficos.html#cb98-15" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span> (dados<span class="sc">$</span>pesoRN <span class="sc">~</span> dados<span class="sc">$</span>compRN)</span>
+<span id="cb98-16"><a href="gráficos.html#cb98-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-17"><a href="gráficos.html#cb98-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Adição da reta, usando o modelo</span></span>
+<span id="cb98-18"><a href="gráficos.html#cb98-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (modelo, </span>
+<span id="cb98-19"><a href="gráficos.html#cb98-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb98-20"><a href="gráficos.html#cb98-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwd=</span><span class="dv">2</span>, </span>
+<span id="cb98-21"><a href="gráficos.html#cb98-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>Se executarmos o modelo, obtemos os parâmetros para a construção da equação da regressão linear:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="gráficos.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dados$pesoRN ~ dados$compRN)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1434.56  -218.40   -19.56   177.76  2097.87 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -3416.451    215.821  -15.83   &lt;2e-16 ***
+## dados$compRN   137.674      4.475   30.77   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 337.7 on 1083 degrees of freedom
+## Multiple R-squared:  0.4664, Adjusted R-squared:  0.4659 
+## F-statistic: 946.6 on 1 and 1083 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>A equação de predição da regressão linear permite que sabendo o valor do comprimento é possível prever o peso do recem-nascido:</p>
+<p><span class="math display">\[
+\hat{y} = b_{0}+ b_{1}\times x
+\]</span>
+Desta forma, substituindo pelos valores contidos nas estimativas da tabela dos coeficientes do sumário do modelo, um bebê com 50 cm terá um peso de aproximadamente:</p>
+<p><span class="math display">\[
+\hat{y} = -3416.45 + 137.67\times 50 = 3467.05
+\]</span></p>
+</div>
+<div id="gráfico-de-dispersão-com-o-ggplot2" class="section level3 hasAnchor" number="10.12.3">
+<h3><span class="header-section-number">10.12.3</span> Gráfico de Dispersão com o <code>ggplot2</code><a href="gráficos.html#gráfico-de-dispersão-com-o-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para a construção de um gráfico de dispersão, usando o ggplot2, usamos a função <code>geom_point ()</code>. Um gráfico de dispersão simples é obtido como se segue:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="gráficos.html#cb101-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb101-2"><a href="gráficos.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> compRN,  <span class="at">y =</span> pesoRN)) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="gráficos.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p>Modifica-se o tamanho e formato do ponto com:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="gráficos.html#cb102-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb102-2"><a href="gráficos.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> compRN,  <span class="at">y =</span> pesoRN)) <span class="sc">+</span></span>
+<span id="cb102-3"><a href="gráficos.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb102-4"><a href="gráficos.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Peso do RN (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-5"><a href="gráficos.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Comprimento do RN (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb102-6"><a href="gráficos.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+</div>
+</div>
+<div id="leitura-adicional-2" class="section level2 hasAnchor" number="10.13">
+<h2><span class="header-section-number">10.13</span> Leitura Adicional<a href="gráficos.html#leitura-adicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p>Holtz Y. Barplot.<strong>The R Graph Gallery. </strong> Disponível em: <a href="https://www.r-graph-gallery.com/barplot.html" class="uri">https://www.r-graph-gallery.com/barplot.html</a>. Acesso em 14/08/2022.</p></li>
 <li><p>Holtz Y. Barplot.<strong>The R Graph Gallery. </strong> Disponível em: <a href="https://www.r-graph-gallery.com/4-barplot-with-error-bar.html" class="uri">https://www.r-graph-gallery.com/4-barplot-with-error-bar.html</a>. Acesso em 14/08/2022.</p></li>
-<li><p>H. Wickham. <strong>ggplot2: Elegant Graphics for Data Analysis</strong>. Springer-Verlag New York, 2016. Disponível em: <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="uri">https://ggplot2.tidyverse.org/reference/geom_bar.html</a> Acesso em 14/08/2022</p></li>
+<li><p>H. Wickham. <strong>ggplot2: Elegant Graphics for Data Analysis</strong>. Springer-Verlag New York, 2016. Disponível em: <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="uri">https://ggplot2.tidyverse.org/reference/geom_bar.html</a> Acesso em 14/08/2022.</p></li>
+<li><p>H. Wickham. <strong>ggplot2: Elegant Graphics for Data Analysis</strong>. Springer-Verlag New York, 2016. Disponível em: <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="uri">https://ggplot2.tidyverse.org/reference/geom_boxplot.html</a> Acesso em 17/08/2022.</p></li>
+<li><p>H. Wickham. <strong>ggplot2: Elegant Graphics for Data Analysis</strong>. Springer-Verlag New York, 2016. Disponível em: <a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="uri">https://ggplot2.tidyverse.org/reference/geom_point.html</a> Acesso em 17/08/2022.</p></li>
 <li><p>Kassambara A. ggplot2 histogram plot : Quick start guide. <strong>STHDA - Statistical tools for high-throughput data analysis</strong>. Disponível em: <a href="http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization" class="uri">http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization</a>. Acesso em 15/08/2022.</p></li>
 <li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Gráficos;p.13-24.</p></li>
 </ol>
