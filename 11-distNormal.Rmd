@@ -1,0 +1,413 @@
+# Distribuição Normal
+
+## Pacotes necessários
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(readxl, dplyr, ggplot2, tidyr, rcompanion)
+```
+## Carregar o Banco de Dados
+
+O banco de dados a ser carregado encontra-se [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosAltura.xlsx). Ele é constituído por medidas de altura (em metros) de dois grupos de mulheres, pertencentes a duas regiões geográficas diferentes. Salve o mesmo no diretório de trabalho.  
+Crie um objeto `dados` para recebê-lo, a partir do diretório de trabalho, executando o seguinte código:
+
+```{r}
+dados <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosAltura.xlsx")
+```
+## Exploração e manipulação do banco de dados
+
+```{r}
+head (dados, 10)
+```
+
+Os `dados` estão dispostos no formato longo e vamos transformá-los no formato amplo (grupos lado a lado), usando a função `spread ()` do pacote `tidyr`.
+
+```{r}
+dados1 <- spread(dados, pop, value="altura")
+head (dados1,10)
+```
+
+Renomear as colunas, denominadas de 1 e 2, do novo banco de dados (2ª e 3ª colunas, respectivamente), usando a função `names ()`:
+
+```{r}
+names(dados1)[2:3] <- c("pop1", "pop2")
+head (dados1, 10) 
+```
+
+Agora, temos duas populações de 300 mulheres, colocadas lado a lado, como `pop1` e `po2.`
+
+### Resumo dos dados
+
+```{r}
+summary (dados1)
+```
+#### Média e desvios padrão das populações
+
+```{r}
+mu1 <- mean(dados1$pop1)
+dp1 <- sd(dados1$pop1)
+mu1
+dp1
+
+mu2 <- mean(dados1$pop2)
+dp2 <- sd(dados1$pop2)
+mu2
+dp2
+```
+
+### Visualização dos dados através do histograma
+#### População 1
+
+```{r}
+dados1 %>% 
+  ggplot(aes(x=pop1))+
+  geom_histogram(color = "black", 
+                 fill = "peachpuff",
+                 breaks = seq(1.3, 1.9, 0.04)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Altura de mulheres - população 1 (m)") +
+  geom_vline(aes (xintercept = mean(pop1)),
+             color = "red", 
+             linetype = "dashed", 
+             size = 1)
+```
+
+Colocando uma curva normal sobreposta, usando a função `plotNormalHistogram()` do pacote `rcompanion.` O gráfico resultante pode ser usado para comparar rapidamente a distribuição de dados a uma distribuição normal. Se `prob = [TRUE](anchor)`, a densidade é mostrada, caso contrário é mostrada a frequência.
+
+
+```{r}
+plotNormalHistogram(dados1$pop1,
+                    prob = TRUE,
+                    breaks = seq(1.3, 1.9, 0.04),
+                    col = "peachpuff",
+                    main = "",
+                    linecol = "red",
+                    lwd = 2,
+                    length = 1000,
+                    ylab = "Densidade",
+                    xlab = "Altura de mulheres - população 1 (m)")
+box(bty = "L")
+abline (v= (mean(dados1$pop1)), lwd = 2, lty = 2, col = "red")
+```
+
+#### População 2
+
+```{r}
+dados1 %>% 
+  ggplot(aes(x=pop2))+
+  geom_histogram(color = "black", 
+                 fill = "salmon",
+                 breaks = seq(1.1, 1.7, 0.04)) +
+  theme_classic() +
+  ylab("Frequência") +
+  xlab("Altura de mulheres - população 2(m)") +
+  geom_vline(aes (xintercept = mean(pop2)),
+             color = "red", 
+             linetype = "dashed", 
+             size = 1)
+```
+
+E colocando uma curva normal sobreposta:
+
+```{r}
+plotNormalHistogram(dados1$pop2,
+                    prob = TRUE,
+                    breaks = seq(1.1, 1.7, 0.04),
+                    col = "salmon",
+                    main = "",
+                    linecol = "red",
+                    lwd = 2,
+                    length = 1000,
+                    ylab = "Densidade",
+                    xlab = "Altura de mulheres - população 2(m)")
+box(bty = "L")
+abline (v= (mean(dados1$pop2)), lwd = 2, lty = 2, col = "red")
+```
+
+A distribuição de uma variável em um conjunto de dados fornece informações 
+sobre:
+
+* Todos os valores que a variável assume em seu conjunto de dados, quando os dados são divididos em grupos de tamanhos razoáveis
+* Com que frequência cada valor ocorre
+* A forma, centro e quantidade de variabilidade nos dados
+
+Verificar a distribuição dos dados é sempre uma das primeiras etapas da análise dos dados. Ao conhecer o formato dos dados, você obtém conhecimento sobre algumas das propriedades estatísticas dos mesmos.
+
+Observando os histograma das duas populações, verificamos que ambos têm uma distribuição bastante simétrica, com as médias (linha tracejada em vermelho) praticamente no centro das distribuições.
+
+## Distribuição normal
+
+Analisando as curvas sobrepostas às distribuições das populações 1 e 2, verificamos que elas possuem algumas características importantes:
+
+* Existe um único pico;
+* A massa da distribuição está no centro;
+* Há simetria em relação à linha central, representada pela média do conjunto de dados;
+* O formato da curva é semelhante a um sino, ou seja, à medida que os dados se afastam da média, diminui a probabilidade de serem encontrados. 
+  - Este formato, portanto, depende da variabilidade dos dados (magnitude do desvio padrão)
+  
+```{r echo=FALSE}
+curve (dnorm (x, 
+              mean=mu1, 
+              sd=dp1), 
+       col="steelblue", 
+       lty=1,
+       lwd=2,
+       add=F,
+      xlim = c(1,2),
+      ylab = "Densidade",
+      xlab = "Altura de mulheres (m)",
+      bty = "n")
+box(bty = "L")
+abline (v= (mean(dados1$pop1)), lwd = 2, lty = 2, col = "red")
+text(1.73, 5.5, "População 1", cex = 1, col = "steelblue")
+
+curve (dnorm (x, 
+              mean=mu2, 
+              sd=dp2), 
+       col="darkred", 
+       lty=1,
+       lwd=2,
+       add=T)
+box(bty = "L")
+abline (v= (mean(dados1$pop2)), lwd = 2, lty = 2, col = "red")
+text(1.25, 5.5, "População 2", cex = 1, col = "darkred")
+```
+  
+As curvas de distribuição de dados que se comportam desta maneira são conhecidas por **curva normal** ou **curva gaussiana**. Os parâmetros da curva normal são a *média* e o *desvio padrão*.  
+
+Observe no gráfico anterior das curvas de distribuição das duas populações sendo estudadas. Elas têm o mesmo formato, porque como calculado acima, elas têm o mesmon desvio padrão, a diferença está na média mais baixa da população 2.
+
+Se tivéssemos uma terceira população, com média igual a população 1 (`r round(mean (dados1$pop1), 3)` m), mas com maior desvio padrão, por exemplo 10 cm, teríamos uma curva sobreposta a da população 1, mas mais achatada.
+
+```{r echo=FALSE}
+curve (dnorm (x, 
+              mean=mu1, 
+              sd=dp1), 
+       col="steelblue", 
+       lty=1,
+       lwd=2,
+       add=F,
+      xlim = c(1,2),
+      ylab = "Densidade",
+      xlab = "Altura de mulheres (m)",
+      bty = "n")
+box(bty = "L")
+abline (v= (mean(dados1$pop1)), lwd = 2, lty = 2, col = "red")
+text(1.73, 5.5, "População 1", cex = 1, col = "steelblue")
+
+curve (dnorm (x, 
+              mean=mu2, 
+              sd=dp2), 
+       col="darkred", 
+       lty=1,
+       lwd=2,
+       add=T)
+abline (v= (mean(dados1$pop2)), lwd = 2, lty = 2, col = "red")
+text(1.25, 5.5, "População 2", cex = 1, col = "darkred")
+
+curve (dnorm (x, 
+              mean=mu1, 
+              sd=0.1), 
+       col="green3", 
+       lty=1,
+       lwd=2,
+       add=T)
+text(1.8, 2.5, "População 3", cex = 1, col = "green3")
+```
+
+
+Como estamos observando, se tivermos um desvio padrão pequeno, ele torna a curva mais pontiaguda; desvio padrão grande, achata a curva (população 3). Se as médias são diferentes, mas com mesmo desvio padrão, elas são iguas, mas em posições diferentes. Se for uma média menor, ficará a esquerda da curva com média maior ( população 2 vs população 1). 
+Em outras palavras, as curvas normais dependem da média e de seu desvio padrão. Modificando qualquer um deles, teremos curvas distintas.
+
+### Curva Normal Padronizada
+
+Cada variável aleatória contínua tem a sua média e seu desvio padrão e, portanto, a sua curva normal correspondente. Para facilitar a comparação entre variáveis, foi criado o conceito de **curva normal padronizada**, que é uma curva normal com média 0 e desvio padrão 1. A distribuição normal padrão também pode ser chamada de *distribuição normal centrada* ou *reduzida*.  
+A métrica usada para a padronização é denominada de **escore *Z*** que é uma medida de posição que indica o número de desvios padrão em que um valor se encontra a partir da sua média. 
+
+$$
+Z =\frac{x-\overline{x}}{s}
+$$
+
+Desta forma, podemos verificar quantos desvios padrão uma mulher da população 1 que mede 1,725 m está distante da média de 1,598 m. Assim:
+
+$$
+Z =\frac{1.725-1.598}{0.0656}\approx 1.959
+$$
+
+Ao invés de usarmos a fórmula manualmente, podemos escrevê-la no *R Script* para que ele faça o trabalho por nós:
+
+```{r}
+x <- 1.725
+z <- (x-mean(dados1$pop1))/sd(dados1$pop1)
+z
+```
+
+Portanto, esta mulher está distante praticamente 2 desvios padrão acima da média. Para esta população, ela é considerada alta. Por que? 
+
+Para responder a essa pergunta, precisamos calcular a probabilidade de encontrar uma mulher com esta altura na população1.  
+
+O **R** tem uma função que faz este cálculo, rapidamente, sem necessidade de consultar tabelas: é a função `pnorm ()`. Esta função retorna a probabilidade abaixo do valor de *Z* questionado, pressupondo média 0 e desvio padrão 1, baseado na distruição normal padronizada $$X \sim {\sf Norm}(0, 1) \\$$.
+```{r}
+z <- pnorm(1.959, mean = 0, sd = 1)
+z
+```
+
+Como abaixo de 1,725 m, temos 0,975 ou 97,5% das mulheres, acima seriam 1 - 97,5 = 2,5% das mulheres. Ou seja, comparativamente, uma mulher com 1,725 m, na população 1, é considerada alta.
+
+Qual a probabilidade de se encontrar mulheres que tenham altura abaixo da média?
+
+```{r}
+x <- mean(dados1$pop1)
+z <- (x-mean(dados1$pop1))/sd(dados1$pop1)
+z
+z <- pnorm(0, mean = 0, sd = 1)
+z
+```
+
+Ou seja, a probabilidade de se encontrar mulheres abaixo da média é igual a 50%.
+
+Vimos, até agora, que um uso extremamante útil da distribuição normal padronizada é ,facilmente, permitir o cálculo das probabilidades dentro de uma variável aleatória.  
+Isso permite que, usando a função `pnorm()`, se calcule a probabilidade entre quaiquer valores de z escore. Por exemplo, a probabilidade de se encontrar valores que se situem entre -1 e +1 escore z é:
+
+```{r}
+z1 <- pnorm(-1, mean = 0, sd = 1)
+z1
+
+z2 <- pnorm(1, mean = 0, sd = 1)
+z2
+
+abs(z1 - z2)
+```
+
+portanto, entre -1 e +1 escores z, encontramos 68,3% dos valores da ditribuição normal.  
+
+Se repetirmos os cálculos para os escores  z -2 e +2, qual a probabiidade?
+
+```{r}
+z1 <- pnorm(-2, mean = 0, sd = 1)
+z1
+z2 <- pnorm(2, mean = 0, sd = 1)
+z2
+abs(z1 - z2)
+```
+
+Entre, -2 e +2 escores z, encontramos 95,5% dos valores da ditribuição normal.
+
+E entre -3 e +3?
+
+```{r}
+z1 <- pnorm(-3, mean = 0, sd = 1)
+z1
+z2 <- pnorm(3, mean = 0, sd = 1)
+z2
+abs(z1 - z2)
+```
+
+Entre, -3 e +3 escores z, encontramos 99,7% dos valores da ditribuição normal.
+
+#### Regra Empírica 68-95-99.7
+
+A regra empírica diz que, se uma população de um conjunto de dados tem uma distribuição normal com média 0 e desvio padrão 1 (X ~ Norm (0,1)) podemos afirmar que:
+* Aproximadamente, 68% dos valares entram-se dentro de $\pm$ 1 desvio padrão da média;
+$$
+\mu \pm \sigma
+$$
+* Aproximadamente, 95% dos valores encontram-se dentreo de $\pm$ 2 desvios padrão da média; 
+$$
+\mu \pm 2 \sigma
+$$
+* Cerca de 99,7% dos valores encontram-se dentro de $\pm$ 3 desvios padrão da média.
+$$
+\mu \pm 3 \sigma
+$$
+
+Esta regra pode ser usada para descrever uma população, em vez de uma amostra, mas você também pode usá-la para ajudar a decidir se uma amostra de dados veio de uma distribuição normal. Se uma amostra é grande o suficiente e você observar que o seu histograma tem um formato parecido com um sino, você pode verificar se os dados seguem as especificações 68-95-99,7%. Se sim, é razoável concluir que os dados vieram de uma distribuição normal.
+
+Se usarmos a população 1  e voltarmos a observar o histograma com uma curva normal sobreposta, temos:
+
+```{r echo=FALSE}
+plotNormalHistogram(dados1$pop1,
+                    prob = TRUE,
+                    col = "peachpuff",
+                    main = "",
+                    linecol = "red",
+                    lwd = 2,
+                    length = 1000,
+                    ylab = "Densidade",
+                    xlab = "Altura de mulheres (m)")
+box(bty = "L")
+
+abline (v = 1.598, lwd = 2, lty = 3, col = "red")
+text(1.598, 2, "0", cex = 2, col = "red")
+text(1.598, 6.2, "1.598", cex = 1, col = "red")
+
+abline (v = 1.663, lwd = 2, lty = 3, col = "green4")
+text(1.663, 2, "1", cex = 2, col = "green4")
+text(1.663, 6.2, "1.663", cex = 1, col = "green4")
+
+abline (v = 1.532, lwd = 2, lty = 3, col = "green4")
+text(1.532, 2, "-1", cex = 2, col = "green4")
+text(1.532, 6.2, "1.532", cex = 1, col = "green4")
+
+abline (v = 1.729, lwd = 2, lty = 3, col = "magenta")
+text(1.729, 2, "2", cex = 2, col = "magenta")
+text(1.729, 6.2, "1.729", cex = 1, col = "magenta")
+
+abline (v = 1.467, lwd = 2, lty = 3, col = "magenta")
+text(1.467, 2, "-2", cex = 2, col = "magenta")
+text(1.467, 6.2, "1.467", cex = 1, col = "magenta")
+
+abline (v = 1.794, lwd = 2, lty = 3, col = "salmon")
+text(1.794, 2, "3", cex = 2, col = "salmon")
+text(1.794, 6.2, "1.794", cex = 1, col = "salmon")
+
+
+abline (v = 1.402, lwd = 2, lty = 3, col = "salmon3")
+text(1.402, 2, "-3", cex = 2, col = "salmon3")
+text(1.402, 6.2, "1.402", cex = 1, col = "salmon3")
+```
+
+Olhando gráfico e sem realizar nenhum cálculo, sabemos, pela regra empírica, que entre 1.532 m (Z = -2) e 1.663 m (Z = 2) encontramos aproximadamente 68% das mulheres desta população 1. Isto ajuda no dia ao se observar dados.
+
+## Exercício
+
+Suponha que eu esteja atendendo uma mulher que mede 1,50 m, a qual população existe maior probabilidade de ela pertencer?
+
+**População 1**
+
+Verificar a probabilidade de se encontra mulheres com esta altura na população 1, calculando o seu escore z na população 1.
+
+```{r}
+x <-  1.50
+z1 <-  (x - mu1)/dp1
+z1 
+p1 <- pnorm (z1)
+p1
+```
+Na população 1, apenas 7% das mulhres tem altura abaixo de 1,50, 97% é mais alta do que este valor.
+
+**População 2**
+
+```{r}
+x <-  1.50
+z2 <-  (x - mu2)/dp2
+z2 
+p2 <- pnorm (z2)
+p2
+```
+Na população 2, esta mulher estaria a 1,73 desvios padrão distante da média. Isto significa que se ela pertence a população 2, ela seria considerada alta, pois, praticamente 96% das mulheres desta população seriam menores do que ela.  
+
+Na realidade, ela pode pertencer a qualquer uma das populações. Entretanto, como poucas mulheres na população 1 tem altura dessa magnitude e muitas mulheres da população 2 tem esta altura ou menos, poucas estão acima, seria mais provável ela ser da população 2, mas poderia ser uma "baixinha" da população 1!
+
+## Leitura Adicional  
+
+1. Altman DG. **Practical Statistics for Medical Research**. Boca Raton, FL: Chapman & Hall/CRC; 1991. The Normal Distribution; 51-60.
+
+2. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Distribuição de  Probabilidades;p.113-121.
+
+3. Vu J, Harrington D. **Introductory Statistics for the
+Life and Biomedical Sciences**. Openintro; 2021. Normal distribution; p.152-67. Disponível em: <https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./03%3A_Distributions_of_Random_Variables/3.01%3A_Normal_Distribution>
+
+
+</br>
+</br>

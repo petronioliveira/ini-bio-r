@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 11 Distribuição Normal | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 11 Distribuição Normal | BIOESTATÍSTICA USANDO O R" />
+  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 11 Distribuição Normal | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 11 Distribuição Normal | BIOESTATÍSTICA USANDO O R" />
+  
+  
+  
+
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
+
+
+<meta name="date" content="2022-08-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gráficos.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioestatisticaR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
+<li class="chapter" data-level="9.8" data-path="tabelas.html"><a href="tabelas.html#leitura-adicional-1"><i class="fa fa-check"></i><b>9.8</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>10</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gráficos.html"><a href="gráficos.html#pacotes-necessários-1"><i class="fa fa-check"></i><b>10.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="10.2" data-path="gráficos.html"><a href="gráficos.html#carregar-os-dados-1"><i class="fa fa-check"></i><b>10.2</b> Carregar os Dados</a></li>
+<li class="chapter" data-level="10.3" data-path="gráficos.html"><a href="gráficos.html#visão-geral-do-dadosmater.xlsx"><i class="fa fa-check"></i><b>10.3</b> Visão Geral do <code>dadosMater.xlsx</code></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="gráficos.html"><a href="gráficos.html#transformação-e-criação-de-variáveis"><i class="fa fa-check"></i><b>10.3.1</b> Transformação e criação de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>10.4</b> Gráfico de Setores (Pizza)</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-com-o-ggplot2"><i class="fa fa-check"></i><b>10.4.1</b> Gráfico de setores com o ggplot2</a></li>
+<li class="chapter" data-level="10.4.2" data-path="gráficos.html"><a href="gráficos.html#uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart"><i class="fa fa-check"></i><b>10.4.2</b> Uma variação do gráfico de pizza: gráfico de rosca (<em>Donut chart</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-barras"><i class="fa fa-check"></i><b>10.5</b> Gráficos de Barras</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples"><i class="fa fa-check"></i><b>10.5.1</b> Gráfico de Barras Simples</a></li>
+<li class="chapter" data-level="10.5.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-empilhadas"><i class="fa fa-check"></i><b>10.5.2</b> Gráfico de Barras Empilhadas</a></li>
+<li class="chapter" data-level="10.5.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-lado-a-lado"><i class="fa fa-check"></i><b>10.5.3</b> Gráfico de Barras Lado a Lado</a></li>
+<li class="chapter" data-level="10.5.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-com-variáveis-discretas"><i class="fa fa-check"></i><b>10.5.4</b> Gráfico de Barras com Variáveis Discretas</a></li>
+<li class="chapter" data-level="10.5.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples-com-o-ggplot2"><i class="fa fa-check"></i><b>10.5.5</b> Gráfico de Barras Simples com o ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6</b> Gráfico de Barra de Erro</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="gráficos.html"><a href="gráficos.html#exploração-e-manipulação-arquivo-rnt.xlsx"><i class="fa fa-check"></i><b>10.6.1</b> Exploração e Manipulação Arquivo <code>RNT.xlsx</code></a></li>
+<li class="chapter" data-level="10.6.2" data-path="gráficos.html"><a href="gráficos.html#criação-do-gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6.2</b> Criação do Gráfico de Barra de Erro</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-o-ggplot2"><i class="fa fa-check"></i><b>10.7</b> Gráfico de Barra de Erro com o <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="gráficos.html"><a href="gráficos.html#construção-do-gráfico"><i class="fa fa-check"></i><b>10.7.1</b> Construção do gráfico</a></li>
+<li class="chapter" data-level="10.7.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-com-apenas-as-barras-superiores"><i class="fa fa-check"></i><b>10.7.2</b> Gráfico com apenas as barras superiores</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-a-função-lineplot.ci"><i class="fa fa-check"></i><b>10.8</b> Gráfico de Barra de Erro com a Função <code>lineplot.CI ()</code></a></li>
+<li class="chapter" data-level="10.9" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>10.9</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="gráficos.html"><a href="gráficos.html#histograma-simples"><i class="fa fa-check"></i><b>10.9.1</b> Histograma Simples</a></li>
+<li class="chapter" data-level="10.9.2" data-path="gráficos.html"><a href="gráficos.html#histograma-com-curva-normal-sobreposta"><i class="fa fa-check"></i><b>10.9.2</b> Histograma com curva normal sobreposta</a></li>
+<li class="chapter" data-level="10.9.3" data-path="gráficos.html"><a href="gráficos.html#componentes-do-histograma"><i class="fa fa-check"></i><b>10.9.3</b> Componentes do Histograma</a></li>
+<li class="chapter" data-level="10.9.4" data-path="gráficos.html"><a href="gráficos.html#histograma-usando-o-ggplot2"><i class="fa fa-check"></i><b>10.9.4</b> Histograma usando o <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.9.5" data-path="gráficos.html"><a href="gráficos.html#histograma-por-grupos"><i class="fa fa-check"></i><b>10.9.5</b> Histograma por grupos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>10.10</b> Gráficos de Densidade</a></li>
+<li class="chapter" data-level="10.11" data-path="gráficos.html"><a href="gráficos.html#boxplot"><i class="fa fa-check"></i><b>10.11</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-a-função-nativa"><i class="fa fa-check"></i><b>10.11.1</b> Boxplot com a função nativa</a></li>
+<li class="chapter" data-level="10.11.2" data-path="gráficos.html"><a href="gráficos.html#estatísticas-do-boxplot"><i class="fa fa-check"></i><b>10.11.2</b> Estatísticas do boxplot</a></li>
+<li class="chapter" data-level="10.11.3" data-path="gráficos.html"><a href="gráficos.html#múltiplos-boxplots"><i class="fa fa-check"></i><b>10.11.3</b> Múltiplos boxplots</a></li>
+<li class="chapter" data-level="10.11.4" data-path="gráficos.html"><a href="gráficos.html#boxplots-com-stripcharts"><i class="fa fa-check"></i><b>10.11.4</b> Boxplots com <code>stripcharts</code></a></li>
+<li class="chapter" data-level="10.11.5" data-path="gráficos.html"><a href="gráficos.html#boxplots-horizontais"><i class="fa fa-check"></i><b>10.11.5</b> Boxplots horizontais</a></li>
+<li class="chapter" data-level="10.11.6" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-o-ggplot2"><i class="fa fa-check"></i><b>10.11.6</b> Boxplot com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-scatterplot"><i class="fa fa-check"></i><b>10.12</b> Gráfico de Dispersão (<code>Scatterplot</code>)</a>
+<ul>
+<li class="chapter" data-level="10.12.1" data-path="gráficos.html"><a href="gráficos.html#mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica"><i class="fa fa-check"></i><b>10.12.1</b> Mapeamento dos pontos de acordo com uma variável categórica</a></li>
+<li class="chapter" data-level="10.12.2" data-path="gráficos.html"><a href="gráficos.html#adição-da-reta-de-ajuste"><i class="fa fa-check"></i><b>10.12.2</b> Adição da reta de ajuste</a></li>
+<li class="chapter" data-level="10.12.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-com-o-ggplot2"><i class="fa fa-check"></i><b>10.12.3</b> Gráfico de Dispersão com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.13" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.13</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="distribuição-normal.html"><a href="distribuição-normal.html"><i class="fa fa-check"></i><b>11</b> Distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#pacotes-necessários-2"><i class="fa fa-check"></i><b>11.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="11.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#carregar-o-banco-de-dados"><i class="fa fa-check"></i><b>11.2</b> Carregar o Banco de Dados</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exploração-e-manipulação-do-banco-de-dados"><i class="fa fa-check"></i><b>11.3</b> Exploração e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#resumo-dos-dados"><i class="fa fa-check"></i><b>11.3.1</b> Resumo dos dados</a></li>
+<li class="chapter" data-level="11.3.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#visualização-dos-dados-através-do-histograma"><i class="fa fa-check"></i><b>11.3.2</b> Visualização dos dados através do histograma</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="distribuição-normal.html"><a href="distribuição-normal.html#distribuição-normal-1"><i class="fa fa-check"></i><b>11.4</b> Distribuição normal</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#curva-normal-padronizada"><i class="fa fa-check"></i><b>11.4.1</b> Curva Normal Padronizada</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exercício"><i class="fa fa-check"></i><b>11.5</b> Exercício</a></li>
+<li class="chapter" data-level="11.6" data-path="distribuição-normal.html"><a href="distribuição-normal.html#leitura-adicional-3"><i class="fa fa-check"></i><b>11.6</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distribuição-normal" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Capítulo  11</span> Distribuição Normal<a href="distribuição-normal.html#distribuição-normal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pacotes-necessários-2" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Pacotes necessários<a href="distribuição-normal.html#pacotes-necessários-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="distribuição-normal.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, dplyr, ggplot2, tidyr, rcompanion)</span></code></pre></div>
+</div>
+<div id="carregar-o-banco-de-dados" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Carregar o Banco de Dados<a href="distribuição-normal.html#carregar-o-banco-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O banco de dados a ser carregado encontra-se <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosAltura.xlsx">aqui</a>. Ele é constituído por medidas de altura (em metros) de dois grupos de mulheres, pertencentes a duas regiões geográficas diferentes. Salve o mesmo no diretório de trabalho.<br />
+Crie um objeto <code>dados</code> para recebê-lo, a partir do diretório de trabalho, executando o seguinte código:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="distribuição-normal.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosAltura.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exploração-e-manipulação-do-banco-de-dados" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Exploração e manipulação do banco de dados<a href="distribuição-normal.html#exploração-e-manipulação-do-banco-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="distribuição-normal.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dados, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 3
+##       id altura   pop
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+##  1     1   1.72     1
+##  2     2   1.65     1
+##  3     3   1.62     1
+##  4     4   1.66     1
+##  5     5   1.55     1
+##  6     6   1.6      1
+##  7     7   1.69     1
+##  8     8   1.75     1
+##  9     9   1.57     1
+## 10    10   1.53     1</code></pre>
+<p>Os <code>dados</code> estão dispostos no formato longo e vamos transformá-los no formato amplo (grupos lado a lado), usando a função <code>spread ()</code> do pacote <code>tidyr</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="distribuição-normal.html#cb5-1" aria-hidden="true" tabindex="-1"></a>dados1 <span class="ot">&lt;-</span> <span class="fu">spread</span>(dados, pop, <span class="at">value=</span><span class="st">&quot;altura&quot;</span>)</span>
+<span id="cb5-2"><a href="distribuição-normal.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dados1,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 3
+##       id   `1`   `2`
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1  1.72  1.51
+##  2     2  1.65  1.44
+##  3     3  1.62  1.41
+##  4     4  1.66  1.45
+##  5     5  1.55  1.34
+##  6     6  1.6   1.39
+##  7     7  1.69  1.48
+##  8     8  1.75  1.54
+##  9     9  1.57  1.36
+## 10    10  1.53  1.32</code></pre>
+<p>Renomear as colunas, denominadas de 1 e 2, do novo banco de dados (2ª e 3ª colunas, respectivamente), usando a função <code>names ()</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="distribuição-normal.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados1)[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pop1&quot;</span>, <span class="st">&quot;pop2&quot;</span>)</span>
+<span id="cb7-2"><a href="distribuição-normal.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dados1, <span class="dv">10</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 10 × 3
+##       id  pop1  pop2
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1     1  1.72  1.51
+##  2     2  1.65  1.44
+##  3     3  1.62  1.41
+##  4     4  1.66  1.45
+##  5     5  1.55  1.34
+##  6     6  1.6   1.39
+##  7     7  1.69  1.48
+##  8     8  1.75  1.54
+##  9     9  1.57  1.36
+## 10    10  1.53  1.32</code></pre>
+<p>Agora, temos duas populações de 300 mulheres, colocadas lado a lado, como <code>pop1</code> e <code>po2.</code></p>
+<div id="resumo-dos-dados" class="section level3 hasAnchor" number="11.3.1">
+<h3><span class="header-section-number">11.3.1</span> Resumo dos dados<a href="distribuição-normal.html#resumo-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="distribuição-normal.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span> (dados1)</span></code></pre></div>
+<pre><code>##        id              pop1            pop2      
+##  Min.   :  1.00   Min.   :1.420   Min.   :1.210  
+##  1st Qu.: 75.75   1st Qu.:1.550   1st Qu.:1.340  
+##  Median :150.50   Median :1.600   Median :1.390  
+##  Mean   :150.50   Mean   :1.596   Mean   :1.386  
+##  3rd Qu.:225.25   3rd Qu.:1.650   3rd Qu.:1.440  
+##  Max.   :300.00   Max.   :1.820   Max.   :1.610</code></pre>
+<div id="média-e-desvios-padrão-das-populações" class="section level4 hasAnchor" number="11.3.1.1">
+<h4><span class="header-section-number">11.3.1.1</span> Média e desvios padrão das populações<a href="distribuição-normal.html#média-e-desvios-padrão-das-populações" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="distribuição-normal.html#cb11-1" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados1<span class="sc">$</span>pop1)</span>
+<span id="cb11-2"><a href="distribuição-normal.html#cb11-2" aria-hidden="true" tabindex="-1"></a>dp1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados1<span class="sc">$</span>pop1)</span>
+<span id="cb11-3"><a href="distribuição-normal.html#cb11-3" aria-hidden="true" tabindex="-1"></a>mu1</span></code></pre></div>
+<pre><code>## [1] 1.596433</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="distribuição-normal.html#cb13-1" aria-hidden="true" tabindex="-1"></a>dp1</span></code></pre></div>
+<pre><code>## [1] 0.06562495</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="distribuição-normal.html#cb15-1" aria-hidden="true" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados1<span class="sc">$</span>pop2)</span>
+<span id="cb15-2"><a href="distribuição-normal.html#cb15-2" aria-hidden="true" tabindex="-1"></a>dp2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados1<span class="sc">$</span>pop2)</span>
+<span id="cb15-3"><a href="distribuição-normal.html#cb15-3" aria-hidden="true" tabindex="-1"></a>mu2</span></code></pre></div>
+<pre><code>## [1] 1.386433</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="distribuição-normal.html#cb17-1" aria-hidden="true" tabindex="-1"></a>dp2</span></code></pre></div>
+<pre><code>## [1] 0.06562495</code></pre>
+</div>
+</div>
+<div id="visualização-dos-dados-através-do-histograma" class="section level3 hasAnchor" number="11.3.2">
+<h3><span class="header-section-number">11.3.2</span> Visualização dos dados através do histograma<a href="distribuição-normal.html#visualização-dos-dados-através-do-histograma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="população-1" class="section level4 hasAnchor" number="11.3.2.1">
+<h4><span class="header-section-number">11.3.2.1</span> População 1<a href="distribuição-normal.html#população-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="distribuição-normal.html#cb19-1" aria-hidden="true" tabindex="-1"></a>dados1 <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="distribuição-normal.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>pop1))<span class="sc">+</span></span>
+<span id="cb19-3"><a href="distribuição-normal.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb19-4"><a href="distribuição-normal.html#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;peachpuff&quot;</span>,</span>
+<span id="cb19-5"><a href="distribuição-normal.html#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">1.3</span>, <span class="fl">1.9</span>, <span class="fl">0.04</span>)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="distribuição-normal.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a href="distribuição-normal.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="distribuição-normal.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Altura de mulheres - população 1 (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="distribuição-normal.html#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span> (<span class="at">xintercept =</span> <span class="fu">mean</span>(pop1)),</span>
+<span id="cb19-10"><a href="distribuição-normal.html#cb19-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb19-11"><a href="distribuição-normal.html#cb19-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb19-12"><a href="distribuição-normal.html#cb19-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Colocando uma curva normal sobreposta, usando a função <code>plotNormalHistogram()</code> do pacote <code>rcompanion.</code> O gráfico resultante pode ser usado para comparar rapidamente a distribuição de dados a uma distribuição normal. Se <code>prob = [TRUE](anchor)</code>, a densidade é mostrada, caso contrário é mostrada a frequência.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="distribuição-normal.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotNormalHistogram</span>(dados1<span class="sc">$</span>pop1,</span>
+<span id="cb20-2"><a href="distribuição-normal.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prob =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-3"><a href="distribuição-normal.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">1.3</span>, <span class="fl">1.9</span>, <span class="fl">0.04</span>),</span>
+<span id="cb20-4"><a href="distribuição-normal.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> <span class="st">&quot;peachpuff&quot;</span>,</span>
+<span id="cb20-5"><a href="distribuição-normal.html#cb20-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb20-6"><a href="distribuição-normal.html#cb20-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">linecol =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb20-7"><a href="distribuição-normal.html#cb20-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb20-8"><a href="distribuição-normal.html#cb20-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">1000</span>,</span>
+<span id="cb20-9"><a href="distribuição-normal.html#cb20-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>,</span>
+<span id="cb20-10"><a href="distribuição-normal.html#cb20-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;Altura de mulheres - população 1 (m)&quot;</span>)</span>
+<span id="cb20-11"><a href="distribuição-normal.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb20-12"><a href="distribuição-normal.html#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="at">v=</span> (<span class="fu">mean</span>(dados1<span class="sc">$</span>pop1)), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="população-2" class="section level4 hasAnchor" number="11.3.2.2">
+<h4><span class="header-section-number">11.3.2.2</span> População 2<a href="distribuição-normal.html#população-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="distribuição-normal.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dados1 <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="distribuição-normal.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>pop2))<span class="sc">+</span></span>
+<span id="cb21-3"><a href="distribuição-normal.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb21-4"><a href="distribuição-normal.html#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">&quot;salmon&quot;</span>,</span>
+<span id="cb21-5"><a href="distribuição-normal.html#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">1.1</span>, <span class="fl">1.7</span>, <span class="fl">0.04</span>)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="distribuição-normal.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb21-7"><a href="distribuição-normal.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="distribuição-normal.html#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Altura de mulheres - população 2(m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="distribuição-normal.html#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span> (<span class="at">xintercept =</span> <span class="fu">mean</span>(pop2)),</span>
+<span id="cb21-10"><a href="distribuição-normal.html#cb21-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb21-11"><a href="distribuição-normal.html#cb21-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, </span>
+<span id="cb21-12"><a href="distribuição-normal.html#cb21-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>E colocando uma curva normal sobreposta:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="distribuição-normal.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotNormalHistogram</span>(dados1<span class="sc">$</span>pop2,</span>
+<span id="cb22-2"><a href="distribuição-normal.html#cb22-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">prob =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb22-3"><a href="distribuição-normal.html#cb22-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">1.1</span>, <span class="fl">1.7</span>, <span class="fl">0.04</span>),</span>
+<span id="cb22-4"><a href="distribuição-normal.html#cb22-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col =</span> <span class="st">&quot;salmon&quot;</span>,</span>
+<span id="cb22-5"><a href="distribuição-normal.html#cb22-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">main =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb22-6"><a href="distribuição-normal.html#cb22-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">linecol =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb22-7"><a href="distribuição-normal.html#cb22-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb22-8"><a href="distribuição-normal.html#cb22-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">length =</span> <span class="dv">1000</span>,</span>
+<span id="cb22-9"><a href="distribuição-normal.html#cb22-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>,</span>
+<span id="cb22-10"><a href="distribuição-normal.html#cb22-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">&quot;Altura de mulheres - população 2(m)&quot;</span>)</span>
+<span id="cb22-11"><a href="distribuição-normal.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>(<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb22-12"><a href="distribuição-normal.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="at">v=</span> (<span class="fu">mean</span>(dados1<span class="sc">$</span>pop2)), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>A distribuição de uma variável em um conjunto de dados fornece informações
+sobre:</p>
+<ul>
+<li>Todos os valores que a variável assume em seu conjunto de dados, quando os dados são divididos em grupos de tamanhos razoáveis</li>
+<li>Com que frequência cada valor ocorre</li>
+<li>A forma, centro e quantidade de variabilidade nos dados</li>
+</ul>
+<p>Verificar a distribuição dos dados é sempre uma das primeiras etapas da análise dos dados. Ao conhecer o formato dos dados, você obtém conhecimento sobre algumas das propriedades estatísticas dos mesmos.</p>
+<p>Observando os histograma das duas populações, verificamos que ambos têm uma distribuição bastante simétrica, com as médias (linha tracejada em vermelho) praticamente no centro das distribuições.</p>
+</div>
+</div>
+</div>
+<div id="distribuição-normal-1" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Distribuição normal<a href="distribuição-normal.html#distribuição-normal-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Analisando as curvas sobrepostas às distribuições das populações 1 e 2, verificamos que elas possuem algumas características importantes:</p>
+<ul>
+<li>Existe um único pico;</li>
+<li>A massa da distribuição está no centro;</li>
+<li>Há simetria em relação à linha central, representada pela média do conjunto de dados;</li>
+<li>O formato da curva é semelhante a um sino, ou seja, à medida que os dados se afastam da média, diminui a probabilidade de serem encontrados.
+<ul>
+<li>Este formato, portanto, depende da variabilidade dos dados (magnitude do desvio padrão)</li>
+</ul></li>
+</ul>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>As curvas de distribuição de dados que se comportam desta maneira são conhecidas por <strong>curva normal</strong> ou <strong>curva gaussiana</strong>. Os parâmetros da curva normal são a <em>média</em> e o <em>desvio padrão</em>.</p>
+<p>Observe no gráfico anterior das curvas de distribuição das duas populações sendo estudadas. Elas têm o mesmo formato, porque como calculado acima, elas têm o mesmon desvio padrão, a diferença está na média mais baixa da população 2.</p>
+<p>Se tivéssemos uma terceira população, com média igual a população 1 (1.596 m), mas com maior desvio padrão, por exemplo 10 cm, teríamos uma curva sobreposta a da população 1, mas mais achatada.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Como estamos observando, se tivermos um desvio padrão pequeno, ele torna a curva mais pontiaguda; desvio padrão grande, achata a curva (população 3). Se as médias são diferentes, mas com mesmo desvio padrão, elas são iguas, mas em posições diferentes. Se for uma média menor, ficará a esquerda da curva com média maior ( população 2 vs população 1).
+Em outras palavras, as curvas normais dependem da média e de seu desvio padrão. Modificando qualquer um deles, teremos curvas distintas.</p>
+<div id="curva-normal-padronizada" class="section level3 hasAnchor" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> Curva Normal Padronizada<a href="distribuição-normal.html#curva-normal-padronizada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cada variável aleatória contínua tem a sua média e seu desvio padrão e, portanto, a sua curva normal correspondente. Para facilitar a comparação entre variáveis, foi criado o conceito de <strong>curva normal padronizada</strong>, que é uma curva normal com média 0 e desvio padrão 1. A distribuição normal padrão também pode ser chamada de <em>distribuição normal centrada</em> ou <em>reduzida</em>.<br />
+A métrica usada para a padronização é denominada de <strong>escore <em>Z</em></strong> que é uma medida de posição que indica o número de desvios padrão em que um valor se encontra a partir da sua média.</p>
+<p><span class="math display">\[
+Z =\frac{x-\overline{x}}{s}
+\]</span></p>
+<p>Desta forma, podemos verificar quantos desvios padrão uma mulher da população 1 que mede 1,725 m está distante da média de 1,598 m. Assim:</p>
+<p><span class="math display">\[
+Z =\frac{1.725-1.598}{0.0656}\approx 1.959
+\]</span></p>
+<p>Ao invés de usarmos a fórmula manualmente, podemos escrevê-la no <em>R Script</em> para que ele faça o trabalho por nós:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="distribuição-normal.html#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fl">1.725</span></span>
+<span id="cb23-2"><a href="distribuição-normal.html#cb23-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(dados1<span class="sc">$</span>pop1))<span class="sc">/</span><span class="fu">sd</span>(dados1<span class="sc">$</span>pop1)</span>
+<span id="cb23-3"><a href="distribuição-normal.html#cb23-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
+<pre><code>## [1] 1.959113</code></pre>
+<p>Portanto, esta mulher está distante praticamente 2 desvios padrão acima da média. Para esta população, ela é considerada alta. Por que?</p>
+<p>Para responder a essa pergunta, precisamos calcular a probabilidade de encontrar uma mulher com esta altura na população1.</p>
+<p>O <strong>R</strong> tem uma função que faz este cálculo, rapidamente, sem necessidade de consultar tabelas: é a função <code>pnorm ()</code>. Esta função retorna a probabilidade abaixo do valor de <em>Z</em> questionado, pressupondo média 0 e desvio padrão 1, baseado na distruição normal padronizada <span class="math display">\[X \sim {\sf Norm}(0, 1) \\\]</span>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="distribuição-normal.html#cb25-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="fl">1.959</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb25-2"><a href="distribuição-normal.html#cb25-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
+<pre><code>## [1] 0.9749436</code></pre>
+<p>Como abaixo de 1,725 m, temos 0,975 ou 97,5% das mulheres, acima seriam 1 - 97,5 = 2,5% das mulheres. Ou seja, comparativamente, uma mulher com 1,725 m, na população 1, é considerada alta.</p>
+<p>Qual a probabilidade de se encontrar mulheres que tenham altura abaixo da média?</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="distribuição-normal.html#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">mean</span>(dados1<span class="sc">$</span>pop1)</span>
+<span id="cb27-2"><a href="distribuição-normal.html#cb27-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(dados1<span class="sc">$</span>pop1))<span class="sc">/</span><span class="fu">sd</span>(dados1<span class="sc">$</span>pop1)</span>
+<span id="cb27-3"><a href="distribuição-normal.html#cb27-3" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="distribuição-normal.html#cb29-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">0</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb29-2"><a href="distribuição-normal.html#cb29-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<p>Ou seja, a probabilidade de se encontrar mulheres abaixo da média é igual a 50%.</p>
+<p>Vimos, até agora, que um uso extremamante útil da distribuição normal padronizada é ,facilmente, permitir o cálculo das probabilidades dentro de uma variável aleatória.<br />
+Isso permite que, usando a função <code>pnorm()</code>, se calcule a probabilidade entre quaiquer valores de z escore. Por exemplo, a probabilidade de se encontrar valores que se situem entre -1 e +1 escore z é:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="distribuição-normal.html#cb31-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb31-2"><a href="distribuição-normal.html#cb31-2" aria-hidden="true" tabindex="-1"></a>z1</span></code></pre></div>
+<pre><code>## [1] 0.1586553</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="distribuição-normal.html#cb33-1" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb33-2"><a href="distribuição-normal.html#cb33-2" aria-hidden="true" tabindex="-1"></a>z2</span></code></pre></div>
+<pre><code>## [1] 0.8413447</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="distribuição-normal.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(z1 <span class="sc">-</span> z2)</span></code></pre></div>
+<pre><code>## [1] 0.6826895</code></pre>
+<p>portanto, entre -1 e +1 escores z, encontramos 68,3% dos valores da ditribuição normal.</p>
+<p>Se repetirmos os cálculos para os escores z -2 e +2, qual a probabiidade?</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="distribuição-normal.html#cb37-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb37-2"><a href="distribuição-normal.html#cb37-2" aria-hidden="true" tabindex="-1"></a>z1</span></code></pre></div>
+<pre><code>## [1] 0.02275013</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="distribuição-normal.html#cb39-1" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb39-2"><a href="distribuição-normal.html#cb39-2" aria-hidden="true" tabindex="-1"></a>z2</span></code></pre></div>
+<pre><code>## [1] 0.9772499</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="distribuição-normal.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(z1 <span class="sc">-</span> z2)</span></code></pre></div>
+<pre><code>## [1] 0.9544997</code></pre>
+<p>Entre, -2 e +2 escores z, encontramos 95,5% dos valores da ditribuição normal.</p>
+<p>E entre -3 e +3?</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="distribuição-normal.html#cb43-1" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb43-2"><a href="distribuição-normal.html#cb43-2" aria-hidden="true" tabindex="-1"></a>z1</span></code></pre></div>
+<pre><code>## [1] 0.001349898</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="distribuição-normal.html#cb45-1" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb45-2"><a href="distribuição-normal.html#cb45-2" aria-hidden="true" tabindex="-1"></a>z2</span></code></pre></div>
+<pre><code>## [1] 0.9986501</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="distribuição-normal.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(z1 <span class="sc">-</span> z2)</span></code></pre></div>
+<pre><code>## [1] 0.9973002</code></pre>
+<p>Entre, -3 e +3 escores z, encontramos 99,7% dos valores da ditribuição normal.</p>
+<div id="regra-empírica-68-95-99.7" class="section level4 hasAnchor" number="11.4.1.1">
+<h4><span class="header-section-number">11.4.1.1</span> Regra Empírica 68-95-99.7<a href="distribuição-normal.html#regra-empírica-68-95-99.7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A regra empírica diz que, se uma população de um conjunto de dados tem uma distribuição normal com média 0 e desvio padrão 1 (X ~ Norm (0,1)) podemos afirmar que:
+* Aproximadamente, 68% dos valares entram-se dentro de <span class="math inline">\(\pm\)</span> 1 desvio padrão da média;
+<span class="math display">\[
+\mu \pm \sigma
+\]</span>
+* Aproximadamente, 95% dos valores encontram-se dentreo de <span class="math inline">\(\pm\)</span> 2 desvios padrão da média;
+<span class="math display">\[
+\mu \pm 2 \sigma
+\]</span>
+* Cerca de 99,7% dos valores encontram-se dentro de <span class="math inline">\(\pm\)</span> 3 desvios padrão da média.
+<span class="math display">\[
+\mu \pm 3 \sigma
+\]</span></p>
+<p>Esta regra pode ser usada para descrever uma população, em vez de uma amostra, mas você também pode usá-la para ajudar a decidir se uma amostra de dados veio de uma distribuição normal. Se uma amostra é grande o suficiente e você observar que o seu histograma tem um formato parecido com um sino, você pode verificar se os dados seguem as especificações 68-95-99,7%. Se sim, é razoável concluir que os dados vieram de uma distribuição normal.</p>
+<p>Se usarmos a população 1 e voltarmos a observar o histograma com uma curva normal sobreposta, temos:</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Olhando gráfico e sem realizar nenhum cálculo, sabemos, pela regra empírica, que entre 1.532 m (Z = -2) e 1.663 m (Z = 2) encontramos aproximadamente 68% das mulheres desta população 1. Isto ajuda no dia ao se observar dados.</p>
+</div>
+</div>
+</div>
+<div id="exercício" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Exercício<a href="distribuição-normal.html#exercício" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponha que eu esteja atendendo uma mulher que mede 1,50 m, a qual população existe maior probabilidade de ela pertencer?</p>
+<p><strong>População 1</strong></p>
+<p>Verificar a probabilidade de se encontra mulheres com esta altura na população 1, calculando o seu escore z na população 1.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="distribuição-normal.html#cb49-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fl">1.50</span></span>
+<span id="cb49-2"><a href="distribuição-normal.html#cb49-2" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span>  (x <span class="sc">-</span> mu1)<span class="sc">/</span>dp1</span>
+<span id="cb49-3"><a href="distribuição-normal.html#cb49-3" aria-hidden="true" tabindex="-1"></a>z1 </span></code></pre></div>
+<pre><code>## [1] -1.469461</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="distribuição-normal.html#cb51-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span> (z1)</span>
+<span id="cb51-2"><a href="distribuição-normal.html#cb51-2" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
+<pre><code>## [1] 0.07085384</code></pre>
+<p>Na população 1, apenas 7% das mulhres tem altura abaixo de 1,50, 97% é mais alta do que este valor.</p>
+<p><strong>População 2</strong></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="distribuição-normal.html#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fl">1.50</span></span>
+<span id="cb53-2"><a href="distribuição-normal.html#cb53-2" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span>  (x <span class="sc">-</span> mu2)<span class="sc">/</span>dp2</span>
+<span id="cb53-3"><a href="distribuição-normal.html#cb53-3" aria-hidden="true" tabindex="-1"></a>z2 </span></code></pre></div>
+<pre><code>## [1] 1.730541</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="distribuição-normal.html#cb55-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span> (z2)</span>
+<span id="cb55-2"><a href="distribuição-normal.html#cb55-2" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
+<pre><code>## [1] 0.9582332</code></pre>
+<p>Na população 2, esta mulher estaria a 1,73 desvios padrão distante da média. Isto significa que se ela pertence a população 2, ela seria considerada alta, pois, praticamente 96% das mulheres desta população seriam menores do que ela.</p>
+<p>Na realidade, ela pode pertencer a qualquer uma das populações. Entretanto, como poucas mulheres na população 1 tem altura dessa magnitude e muitas mulheres da população 2 tem esta altura ou menos, poucas estão acima, seria mais provável ela ser da população 2, mas poderia ser uma “baixinha” da população 1!</p>
+</div>
+<div id="leitura-adicional-3" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Leitura Adicional<a href="distribuição-normal.html#leitura-adicional-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Altman DG. <strong>Practical Statistics for Medical Research</strong>. Boca Raton, FL: Chapman &amp; Hall/CRC; 1991. The Normal Distribution; 51-60.</p></li>
+<li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Distribuição de Probabilidades;p.113-121.</p></li>
+<li><p>Vu J, Harrington D. <strong>Introductory Statistics for the
+Life and Biomedical Sciences</strong>. Openintro; 2021. Normal distribution; p.152-67. Disponível em: <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./03%3A_Distributions_of_Random_Variables/3.01%3A_Normal_Distribution" class="uri">https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./03%3A_Distributions_of_Random_Variables/3.01%3A_Normal_Distribution</a></p></li>
+</ol>
+<p></br>
+</br></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gráficos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/11-distNormal.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/11-distNormal.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
