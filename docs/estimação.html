@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 12 Estimação | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 12 Estimação | BIOESTATÍSTICA USANDO O R" />
+  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 12 Estimação | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 12 Estimação | BIOESTATÍSTICA USANDO O R" />
+  
+  
+  
+
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
+
+
+<meta name="date" content="2022-08-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuição-normal.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioestatisticaR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
+<li class="chapter" data-level="9.8" data-path="tabelas.html"><a href="tabelas.html#leitura-adicional-1"><i class="fa fa-check"></i><b>9.8</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>10</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gráficos.html"><a href="gráficos.html#pacotes-necessários-1"><i class="fa fa-check"></i><b>10.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="10.2" data-path="gráficos.html"><a href="gráficos.html#carregar-os-dados-1"><i class="fa fa-check"></i><b>10.2</b> Carregar os Dados</a></li>
+<li class="chapter" data-level="10.3" data-path="gráficos.html"><a href="gráficos.html#visão-geral-do-dadosmater.xlsx"><i class="fa fa-check"></i><b>10.3</b> Visão Geral do <code>dadosMater.xlsx</code></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="gráficos.html"><a href="gráficos.html#transformação-e-criação-de-variáveis"><i class="fa fa-check"></i><b>10.3.1</b> Transformação e criação de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>10.4</b> Gráfico de Setores (Pizza)</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-com-o-ggplot2"><i class="fa fa-check"></i><b>10.4.1</b> Gráfico de setores com o ggplot2</a></li>
+<li class="chapter" data-level="10.4.2" data-path="gráficos.html"><a href="gráficos.html#uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart"><i class="fa fa-check"></i><b>10.4.2</b> Uma variação do gráfico de pizza: gráfico de rosca (<em>Donut chart</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-barras"><i class="fa fa-check"></i><b>10.5</b> Gráficos de Barras</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples"><i class="fa fa-check"></i><b>10.5.1</b> Gráfico de Barras Simples</a></li>
+<li class="chapter" data-level="10.5.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-empilhadas"><i class="fa fa-check"></i><b>10.5.2</b> Gráfico de Barras Empilhadas</a></li>
+<li class="chapter" data-level="10.5.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-lado-a-lado"><i class="fa fa-check"></i><b>10.5.3</b> Gráfico de Barras Lado a Lado</a></li>
+<li class="chapter" data-level="10.5.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-com-variáveis-discretas"><i class="fa fa-check"></i><b>10.5.4</b> Gráfico de Barras com Variáveis Discretas</a></li>
+<li class="chapter" data-level="10.5.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples-com-o-ggplot2"><i class="fa fa-check"></i><b>10.5.5</b> Gráfico de Barras Simples com o ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6</b> Gráfico de Barra de Erro</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="gráficos.html"><a href="gráficos.html#exploração-e-manipulação-arquivo-rnt.xlsx"><i class="fa fa-check"></i><b>10.6.1</b> Exploração e Manipulação Arquivo <code>RNT.xlsx</code></a></li>
+<li class="chapter" data-level="10.6.2" data-path="gráficos.html"><a href="gráficos.html#criação-do-gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6.2</b> Criação do Gráfico de Barra de Erro</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-o-ggplot2"><i class="fa fa-check"></i><b>10.7</b> Gráfico de Barra de Erro com o <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="gráficos.html"><a href="gráficos.html#construção-do-gráfico"><i class="fa fa-check"></i><b>10.7.1</b> Construção do gráfico</a></li>
+<li class="chapter" data-level="10.7.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-com-apenas-as-barras-superiores"><i class="fa fa-check"></i><b>10.7.2</b> Gráfico com apenas as barras superiores</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-a-função-lineplot.ci"><i class="fa fa-check"></i><b>10.8</b> Gráfico de Barra de Erro com a Função <code>lineplot.CI ()</code></a></li>
+<li class="chapter" data-level="10.9" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>10.9</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="gráficos.html"><a href="gráficos.html#histograma-simples"><i class="fa fa-check"></i><b>10.9.1</b> Histograma Simples</a></li>
+<li class="chapter" data-level="10.9.2" data-path="gráficos.html"><a href="gráficos.html#histograma-com-curva-normal-sobreposta"><i class="fa fa-check"></i><b>10.9.2</b> Histograma com curva normal sobreposta</a></li>
+<li class="chapter" data-level="10.9.3" data-path="gráficos.html"><a href="gráficos.html#componentes-do-histograma"><i class="fa fa-check"></i><b>10.9.3</b> Componentes do Histograma</a></li>
+<li class="chapter" data-level="10.9.4" data-path="gráficos.html"><a href="gráficos.html#histograma-usando-o-ggplot2"><i class="fa fa-check"></i><b>10.9.4</b> Histograma usando o <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.9.5" data-path="gráficos.html"><a href="gráficos.html#histograma-por-grupos"><i class="fa fa-check"></i><b>10.9.5</b> Histograma por grupos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>10.10</b> Gráficos de Densidade</a></li>
+<li class="chapter" data-level="10.11" data-path="gráficos.html"><a href="gráficos.html#boxplot"><i class="fa fa-check"></i><b>10.11</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-a-função-nativa"><i class="fa fa-check"></i><b>10.11.1</b> Boxplot com a função nativa</a></li>
+<li class="chapter" data-level="10.11.2" data-path="gráficos.html"><a href="gráficos.html#estatísticas-do-boxplot"><i class="fa fa-check"></i><b>10.11.2</b> Estatísticas do boxplot</a></li>
+<li class="chapter" data-level="10.11.3" data-path="gráficos.html"><a href="gráficos.html#múltiplos-boxplots"><i class="fa fa-check"></i><b>10.11.3</b> Múltiplos boxplots</a></li>
+<li class="chapter" data-level="10.11.4" data-path="gráficos.html"><a href="gráficos.html#boxplots-com-stripcharts"><i class="fa fa-check"></i><b>10.11.4</b> Boxplots com <code>stripcharts</code></a></li>
+<li class="chapter" data-level="10.11.5" data-path="gráficos.html"><a href="gráficos.html#boxplots-horizontais"><i class="fa fa-check"></i><b>10.11.5</b> Boxplots horizontais</a></li>
+<li class="chapter" data-level="10.11.6" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-o-ggplot2"><i class="fa fa-check"></i><b>10.11.6</b> Boxplot com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-scatterplot"><i class="fa fa-check"></i><b>10.12</b> Gráfico de Dispersão (<code>Scatterplot</code>)</a>
+<ul>
+<li class="chapter" data-level="10.12.1" data-path="gráficos.html"><a href="gráficos.html#mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica"><i class="fa fa-check"></i><b>10.12.1</b> Mapeamento dos pontos de acordo com uma variável categórica</a></li>
+<li class="chapter" data-level="10.12.2" data-path="gráficos.html"><a href="gráficos.html#adição-da-reta-de-ajuste"><i class="fa fa-check"></i><b>10.12.2</b> Adição da reta de ajuste</a></li>
+<li class="chapter" data-level="10.12.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-com-o-ggplot2"><i class="fa fa-check"></i><b>10.12.3</b> Gráfico de Dispersão com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.13" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.13</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="distribuição-normal.html"><a href="distribuição-normal.html"><i class="fa fa-check"></i><b>11</b> Distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#pacotes-necessários-2"><i class="fa fa-check"></i><b>11.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="11.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#carregar-o-banco-de-dados"><i class="fa fa-check"></i><b>11.2</b> Carregar o Banco de Dados</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exploração-e-manipulação-do-banco-de-dados"><i class="fa fa-check"></i><b>11.3</b> Exploração e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#resumo-dos-dados"><i class="fa fa-check"></i><b>11.3.1</b> Resumo dos dados</a></li>
+<li class="chapter" data-level="11.3.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#visualização-dos-dados-através-do-histograma"><i class="fa fa-check"></i><b>11.3.2</b> Visualização dos dados através do histograma</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="distribuição-normal.html"><a href="distribuição-normal.html#distribuição-normal-1"><i class="fa fa-check"></i><b>11.4</b> Distribuição normal</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#curva-normal-padronizada"><i class="fa fa-check"></i><b>11.4.1</b> Curva Normal Padronizada</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exercício"><i class="fa fa-check"></i><b>11.5</b> Exercício</a></li>
+<li class="chapter" data-level="11.6" data-path="distribuição-normal.html"><a href="distribuição-normal.html#leitura-adicional-3"><i class="fa fa-check"></i><b>11.6</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="estimação.html"><a href="estimação.html"><i class="fa fa-check"></i><b>12</b> Estimação</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="estimação.html"><a href="estimação.html#pacotes-necessários-3"><i class="fa fa-check"></i><b>12.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="12.2" data-path="estimação.html"><a href="estimação.html#carregar-o-dados"><i class="fa fa-check"></i><b>12.2</b> Carregar o dados</a></li>
+<li class="chapter" data-level="12.3" data-path="estimação.html"><a href="estimação.html#exploração-e-manipulação-do-banco-de-dados-1"><i class="fa fa-check"></i><b>12.3</b> Exploração e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="estimação.html"><a href="estimação.html#resumo-dos-dados-1"><i class="fa fa-check"></i><b>12.3.1</b> Resumo dos dados</a></li>
+<li class="chapter" data-level="12.3.2" data-path="estimação.html"><a href="estimação.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.3.2</b> Visualização gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="estimação.html"><a href="estimação.html#distribuição-amostral"><i class="fa fa-check"></i><b>12.4</b> Distribuição Amostral</a></li>
+<li class="chapter" data-level="12.5" data-path="estimação.html"><a href="estimação.html#erro-padrão"><i class="fa fa-check"></i><b>12.5</b> Erro Padrão</a></li>
+<li class="chapter" data-level="12.6" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-conhecido"><i class="fa fa-check"></i><b>12.6</b> Intervalo de Confiança com Desvio Padrão Populacional Conhecido</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="estimação.html"><a href="estimação.html#interpretação-do-intervalo-de-confiança"><i class="fa fa-check"></i><b>12.6.1</b> Interpretação do Intervalo de Confiança</a></li>
+<li class="chapter" data-level="12.6.2" data-path="estimação.html"><a href="estimação.html#exercício-1"><i class="fa fa-check"></i><b>12.6.2</b> Exercício 1</a></li>
+<li class="chapter" data-level="12.6.3" data-path="estimação.html"><a href="estimação.html#outros-intervalos-de-confiança"><i class="fa fa-check"></i><b>12.6.3</b> Outros Intervalos de Confiança</a></li>
+<li class="chapter" data-level="12.6.4" data-path="estimação.html"><a href="estimação.html#exercício-2"><i class="fa fa-check"></i><b>12.6.4</b> Exercício 2</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-desconhecido"><i class="fa fa-check"></i><b>12.7</b> Intervalo de Confiança com Desvio Padrão Populacional Desconhecido</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="estimação.html"><a href="estimação.html#distribuição-t"><i class="fa fa-check"></i><b>12.7.1</b> Distribuição <em>t</em></a></li>
+<li class="chapter" data-level="12.7.2" data-path="estimação.html"><a href="estimação.html#dados-para-o-cálculo-do-intervalo-de-confiança"><i class="fa fa-check"></i><b>12.7.2</b> Dados para o cálculo do intervalo de confiança</a></li>
+<li class="chapter" data-level="12.7.3" data-path="estimação.html"><a href="estimação.html#cálculo-do-intervalo-de-confiança-com-sigma-desconhecido"><i class="fa fa-check"></i><b>12.7.3</b> Cálculo do Intervalo de Confiança com <span class="math inline">\(\sigma\)</span> desconhecido</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-para-uma-proporção-populacional"><i class="fa fa-check"></i><b>12.8</b> Intervalo de Confiança para uma proporção populacional</a>
+<ul>
+<li class="chapter" data-level="12.8.1" data-path="estimação.html"><a href="estimação.html#dados-para-estimar-a-proporção-populacional"><i class="fa fa-check"></i><b>12.8.1</b> Dados para estimar a proporção populacional</a></li>
+<li class="chapter" data-level="12.8.2" data-path="estimação.html"><a href="estimação.html#cálculo-da-estimativa-pontual-da-proporção"><i class="fa fa-check"></i><b>12.8.2</b> Cálculo da estimativa pontual da proporção</a></li>
+<li class="chapter" data-level="12.8.3" data-path="estimação.html"><a href="estimação.html#cálculo-do-intervalo-de-confiança-para-a-proporção"><i class="fa fa-check"></i><b>12.8.3</b> Cálculo do intervalo de confiança para a proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="12.9" data-path="estimação.html"><a href="estimação.html#leitura-adicional-4"><i class="fa fa-check"></i><b>12.9</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estimação" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Capítulo  12</span> Estimação<a href="estimação.html#estimação" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pacotes-necessários-3" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Pacotes necessários<a href="estimação.html#pacotes-necessários-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="estimação.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl, dplyr, ggplot2, Rmisc, DescTools)</span></code></pre></div>
+<p>Além desses pacotes, vamos usar uma função denominada <code>shadeform ()</code> que desenha uma curva normal com áreas sombreadas. Ela foi criada por <a href="http://novicemetrics.blogspot.com/">Tony Cookson</a> e pode ser encontrada <a href="https://github.com/petronioliveira/Arquivos/blob/main/shadeform.R">aqui</a> para ser salva em seu diretório de trabalho. Ela deve ser ativada com a função <code>source ("caminho no diretório de trabalho")</code>. Por exemplo, no nosso computador o caminho é:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="estimação.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/shadeform.R&quot;</span>)</span></code></pre></div>
+</div>
+<div id="carregar-o-dados" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Carregar o dados<a href="estimação.html#carregar-o-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Serão usados dados do arquivo <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx">dadosMater</a> que devem ser baixados para o diretório de trabalho.</p>
+<p>Crie um objeto <code>mater</code> para receber os dados, a partir do diretório de trabalho, executando:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="estimação.html#cb3-1" aria-hidden="true" tabindex="-1"></a>mater <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="exploração-e-manipulação-do-banco-de-dados-1" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Exploração e manipulação do banco de dados<a href="estimação.html#exploração-e-manipulação-do-banco-de-dados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Este banco de dados contém informações de 30 variáveis de 1368 nascimentos consecutivos, em um período de 18 meses, da Maternidade Escola do Hospital Geral de Caxias Sul (HGCS).<br />
+Neste momento, usaremos apenas a variável <code>mater$altura</code>, altura das gestantes em metros.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="estimação.html#cb4-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> mater <span class="sc">%&gt;%</span> <span class="fu">select</span> (altura)</span>
+<span id="cb4-2"><a href="estimação.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
+<pre><code>## Rows: 1,368
+## Columns: 1
+## $ altura &lt;dbl&gt; 1.65, 1.66, 1.72, 1.55, 1.60, 1.50, 1.54, 1.63, 1.68, 1.50, 1.6…</code></pre>
+<div id="resumo-dos-dados-1" class="section level3 hasAnchor" number="12.3.1">
+<h3><span class="header-section-number">12.3.1</span> Resumo dos dados<a href="estimação.html#resumo-dos-dados-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="estimação.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dados<span class="sc">$</span>altura)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.400   1.550   1.600   1.598   1.650   1.850</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="estimação.html#cb8-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(mater<span class="sc">$</span>altura)</span>
+<span id="cb8-2"><a href="estimação.html#cb8-2" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="fu">sd</span>(mater<span class="sc">$</span>altura)</span>
+<span id="cb8-3"><a href="estimação.html#cb8-3" aria-hidden="true" tabindex="-1"></a>mu</span></code></pre></div>
+<pre><code>## [1] 1.597968</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="estimação.html#cb10-1" aria-hidden="true" tabindex="-1"></a>dp</span></code></pre></div>
+<pre><code>## [1] 0.06547866</code></pre>
+</div>
+<div id="visualização-gráfica" class="section level3 hasAnchor" number="12.3.2">
+<h3><span class="header-section-number">12.3.2</span> Visualização gráfica<a href="estimação.html#visualização-gráfica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="estimação.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mater<span class="sc">$</span>altura,</span>
+<span id="cb12-2"><a href="estimação.html#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span> (<span class="fl">1.4</span>, <span class="fl">1.85</span>),</span>
+<span id="cb12-3"><a href="estimação.html#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-4"><a href="estimação.html#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb12-5"><a href="estimação.html#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>, </span>
+<span id="cb12-6"><a href="estimação.html#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Altura (m)&quot;</span>,</span>
+<span id="cb12-7"><a href="estimação.html#cb12-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;salmon&quot;</span>,</span>
+<span id="cb12-8"><a href="estimação.html#cb12-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb12-9"><a href="estimação.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span> (<span class="at">bty =</span> <span class="st">&quot;L&quot;</span>)</span>
+<span id="cb12-10"><a href="estimação.html#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="estimação.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span> (<span class="fu">dnorm</span> (x, </span>
+<span id="cb12-12"><a href="estimação.html#cb12-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">mean=</span>mu, </span>
+<span id="cb12-13"><a href="estimação.html#cb12-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">sd=</span>dp), </span>
+<span id="cb12-14"><a href="estimação.html#cb12-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb12-15"><a href="estimação.html#cb12-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty=</span><span class="dv">1</span>,</span>
+<span id="cb12-16"><a href="estimação.html#cb12-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">lwd=</span><span class="dv">2</span>,</span>
+<span id="cb12-17"><a href="estimação.html#cb12-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Observamos que a variável altura tem uma distribuição simétrica com média = 1.598m e desvio padrão = 0.065m, onde a altura mínima = 1.4m e a máxima = 1.85m.</p>
+</div>
+</div>
+<div id="distribuição-amostral" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Distribuição Amostral<a href="estimação.html#distribuição-amostral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A principal preocupação da <em>inferência estatística</em> é com a qualidade das estimativas dos parâmetros. Procura responder a pergunta: “Quão certos estamos de que a média <span class="math inline">\(\overline{x}\)</span> está proxima da verdadeira média <span class="math inline">\(\mu\)</span>. A compreensão deste conhecimento é a base da estatística.</p>
+<p>Vamos considerar, para fins didáticos, as 1368 mulheres como a <strong>população-alvo</strong> para qual queremos fazer inferência. Dessa forma, vamos extrair uma amostra de n = 30, dessa população, usando a função <code>sample ()</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="estimação.html#cb13-1" aria-hidden="true" tabindex="-1"></a>amostra1 <span class="ot">&lt;-</span> <span class="fu">sample</span> (dados<span class="sc">$</span>altura, <span class="dv">30</span>)</span></code></pre></div>
+<p>Se queremos estimar a média da população com base na <code>amostra1</code> , a maneira mais intuitiva de fazer isso é simplesmente calcular a média.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="estimação.html#cb14-1" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostra1)</span>
+<span id="cb14-2"><a href="estimação.html#cb14-2" aria-hidden="true" tabindex="-1"></a>mu1</span></code></pre></div>
+<pre><code>## [1] 1.612667</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="estimação.html#cb16-1" aria-hidden="true" tabindex="-1"></a>dp1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(amostra1)</span>
+<span id="cb16-2"><a href="estimação.html#cb16-2" aria-hidden="true" tabindex="-1"></a>dp1</span></code></pre></div>
+<pre><code>## [1] 0.06485705</code></pre>
+<p>A média da amostra <span class="math inline">\(\overline{x}\)</span> = 1.613 é chamada de <strong>estimativa pontual</strong> da média da população. Se pudermos escolher apenas um valor para estimar a média da população, essa é nossa melhor estimativa.</p>
+<p>Suponha que uma nova amostra de 30 gestantes seja selecionada e a média recalculada. Provavelmente, não obteremos exatamente a mesma resposta que obtivemos, usando o conjunto de dados <code>amostra1.</code></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="estimação.html#cb18-1" aria-hidden="true" tabindex="-1"></a>amostra2 <span class="ot">&lt;-</span> <span class="fu">sample</span> (dados<span class="sc">$</span>altura, <span class="dv">30</span>)</span>
+<span id="cb18-2"><a href="estimação.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="estimação.html#cb18-3" aria-hidden="true" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostra2)</span>
+<span id="cb18-4"><a href="estimação.html#cb18-4" aria-hidden="true" tabindex="-1"></a>mu2</span></code></pre></div>
+<pre><code>## [1] 1.618</code></pre>
+<p>As estimativas geralmente variam de uma amostra para outra e, essa <strong>variação amostral</strong>, sugere que nossa estimativa pode ser próxima, mas não será exatamente igual ao parâmetro, <span class="math inline">\(\mu\)</span>. O conjunto das possíveis médias amostrais de uma população constituem uma <strong>distribuição amostral das médias</strong>.
+Isto também é valido para as estimativas pontuais de outros parâmetros populacionais, como mediana, coeficiente de variação, desvio padrão, por exemplo.</p>
+<p>As estimativas geralmente não são exatamente iguais à verdade, mas ficam melhores à medida que mais dados se tornam disponíveis. Ou seja, a média de uma sequência de médias amostrais se aproxima da verdadeira média e a média de todas as possíveia médias é igual a média verdadeira.</p>
+<blockquote>
+<p><font size=2>A <strong>distribuição amostral</strong> representa a distribuição das estimativas pontuais com base em amostras de tamanho fixo de uma determinada população. É útil pensar em uma estimativa pontual específica como sendo extraída de tal distribuição. Compreender o conceito de uma distribuição amostral é fundamental para compreender a inferência estatística.</font></p>
+</blockquote>
+</div>
+<div id="erro-padrão" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Erro Padrão<a href="estimação.html#erro-padrão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponha que se selecione uma quantidade grande de amostras dessa população de gestantes, por exemplo 5000 amostras. Somente podemos realizar isso porque temos disponível todo o conjunto de dados da população, definido, para fins didático, como sendo as alturas das 1368 gestantes. Na prática, isto é muito difícil de acontecer pela quase impossibilidade de se analisar toda a população.</p>
+<p>Se fizermos isso, podemos construir uma distribuição amostral para a média da amostra quando o tamanho da amostra é 30, mostrado na Figura.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>A distribuição amostral exibida é unimodal e praticamente simétrica. Também está centrada exatamente na média real da população: <span class="math inline">\(\mu\)</span> = 1.598, linha vertical vermelha. Isso faz sentido. As médias da amostra devem tender a “cair em torno” da média da população.</p>
+<p>Podemos ver que as médias amostrais possuem alguma variabilidade em torno da média da população, que pode ser quantificada usando o desvio padrão desta distribuição de médias amostrais: <span class="math inline">\(\sigma_\overline{x}\)</span>= 0.012. O desvio padrão das médias amostrais nos diz o quão longe a estimativa típica está da média real da população, 1,598 m. Também descreve o erro típico da estimativa pontual e, por esse motivo, costumamos chamar esse desvio padrão de <strong>erro padrão (EP)</strong> da estimativa.</p>
+<blockquote>
+<p><font size=2>O desvio padrão associado às estimativas é chamado de <strong>erro padrão</strong>. Descreve o erro ou incerteza típica associada à estimativa. Está associado à <strong>precisão</strong> com que estimamos o parâmetro da população.</font></p>
+</blockquote>
+<p>No exemplo que estamos trabalhando, conhecemos o desvio padrão da população, (<span class="math inline">\(\sigma\)</span> = 0.065). Matematicamente, o erro padrão é calculado, usando a fórmula</p>
+<p><span class="math display">\[
+\sigma_\overline{x}=\frac{\sigma}{\sqrt{n}}=\frac{0,065}{\sqrt{30}}=0.012
+\]</span></p>
+<p>O <strong>desvio padrão da população é tipicamente desconhecido</strong>. Ao considerar o caso da estimativa pontual <span class="math inline">\(\overline{x}\)</span>, há um problema: não há como estimar o erro padrão a partir de uma única amostra. No entanto, a teoria estatística, usando o teorema do limite central, fornece uma solução para esse problema. A estimativa pontual tende a ser suficientemente boa quando o tamanho da amostra é de pelo menos 30 e a distribuição da população não é fortemente assimétrica.<br />
+Assim, geralmente, usamos apenas o desvio padrão da amostra, <span class="math inline">\(s\)</span>, em vez de <span class="math inline">\(\sigma\)</span>. Quando o tamanho da amostra for menor que 30, precisaremos usar um método para contabilizar a incerteza extra no erro padrão (ver adiante).<br />
+Usando o desvio padrão, <span class="math inline">\(s\)</span>, da amostra no lugar do desvio padrão, <span class="math inline">\(\sigma\)</span>, da população, a equação acima, fica assim:</p>
+<p><span class="math display">\[
+EP_\overline{x}=\frac{s}{\sqrt{n}}
+\]</span></p>
+</div>
+<div id="intervalo-de-confiança-com-desvio-padrão-populacional-conhecido" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Intervalo de Confiança com Desvio Padrão Populacional Conhecido<a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-conhecido" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vimos que fornecer uma estimativa pontual para um parâmetro populacional, como a média, raramente é uma medida exata, perfeita. Logo, a atitude lógica é fornecer uma faixa plausível de valores para o parâmetro populacional.</p>
+<p>Este intervalo de valores plausíveis para o parâmetro da população é chamado de <strong>intervalo de confiança</strong>. De acordo com a interessante imagem do <em>OpenIntro Statistics</em> (2015), usar apenas uma estimativa pontual é como pescar em um lago turvo com uma lança e usar um intervalo de confiança é como pescar com uma rede. Ou seja, se usarmos apenas uma estimativa pontual, provavelmente, não atingiremos o parâmetro populacional, entretanto, se usarmos uma gama de valores - um intervalo de confiança - aumentamos a probabilidade de incluirmos o parâmetro.</p>
+<p>A estimativa pontual é o mais provável valor do parâmetro e, portanto, faz sentido construir um intervalo ao redor desta estimativa. O erro padrão, que é uma medida da incerteza associada à estimativa pontual, fornece uma orientação para a magnitude do intervalo de confiança.</p>
+<p>O erro padrão representa o desvio padrão associado à estimativa e, aproximadamente, 95% das vezes, a estimativa estará dentro de 2 erros padrão do parâmetro. Se o intervalo tiver um tamanho <span class="math inline">\(\pm\)</span> 2 erros padrão da estimativa pontual, podemos ter cerca de 95% de certeza de que o parâmetro verdadeiro estará incluido nele:</p>
+<p><span class="math display">\[
+estimativa\ pontual\pm 2\times EP
+\]</span>
+Este valor de <span class="math inline">\(\pm2\times EP\)</span> é denominado de <strong>margem de erro (me)</strong> e é um valor aproximado. No modelo normal, podemos tornar isso mais preciso usando 1.96 no lugar de 2.</p>
+<p><span class="math display">\[
+estimativa\ pontual\pm 1,96\times EP
+\]</span></p>
+<div id="interpretação-do-intervalo-de-confiança" class="section level3 hasAnchor" number="12.6.1">
+<h3><span class="header-section-number">12.6.1</span> Interpretação do Intervalo de Confiança<a href="estimação.html#interpretação-do-intervalo-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Qual o significado de <em>95% de confiança</em>? Para compreender isso, vamos selecionar 20 amostras de n = 30 da população de mulheres e calcular, para cada amostra, a média da <code>altura</code> e o seu intervalo de confiança de 95%. Então, 95% dos intervalos devem conter a média populacional, <span class="math inline">\(\mu\)</span>. Em outras palavras, das 20 amostras que selecionamos, aleatoriamente, existe probabilidade de que uma delas (5%) não contenha a média da população, linha vermelha horizontal, na figura.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>A média dessas médias amostrais é igual 1.598m, a mesma média da população 1.598m, com arredondamento até a terceira casa decimal, um erro da ordem de milimetros na altura.</p>
+<blockquote>
+<p><font size=2> OBSERVAÇÃO: Havendo curiosidade, o banco de dados usado, nestes cálculos e construção do gráfico acima, encontra-se <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosIC.xlsx">aqui</a>. Onde <em>x</em> são as amostras, <em>y</em> é a média de cada amostra e <em>linf</em> e <em>lsup</em> sãos os limites inferior e superior dos intervalos de confiança de cada amostra, respectivamente.</font></p>
+</blockquote>
+</div>
+<div id="exercício-1" class="section level3 hasAnchor" number="12.6.2">
+<h3><span class="header-section-number">12.6.2</span> Exercício 1<a href="estimação.html#exercício-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Extraia amostras de n = 30, 50, 100 e 1000 da população de gestantes, usada anteriormente, e calcule a média e o <span class="math inline">\(IC_{95\%}\)</span> para cada amostra e interprete os resutados.</p>
+<div id="solução" class="section level4 hasAnchor" number="12.6.2.1">
+<h4><span class="header-section-number">12.6.2.1</span> Solução<a href="estimação.html#solução" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Amostra A - n = 30</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="estimação.html#cb20-1" aria-hidden="true" tabindex="-1"></a>amostra_A <span class="ot">&lt;-</span> <span class="fu">sample</span>(dados<span class="sc">$</span>altura, <span class="dv">30</span>)</span>
+<span id="cb20-2"><a href="estimação.html#cb20-2" aria-hidden="true" tabindex="-1"></a>mu_A <span class="ot">&lt;-</span> <span class="fu">mean</span> (amostra_A)</span>
+<span id="cb20-3"><a href="estimação.html#cb20-3" aria-hidden="true" tabindex="-1"></a>mu_A</span></code></pre></div>
+<pre><code>## [1] 1.610667</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="estimação.html#cb22-1" aria-hidden="true" tabindex="-1"></a>dp_A <span class="ot">&lt;-</span> <span class="fu">sd</span> (amostra_A)</span>
+<span id="cb22-2"><a href="estimação.html#cb22-2" aria-hidden="true" tabindex="-1"></a>EP_A <span class="ot">&lt;-</span> dp_A<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">30</span>)</span>
+<span id="cb22-3"><a href="estimação.html#cb22-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb22-4"><a href="estimação.html#cb22-4" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span>
+<span id="cb22-5"><a href="estimação.html#cb22-5" aria-hidden="true" tabindex="-1"></a>me_A <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_A</span>
+<span id="cb22-6"><a href="estimação.html#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="estimação.html#cb22-7" aria-hidden="true" tabindex="-1"></a>linf_A <span class="ot">&lt;-</span> mu_A <span class="sc">-</span> me_A </span>
+<span id="cb22-8"><a href="estimação.html#cb22-8" aria-hidden="true" tabindex="-1"></a>lsup_A <span class="ot">&lt;-</span> mu_A <span class="sc">+</span> me_A</span>
+<span id="cb22-9"><a href="estimação.html#cb22-9" aria-hidden="true" tabindex="-1"></a>ic_A <span class="ot">&lt;-</span> <span class="fu">c</span>(linf_A, lsup_A)</span>
+<span id="cb22-10"><a href="estimação.html#cb22-10" aria-hidden="true" tabindex="-1"></a>ic_A</span></code></pre></div>
+<pre><code>## [1] 1.584541 1.636793</code></pre>
+<p><strong>Amostra B - n = 50</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="estimação.html#cb24-1" aria-hidden="true" tabindex="-1"></a>amostra_B <span class="ot">&lt;-</span> <span class="fu">sample</span>(dados<span class="sc">$</span>altura, <span class="dv">50</span>)</span>
+<span id="cb24-2"><a href="estimação.html#cb24-2" aria-hidden="true" tabindex="-1"></a>mu_B <span class="ot">&lt;-</span> <span class="fu">mean</span> (amostra_B)</span>
+<span id="cb24-3"><a href="estimação.html#cb24-3" aria-hidden="true" tabindex="-1"></a>mu_B</span></code></pre></div>
+<pre><code>## [1] 1.5988</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="estimação.html#cb26-1" aria-hidden="true" tabindex="-1"></a>dp_B <span class="ot">&lt;-</span> <span class="fu">sd</span> (amostra_B)</span>
+<span id="cb26-2"><a href="estimação.html#cb26-2" aria-hidden="true" tabindex="-1"></a>EP_B <span class="ot">&lt;-</span> dp_B<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)</span>
+<span id="cb26-3"><a href="estimação.html#cb26-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb26-4"><a href="estimação.html#cb26-4" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span>
+<span id="cb26-5"><a href="estimação.html#cb26-5" aria-hidden="true" tabindex="-1"></a>me_B <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_B</span>
+<span id="cb26-6"><a href="estimação.html#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="estimação.html#cb26-7" aria-hidden="true" tabindex="-1"></a>linf_B <span class="ot">&lt;-</span> mu_B <span class="sc">-</span> me_B </span>
+<span id="cb26-8"><a href="estimação.html#cb26-8" aria-hidden="true" tabindex="-1"></a>lsup_B <span class="ot">&lt;-</span> mu_B <span class="sc">+</span> me_B</span>
+<span id="cb26-9"><a href="estimação.html#cb26-9" aria-hidden="true" tabindex="-1"></a>ic_B <span class="ot">&lt;-</span> <span class="fu">c</span>(linf_B, lsup_B)</span>
+<span id="cb26-10"><a href="estimação.html#cb26-10" aria-hidden="true" tabindex="-1"></a>ic_B</span></code></pre></div>
+<pre><code>## [1] 1.583437 1.614163</code></pre>
+<p><strong>Amostra C - n = 100</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="estimação.html#cb28-1" aria-hidden="true" tabindex="-1"></a>amostra_C <span class="ot">&lt;-</span> <span class="fu">sample</span>(dados<span class="sc">$</span>altura, <span class="dv">100</span>)</span>
+<span id="cb28-2"><a href="estimação.html#cb28-2" aria-hidden="true" tabindex="-1"></a>mu_C <span class="ot">&lt;-</span> <span class="fu">mean</span> (amostra_C)</span>
+<span id="cb28-3"><a href="estimação.html#cb28-3" aria-hidden="true" tabindex="-1"></a>mu_C</span></code></pre></div>
+<pre><code>## [1] 1.6086</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="estimação.html#cb30-1" aria-hidden="true" tabindex="-1"></a>dp_C <span class="ot">&lt;-</span> <span class="fu">sd</span> (amostra_C)</span>
+<span id="cb30-2"><a href="estimação.html#cb30-2" aria-hidden="true" tabindex="-1"></a>EP_C <span class="ot">&lt;-</span> dp_C<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">100</span>)</span>
+<span id="cb30-3"><a href="estimação.html#cb30-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb30-4"><a href="estimação.html#cb30-4" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span>
+<span id="cb30-5"><a href="estimação.html#cb30-5" aria-hidden="true" tabindex="-1"></a>me_C <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_C</span>
+<span id="cb30-6"><a href="estimação.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="estimação.html#cb30-7" aria-hidden="true" tabindex="-1"></a>linf_C <span class="ot">&lt;-</span> mu_C <span class="sc">-</span> me_C </span>
+<span id="cb30-8"><a href="estimação.html#cb30-8" aria-hidden="true" tabindex="-1"></a>lsup_C <span class="ot">&lt;-</span> mu_C <span class="sc">+</span> me_C</span>
+<span id="cb30-9"><a href="estimação.html#cb30-9" aria-hidden="true" tabindex="-1"></a>ic_C <span class="ot">&lt;-</span> <span class="fu">c</span>(linf_C, lsup_C)</span>
+<span id="cb30-10"><a href="estimação.html#cb30-10" aria-hidden="true" tabindex="-1"></a>ic_C</span></code></pre></div>
+<pre><code>## [1] 1.595659 1.621541</code></pre>
+<p><strong>Amostra D - n = 1000</strong></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="estimação.html#cb32-1" aria-hidden="true" tabindex="-1"></a>amostra_D <span class="ot">&lt;-</span> <span class="fu">sample</span>(dados<span class="sc">$</span>altura, <span class="dv">1000</span>)</span>
+<span id="cb32-2"><a href="estimação.html#cb32-2" aria-hidden="true" tabindex="-1"></a>mu_D <span class="ot">&lt;-</span> <span class="fu">mean</span> (amostra_D)</span>
+<span id="cb32-3"><a href="estimação.html#cb32-3" aria-hidden="true" tabindex="-1"></a>mu_D</span></code></pre></div>
+<pre><code>## [1] 1.59823</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="estimação.html#cb34-1" aria-hidden="true" tabindex="-1"></a>dp_D <span class="ot">&lt;-</span> <span class="fu">sd</span> (amostra_D)</span>
+<span id="cb34-2"><a href="estimação.html#cb34-2" aria-hidden="true" tabindex="-1"></a>EP_D <span class="ot">&lt;-</span> dp_D<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">1000</span>)</span>
+<span id="cb34-3"><a href="estimação.html#cb34-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb34-4"><a href="estimação.html#cb34-4" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span>
+<span id="cb34-5"><a href="estimação.html#cb34-5" aria-hidden="true" tabindex="-1"></a>me_D <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_D</span>
+<span id="cb34-6"><a href="estimação.html#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="estimação.html#cb34-7" aria-hidden="true" tabindex="-1"></a>linf_D <span class="ot">&lt;-</span> mu_D <span class="sc">-</span> me_D </span>
+<span id="cb34-8"><a href="estimação.html#cb34-8" aria-hidden="true" tabindex="-1"></a>lsup_D <span class="ot">&lt;-</span> mu_D <span class="sc">+</span> me_D</span>
+<span id="cb34-9"><a href="estimação.html#cb34-9" aria-hidden="true" tabindex="-1"></a>ic_D <span class="ot">&lt;-</span> <span class="fu">c</span>(linf_D, lsup_D)</span>
+<span id="cb34-10"><a href="estimação.html#cb34-10" aria-hidden="true" tabindex="-1"></a>ic_D</span></code></pre></div>
+<pre><code>## [1] 1.594189 1.602271</code></pre>
+<p><strong>Gráfico</strong></p>
+<p><em><a href="anchor">1ª Etapa</a></em>: Criar um dataframe com as médias e os limites inferiores e superiores de cada amostra:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="estimação.html#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A_30&quot;</span>, <span class="st">&quot;B_50&quot;</span>, <span class="st">&quot;C_100&quot;</span>, <span class="st">&quot;D_1000&quot;</span>)</span>
+<span id="cb36-2"><a href="estimação.html#cb36-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(mu_A, mu_B, mu_C, mu_D)</span>
+<span id="cb36-3"><a href="estimação.html#cb36-3" aria-hidden="true" tabindex="-1"></a>linf <span class="ot">&lt;-</span> <span class="fu">c</span>(linf_A, linf_B, linf_C, linf_D)</span>
+<span id="cb36-4"><a href="estimação.html#cb36-4" aria-hidden="true" tabindex="-1"></a>lsup <span class="ot">&lt;-</span> <span class="fu">c</span>(lsup_A, lsup_B, lsup_C, lsup_D)</span>
+<span id="cb36-5"><a href="estimação.html#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="estimação.html#cb36-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y, linf, lsup)</span></code></pre></div>
+<p><em><a href="anchor">2ª Etapa</a></em>: Criar o gráfico:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="estimação.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span>   </span>
+<span id="cb37-2"><a href="estimação.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="estimação.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> linf, <span class="at">ymax =</span> lsup), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="estimação.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept=</span><span class="fl">1.598</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="estimação.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="estimação.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Altura (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="estimação.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span> (<span class="st">&quot;Amostras&quot;</span>)<span class="sc">+</span></span>
+<span id="cb37-8"><a href="estimação.html#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><strong>Interpretação</strong></p>
+<p>O gráfico mostra, claramente, que à medida que o tamanho amostral aumenta, diminui o intervalo de confiança, tornando as estimativas mais precisas.</p>
+</div>
+</div>
+<div id="outros-intervalos-de-confiança" class="section level3 hasAnchor" number="12.6.3">
+<h3><span class="header-section-number">12.6.3</span> Outros Intervalos de Confiança<a href="estimação.html#outros-intervalos-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>É possível considerar intervalos de confiança em que o nível de confiança é um pouco superior a 95%, por exemplo 99%. Pense novamente na analogia de tentar pegar um peixe: se quisermos ter mais certeza de que vamos pegar o peixe, devemos usar uma rede mais larga. Portanto, para criar um nível de confiança de 99%, também devemos ampliar nosso intervalo de 95%.<br />
+Por outro lado, se quisermos um intervalo com menor confiança, como 90%, precisamos tornar nosso intervalo original de 95% um pouco mais estreito.</p>
+<p>A estrutura do intervalo de confiança de 95%, visto anteriormente é igual a:</p>
+<p><span class="math display">\[
+estimativa\ pontual\pm 1,96\times EP
+\]</span>
+Como vemos o intervalo de confiança é determinado pela margem de erro (me) e esta é dependente do valor crítico de z que é igual a 1,96 quando o nível de confiança é 95%.<br />
+Para outros níveis de confiança, o <span class="math inline">\(z_{crítico}\)</span> se modifica de acordo o modelo normal e pode ser verificado no <strong>R</strong> com a função <code>qnorm ()</code>:</p>
+<blockquote>
+<p><font size=2> * Nível de confiança 99%: <span class="math inline">\(z_{crítico}\)</span> = 2.58<br />
+* Nível de confiança 90%: <span class="math inline">\(z_{crítico}\)</span> = 1.64</font></p>
+</blockquote>
+<p>Dessa forma, a probabilidade de Z estar entre -1,64 e +1,64 é de 90%, entre -1,96 e +1,96 é de 95% e entre -2,58 e +2,58 é de 99%. Observa-se que à medida que se aumenta o nível de confiança o aumento o intervalo entre os limite inferior e superior.</p>
+</div>
+<div id="exercício-2" class="section level3 hasAnchor" number="12.6.4">
+<h3><span class="header-section-number">12.6.4</span> Exercício 2<a href="estimação.html#exercício-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use a amostra A do exercício 1 e calcule o intervalo de confiança de de 90 e 99%. Compare os resultados.</p>
+<div id="solução-1" class="section level4 hasAnchor" number="12.6.4.1">
+<h4><span class="header-section-number">12.6.4.1</span> Solução<a href="estimação.html#solução-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong><span class="math inline">\(IC_{99\%}\)</span></strong></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="estimação.html#cb38-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.01</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb38-2"><a href="estimação.html#cb38-2" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="estimação.html#cb39-1" aria-hidden="true" tabindex="-1"></a>me_A2 <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_A</span>
+<span id="cb39-2"><a href="estimação.html#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="estimação.html#cb39-3" aria-hidden="true" tabindex="-1"></a>ic_A2 <span class="ot">&lt;-</span> <span class="fu">c</span>((mu_A <span class="sc">-</span> me_A2), (mu_A <span class="sc">+</span> me_A2))</span>
+<span id="cb39-4"><a href="estimação.html#cb39-4" aria-hidden="true" tabindex="-1"></a>ic_A2</span></code></pre></div>
+<pre><code>## [1] 1.576331 1.645002</code></pre>
+<p><strong><span class="math inline">\(IC_{90\%}\)</span></strong></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="estimação.html#cb41-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.10</span>                         <span class="co"># Nível de significância</span></span>
+<span id="cb41-2"><a href="estimação.html#cb41-2" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>))           <span class="co"># z crítico</span></span>
+<span id="cb41-3"><a href="estimação.html#cb41-3" aria-hidden="true" tabindex="-1"></a>me_A3 <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP_A</span>
+<span id="cb41-4"><a href="estimação.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="estimação.html#cb41-5" aria-hidden="true" tabindex="-1"></a>ic_A3 <span class="ot">&lt;-</span> <span class="fu">c</span>((mu_A <span class="sc">-</span> me_A3), (mu_A <span class="sc">+</span> me_A3))</span>
+<span id="cb41-6"><a href="estimação.html#cb41-6" aria-hidden="true" tabindex="-1"></a>ic_A3</span></code></pre></div>
+<pre><code>## [1] 1.588741 1.632592</code></pre>
+<p><strong>Interpretação</strong></p>
+<p>Repetindo a intervalo de confiança de 95% para comparar:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="estimação.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ic_A</span></code></pre></div>
+<pre><code>## [1] 1.584541 1.636793</code></pre>
+<p>Observamos que os intervalos aumentam progressivamente com o aumento da confiança. Veja os gráficos abaixo, criados com a função <code>shadeform ()</code>, carregada no início do capítulo.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="estimação.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb45-2"><a href="estimação.html#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="estimação.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">shadenorm</span>(<span class="at">outside =</span> <span class="fu">c</span>(<span class="fl">1.64</span>, <span class="sc">-</span><span class="fl">1.64</span>), <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>)</span>
+<span id="cb45-4"><a href="estimação.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="at">h =</span> <span class="dv">0</span>)</span>
+<span id="cb45-5"><a href="estimação.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="st">&quot;90%&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb45-6"><a href="estimação.html#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="estimação.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shadenorm</span>(<span class="at">outside =</span> <span class="fu">c</span>(<span class="fl">1.96</span>, <span class="sc">-</span><span class="fl">1.96</span>), <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>)</span>
+<span id="cb45-8"><a href="estimação.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="at">h =</span> <span class="dv">0</span>)</span>
+<span id="cb45-9"><a href="estimação.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="st">&quot;95%&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb45-10"><a href="estimação.html#cb45-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="estimação.html#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shadenorm</span>(<span class="at">outside =</span> <span class="fu">c</span>(<span class="fl">2.58</span>, <span class="sc">-</span><span class="fl">2.58</span>), <span class="at">color =</span> <span class="st">&quot;steelblue&quot;</span>)</span>
+<span id="cb45-12"><a href="estimação.html#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span> (<span class="at">h =</span> <span class="dv">0</span>)</span>
+<span id="cb45-13"><a href="estimação.html#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="st">&quot;99%&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="estimação.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="intervalo-de-confiança-com-desvio-padrão-populacional-desconhecido" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Intervalo de Confiança com Desvio Padrão Populacional Desconhecido<a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-desconhecido" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Com amostras pequenas, usar o modelo normal para construir intervalos de confiança, gera um erro, pois os pressupostos do teorema do limite central não são respeitados.
+Quando o desvio padrão populacional, <span class="math inline">\(\sigma\)</span>, é desconhecido e o tamanho amostral é pequeno (&lt; 30), a estimação da média populacional é feita usando a distribuição <em>t</em>.</p>
+<div id="distribuição-t" class="section level3 hasAnchor" number="12.7.1">
+<h3><span class="header-section-number">12.7.1</span> Distribuição <em>t</em><a href="estimação.html#distribuição-t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A distribuição <em>t</em>, desenvolvida por <em>William Sealy Gosset</em>, em 1908, é semelhante à distribuição normal. Como a curva de distribuição normal, a curva de distribuição <em>t</em> é unimodal, simétrica (em forma de sino) em torno da média e nunca encontra o eixo horizontal. A área total sob uma curva de distribuição <em>t</em> é 1 ou 100%. A curva da distribuição <em>t</em> é mais plana do que a curva de distribuição normal padrão. Em outras palavras, ela é mais achatada e mais espalhada. No entanto, conforme o tamanho da amostra aumenta, a distribuição <em>t</em> aproxima-se da distribuição normal padrão.</p>
+<p>O formato de uma curva de distribuição <em>t</em> particular depende do número de graus de liberdade. O número de graus de liberdade (<em>gl</em>) para uma distribuição <em>t</em> é igual ao tamanho da amostra menos um, ou seja, <span class="math inline">\(gl=n-1\)</span>.</p>
+<p>O número de graus de liberdade é o único parâmetro da distribuição <em>t</em>. Há uma diferente distribuição <em>t</em> para cada número de graus de liberdade, portanto, a distribuição <em>t</em> se constitui em uma família de distribuições.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Como a distribuição normal padrão, a média da distribuição padrão <em>t</em> é 0. Entretanto, diferente da distribuição normal padrão, cujo desvio padrão é 1, o desvio padrão de uma distribuição <em>t</em> é <span class="math inline">\(\sqrt gl⁄(gl-2)\)</span> , para gl &gt; 2, que sempre é maior do que 1. Por exemplo, se <span class="math inline">\(gl = 8\)</span>, o desvio padrão será:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="estimação.html#cb47-1" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="dv">8</span><span class="sc">/</span>(<span class="dv">8-2</span>))</span>
+<span id="cb47-2"><a href="estimação.html#cb47-2" aria-hidden="true" tabindex="-1"></a>dp</span></code></pre></div>
+<pre><code>## [1] 1.154701</code></pre>
+<p>Assim, o desvio padrão de uma distribuição <em>t</em> é maior do que o desvio padrão da distribuição normal padrão.<br />
+Os valores de <span class="math inline">\(t_{crítico}\)</span> podem ser obtidos usando a função <code>qt ()</code> que usa os seguintes argumentos:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argumento</th>
+<th align="left">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">p</td>
+<td align="left">probabilidade, igual a <span class="math inline">\(1-\alpha/2\)</span>, considerando-se bicaudal e <span class="math inline">\(1-\alpha\)</span> quando unicaudal;</td>
+</tr>
+<tr class="even">
+<td align="left">df</td>
+<td align="left">graus de liberdade;</td>
+</tr>
+<tr class="odd">
+<td align="left">lower.tail</td>
+<td align="left">lógico; se <a href="anchor">TRUE</a>, informa a probabilidade da cauda inferior. O padrão é <a href="anchor">TRUE</a>.</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Assim, o valor do <span class="math inline">\(t_{crítico}\)</span> para <span class="math inline">\(gl=10\)</span> é:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="estimação.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">10</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2.228139</code></pre>
+<p>Dessa forma, a área compreendida entre <span class="math inline">\(t=\pm 2,23\)</span> é igual a 95%:</p>
+<p><span class="math display">\[
+p(-2,23\le t\le 2,23)=0,95
+\]</span>
+<img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p>Quando se considera apenas uma das caudas (unicaudal ou unilateral), o valor do <span class="math inline">\(t_{crítico}\)</span> para <span class="math inline">\(gl=10\)</span> é</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="estimação.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="dv">10</span>, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 1.812461</code></pre>
+<p>Assim, a área <span class="math inline">\(t \le 1,81\)</span> é igual a 95%</p>
+<p><span class="math display">\[
+p(t\le 1,81)=0,95
+\]</span></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="dados-para-o-cálculo-do-intervalo-de-confiança" class="section level3 hasAnchor" number="12.7.2">
+<h3><span class="header-section-number">12.7.2</span> Dados para o cálculo do intervalo de confiança<a href="estimação.html#dados-para-o-cálculo-do-intervalo-de-confiança" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos continuar com o banco de dados das altursa de 1368 gestantes, que consideramos a nossa população. Agora iremos trabalhar com uma amostra de 30 mulheres e fazer inferência para essa população, supondo que os parâmetros dessa população sejam desconhecidos.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="estimação.html#cb53-1" aria-hidden="true" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span> (dados<span class="sc">$</span>altura, <span class="dv">30</span>)</span></code></pre></div>
+<p>Se queremos estimar a média da população com base na amostra, a maneira mais intuitiva de fazer isso é, simplesmente, calcular a média e o desvio padrão da amostra.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="estimação.html#cb54-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(amostra)</span>
+<span id="cb54-2"><a href="estimação.html#cb54-2" aria-hidden="true" tabindex="-1"></a>mu</span></code></pre></div>
+<pre><code>## [1] 1.605667</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="estimação.html#cb56-1" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="fu">sd</span>(amostra)</span>
+<span id="cb56-2"><a href="estimação.html#cb56-2" aria-hidden="true" tabindex="-1"></a>dp</span></code></pre></div>
+<pre><code>## [1] 0.04789956</code></pre>
+<p>Para termos maior precisão, vamos calcular os intervalos de confiança para esta estimativa, usando a distribuição <em>t</em>.</p>
+</div>
+<div id="cálculo-do-intervalo-de-confiança-com-sigma-desconhecido" class="section level3 hasAnchor" number="12.7.3">
+<h3><span class="header-section-number">12.7.3</span> Cálculo do Intervalo de Confiança com <span class="math inline">\(\sigma\)</span> desconhecido<a href="estimação.html#cálculo-do-intervalo-de-confiança-com-sigma-desconhecido" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cálculo-manual" class="section level4 hasAnchor" number="12.7.3.1">
+<h4><span class="header-section-number">12.7.3.1</span> Cálculo manual<a href="estimação.html#cálculo-manual" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Temos uma amostra de <span class="math inline">\(n = 30\)</span>, <span class="math inline">\(\overline x = 1.606\)</span> e
+<span class="math inline">\(s = 0.048\)</span>. Vamos calcular os outros dados para obter o intervalo de confiança, usando uma distribuição <em>t</em> bicaudal e um nível de significância <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="estimação.html#cb58-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span>  <span class="dv">30</span></span>
+<span id="cb58-2"><a href="estimação.html#cb58-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb58-3"><a href="estimação.html#cb58-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb58-4"><a href="estimação.html#cb58-4" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<pre><code>## [1] 0.975</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="estimação.html#cb60-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb60-2"><a href="estimação.html#cb60-2" aria-hidden="true" tabindex="-1"></a>gl</span></code></pre></div>
+<pre><code>## [1] 29</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="estimação.html#cb62-1" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span>  <span class="fu">qt</span>(p, gl, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb62-2"><a href="estimação.html#cb62-2" aria-hidden="true" tabindex="-1"></a>tc</span></code></pre></div>
+<pre><code>## [1] 2.04523</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="estimação.html#cb64-1" aria-hidden="true" tabindex="-1"></a>EP <span class="ot">&lt;-</span> <span class="fu">round</span>(dp<span class="sc">/</span><span class="fu">sqrt</span>(n),<span class="dv">3</span>)</span>
+<span id="cb64-2"><a href="estimação.html#cb64-2" aria-hidden="true" tabindex="-1"></a>EP</span></code></pre></div>
+<pre><code>## [1] 0.009</code></pre>
+<p>Onde <em>p</em> é a probabilidade decorrente do nível de significância, <em>gl</em> são os graus de liberdade e <em>EP</em> é o erro padrão.
+Com dados necessátios, podemos calcular o intervalo de confiança de 95%:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="estimação.html#cb66-1" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">c</span>((mu <span class="sc">-</span> tc <span class="sc">*</span> EP), (mu <span class="sc">+</span> tc <span class="sc">*</span> EP))</span>
+<span id="cb66-2"><a href="estimação.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span> (ic,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.59 1.62</code></pre>
+<p>Ou seja, temos uma confiança 95% de que a média populacional desconhecida se encontra entre 1.59 m e 1.62 m.</p>
+</div>
+<div id="cálculo-usando-uma-função-do-r" class="section level4 hasAnchor" number="12.7.3.2">
+<h4><span class="header-section-number">12.7.3.2</span> Cálculo usando uma função do R<a href="estimação.html#cálculo-usando-uma-função-do-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O <strong>R</strong> possui algumas funções que calculam o intervalo de confiança para variáveis numéricas, baseadas na distribuição <em>t</em>. Entre elas, a função <code>CI (x, ci = 0.95)</code>, incluída no pacote <code>Rmisc</code>:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="estimação.html#cb68-1" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> <span class="fu">CI</span> (amostra, <span class="at">ci =</span> <span class="fl">0.95</span>)</span>
+<span id="cb68-2"><a href="estimação.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ic, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## upper  mean lower 
+##  1.62  1.61  1.59</code></pre>
+</div>
+</div>
+</div>
+<div id="intervalo-de-confiança-para-uma-proporção-populacional" class="section level2 hasAnchor" number="12.8">
+<h2><span class="header-section-number">12.8</span> Intervalo de Confiança para uma proporção populacional<a href="estimação.html#intervalo-de-confiança-para-uma-proporção-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Com frequência , necessitanos estimar uma proporção populacional. Como não é possível realizar um censo cada vez que se necessita encontrar o valor de uma proporção da população, normalmente se obtém resultados de pesquisas por amostragem. Portanto, para levar em conta a variabilidade nos resultados obtidos em diferentes pesquisas por amostragem, precisamos conhecer os procedimentos para estimar uma proporção da população</p>
+<div id="dados-para-estimar-a-proporção-populacional" class="section level3 hasAnchor" number="12.8.1">
+<h3><span class="header-section-number">12.8.1</span> Dados para estimar a proporção populacional<a href="estimação.html#dados-para-estimar-a-proporção-populacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vamos usar uma amostra aleatória de n = 60 da variável mater$fumo para estimar a proporção de mulheres fumantes.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="estimação.html#cb70-1" aria-hidden="true" tabindex="-1"></a>fumo <span class="ot">&lt;-</span> <span class="fu">sample</span> (mater<span class="sc">$</span>fumo, <span class="dv">60</span>)</span>
+<span id="cb70-2"><a href="estimação.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (fumo)</span></code></pre></div>
+<pre><code>##  num [1:60] 2 2 2 1 2 2 2 2 2 2 ...</code></pre>
+<p>A função <code>glimpse ()</code> nos mostra que temos 60 observações da variável <code>fumo</code> e que a mesma é do tipo numérica (<em>dbl</em>), 1 = sim e 2 = não, fumante e não fumante, respectivamente. Portanto, ela é uma variável categórica e deve ser transformada para fator.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="estimação.html#cb72-1" aria-hidden="true" tabindex="-1"></a>fumo <span class="ot">&lt;-</span> <span class="fu">factor</span> (fumo, </span>
+<span id="cb72-2"><a href="estimação.html#cb72-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ordered=</span><span class="cn">TRUE</span>, </span>
+<span id="cb72-3"><a href="estimação.html#cb72-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">levels =</span> <span class="fu">c</span> (<span class="dv">1</span>,<span class="dv">2</span>), </span>
+<span id="cb72-4"><a href="estimação.html#cb72-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> <span class="fu">c</span> (<span class="st">&quot;sim&quot;</span>, <span class="st">&quot;não&quot;</span>))</span></code></pre></div>
+</div>
+<div id="cálculo-da-estimativa-pontual-da-proporção" class="section level3 hasAnchor" number="12.8.2">
+<h3><span class="header-section-number">12.8.2</span> Cálculo da estimativa pontual da proporção<a href="estimação.html#cálculo-da-estimativa-pontual-da-proporção" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nesta amostra, a proporção de fumantes é:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="estimação.html#cb73-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">table</span>(fumo)</span>
+<span id="cb73-2"><a href="estimação.html#cb73-2" aria-hidden="true" tabindex="-1"></a>tab</span></code></pre></div>
+<pre><code>## fumo
+## sim não 
+##   9  51</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="estimação.html#cb75-1" aria-hidden="true" tabindex="-1"></a>tabFumo <span class="ot">&lt;-</span> <span class="fu">round</span> (<span class="fu">prop.table</span> (tab), <span class="dv">3</span>)</span>
+<span id="cb75-2"><a href="estimação.html#cb75-2" aria-hidden="true" tabindex="-1"></a>tabFumo</span></code></pre></div>
+<pre><code>## fumo
+##  sim  não 
+## 0.15 0.85</code></pre>
+</div>
+<div id="cálculo-do-intervalo-de-confiança-para-a-proporção" class="section level3 hasAnchor" number="12.8.3">
+<h3><span class="header-section-number">12.8.3</span> Cálculo do intervalo de confiança para a proporção<a href="estimação.html#cálculo-do-intervalo-de-confiança-para-a-proporção" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cálculo-manual-com-aproximação-normal" class="section level4 hasAnchor" number="12.8.3.1">
+<h4><span class="header-section-number">12.8.3.1</span> Cálculo Manual com Aproximação Normal<a href="estimação.html#cálculo-manual-com-aproximação-normal" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>1ª etapa</strong>: verificar a premissa de que quando a proporção populacional é desconhecida a proporção pontual (<span class="math inline">\(\hat p\)</span>) e o seu complemento (<span class="math inline">\(\hat q = 1 - \hat p\)</span>) multiplicados, cada um, por <span class="math inline">\(n\)</span>, devem ser maior do que 5.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="estimação.html#cb77-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb77-2"><a href="estimação.html#cb77-2" aria-hidden="true" tabindex="-1"></a>(tabFumo) <span class="sc">*</span> n</span></code></pre></div>
+<pre><code>## fumo
+## sim não 
+##   9  51</code></pre>
+<p>Ambos valores são maiores do que 5. Vamos adiante!</p>
+<p><strong>2ª Etapa</strong>: O intervalo pode ser estimado pela distribuição normal. O <span class="math inline">\(z_{crítico}\)</span> é calculado:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="estimação.html#cb79-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb79-2"><a href="estimação.html#cb79-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span>  <span class="dv">1</span> <span class="sc">-</span> alpha<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb79-3"><a href="estimação.html#cb79-3" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">qnorm</span> (p, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb79-4"><a href="estimação.html#cb79-4" aria-hidden="true" tabindex="-1"></a>zc <span class="ot">&lt;-</span> <span class="fu">round</span>(zc, <span class="dv">2</span>)</span>
+<span id="cb79-5"><a href="estimação.html#cb79-5" aria-hidden="true" tabindex="-1"></a>zc</span></code></pre></div>
+<pre><code>## [1] 1.96</code></pre>
+<p><strong>3ª Etapa</strong>: Cálculo do erro padrão da proporção (<span class="math inline">\(\sqrt \frac {\hat p \times \hat q}{n}\)</span>) e da margem de erro:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="estimação.html#cb81-1" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> tabFumo [<span class="dv">1</span>]</span>
+<span id="cb81-2"><a href="estimação.html#cb81-2" aria-hidden="true" tabindex="-1"></a>EP <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((prop <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> prop))<span class="sc">/</span>n)</span>
+<span id="cb81-3"><a href="estimação.html#cb81-3" aria-hidden="true" tabindex="-1"></a>me <span class="ot">&lt;-</span> zc <span class="sc">*</span> EP</span>
+<span id="cb81-4"><a href="estimação.html#cb81-4" aria-hidden="true" tabindex="-1"></a>me</span></code></pre></div>
+<pre><code>##        sim 
+## 0.09035154</code></pre>
+<p><strong>4ª Etapa</strong>: Intervalo de confiança</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="estimação.html#cb83-1" aria-hidden="true" tabindex="-1"></a>ic_prop <span class="ot">&lt;-</span> <span class="fu">c</span>((prop <span class="sc">-</span> me), (prop <span class="sc">+</span> me))</span>
+<span id="cb83-2"><a href="estimação.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ic_prop, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  sim  sim 
+## 0.06 0.24</code></pre>
+</div>
+<div id="cálculo-usando-uma-função-do-r-1" class="section level4 hasAnchor" number="12.8.3.2">
+<h4><span class="header-section-number">12.8.3.2</span> Cálculo usando uma função do R<a href="estimação.html#cálculo-usando-uma-função-do-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>O chamado <em>Intervalo de Confiança Exato</em> corrigem as deficiências da aproximaçãonormal. O R tem uma função para este cálculo: <code>BinomCI ()</code> do pacote <code>DescTools.</code> É preferível usar o método de Clopper e Pearson que fornece o IC exato.<br />
+Os argumentos da função <code>BinomCI</code> são:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argumento</th>
+<th align="left">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">x</td>
+<td align="left">é o número de desfechos, sucessos;</td>
+</tr>
+<tr class="even">
+<td align="left">n</td>
+<td align="left">é o tamanho da amostra, número de ensaios;</td>
+</tr>
+<tr class="odd">
+<td align="left">p</td>
+<td align="left">probabilidade, hipótese nula; se ignorada o padrão é 0,50;</td>
+</tr>
+<tr class="even">
+<td align="left">conf.level</td>
+<td align="left">nível de confiança, o padrão é 0.95;</td>
+</tr>
+<tr class="odd">
+<td align="left">method</td>
+<td align="left">possui vários métodos para calcular intervalos de confiança para uma proporção binomial como: “clopper-pearson” (exact interval), “wilson”, “wald”, “agresti-coull”, “jeffreys”, “modified wilson”, “modified jeffreys”, “arcsine”, “logit”, “witting”, “pratt”. O método padrão é o de “wilson”. Qualquer outro método, há necessidade de solicitar;</td>
+</tr>
+<tr class="even">
+<td align="left">sides</td>
+<td align="left">hipótese alternativa padrão “two.sided” (bilateral), mas pode ser “right” ou “left” (unilateral a direita ou a esquerda, respectivamente).</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="estimação.html#cb85-1" aria-hidden="true" tabindex="-1"></a>IC <span class="ot">&lt;-</span> <span class="fu">BinomCI</span> (tab[<span class="dv">1</span>], n, </span>
+<span id="cb85-2"><a href="estimação.html#cb85-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">conf.level =</span> <span class="fl">0.95</span>, </span>
+<span id="cb85-3"><a href="estimação.html#cb85-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">method =</span> <span class="st">&quot;clopper-pearson&quot;</span>)</span>
+<span id="cb85-4"><a href="estimação.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(IC, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##       est lwr.ci upr.ci
+## [1,] 0.15  0.071  0.266</code></pre>
+<p>Observe que existe uma pequena diferença entre os valores da aproximação normal e o exato, com método de “clopper-pearson”.</p>
+</div>
+</div>
+</div>
+<div id="leitura-adicional-4" class="section level2 hasAnchor" number="12.9">
+<h2><span class="header-section-number">12.9</span> Leitura Adicional<a href="estimação.html#leitura-adicional-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(Shafer_and_Zhang)/07%3A_Estimation" class="uri">https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(Shafer_and_Zhang)/07%3A_Estimation</a></p></li>
+<li><p>Daniel WD, Cross CL. Biostatistics: A Foundation for Analysis in the Health Sciences. Tenth Edition. Hoboken, NJ: Wiley; 2013.Estimation; p. 161-213.</p></li>
+<li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Intervalo de Confiança e Valor P;p.123-133.</p></li>
+<li><p>Diez DM, Barr CD, Çetinkaya-Rundel M. <strong>OpenIntro Statistics</strong>. Third Edition. Victoria, British Columbia: OpenIntro; 2015. Foudations for Inference; p. 168-218.</p></li>
+</ol>
+<p></br></p>
+<p></br></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuição-normal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/12-estimacao.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/12-estimacao.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
