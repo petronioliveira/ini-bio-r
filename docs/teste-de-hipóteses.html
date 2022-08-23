@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R" />
+  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R" />
+  
+  
+  
+
+<meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
+
+
+<meta name="date" content="2022-08-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimação.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">BioestatisticaR</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Dados</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#o-que-são-dado"><i class="fa fa-check"></i><b>1.1</b> O que são dado?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#população-e-amostra"><i class="fa fa-check"></i><b>1.2</b> População e Amostra</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#estimativas-e-parâmetros"><i class="fa fa-check"></i><b>1.3</b> Estimativas e Parâmetros</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#escalas-de-medição"><i class="fa fa-check"></i><b>1.4</b> Escalas de medição</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#escala-nominal"><i class="fa fa-check"></i><b>1.4.1</b> Escala Nominal</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#escala-ordinal"><i class="fa fa-check"></i><b>1.4.2</b> Escala Ordinal</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#escala-intervalar"><i class="fa fa-check"></i><b>1.4.3</b> Escala Intervalar</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#escala-de-razão"><i class="fa fa-check"></i><b>1.4.4</b> Escala de Razão</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>1.5</b> Tipos de Variáveis</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#variáveis-numéricas"><i class="fa fa-check"></i><b>1.5.1</b> Variáveis Numéricas</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#variáveis-categóricas"><i class="fa fa-check"></i><b>1.5.2</b> Variáveis Categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#variáveis-dependentes-e-independentes"><i class="fa fa-check"></i><b>1.6</b> Variáveis dependentes e independentes</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#leitura-adicional"><i class="fa fa-check"></i><b>1.7</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html"><i class="fa fa-check"></i><b>2</b> Ambiente do R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-software-r-no-windows"><i class="fa fa-check"></i><b>2.1</b> Instalação do software R no Windows</a></li>
+<li class="chapter" data-level="2.2" data-path="ambiente-do-r.html"><a href="ambiente-do-r.html#instalação-do-r-studio-no-windows"><i class="fa fa-check"></i><b>2.2</b> Instalação do R Studio no Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html"><i class="fa fa-check"></i><b>3</b> Iniciando o <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#interface-do-rstudio"><i class="fa fa-check"></i><b>3.1</b> Interface do <em>RStudio</em></a></li>
+<li class="chapter" data-level="3.2" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#iniciando-um-novo-projeto"><i class="fa fa-check"></i><b>3.2</b> Iniciando um novo projeto</a></li>
+<li class="chapter" data-level="3.3" data-path="iniciando-o-rstudio.html"><a href="iniciando-o-rstudio.html#primeiro-script"><i class="fa fa-check"></i><b>3.3</b> Primeiro Script</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html"><i class="fa fa-check"></i><b>4</b> Matemática Básica no <em>RStudio</em></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores"><i class="fa fa-check"></i><b>4.1</b> Operadores</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-aritméticos"><i class="fa fa-check"></i><b>4.1.1</b> Operadores aritméticos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-atribuição"><i class="fa fa-check"></i><b>4.1.2</b> Operadores de atribuição</a></li>
+<li class="chapter" data-level="4.1.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-de-comparação"><i class="fa fa-check"></i><b>4.1.3</b> Operadores de comparação</a></li>
+<li class="chapter" data-level="4.1.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#operadores-lógicos"><i class="fa fa-check"></i><b>4.1.4</b> Operadores lógicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#logarítimo"><i class="fa fa-check"></i><b>4.2</b> Logarítimo</a></li>
+<li class="chapter" data-level="4.3" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#raiz-quadrada"><i class="fa fa-check"></i><b>4.3</b> Raiz quadrada</a></li>
+<li class="chapter" data-level="4.4" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#resultado-absoluto"><i class="fa fa-check"></i><b>4.4</b> Resultado absoluto</a></li>
+<li class="chapter" data-level="4.5" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#potenciação"><i class="fa fa-check"></i><b>4.5</b> Potenciação</a></li>
+<li class="chapter" data-level="4.6" data-path="matemática-básica-no-rstudio.html"><a href="matemática-básica-no-rstudio.html#exercícios"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="pacotes.html"><a href="pacotes.html"><i class="fa fa-check"></i><b>5</b> Pacotes</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="pacotes.html"><a href="pacotes.html#repositórios-de-pacotes"><i class="fa fa-check"></i><b>5.1</b> Repositórios de pacotes</a></li>
+<li class="chapter" data-level="5.2" data-path="pacotes.html"><a href="pacotes.html#instalação-de-um-pacote"><i class="fa fa-check"></i><b>5.2</b> Instalação de um pacote</a></li>
+<li class="chapter" data-level="5.3" data-path="pacotes.html"><a href="pacotes.html#carregar-um-pacote"><i class="fa fa-check"></i><b>5.3</b> Carregar um pacote</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="pacotes.html"><a href="pacotes.html#carregar-mais-de-um-pacote"><i class="fa fa-check"></i><b>5.3.1</b> Carregar mais de um pacote</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="funções.html"><a href="funções.html"><i class="fa fa-check"></i><b>6</b> Funções</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="funções.html"><a href="funções.html#o-que-são-funções"><i class="fa fa-check"></i><b>6.1</b> O que são funções?</a></li>
+<li class="chapter" data-level="6.2" data-path="funções.html"><a href="funções.html#criando-funções"><i class="fa fa-check"></i><b>6.2</b> Criando funções</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="funções.html"><a href="funções.html#fórmula-geral"><i class="fa fa-check"></i><b>6.2.1</b> Fórmula geral</a></li>
+<li class="chapter" data-level="6.2.2" data-path="funções.html"><a href="funções.html#outros-exemplos"><i class="fa fa-check"></i><b>6.2.2</b> Outros exemplos</a></li>
+<li class="chapter" data-level="6.2.3" data-path="funções.html"><a href="funções.html#ativação-de-uma-função"><i class="fa fa-check"></i><b>6.2.3</b> Ativação de uma função</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html"><i class="fa fa-check"></i><b>7</b> Manipulando Dados no RStudio</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#vetores"><i class="fa fa-check"></i><b>7.1</b> Vetores</a></li>
+<li class="chapter" data-level="7.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#objetos"><i class="fa fa-check"></i><b>7.2</b> Objetos</a></li>
+<li class="chapter" data-level="7.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-numéricos"><i class="fa fa-check"></i><b>7.3</b> Manipulando dados numéricos</a></li>
+<li class="chapter" data-level="7.4" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#manipulando-dados-categóricos"><i class="fa fa-check"></i><b>7.4</b> Manipulando dados categóricos</a></li>
+<li class="chapter" data-level="7.5" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#dataframes-ou-banco-de-dados"><i class="fa fa-check"></i><b>7.5</b> Dataframes ou Banco de dados</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#criando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.1</b> Criando um banco de dados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#salvando-os-arquivos-no-seu-diretório"><i class="fa fa-check"></i><b>7.5.2</b> Salvando os arquivos no seu diretório</a></li>
+<li class="chapter" data-level="7.5.3" data-path="manipulando-dados-no-rstudio.html"><a href="manipulando-dados-no-rstudio.html#importando-um-banco-de-dados"><i class="fa fa-check"></i><b>7.5.3</b> Importando um banco de dados</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html"><i class="fa fa-check"></i><b>8</b> Sumarização dos dados</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-tendência-central"><i class="fa fa-check"></i><b>8.1</b> Medidas de tendência central</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média"><i class="fa fa-check"></i><b>8.1.1</b> Média</a></li>
+<li class="chapter" data-level="8.1.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#mediana"><i class="fa fa-check"></i><b>8.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="8.1.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#moda"><i class="fa fa-check"></i><b>8.1.3</b> Moda</a></li>
+<li class="chapter" data-level="8.1.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#quantil"><i class="fa fa-check"></i><b>8.1.4</b> Quantil</a></li>
+<li class="chapter" data-level="8.1.5" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#média-aparada"><i class="fa fa-check"></i><b>8.1.5</b> Média aparada</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>8.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#amplitude"><i class="fa fa-check"></i><b>8.2.1</b> Amplitude</a></li>
+<li class="chapter" data-level="8.2.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#intervalo-interquartil"><i class="fa fa-check"></i><b>8.2.2</b> Intervalo Interquartil</a></li>
+<li class="chapter" data-level="8.2.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#variância-e-desvio-padrão"><i class="fa fa-check"></i><b>8.2.3</b> Variância e Desvio Padrão</a></li>
+<li class="chapter" data-level="8.2.4" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>8.2.4</b> Coeficiente de Variação</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-descritivas-no-r"><i class="fa fa-check"></i><b>8.3</b> Funções descritivas no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-describe-e-describeby"><i class="fa fa-check"></i><b>8.3.1</b> Funções <code>describe</code> e <code>describeBy</code></a></li>
+<li class="chapter" data-level="8.3.2" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#funções-group_by-e-summarise"><i class="fa fa-check"></i><b>8.3.2</b> Funções <code>group_by</code> e <code>summarise</code></a></li>
+<li class="chapter" data-level="8.3.3" data-path="sumarização-dos-dados.html"><a href="sumarização-dos-dados.html#função-summary"><i class="fa fa-check"></i><b>8.3.3</b> Função <code>summary</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="tabelas.html"><a href="tabelas.html"><i class="fa fa-check"></i><b>9</b> Tabelas</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="tabelas.html"><a href="tabelas.html#pacotes-necessários"><i class="fa fa-check"></i><b>9.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="9.2" data-path="tabelas.html"><a href="tabelas.html#carregar-os-dados"><i class="fa fa-check"></i><b>9.2</b> Carregar os dados</a></li>
+<li class="chapter" data-level="9.3" data-path="tabelas.html"><a href="tabelas.html#exploração-ddos-dados"><i class="fa fa-check"></i><b>9.3</b> Exploração ddos dados</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="tabelas.html"><a href="tabelas.html#visão-geral"><i class="fa fa-check"></i><b>9.3.1</b> Visão Geral</a></li>
+<li class="chapter" data-level="9.3.2" data-path="tabelas.html"><a href="tabelas.html#transformações-das-variáveis"><i class="fa fa-check"></i><b>9.3.2</b> Transformações das variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência"><i class="fa fa-check"></i><b>9.4</b> Tabela de Frequência</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-categóricos"><i class="fa fa-check"></i><b>9.4.1</b> Tabela de frequência para dados categóricos</a></li>
+<li class="chapter" data-level="9.4.2" data-path="tabelas.html"><a href="tabelas.html#tabela-de-contingência-ou-cruzada"><i class="fa fa-check"></i><b>9.4.2</b> Tabela de contingência ou cruzada</a></li>
+<li class="chapter" data-level="9.4.3" data-path="tabelas.html"><a href="tabelas.html#tabela-de-frequência-para-dados-numéricos"><i class="fa fa-check"></i><b>9.4.3</b> Tabela de frequência para dados numéricos</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="tabelas.html"><a href="tabelas.html#construção-de-uma-tabela-com-o-pacote-gt"><i class="fa fa-check"></i><b>9.5</b> Construção de uma tabela com o pacote <code>gt</code></a></li>
+<li class="chapter" data-level="9.6" data-path="tabelas.html"><a href="tabelas.html#tabelas-com-o-pacote-getsummary"><i class="fa fa-check"></i><b>9.6</b> Tabelas com o pacote <code>getsummary</code></a></li>
+<li class="chapter" data-level="9.7" data-path="tabelas.html"><a href="tabelas.html#salvando-a-tabela"><i class="fa fa-check"></i><b>9.7</b> Salvando a tabela</a></li>
+<li class="chapter" data-level="9.8" data-path="tabelas.html"><a href="tabelas.html#leitura-adicional-1"><i class="fa fa-check"></i><b>9.8</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gráficos.html"><a href="gráficos.html"><i class="fa fa-check"></i><b>10</b> Gráficos</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gráficos.html"><a href="gráficos.html#pacotes-necessários-1"><i class="fa fa-check"></i><b>10.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="10.2" data-path="gráficos.html"><a href="gráficos.html#carregar-os-dados-1"><i class="fa fa-check"></i><b>10.2</b> Carregar os Dados</a></li>
+<li class="chapter" data-level="10.3" data-path="gráficos.html"><a href="gráficos.html#visão-geral-do-dadosmater.xlsx"><i class="fa fa-check"></i><b>10.3</b> Visão Geral do <code>dadosMater.xlsx</code></a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="gráficos.html"><a href="gráficos.html#transformação-e-criação-de-variáveis"><i class="fa fa-check"></i><b>10.3.1</b> Transformação e criação de variáveis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>10.4</b> Gráfico de Setores (Pizza)</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-setores-com-o-ggplot2"><i class="fa fa-check"></i><b>10.4.1</b> Gráfico de setores com o ggplot2</a></li>
+<li class="chapter" data-level="10.4.2" data-path="gráficos.html"><a href="gráficos.html#uma-variação-do-gráfico-de-pizza-gráfico-de-rosca-donut-chart"><i class="fa fa-check"></i><b>10.4.2</b> Uma variação do gráfico de pizza: gráfico de rosca (<em>Donut chart</em>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-barras"><i class="fa fa-check"></i><b>10.5</b> Gráficos de Barras</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples"><i class="fa fa-check"></i><b>10.5.1</b> Gráfico de Barras Simples</a></li>
+<li class="chapter" data-level="10.5.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-empilhadas"><i class="fa fa-check"></i><b>10.5.2</b> Gráfico de Barras Empilhadas</a></li>
+<li class="chapter" data-level="10.5.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-lado-a-lado"><i class="fa fa-check"></i><b>10.5.3</b> Gráfico de Barras Lado a Lado</a></li>
+<li class="chapter" data-level="10.5.4" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-com-variáveis-discretas"><i class="fa fa-check"></i><b>10.5.4</b> Gráfico de Barras com Variáveis Discretas</a></li>
+<li class="chapter" data-level="10.5.5" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barras-simples-com-o-ggplot2"><i class="fa fa-check"></i><b>10.5.5</b> Gráfico de Barras Simples com o ggplot2</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6</b> Gráfico de Barra de Erro</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="gráficos.html"><a href="gráficos.html#exploração-e-manipulação-arquivo-rnt.xlsx"><i class="fa fa-check"></i><b>10.6.1</b> Exploração e Manipulação Arquivo <code>RNT.xlsx</code></a></li>
+<li class="chapter" data-level="10.6.2" data-path="gráficos.html"><a href="gráficos.html#criação-do-gráfico-de-barra-de-erro"><i class="fa fa-check"></i><b>10.6.2</b> Criação do Gráfico de Barra de Erro</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-o-ggplot2"><i class="fa fa-check"></i><b>10.7</b> Gráfico de Barra de Erro com o <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="gráficos.html"><a href="gráficos.html#construção-do-gráfico"><i class="fa fa-check"></i><b>10.7.1</b> Construção do gráfico</a></li>
+<li class="chapter" data-level="10.7.2" data-path="gráficos.html"><a href="gráficos.html#gráfico-com-apenas-as-barras-superiores"><i class="fa fa-check"></i><b>10.7.2</b> Gráfico com apenas as barras superiores</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-barra-de-erro-com-a-função-lineplot.ci"><i class="fa fa-check"></i><b>10.8</b> Gráfico de Barra de Erro com a Função <code>lineplot.CI ()</code></a></li>
+<li class="chapter" data-level="10.9" data-path="gráficos.html"><a href="gráficos.html#histograma"><i class="fa fa-check"></i><b>10.9</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="gráficos.html"><a href="gráficos.html#histograma-simples"><i class="fa fa-check"></i><b>10.9.1</b> Histograma Simples</a></li>
+<li class="chapter" data-level="10.9.2" data-path="gráficos.html"><a href="gráficos.html#histograma-com-curva-normal-sobreposta"><i class="fa fa-check"></i><b>10.9.2</b> Histograma com curva normal sobreposta</a></li>
+<li class="chapter" data-level="10.9.3" data-path="gráficos.html"><a href="gráficos.html#componentes-do-histograma"><i class="fa fa-check"></i><b>10.9.3</b> Componentes do Histograma</a></li>
+<li class="chapter" data-level="10.9.4" data-path="gráficos.html"><a href="gráficos.html#histograma-usando-o-ggplot2"><i class="fa fa-check"></i><b>10.9.4</b> Histograma usando o <code>ggplot2</code></a></li>
+<li class="chapter" data-level="10.9.5" data-path="gráficos.html"><a href="gráficos.html#histograma-por-grupos"><i class="fa fa-check"></i><b>10.9.5</b> Histograma por grupos</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="gráficos.html"><a href="gráficos.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>10.10</b> Gráficos de Densidade</a></li>
+<li class="chapter" data-level="10.11" data-path="gráficos.html"><a href="gráficos.html#boxplot"><i class="fa fa-check"></i><b>10.11</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-a-função-nativa"><i class="fa fa-check"></i><b>10.11.1</b> Boxplot com a função nativa</a></li>
+<li class="chapter" data-level="10.11.2" data-path="gráficos.html"><a href="gráficos.html#estatísticas-do-boxplot"><i class="fa fa-check"></i><b>10.11.2</b> Estatísticas do boxplot</a></li>
+<li class="chapter" data-level="10.11.3" data-path="gráficos.html"><a href="gráficos.html#múltiplos-boxplots"><i class="fa fa-check"></i><b>10.11.3</b> Múltiplos boxplots</a></li>
+<li class="chapter" data-level="10.11.4" data-path="gráficos.html"><a href="gráficos.html#boxplots-com-stripcharts"><i class="fa fa-check"></i><b>10.11.4</b> Boxplots com <code>stripcharts</code></a></li>
+<li class="chapter" data-level="10.11.5" data-path="gráficos.html"><a href="gráficos.html#boxplots-horizontais"><i class="fa fa-check"></i><b>10.11.5</b> Boxplots horizontais</a></li>
+<li class="chapter" data-level="10.11.6" data-path="gráficos.html"><a href="gráficos.html#boxplot-com-o-ggplot2"><i class="fa fa-check"></i><b>10.11.6</b> Boxplot com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.12" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-scatterplot"><i class="fa fa-check"></i><b>10.12</b> Gráfico de Dispersão (<code>Scatterplot</code>)</a>
+<ul>
+<li class="chapter" data-level="10.12.1" data-path="gráficos.html"><a href="gráficos.html#mapeamento-dos-pontos-de-acordo-com-uma-variável-categórica"><i class="fa fa-check"></i><b>10.12.1</b> Mapeamento dos pontos de acordo com uma variável categórica</a></li>
+<li class="chapter" data-level="10.12.2" data-path="gráficos.html"><a href="gráficos.html#adição-da-reta-de-ajuste"><i class="fa fa-check"></i><b>10.12.2</b> Adição da reta de ajuste</a></li>
+<li class="chapter" data-level="10.12.3" data-path="gráficos.html"><a href="gráficos.html#gráfico-de-dispersão-com-o-ggplot2"><i class="fa fa-check"></i><b>10.12.3</b> Gráfico de Dispersão com o <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.13" data-path="gráficos.html"><a href="gráficos.html#leitura-adicional-2"><i class="fa fa-check"></i><b>10.13</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="distribuição-normal.html"><a href="distribuição-normal.html"><i class="fa fa-check"></i><b>11</b> Distribuição Normal</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#pacotes-necessários-2"><i class="fa fa-check"></i><b>11.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="11.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#carregar-o-banco-de-dados"><i class="fa fa-check"></i><b>11.2</b> Carregar o Banco de Dados</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exploração-e-manipulação-do-banco-de-dados"><i class="fa fa-check"></i><b>11.3</b> Exploração e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#resumo-dos-dados"><i class="fa fa-check"></i><b>11.3.1</b> Resumo dos dados</a></li>
+<li class="chapter" data-level="11.3.2" data-path="distribuição-normal.html"><a href="distribuição-normal.html#visualização-dos-dados-através-do-histograma"><i class="fa fa-check"></i><b>11.3.2</b> Visualização dos dados através do histograma</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="distribuição-normal.html"><a href="distribuição-normal.html#distribuição-normal-1"><i class="fa fa-check"></i><b>11.4</b> Distribuição normal</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="distribuição-normal.html"><a href="distribuição-normal.html#curva-normal-padronizada"><i class="fa fa-check"></i><b>11.4.1</b> Curva Normal Padronizada</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="distribuição-normal.html"><a href="distribuição-normal.html#exercício"><i class="fa fa-check"></i><b>11.5</b> Exercício</a></li>
+<li class="chapter" data-level="11.6" data-path="distribuição-normal.html"><a href="distribuição-normal.html#leitura-adicional-3"><i class="fa fa-check"></i><b>11.6</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="estimação.html"><a href="estimação.html"><i class="fa fa-check"></i><b>12</b> Estimação</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="estimação.html"><a href="estimação.html#pacotes-necessários-3"><i class="fa fa-check"></i><b>12.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="12.2" data-path="estimação.html"><a href="estimação.html#carregar-o-dados"><i class="fa fa-check"></i><b>12.2</b> Carregar o dados</a></li>
+<li class="chapter" data-level="12.3" data-path="estimação.html"><a href="estimação.html#exploração-e-manipulação-do-banco-de-dados-1"><i class="fa fa-check"></i><b>12.3</b> Exploração e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="estimação.html"><a href="estimação.html#resumo-dos-dados-1"><i class="fa fa-check"></i><b>12.3.1</b> Resumo dos dados</a></li>
+<li class="chapter" data-level="12.3.2" data-path="estimação.html"><a href="estimação.html#visualização-gráfica"><i class="fa fa-check"></i><b>12.3.2</b> Visualização gráfica</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="estimação.html"><a href="estimação.html#distribuição-amostral"><i class="fa fa-check"></i><b>12.4</b> Distribuição Amostral</a></li>
+<li class="chapter" data-level="12.5" data-path="estimação.html"><a href="estimação.html#erro-padrão"><i class="fa fa-check"></i><b>12.5</b> Erro Padrão</a></li>
+<li class="chapter" data-level="12.6" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-conhecido"><i class="fa fa-check"></i><b>12.6</b> Intervalo de Confiança com Desvio Padrão Populacional Conhecido</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="estimação.html"><a href="estimação.html#interpretação-do-intervalo-de-confiança"><i class="fa fa-check"></i><b>12.6.1</b> Interpretação do Intervalo de Confiança</a></li>
+<li class="chapter" data-level="12.6.2" data-path="estimação.html"><a href="estimação.html#exercício-1"><i class="fa fa-check"></i><b>12.6.2</b> Exercício 1</a></li>
+<li class="chapter" data-level="12.6.3" data-path="estimação.html"><a href="estimação.html#outros-intervalos-de-confiança"><i class="fa fa-check"></i><b>12.6.3</b> Outros Intervalos de Confiança</a></li>
+<li class="chapter" data-level="12.6.4" data-path="estimação.html"><a href="estimação.html#exercício-2"><i class="fa fa-check"></i><b>12.6.4</b> Exercício 2</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-com-desvio-padrão-populacional-desconhecido"><i class="fa fa-check"></i><b>12.7</b> Intervalo de Confiança com Desvio Padrão Populacional Desconhecido</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="estimação.html"><a href="estimação.html#distribuição-t"><i class="fa fa-check"></i><b>12.7.1</b> Distribuição <em>t</em></a></li>
+<li class="chapter" data-level="12.7.2" data-path="estimação.html"><a href="estimação.html#dados-para-o-cálculo-do-intervalo-de-confiança"><i class="fa fa-check"></i><b>12.7.2</b> Dados para o cálculo do intervalo de confiança</a></li>
+<li class="chapter" data-level="12.7.3" data-path="estimação.html"><a href="estimação.html#cálculo-do-intervalo-de-confiança-com-sigma-desconhecido"><i class="fa fa-check"></i><b>12.7.3</b> Cálculo do Intervalo de Confiança com <span class="math inline">\(\sigma\)</span> desconhecido</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="estimação.html"><a href="estimação.html#intervalo-de-confiança-para-uma-proporção-populacional"><i class="fa fa-check"></i><b>12.8</b> Intervalo de Confiança para uma proporção populacional</a>
+<ul>
+<li class="chapter" data-level="12.8.1" data-path="estimação.html"><a href="estimação.html#dados-para-estimar-a-proporção-populacional"><i class="fa fa-check"></i><b>12.8.1</b> Dados para estimar a proporção populacional</a></li>
+<li class="chapter" data-level="12.8.2" data-path="estimação.html"><a href="estimação.html#cálculo-da-estimativa-pontual-da-proporção"><i class="fa fa-check"></i><b>12.8.2</b> Cálculo da estimativa pontual da proporção</a></li>
+<li class="chapter" data-level="12.8.3" data-path="estimação.html"><a href="estimação.html#cálculo-do-intervalo-de-confiança-para-a-proporção"><i class="fa fa-check"></i><b>12.8.3</b> Cálculo do intervalo de confiança para a proporção</a></li>
+</ul></li>
+<li class="chapter" data-level="12.9" data-path="estimação.html"><a href="estimação.html#leitura-adicional-4"><i class="fa fa-check"></i><b>12.9</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html"><i class="fa fa-check"></i><b>13</b> Teste de Hipóteses</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#pacotes-necessários-4"><i class="fa fa-check"></i><b>13.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="13.2" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#dados-1"><i class="fa fa-check"></i><b>13.2</b> Dados</a></li>
+<li class="chapter" data-level="13.3" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#leitura-e-manipulação-do-banco-de-dados"><i class="fa fa-check"></i><b>13.3</b> Leitura e manipulação do banco de dados</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#amostra"><i class="fa fa-check"></i><b>13.3.1</b> Amostra</a></li>
+<li class="chapter" data-level="13.3.2" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#sumarização-dos-dados-na-amostra"><i class="fa fa-check"></i><b>13.3.2</b> Sumarização dos dados na amostra</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#hipótese-nula-e-alternativa"><i class="fa fa-check"></i><b>13.4</b> Hipótese nula e alternativa</a></li>
+<li class="chapter" data-level="13.5" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#regra-de-decisão"><i class="fa fa-check"></i><b>13.5</b> Regra de decisão</a></li>
+<li class="chapter" data-level="13.6" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#erro-tipo-i-e-erro-tipo-ii"><i class="fa fa-check"></i><b>13.6</b> Erro tipo I e Erro Tipo II</a></li>
+<li class="chapter" data-level="13.7" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#teste-estatístico"><i class="fa fa-check"></i><b>13.7</b> Teste estatístico</a>
+<ul>
+<li class="chapter" data-level="13.7.1" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#pressupostos-do-teste"><i class="fa fa-check"></i><b>13.7.1</b> Pressupostos do teste</a></li>
+<li class="chapter" data-level="13.7.2" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#cálculo-do-teste-estatístico"><i class="fa fa-check"></i><b>13.7.2</b> Cálculo do teste estatístico</a></li>
+<li class="chapter" data-level="13.7.3" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#conclusão"><i class="fa fa-check"></i><b>13.7.3</b> Conclusão</a></li>
+<li class="chapter" data-level="13.7.4" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#apresentação-gráfica-dos-resultados"><i class="fa fa-check"></i><b>13.7.4</b> Apresentação gráfica dos resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#poder-do-teste-estatístico"><i class="fa fa-check"></i><b>13.8</b> Poder do teste estatístico</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#cálculo-do-poder-usando-a-distribuição-t"><i class="fa fa-check"></i><b>13.8.1</b> Cálculo do Poder usando a distribuição <em>t</em></a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#valor-p"><i class="fa fa-check"></i><b>13.9</b> Valor <em>P</em></a></li>
+<li class="chapter" data-level="13.10" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#leitura-adicional-5"><i class="fa fa-check"></i><b>13.10</b> Leitura Adicional</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">BIOESTATÍSTICA USANDO O R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="teste-de-hipóteses" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Capítulo  13</span> Teste de Hipóteses<a href="teste-de-hipóteses.html#teste-de-hipóteses" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>O <strong>Teste de hipóteses</strong> é um dos procedimentos básicos para a inferência estatística. Em um teste de hipóteses, testa-se uma teoria ou crença sobre um parâmetro populacional.<br />
+Quase sempre, as informações são obtidas a partir de uma amostra em função da quase impossibilidade de se conseguir trabalhar com toda a população. Portanto, extrapolar ou estender os resultados, obtidos de uma amostra, para a população, significa aceitá-los como representações adequadas da mesma.<br />
+Sabe-se que as estimativas amostrais diferem dos valores reais (populacionais) e o objetivo dos testes de hipóteses é estabelecer a probabilidade de essa <em>diferença ser explicada pelo acaso</em>.</p>
+<div id="pacotes-necessários-4" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Pacotes necessários<a href="teste-de-hipóteses.html#pacotes-necessários-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="teste-de-hipóteses.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl,</span>
+<span id="cb1-2"><a href="teste-de-hipóteses.html#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr,</span>
+<span id="cb1-3"><a href="teste-de-hipóteses.html#cb1-3" aria-hidden="true" tabindex="-1"></a>               car,</span>
+<span id="cb1-4"><a href="teste-de-hipóteses.html#cb1-4" aria-hidden="true" tabindex="-1"></a>               lsr,</span>
+<span id="cb1-5"><a href="teste-de-hipóteses.html#cb1-5" aria-hidden="true" tabindex="-1"></a>               dabestr,</span>
+<span id="cb1-6"><a href="teste-de-hipóteses.html#cb1-6" aria-hidden="true" tabindex="-1"></a>               pwr,</span>
+<span id="cb1-7"><a href="teste-de-hipóteses.html#cb1-7" aria-hidden="true" tabindex="-1"></a>               knitr)</span></code></pre></div>
+</div>
+<div id="dados-1" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Dados<a href="teste-de-hipóteses.html#dados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considere o exemplo de uma turma de 40 alunos de Bioestatística, onde metade dos alunos são do sexo feminino. Como tem sido a regra, a minha hipótese é que o desempenho das mulheres continuará a ser superior. Vamos usar o banco de dados <code>dadosNotas.xlsx</code>.
+Para baixar o banco de dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosNotas.xlsx">aqui</a>. Salve o mesmo no seu diretório de trabalho.</p>
+</div>
+<div id="leitura-e-manipulação-do-banco-de-dados" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Leitura e manipulação do banco de dados<a href="teste-de-hipóteses.html#leitura-e-manipulação-do-banco-de-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Crie o objeto <code>dados</code> para receber o arquivo, a partir do diretório de trabalho.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="teste-de-hipóteses.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosNotas.xlsx&quot;</span>)</span></code></pre></div>
+<p>A função <code>read_excel()</code> do pacote <code>readxl</code> abre o arquivo e podemos ver a sua estrutura, usando a função <code>glimpse ()</code> do pacote <code>dplyr</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="teste-de-hipóteses.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
+<pre><code>## Rows: 40
+## Columns: 2
+## $ notas &lt;dbl&gt; 63.1, 76.3, 57.7, 66.9, 73.1, 70.3, 63.6, 75.7, 73.5, 83.0, 73.0…
+## $ sexo  &lt;chr&gt; &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;, &quot;F&quot;,…</code></pre>
+<div id="amostra" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> Amostra<a href="teste-de-hipóteses.html#amostra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Este banco de dados será a nossa amostra. A partir dela faremos inferência a população de alunos da disciplina de Bioestatística do curso de Medicina
+Como a variável <code>sexo</code> está como caractere, é melhor transformá-la para fator:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="teste-de-hipóteses.html#cb5-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>sexo)</span>
+<span id="cb5-2"><a href="teste-de-hipóteses.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="teste-de-hipóteses.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados)</span></code></pre></div>
+<pre><code>## Rows: 40
+## Columns: 2
+## $ notas &lt;dbl&gt; 63.1, 76.3, 57.7, 66.9, 73.1, 70.3, 63.6, 75.7, 73.5, 83.0, 73.0…
+## $ sexo  &lt;fct&gt; F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, M, M…</code></pre>
+</div>
+<div id="sumarização-dos-dados-na-amostra" class="section level3 hasAnchor" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> Sumarização dos dados na amostra<a href="teste-de-hipóteses.html#sumarização-dos-dados-na-amostra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As principais medidas resumidoras serão colocadas no objeto <code>resumo</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="teste-de-hipóteses.html#cb7-1" aria-hidden="true" tabindex="-1"></a>resumo <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="teste-de-hipóteses.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="teste-de-hipóteses.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span> (),</span>
+<span id="cb7-4"><a href="teste-de-hipóteses.html#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(notas),</span>
+<span id="cb7-5"><a href="teste-de-hipóteses.html#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span> (notas),</span>
+<span id="cb7-6"><a href="teste-de-hipóteses.html#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span> (notas),</span>
+<span id="cb7-7"><a href="teste-de-hipóteses.html#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">IIQ =</span> <span class="fu">IQR</span> (notas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="teste-de-hipóteses.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ep =</span> dp<span class="sc">/</span><span class="fu">sqrt</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-9"><a href="teste-de-hipóteses.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">me =</span> ep <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb7-10"><a href="teste-de-hipóteses.html#cb7-10" aria-hidden="true" tabindex="-1"></a>resumo</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   sexo      n media    dp mediana   IIQ    ep    me
+##   &lt;fct&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 F        20  68.4  7.79    68.6 10.6   1.74  3.65
+## 2 M        20  59.9  7.34    59.2  9.20  1.64  3.43</code></pre>
+<p>Assim, temos uma amostra, onde nota média das mulheres foi 68.4 e dos homens 59.9. Aparentemente, a afirmação de que as mulheres têm um melhor desempenho na prova de Bioestatística, parece fazer sentido. Como não se sabe o que ocorre na população, esta diferença de 8.5 pode ter ocorrido por <em>acaso</em> e pode não existir!</p>
+</div>
+</div>
+<div id="hipótese-nula-e-alternativa" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Hipótese nula e alternativa<a href="teste-de-hipóteses.html#hipótese-nula-e-alternativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No teste de hipóteses (TH), existem dois tipos de hipóteses, definidas como:</p>
+<p><strong>Hipótese nula (<span class="math inline">\(H_{0}\)</span>)</strong>: é a hipótese que afirma não existir diferença e que a diferença observada é atribuível ao acaso. É a hipótese a ser testada, aquela que se busca afastar. É escrita como:</p>
+<p><span class="math display">\[
+H_0: μ_1=μ_2 \ ou \  μ_1-μ_2=0
+\]</span>
+<strong>Hipótese alternativa (<span class="math inline">\(H_{A}\)</span>)</strong>: é a hipótese contrária, como o nome diz, alternativa à <span class="math inline">\(H_0\)</span>. Representa a posição de uma nova perspectiva, a conclusão que será apoiada se <span class="math inline">\(H_0\)</span> for rejeitada. Ela supõe que realmente exista uma diferença entre os grupos. É a hipótese que o pesquisador pretende comprovar. É escrita, em geral, simplesmente como havendo uma diferença entre os grupos, sem indicar uma direção, hipótese bilateral ou bicaudal:</p>
+<p><span class="math display">\[
+H_0: μ_1≠μ_2 \ ou \ μ_1-μ_2≠0
+\]</span>
+Ou, se houver uma suspeita, através de um conhecimento prévio, apontar uma direção para a diferença, ou seja, usar uma hipótese unilateral ou monocaudal:</p>
+<p><strong>1. <span class="math inline">\(\mu_1&gt;\mu_2\)</span></strong></p>
+<p><span class="math display">\[
+H_0: μ_1&gt;μ_2 \ ou \ μ_1-μ_2&gt;0\\
+\]</span>
+Neste caso, a <span class="math inline">\(H_0\)</span> passa a ser:</p>
+<p><span class="math display">\[
+H_0: μ_1 \le μ_2
+\]</span>
+<strong>2.<span class="math inline">\(\mu_1&lt;\mu_2\)</span></strong></p>
+<p><span class="math display">\[
+H_0: μ_1&lt;μ_2 \ ou \ μ_1-μ_2&lt;0
+\]</span>
+Aqui, a <span class="math inline">\(H_0\)</span> passa a ser:</p>
+<p><span class="math display">\[
+H_0: μ_1 \ge μ_2
+\]</span></p>
+<p>A <span class="math inline">\(H_0\)</span> e <span class="math inline">\(H_A\)</span> são opostas e mutuamente exclusivas. No TH, calcula-se a probabilidade de obter os resultados encontrados, caso não haja efeito na população, ou seja, caso a <span class="math inline">\(H_0\)</span> seja verdadeira. Portanto, o TH é um teste de significância para a <span class="math inline">\(H_0\)</span>.</p>
+<p>Considere o exemplo das notas de Bioestatística, conforme o sexo. As hipóteses seriam escritas da seguinte maneira, considerando uma <span class="math inline">\(H_A\)</span> monocaudal:</p>
+<p><span class="math display">\[
+H_0: μ_{mulheres} \le μ_{homens} \\  
+H_A: μ_{mulheres} &gt; μ_{homens}  
+\]</span></p>
+</div>
+<div id="regra-de-decisão" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Regra de decisão<a href="teste-de-hipóteses.html#regra-de-decisão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O objetivo do TH é rejeitar ou não a <span class="math inline">\(H_0\)</span>, partindo do pressuposto de que ela é verdadeira. Portanto, é fundamental estabelecer uma <strong>regra de decisão</strong> que permita uma declaração em relação à <span class="math inline">\(H_0\)</span>.</p>
+<p>Essa regra de decisão cria duas regiões, uma <strong>região de rejeição</strong> e uma <strong>região de não rejeição</strong> da <span class="math inline">\(H_0\)</span>, demarcadas por um <strong>valor crítico</strong>. Este valor de referência é determinado pelo nível de significância, <span class="math inline">\(\alpha\)</span>, e deve ser claramente mencionado <em>antes</em> de se iniciar a pesquisa, pois é baseado nele que se fundamentam as conclusões da mesma.</p>
+<p>O <strong>nível de significância</strong> corresponde a probabilidade de rejeitar uma hipótese nula verdadeira. Quando a hipótese alternativa não tem uma direção definida, a área de incerteza, <span class="math inline">\(\alpha\)</span>, é colocada nas duas caudas, dividindo a probabilidade (<span class="math inline">\(\alpha/2\)</span>); quando houver indicação prévia de um sentido, a área de rejeição ficará a direita ou a esquerda dependendo da direção escolhida. No exemplo dos notas dos alunos de Bioestatística, a área escolhida está à direita.</p>
+<p>Para verificar se as notas, na média, das mulheres são maiores do que as dos homens, vamos usar <span class="math inline">\(\alpha = 0,05\)</span> e uma <span class="math inline">\(H_A\)</span> monocaudal. Desta forma, usando a função qt(), com um p = 0.95 e gl = n1 + n2 - 2 = 20 + 20 - 2 = 38.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="teste-de-hipóteses.html#cb9-1" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="dv">38</span>)</span>
+<span id="cb9-2"><a href="teste-de-hipóteses.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span> (tc,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1.686</code></pre>
+<p>Se o teste estatístico retornar um valor <em>t</em> &gt; <em><span class="math inline">\(t_{crítico}\)</span></em>, ou seja, à direita da linha tracejada azul, na figura abaixo, rejeitaremos a <span class="math inline">\(H_0\)</span> e concluiremos que as mulheres têm um melhor desempenho.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="erro-tipo-i-e-erro-tipo-ii" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Erro tipo I e Erro Tipo II<a href="teste-de-hipóteses.html#erro-tipo-i-e-erro-tipo-ii" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quando se toma uma decisão existe a possibilidade de se cometer erros. Um erro, denominado de <strong>erro tipo I</strong>, ocorre quando, baseado na regra de decisão escolhida, uma <span class="math inline">\(H_0\)</span> verdadeira é rejeitada.<br />
+Nesse caso, tem-se um resultado <strong>falso positivo</strong>. Há uma conclusão de que existe um efeito quando na verdade ele não existe. A probabilidade de cometer esse tipo de erro é <span class="math inline">\(\alpha\)</span>, o mesmo usado como nível de significância no estabelecimento da regra de decisão.</p>
+<p><span class="math display">\[
+P(rejeitar \ H_0│H_0 \ verdadeira)=\alpha
+\]</span></p>
+<p>Qual o valor de <span class="math inline">\(\alpha\)</span> que pode representar forte evidencia contra <span class="math inline">\(H_0\)</span>, reduzindo a possibilidade de erro tipo I?</p>
+<p>O valor de α escolhido, apesar de arbitrário, deve corresponder a importância do que se pretende demonstrar, quanto mais importante, menor deve ser o valor de <span class="math inline">\(\alpha\)</span>. Nesses casos, não se quer rejeitar incorretamente <span class="math inline">\(H_0\)</span> mais de 5% das vezes. Isso corresponde ao nível de significância mais usado de 0,05 (<span class="math inline">\(\alpha\)</span> = 0,05). Em algumas situações também são utilizados 0,01 e 0,10.</p>
+<p>Existe uma outra possibilidade de erro, denominado de <strong>erro tipo II</strong>, que ocorre quando a <span class="math inline">\(H_0\)</span> é realmente falsa, mas com base na regra de decisão escolhida, não se rejeita essa hipótese nula. Nesse caso, o resultado é um <strong>falso negativo</strong>; não se conseguiu encontrar um efeito que realmente existe. A probabilidade de cometer esse tipo de erro é chamada de <span class="math inline">\(\beta\)</span>.</p>
+<p><span class="math display">\[
+P(não \ rejeitar \ H_0│H_0 \ falsa)= \beta
+\]</span></p>
+<p>Na construção de um teste de hipótese, o erro tipo II é considerado menos grave que o erro tipo I. Entretanto, ele também é importante. Tradicionalmente, adota-se o limite de 0,10 a 0,20 para o erro tipo II.
+O Quadro abaixo resume as consequências possíveis na tomada de decisão em um teste de hipótese.</p>
+<span class="math inline">\(~\)</span>
+<center>
+<img src="https://github.com/petronioliveira/Arquivos/raw/main/TH_Erros.png" />
+</center>
+<p><span class="math inline">\(~\)</span></p>
+</div>
+<div id="teste-estatístico" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Teste estatístico<a href="teste-de-hipóteses.html#teste-estatístico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O teste estatístico é usado para saber se a média obtida através de uma amostra se afasta de forma significativa da média populacional. Para isso é usado o erro padrão da média {<span class="math inline">\(\sigma_\overline{x}\)</span> que padroniza essa diferença em números de erros padrão.
+O teste estatístico é escolhido em função das características dos dados e objetivo do estudo.
+No exemplo, do desempenho dos alunos na disciplina de Bioestatística de acordo com o sexo, estamos comparando duas médias e o teste indicado é o teste <em>t</em> para amostras independentes.</p>
+<div id="pressupostos-do-teste" class="section level3 hasAnchor" number="13.7.1">
+<h3><span class="header-section-number">13.7.1</span> Pressupostos do teste<a href="teste-de-hipóteses.html#pressupostos-do-teste" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="avaliar-a-normalidade-dos-dados" class="section level4 hasAnchor" number="13.7.1.1">
+<h4><span class="header-section-number">13.7.1.1</span> Avaliar a normalidade dos dados<a href="teste-de-hipóteses.html#avaliar-a-normalidade-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Vamos usar o teste de Shapiro-Wilk dentro da função <code>by()</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="teste-de-hipóteses.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span> (<span class="at">data =</span> dados<span class="sc">$</span>notas, </span>
+<span id="cb11-2"><a href="teste-de-hipóteses.html#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDICES =</span> dados<span class="sc">$</span>sexo, </span>
+<span id="cb11-3"><a href="teste-de-hipóteses.html#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> shapiro.test) </span></code></pre></div>
+<pre><code>## dados$sexo: F
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dd[x, ]
+## W = 0.97277, p-value = 0.812
+## 
+## ------------------------------------------------------------ 
+## dados$sexo: M
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  dd[x, ]
+## W = 0.97229, p-value = 0.8024</code></pre>
+<p>Os valores <em>P</em> são &gt; 0,05 e, portanto, não rejeitamos a <span class="math inline">\(H_0\)</span> e declaramos que os dados, tanto das mulheres como dos homens se ajustam à distribuição normal.</p>
+</div>
+<div id="verificação-da-igualdade-das-variâncias" class="section level4 hasAnchor" number="13.7.1.2">
+<h4><span class="header-section-number">13.7.1.2</span> Verificação da igualdade das variâncias<a href="teste-de-hipóteses.html#verificação-da-igualdade-das-variâncias" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Usaremos o teste de Levene com a função <code>leveneTest()</code> do pacote <code>car</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="teste-de-hipóteses.html#cb13-1" aria-hidden="true" tabindex="-1"></a>levene <span class="ot">&lt;-</span> <span class="fu">leveneTest</span> (notas<span class="sc">~</span>sexo, <span class="at">center =</span> mean, <span class="at">data =</span> dados)</span>
+<span id="cb13-2"><a href="teste-de-hipóteses.html#cb13-2" aria-hidden="true" tabindex="-1"></a>levene</span></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = mean)
+##       Df F value Pr(&gt;F)
+## group  1  0.4575 0.5029
+##       38</code></pre>
+<p>O Teste de Levene retorna um valor <em>P</em> &gt; 0,05, significando que não é possível rejeitar a igualdade das variâncias.</p>
+</div>
+</div>
+<div id="cálculo-do-teste-estatístico" class="section level3 hasAnchor" number="13.7.2">
+<h3><span class="header-section-number">13.7.2</span> Cálculo do teste estatístico<a href="teste-de-hipóteses.html#cálculo-do-teste-estatístico" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Como os pressupostos básicos do teste foram atendidos, usamos a função <code>t.test()</code> que tem os seguintes argumentos:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="teste-de-hipóteses.html#cb15-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(notas <span class="sc">~</span> sexo,</span>
+<span id="cb15-2"><a href="teste-de-hipóteses.html#cb15-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> dados,</span>
+<span id="cb15-3"><a href="teste-de-hipóteses.html#cb15-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>,</span>
+<span id="cb15-4"><a href="teste-de-hipóteses.html#cb15-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-5"><a href="teste-de-hipóteses.html#cb15-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb15-6"><a href="teste-de-hipóteses.html#cb15-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span>
+<span id="cb15-7"><a href="teste-de-hipóteses.html#cb15-7" aria-hidden="true" tabindex="-1"></a>t</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  notas by sexo
+## t = 3.5586, df = 38, p-value = 0.0005101
+## alternative hypothesis: true difference in means between group F and group M is greater than 0
+## 95 percent confidence interval:
+##  4.480894      Inf
+## sample estimates:
+## mean in group F mean in group M 
+##          68.380          59.865</code></pre>
+<ul>
+<li><em>t</em> é o valor estatístico do teste <em>t</em>,</li>
+<li><em>df</em> são os graus de liberdade ,</li>
+<li><em>p-value</em> é o valor <em>P</em> do teste <em>t</em>.</li>
+<li><em>conf.int</em> é o IC95% da diferença média;</li>
+<li><em>sample estimates</em> são o valores médios das populações 1 e 2.</li>
+</ul>
+</div>
+<div id="conclusão" class="section level3 hasAnchor" number="13.7.3">
+<h3><span class="header-section-number">13.7.3</span> Conclusão<a href="teste-de-hipóteses.html#conclusão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Conclui-se, portanto, que o desempenho das mulheres na disciplina de Bioestatística é superior ao dos homens , a diferença (8.5) encontrada é estatisticamente significativa (<em>t</em> = 3.5586, gl = 38, <em>P</em> = <span class="math inline">\(5.1013737\times 10^{-4}\)</span>, com uma confiança de 95%.</p>
+</div>
+<div id="apresentação-gráfica-dos-resultados" class="section level3 hasAnchor" number="13.7.4">
+<h3><span class="header-section-number">13.7.4</span> Apresentação gráfica dos resultados<a href="teste-de-hipóteses.html#apresentação-gráfica-dos-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos exibir o gráfico da diferença média, descrito por Gardner-Altman, em 1986 (BMJ. 292(6522):746–750), usando o pacote <code>dabestr</code> com as funções <code>dabest ()</code>, <code>mean_diff ()</code> e <code>plot ()</code>com um objeto <code>dabest_effsize</code> (<code>mean_diff</code>, por exemplo). Para detalhes consulte <a href="https://cran.r-project.org/web/packages/dabestr/dabestr.pdf">dabestr</a>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="teste-de-hipóteses.html#cb17-1" aria-hidden="true" tabindex="-1"></a>dois.grupos <span class="ot">&lt;-</span> </span>
+<span id="cb17-2"><a href="teste-de-hipóteses.html#cb17-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="teste-de-hipóteses.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dabest</span>(sexo, notas, </span>
+<span id="cb17-4"><a href="teste-de-hipóteses.html#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">idx =</span> <span class="fu">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>), </span>
+<span id="cb17-5"><a href="teste-de-hipóteses.html#cb17-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-6"><a href="teste-de-hipóteses.html#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="teste-de-hipóteses.html#cb17-7" aria-hidden="true" tabindex="-1"></a>difMedia <span class="ot">&lt;-</span> <span class="fu">mean_diff</span>(dois.grupos, <span class="at">ci =</span> <span class="dv">95</span>)</span>
+<span id="cb17-8"><a href="teste-de-hipóteses.html#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="teste-de-hipóteses.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(difMedia, </span>
+<span id="cb17-10"><a href="teste-de-hipóteses.html#cb17-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">color.column =</span> sexo,</span>
+<span id="cb17-11"><a href="teste-de-hipóteses.html#cb17-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;pink4&quot;</span>, <span class="st">&quot;salmon3&quot;</span>),</span>
+<span id="cb17-12"><a href="teste-de-hipóteses.html#cb17-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">show.legend =</span> F,</span>
+<span id="cb17-13"><a href="teste-de-hipóteses.html#cb17-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">rawplot.ylabel =</span> <span class="st">&quot;Nota em Bioestatística&quot;</span>,</span>
+<span id="cb17-14"><a href="teste-de-hipóteses.html#cb17-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">effsize.ylabel =</span> <span class="st">&quot;Diferença Média&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+</div>
+<div id="poder-do-teste-estatístico" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Poder do teste estatístico<a href="teste-de-hipóteses.html#poder-do-teste-estatístico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considera-se <strong>poder do teste estatístico</strong> a probabilidade de o teste rejeitar uma <span class="math inline">\(H_0\)</span> quando ela é realmente falsa. Corresponde, na Figura abaixo, a região à direita da linha vertical azul, isto é, a área de rejeição da <span class="math inline">\(H_0\)</span>, para um teste monocaudal à direita e é igual a:</p>
+<p><span class="math display">\[
+Poder = 1 - \beta
+\]</span></p>
+<span class="math inline">\(~\)</span>
+<center>
+<img src="https://github.com/petronioliveira/Arquivos/raw/main/Poder.png" />
+</center>
+<p><span class="math inline">\(~\)</span></p>
+<div id="cálculo-do-poder-usando-a-distribuição-t" class="section level3 hasAnchor" number="13.8.1">
+<h3><span class="header-section-number">13.8.1</span> Cálculo do Poder usando a distribuição <em>t</em><a href="teste-de-hipóteses.html#cálculo-do-poder-usando-a-distribuição-t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A função <code>pwr.t.test()</code> do pacote <code>pwr</code> permite fazer o cálculo do pode, usando os seguintes argumentos:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Argumento</strong></th>
+<th align="left"><strong>Significado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">n</td>
+<td align="left">número de observações (por grupo);</td>
+</tr>
+<tr class="even">
+<td align="left">d</td>
+<td align="left">tamanho do efeito (d de Cohen);</td>
+</tr>
+<tr class="odd">
+<td align="left">sig.level</td>
+<td align="left">nível de significância (<span class="math inline">\(\alpha\)</span>);</td>
+</tr>
+<tr class="even">
+<td align="left">power</td>
+<td align="left">poder do teste;</td>
+</tr>
+<tr class="odd">
+<td align="left">type</td>
+<td align="left">“one.sample”, “two.sample” ou “paired”;</td>
+</tr>
+<tr class="even">
+<td align="left">alternative</td>
+<td align="left">“two.sided”, “less”, “greater”.</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Um dos parâmetros <em>n</em>, <em>d</em>, <em>power</em>, <em>sd</em> e <em>sig.level</em> deve ser escrito como <a href="anchor">NULL</a> e esse parâmetro é determinado a partir dos outros.</p>
+<p>Para calcular poder, precisamos do d de Cohen que pode ser calculado usando a função <code>cohensD ()</code> do pacote <code>lsr</code>. Para maiores informações sobre d de Cohen, veja <a href="https://www.dropbox.com/s/0rgc0nckmq7esr3/Teste-para-Duas-M%C3%A9dias-I.html?dl=0">aqui</a>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="teste-de-hipóteses.html#cb18-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">cohensD</span> (notas <span class="sc">~</span> sexo, <span class="at">data =</span> dados)</span>
+<span id="cb18-2"><a href="teste-de-hipóteses.html#cb18-2" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<pre><code>## [1] 1.125339</code></pre>
+<p>Um tamanho de efeito pequeno tem um d ao redor de 0.2, um d médio está em torno de 0.5 e um d grande está <span class="math inline">\(\ge\)</span> 0.8.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="teste-de-hipóteses.html#cb20-1" aria-hidden="true" tabindex="-1"></a>poder <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">20</span>, </span>
+<span id="cb20-2"><a href="teste-de-hipóteses.html#cb20-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">d=</span>d, </span>
+<span id="cb20-3"><a href="teste-de-hipóteses.html#cb20-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">sig.level=</span><span class="fl">0.05</span>, </span>
+<span id="cb20-4"><a href="teste-de-hipóteses.html#cb20-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">power =</span> <span class="cn">NULL</span>, </span>
+<span id="cb20-5"><a href="teste-de-hipóteses.html#cb20-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">type=</span><span class="st">&quot;two.sample&quot;</span>, </span>
+<span id="cb20-6"><a href="teste-de-hipóteses.html#cb20-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb20-7"><a href="teste-de-hipóteses.html#cb20-7" aria-hidden="true" tabindex="-1"></a>poder</span></code></pre></div>
+<pre><code>## 
+##      Two-sample t test power calculation 
+## 
+##               n = 20
+##               d = 1.125339
+##       sig.level = 0.05
+##           power = 0.9677976
+##     alternative = greater
+## 
+## NOTE: n is number in *each* group</code></pre>
+<p>O poder do teste rejeitar uma <span class="math inline">\(H_0\)</span> falsa é igual a 96.8%.Na pratica, em geral, quando se calcula o tamanho amostral usamos um poder entre 80 a 90%, o que significa um erro <span class="math inline">\(\beta\)</span> de 10 a 20$.</p>
+</div>
+</div>
+<div id="valor-p" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> Valor <em>P</em><a href="teste-de-hipóteses.html#valor-p" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Foi mostrado no TH um procedimento onde encontramos o valor da probabilidade que pode ser usada como critério para rejeitar ou não a hipótese nula. Este ponto crítico, fixado, pelo pesquisador, no início da pesquisa, é o nível de significância, <span class="math inline">\(\alpha\)</span>. Essa abordagem do valor de probabilidade é, com frequência, chamada de <strong>abordagem através do valor P</strong>. Uma vez realizada a pesquisa, o pesquisador calcula a probabilidade de obter um resultado tão ou mais extremo que o observado, uma vez que a <span class="math inline">\(H_0\)</span> seja verdadeira que é o <strong>valor <em>P</em></strong>. O valor <em>P</em> também é conhecido como nível descritivo do teste. O objetivo de um teste estatístico é transformar em probabilidade a magnitude do desvio verificado em relação ao valor esperado, fornecendo o valor <em>P</em>. A partir daí pode-se definir a regra de decisão, usando esse valor <em>P</em>. Toma-se o valor predeterminado (em geral, 0,05) de <span class="math inline">\(\alpha\)</span> e, então, compara-se o valor <em>P</em> com este <span class="math inline">\(\alpha\)</span> e toma-se uma decisão. Usando essa abordagem, rejeita-se a <span class="math inline">\(H_0\)</span> se o valor P &lt; <span class="math inline">\(\alpha\)</span> e não se rejeita <span class="math inline">\(H_0\)</span> se o valor P &gt; <span class="math inline">\(\alpha\)</span>. Costuma-se dizer que se o valor P &lt; <span class="math inline">\(\alpha\)</span>, o resultado é significativo e não significativo quando P &gt; <span class="math inline">\(\alpha\)</span>.
+Uma boa parte dos pesquisadores, principalmente no início da carreira, fica excitado pelo conhecimento do valor <em>P</em>. Entretanto, deve ser sempre lembrado que encontrar o valor <em>P</em> não deve ser o único foco da pesquisa. O foco deve estar dirigido ao tamanho do efeito (<em>effect size</em>). O valor <em>P</em> obtido pelo teste estatístico, vai informar apenas sobre a probabilidade de se cometer erro ao rejeitar ou não rejeitar a <span class="math inline">\(H_0\)</span>.</p>
+</div>
+<div id="leitura-adicional-5" class="section level2 hasAnchor" number="13.10">
+<h2><span class="header-section-number">13.10</span> Leitura Adicional<a href="teste-de-hipóteses.html#leitura-adicional-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(Shafer_and_Zhang)/08%3A_Testing_Hypotheses" class="uri">https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(Shafer_and_Zhang)/08%3A_Testing_Hypotheses</a></p></li>
+<li><p>Daniel WD, Cross CL. <strong>Biostatistics: A Foundation for Analysis in the Health Sciences</strong>. Tenth Edition. Hoboken, NJ: Wiley; 2013. Hypothesis testing; p. 214-303.</p></li>
+<li><p>Diez DM, Barr CD, Çetinkaya-Rundel M. <strong>OpenIntro Statistics</strong>. Third Edition. Victoria, British Columbia: OpenIntro; 2015. Foudations for Inference; p. 168-218.</p></li>
+<li><p>Gardner MJ, Altman DG. Confidence intervals rather than P values: estimation rather than hypothesis testing. <strong>BMJ</strong> 1996; 292:746-50.</p></li>
+<li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. teste de Hipótese;p.127-133.</p></li>
+</ol>
+<p></br>
+</br></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimação.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/13-teste-de-hipoteses.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/13-teste-de-hipoteses.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
