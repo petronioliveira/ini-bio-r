@@ -80,7 +80,7 @@ imc(67, 1.70)
 
 ### Ativação de uma função
 
-Para ativar uma função previamente criada, usa-se a função nativa `source ()´. O argumento desta função é o caminho (diretório) onde se encontra a função buscada. Por exemplo, temos uma função para calcular o coeficiente de variação (coef_var):
+Para ativar uma função previamente criada, usa-se a função nativa `source ()`. O argumento desta função é o caminho (no exemplo é o diretório do autor) onde se encontra a função buscada. Por exemplo, temos uma função, denominada `coef_var ()` para calcular o coeficiente de variação:
 
 ```{r}
 source ("C:/Users/petro/Dropbox/Estatística/Bioestatística usando o R/Funções/coef_var.R")

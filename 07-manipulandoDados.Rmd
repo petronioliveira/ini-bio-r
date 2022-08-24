@@ -69,7 +69,7 @@ escola
 ```
 
 Agora, passa a ter mais sentido. Na primeira linha, temos os nomes dos alunos e, na segunda, os seus números na chamada. Assim, basta olhar para ver que a Clara é aluno número 1.
-Observe que os cochetes ([]) representam as linhas e as colunas. Quando representam uma linha temos primeiro um número e depois a virgula, por exemplo, a primeira linha é igual a [[1,]](anchor). Na coluna, o número vem depois da vírgula. Se quisermos, recuperar o aluno da quinta coluna, temos que executar o seguinte comando, onde entre colchetes temos 1, como a primeira linha e 5 a quinta coluna:
+Observe que os colchetes ([]) representam as linhas e as colunas. Quando representam uma linha temos primeiro um número e depois a virgula, por exemplo, a primeira linha é igual a [[1,]](anchor). Na coluna, o número vem depois da vírgula. Se quisermos, recuperar o aluno da quinta coluna, temos que executar o seguinte comando, onde entre colchetes temos 1, como a primeira linha e 5 a quinta coluna:
 
 ```{r}
 escola[1,5]

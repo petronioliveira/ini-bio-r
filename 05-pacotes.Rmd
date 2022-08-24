@@ -1,6 +1,6 @@
 # Pacotes
 
-Para que o **R** cumpra a sua função de dialogar com o usuário para realizar análises estatística e construir gráficos, ele necessita ter instalado **pacotes**.  Quando se instala o **R** básico, ele vem com vários pacotes que permitem uma grande quantidade de análises. Entretanto, à medida que vamos utilizando o **R**, torna-se necessário instalar novos pacotes criados pela comunidade do R. Esses novos pacotes contêm novas funções e novos comandos que aumentarão a funcionalidade do **R**.  
+Para que o **R** cumpra a sua função de dialogar com o usuário para realizar análises estatística e construir gráficos, ele necessita ter instalado **pacotes**.  Quando se instala o **R** básico, ele vem com vários pacotes que permitem uma grande quantidade de análises. Entretanto, à medida que vamos utilizando o **R**, torna-se necessário instalar novos pacotes criados pela comunidade do **R**. Esses novos pacotes contêm novas funções e novos comandos que aumentarão a funcionalidade do **R**.  
 Um **pacote** é uma coleção de *funções*, *dados* e *documentação* que expande os recursos do **R** base. O uso dos pacotes é a chave para o uso bem-sucedido do **R**. Eles são instalados à medida que o trabalho com o **R** exigir.
 
 ## Repositórios de pacotes
@@ -105,5 +105,5 @@ Ou:
 pacman::p_load(readxl, dplyr, ggplot2, car)
 ```
 
-O pacote `pacman` tem outas funções, entre elas uma que atualiza os pacotes: `p_update()`. Se usada sem especificar o pacote , ela atualiza todos. Para saber mais sobre o pacote `pacman`, use a ajuda.
+O pacote `pacman` tem outras funções, entre elas uma que atualiza os pacotes: `p_update()`. Se usada sem especificar o pacote , ela atualiza todos. Para saber mais sobre o pacote `pacman`, use a ajuda.
 

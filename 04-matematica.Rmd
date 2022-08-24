@@ -174,7 +174,7 @@ pi*2
 e^2
 ```
 
-Como o número de Euler(*e*) é uma constante matemática como o $\pi$. Entretanto, ao contrário do $\pi$, ela não está incluída no *R* e a execução do comando retorna uma mensagem de erro. Deve-se criar o objeto *e* e dar um valor igual a exponencial de 1 que é o número de Euler:
+O número de Euler(*e*) é uma constante matemática como o $\pi$. Entretanto, ao contrário do $\pi$, ela não está incluída no *R* e a execução do comando retorna uma mensagem de erro. Deve-se criar o objeto *e* e dar um valor igual a exponencial de 1 que é o número de Euler:
 
 ```{r}
 e = exp(1)

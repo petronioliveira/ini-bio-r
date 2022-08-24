@@ -76,7 +76,7 @@ A moda para essa variável é igual a mediana.
 
 ### Quantil
 
-Uma medida de localização bastante utilizada são os [quantis](anchor) que são pontos estabelecidos em intervalos regulares que dividem a amostra em subconjuntos iguais. Se estes subconjuntos são em número de 100, são denominados de [percentis](anchor); se são em número de em 10, são os [decis](anchor) e em número de 4, são os [quartis](anchor). 
+Uma medida de localização bastante utilizada são os <font color="blue">quantis</font> que são pontos estabelecidos em intervalos regulares que dividem a amostra em subconjuntos iguais. Se estes subconjuntos são em número de 100, são denominados de <font color="blue">percentis</font>; se são em número de em 10, são os <font color="blue">decis</font> e em número de 4, são os <font color="blue">quartis</font>. 
 A função apropriada no **R** para obter o quantil é `quantile ()`. Para determinar os três quartis do peso dos recém-nascidos (`mater15$pexoRN`), usa-se:
 
 ```{r}
@@ -131,7 +131,7 @@ sd (mater15$pesoRN)
 var(mater15$pesoRN)
 ```
 
-O desvio padrão é a raiz quadrada da variância:
+O desvio padrão é a raiz quadrada da variância: $s = \sqrt var$
 
 ```{r}
 sqrt (var(mater15$pesoRN))
@@ -162,7 +162,7 @@ Portanto, o CV da variável `mater15$pesoRN` é igual a:
 coef_var (mater15$pesoRN)
 ```
 
-Se usarmos outra variável do banco de dados, por exemplo, mater15$idadeMae, o CV será igual a:
+Se usarmos outra variável do banco de dados, por exemplo, `mater15$idadeMae`, o CV será igual a:
 
 ```{r}
 coef_var (mater15$idadeMae)
@@ -225,14 +225,15 @@ A função `summary ()` fornece a os quantis, o máximo, o mínimo e a média de
 summary(mater15$idadeMae)
 ```
 
+## Leitura Adicional 
 
+1. Kassambara A. Descriptive Statistics and Graphics. **STHDA - Statistical tools for high-throughput data analysis**. Disponível em: <http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics> . Acesso em 24/08/2022
 
-Para maiores esclarecimentos, consulte:
+2. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Resumo dos Dados Numéricos;p.24-31.
 
-<https://statsandr.com/blog/descriptive-statistics-in-r/>  
-<http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics>
-<https://learningstatisticswithr.com/book/descriptives.html>
+3. Soettewey A. Descriptive statistics in R. **Stats and R**, Louvain-la-Neuve, Bélgica, 22 de janeiro de 2020. Disponível em: <https://statsandr.com/blog/descriptive-statistics-in-r/>. Acesso em: 13 de agosto de 2022.
 
 
 </br>
 </br>
+

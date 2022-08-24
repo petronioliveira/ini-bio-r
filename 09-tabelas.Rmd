@@ -12,15 +12,13 @@ pacman::p_load(readxl, dplyr, gmodels, gt, gtsummary, flextable)
 
 Para obter os dados você deve clicar [aqui](https://github.com/petronioliveira/Arquivos/blob/main/dadosMater.xlsx) e baixar para o seu diretório de trabalho o arquivo `dadosMater.xlsx`.
 
-Crie um objeto `mater` para receber os dados, a partir do diretório de trabalho, executando o seguinte código:
+Crie um objeto `mater` para receber os dados, a partir do diretório de trabalho (no exemplo, é o diretório do autor): 
 
 ```{r}
 mater <- read_excel ("C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosMater.xlsx")
 ```
 
-
-
-## Exploração ddos dados
+## Exploração dos dados
 
 ### Visão Geral 
 
@@ -66,7 +64,7 @@ mater$obito <- factor (mater$obito,
                         labels = c ("sim", "não"))
 ```
 
-A seguir, vamos reduzir o número de variáveis, apenas como demostração didática, criando um novo banco de dados que será denominado de `mater1`. Isso será feito pela função `select ()` do pacote `dplyr´. Como argumentos da dunção, colocamos o nome da variável precedido do sinal de menos. Poderia ser feito, colocando como argumentos o nome das variáveis que permanecem no banco de dados.
+A seguir, vamos reduzir o número de variáveis, apenas como demostração didática, criando um novo banco de dados que será denominado de `mater1`. Isso será feito pela função `select ()` do pacote `dplyr`. Como argumentos da dunção, colocamos o nome da variável precedido do sinal de menos. Poderia ser feito, colocando como argumentos o nome das variáveis que permanecem no banco de dados.
 
 ```{r}
 mater1 <- mater %>% 
@@ -285,8 +283,6 @@ save_as_pptx(tb, path = "RN.pptx")
 2.	Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Tabelas;p.9-12.
 3. Sjoberg DD, Whiting K, Curry M, Lavery JA, Larmarange J. Reproducible summary tables with the gtsummary package. **The R Journal** 2021;13:570–80. https://doi.org/10.32614/RJ-2021-053.	
 4. Soettewey A. Descriptive statistics in R. **Stats and R**, Louvain-la-Neuve, Bélgica, 22 de janeiro de 2020. Disponível em: <https://statsandr.com/blog/descriptive-statistics-in-r/>. Acesso em: 13 de agosto de 2022.
-
-<http://www.danieldsjoberg.com/gtsummary/>
 
 
 </br>

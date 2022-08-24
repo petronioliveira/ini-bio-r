@@ -197,3 +197,5 @@ poder-do-teste-estatístico
 cálculo-do-poder-usando-a-distribuição-t
 valor-p
 leitura-adicional-5
+leitura-adicional-6
+exploração-dos-dados
