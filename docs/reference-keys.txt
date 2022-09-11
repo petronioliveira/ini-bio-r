@@ -207,3 +207,4 @@ apresentação-gráfica-dos-resultados-1
 tamanho-do-efeito
 exercício-3
 leitura-adicional-7
+observação-visual-dos-dados-através-de-boxplots
