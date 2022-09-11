@@ -57,9 +57,9 @@ resumo <- dados %>%
             media = mean(notas),
             dp = sd (notas),
             mediana = median (notas),
-            IIQ = IQR (notas)) %>% 
-  mutate(ep = dp/sqrt(n)) %>% 
-  mutate(me = ep * qt(1 - (0.05/2), n - 1))
+            IIQ = IQR (notas),
+            ep = dp/sqrt(n),
+            me = ep * qt(1 - (0.05/2), n - 1))
 resumo
 ```
 
