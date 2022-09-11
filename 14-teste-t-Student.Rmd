@@ -66,10 +66,11 @@ glimpse (dados)
 Será calculada a média e o desvio padrão da variável `altura` de acordo com a população (`pop`), usando a função `group_by ()` do pacote `dplyr` e `get_summary_stats()` do pacote `rstatix`:
 
 ```{r}
-dados %>%
+dados1 <- dados %>%
   group_by (pop) %>%
   get_summary_stats (altura, 
                      type = "mean_sd")
+dados1
 ```
 
 Para maiores informações sobre estes pacotes acione a ajuda.  
@@ -287,23 +288,27 @@ Verificar a probabilidade de se encontra mulheres com esta altura na população
 
 ```{r}
 x <-  1.50
+mu1 <- dados1$mean [1]
+dp1 <- dados1$sd [1]
 z1 <-  (x - mu1)/dp1
 z1 
 p1 <- pnorm (z1)
 p1
 ```
-Na população 1, apenas 7% das mulhres tem altura abaixo de 1,50, 97% é mais alta do que este valor.
+Na população 1, apenas `r round(((p1)*100), 2)`% das mulheres tem altura abaixo de 1,50, `r round(((1 - p1)*100), 2)`% é mais alta do que este valor.
 
 **População 2**
 
 ```{r}
 x <-  1.50
+mu2 <- dados1$mean [2]
+dp2 <- dados1$sd [2]
 z2 <-  (x - mu2)/dp2
 z2 
 p2 <- pnorm (z2)
 p2
 ```
-Na população 2, esta mulher estaria a 1,73 desvios padrão distante da média. Isto significa que se ela pertence a população 2, ela seria considerada alta, pois, praticamente 96% das mulheres desta população seriam menores do que ela.  
+Na população 2, esta mulher estaria a `r round(z2, 2)` desvios padrão distante da média. Isto significa que se ela pertence a população 2, ela seria considerada alta, pois, praticamente `r round(((p2)*100), 2)`% das mulheres desta população seriam menores do que ela.  
 
 Na realidade, ela pode pertencer a qualquer uma das populações. Entretanto, como poucas mulheres na população 1 tem altura dessa magnitude e muitas mulheres da população 2 tem esta altura ou menos, poucas estão acima, seria mais provável ela ser da população 2, mas poderia ser uma "baixinha" da população 1!
 
