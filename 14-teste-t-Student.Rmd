@@ -314,14 +314,14 @@ Na realidade, ela pode pertencer a qualquer uma das populações. Entretanto, co
 
 ## Leitura Adicional  
 
-1. Altman DG. **Practical Statistics for Medical Research**. Boca Raton, FL: Chapman & Hall/CRC; 1991. The Normal Distribution; 51-60.
+1. Altman DG. **Practical Statistics for Medical Research**. Boca Raton, FL: Chapman & Hall/CRC; 1991. Comparing groups - continuous data; 191-8.
 
 2. Gardner MJ, Altman DG.Confidence intervals rather than P values: estimation rather than hypothesis testing.BMJ 1986; 292:746-50.
 
-3. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Distribuição de  Probabilidades;p.113-121.
+3. Oliveira Filho PF. **Epidemiologia e Bioestatística: fundamentos para a leitura crítica**. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Testes Paramétricos;p.135-7.
 
 4. Vu J, Harrington D. **Introductory Statistics for the
-Life and Biomedical Sciences**. Openintro; 2021. Normal distribution; p.152-67. Disponível em: <https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./03%3A_Distributions_of_Random_Variables/3.01%3A_Normal_Distribution>
+Life and Biomedical Sciences**. Openintro; 2021. Normal distribution; p.152-67. Disponível em: <https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./05%3A_Inference_for_Numerical_Data>
 
 
 </br>

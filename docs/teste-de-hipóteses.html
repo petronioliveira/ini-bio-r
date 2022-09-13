@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R</title>
   <meta name="description" content="Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R" />
-  <meta name="generator" content="bookdown 0.27.3 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 13 Teste de Hipóteses | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Petrônio Fagundes de Oliveira Filho" />
 
 
-<meta name="date" content="2022-08-29" />
+<meta name="date" content="2022-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="estimação.html"/>
-
+<link rel="next" href="teste-t-para-amostras-independentes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -391,6 +391,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.9" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#valor-p"><i class="fa fa-check"></i><b>13.9</b> Valor <em>P</em></a></li>
 <li class="chapter" data-level="13.10" data-path="teste-de-hipóteses.html"><a href="teste-de-hipóteses.html#leitura-adicional-6"><i class="fa fa-check"></i><b>13.10</b> Leitura Adicional</a></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html"><i class="fa fa-check"></i><b>14</b> Teste <em>t</em> para Amostras Independentes</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#pacotes-necessários-5"><i class="fa fa-check"></i><b>14.1</b> Pacotes necessários</a></li>
+<li class="chapter" data-level="14.2" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#dados-2"><i class="fa fa-check"></i><b>14.2</b> Dados</a></li>
+<li class="chapter" data-level="14.3" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#exploração-dos-dados-1"><i class="fa fa-check"></i><b>14.3</b> Exploração dos dados</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#medidas-resumidoras-de-interesse"><i class="fa fa-check"></i><b>14.3.1</b> Medidas resumidoras de interesse</a></li>
+<li class="chapter" data-level="14.3.2" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#observação-visual-dos-dados-através-de-boxplots"><i class="fa fa-check"></i><b>14.3.2</b> Observação visual dos dados, através de boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#definição-das-hipóteses-estatísticas"><i class="fa fa-check"></i><b>14.4</b> Definição das hipóteses estatísticas</a></li>
+<li class="chapter" data-level="14.5" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#regra-de-decisão-1"><i class="fa fa-check"></i><b>14.5</b> Regra de decisão</a></li>
+<li class="chapter" data-level="14.6" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#avaliação-dos-pressupostos"><i class="fa fa-check"></i><b>14.6</b> Avaliação dos pressupostos</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#avaliação-da-normalidade"><i class="fa fa-check"></i><b>14.6.1</b> Avaliação da normalidade</a></li>
+<li class="chapter" data-level="14.6.2" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#avaliação-da-homogeneidade-das-variâncias-usando-o-teste-de-levene"><i class="fa fa-check"></i><b>14.6.2</b> Avaliação da homogeneidade das variâncias, usando o teste de Levene</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#cálculo-da-estatística-do-teste"><i class="fa fa-check"></i><b>14.7</b> Cálculo da estatística do teste</a></li>
+<li class="chapter" data-level="14.8" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#conclusão-1"><i class="fa fa-check"></i><b>14.8</b> Conclusão</a>
+<ul>
+<li class="chapter" data-level="14.8.1" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#apresentação-gráfica-dos-resultados-1"><i class="fa fa-check"></i><b>14.8.1</b> Apresentação gráfica dos resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="14.9" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#tamanho-do-efeito"><i class="fa fa-check"></i><b>14.9</b> Tamanho do efeito</a></li>
+<li class="chapter" data-level="14.10" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#exercício-3"><i class="fa fa-check"></i><b>14.10</b> Exercício</a></li>
+<li class="chapter" data-level="14.11" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#leitura-adicional-7"><i class="fa fa-check"></i><b>14.11</b> Leitura Adicional</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -461,9 +486,9 @@ Como a variável <code>sexo</code> está como caractere, é melhor transformá-l
 <span id="cb7-4"><a href="teste-de-hipóteses.html#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(notas),</span>
 <span id="cb7-5"><a href="teste-de-hipóteses.html#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span> (notas),</span>
 <span id="cb7-6"><a href="teste-de-hipóteses.html#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span> (notas),</span>
-<span id="cb7-7"><a href="teste-de-hipóteses.html#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">IIQ =</span> <span class="fu">IQR</span> (notas)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-8"><a href="teste-de-hipóteses.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ep =</span> dp<span class="sc">/</span><span class="fu">sqrt</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-9"><a href="teste-de-hipóteses.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">me =</span> ep <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb7-7"><a href="teste-de-hipóteses.html#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">IIQ =</span> <span class="fu">IQR</span> (notas),</span>
+<span id="cb7-8"><a href="teste-de-hipóteses.html#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">ep =</span> dp<span class="sc">/</span><span class="fu">sqrt</span>(n),</span>
+<span id="cb7-9"><a href="teste-de-hipóteses.html#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">me =</span> ep <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>))</span>
 <span id="cb7-10"><a href="teste-de-hipóteses.html#cb7-10" aria-hidden="true" tabindex="-1"></a>resumo</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 8
 ##   sexo      n media    dp mediana   IIQ    ep    me
@@ -737,8 +762,8 @@ Uma boa parte dos pesquisadores, principalmente no início da carreira, fica exc
           </div>
         </div>
       </div>
-<a href="estimação.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="estimação.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="teste-t-para-amostras-independentes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
