@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 14 Teste t para Amostras Independentes | BIOESTATÍSTICA USANDO O R</title>
-  <meta name="description" content="Capítulo 14 Teste t para Amostras Independentes | BIOESTATÍSTICA USANDO O R" />
+  <title>Capítulo 15 Teste t para Amostras Pareadas | BIOESTATÍSTICA USANDO O R</title>
+  <meta name="description" content="Capítulo 15 Teste t para Amostras Pareadas | BIOESTATÍSTICA USANDO O R" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 14 Teste t para Amostras Independentes | BIOESTATÍSTICA USANDO O R" />
+  <meta property="og:title" content="Capítulo 15 Teste t para Amostras Pareadas | BIOESTATÍSTICA USANDO O R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 14 Teste t para Amostras Independentes | BIOESTATÍSTICA USANDO O R" />
+  <meta name="twitter:title" content="Capítulo 15 Teste t para Amostras Pareadas | BIOESTATÍSTICA USANDO O R" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teste-de-hipóteses.html"/>
-<link rel="next" href="teste-t-para-amostras-pareadas.html"/>
+<link rel="prev" href="teste-t-para-amostras-independentes.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -400,6 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.3" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#exploração-dos-dados-1"><i class="fa fa-check"></i><b>14.3</b> Exploração dos dados</a>
 <ul>
 <li class="chapter" data-level="14.3.1" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#medidas-resumidoras-de-interesse"><i class="fa fa-check"></i><b>14.3.1</b> Medidas resumidoras de interesse</a></li>
+<li class="chapter" data-level="14.3.2" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#observação-visual-dos-dados-através-de-boxplots"><i class="fa fa-check"></i><b>14.3.2</b> Observação visual dos dados, através de boxplots</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#definição-das-hipóteses-estatísticas"><i class="fa fa-check"></i><b>14.4</b> Definição das hipóteses estatísticas</a></li>
 <li class="chapter" data-level="14.5" data-path="teste-t-para-amostras-independentes.html"><a href="teste-t-para-amostras-independentes.html#regra-de-decisão-1"><i class="fa fa-check"></i><b>14.5</b> Regra de decisão</a></li>
@@ -432,9 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.5" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#verificação-dos-pressupostos"><i class="fa fa-check"></i><b>15.5</b> Verificação dos pressupostos</a></li>
 <li class="chapter" data-level="15.6" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#cálculo-do-teste-estatístico-1"><i class="fa fa-check"></i><b>15.6</b> Cálculo do teste Estatístico</a></li>
 <li class="chapter" data-level="15.7" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#conclusão-2"><i class="fa fa-check"></i><b>15.7</b> Conclusão</a></li>
-<li class="chapter" data-level="15.8" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#apresentação-gráfica-dos-resultados-2"><i class="fa fa-check"></i><b>15.8</b> Apresentação gráfica dos resultados</a></li>
-<li class="chapter" data-level="15.9" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#tamanho-do-efeito-1"><i class="fa fa-check"></i><b>15.9</b> Tamanho do Efeito</a></li>
-<li class="chapter" data-level="15.10" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#leitura-adicional-8"><i class="fa fa-check"></i><b>15.10</b> Leitura Adicional</a></li>
+<li class="chapter" data-level="15.8" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#tamanho-do-efeito-1"><i class="fa fa-check"></i><b>15.8</b> Tamanho do Efeito</a></li>
+<li class="chapter" data-level="15.9" data-path="teste-t-para-amostras-pareadas.html"><a href="teste-t-para-amostras-pareadas.html#leitura-adicional-8"><i class="fa fa-check"></i><b>15.9</b> Leitura Adicional</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -455,37 +455,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="teste-t-para-amostras-independentes" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Capítulo  14</span> Teste <em>t</em> para Amostras Independentes<a href="teste-t-para-amostras-independentes.html#teste-t-para-amostras-independentes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Também conhecido como <strong>teste <em>t</em> de medidas independentes</strong> ou <strong>teste <em>t</em> de amostras independentes</strong>. O teste <em>t</em> é usado quando há duas condições experimentais e participantes diferentes foram designados para cada condição.</p>
-<div id="pacotes-necessários-5" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Pacotes necessários<a href="teste-t-para-amostras-independentes.html#pacotes-necessários-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="teste-t-para-amostras-independentes.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl,</span>
-<span id="cb1-2"><a href="teste-t-para-amostras-independentes.html#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr,</span>
-<span id="cb1-3"><a href="teste-t-para-amostras-independentes.html#cb1-3" aria-hidden="true" tabindex="-1"></a>               car,</span>
-<span id="cb1-4"><a href="teste-t-para-amostras-independentes.html#cb1-4" aria-hidden="true" tabindex="-1"></a>               rstatix,</span>
-<span id="cb1-5"><a href="teste-t-para-amostras-independentes.html#cb1-5" aria-hidden="true" tabindex="-1"></a>               ggplot2,</span>
-<span id="cb1-6"><a href="teste-t-para-amostras-independentes.html#cb1-6" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
-<span id="cb1-7"><a href="teste-t-para-amostras-independentes.html#cb1-7" aria-hidden="true" tabindex="-1"></a>               kableExtra,</span>
-<span id="cb1-8"><a href="teste-t-para-amostras-independentes.html#cb1-8" aria-hidden="true" tabindex="-1"></a>               lsr,</span>
-<span id="cb1-9"><a href="teste-t-para-amostras-independentes.html#cb1-9" aria-hidden="true" tabindex="-1"></a>               dabestr)</span></code></pre></div>
+<div id="teste-t-para-amostras-pareadas" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Capítulo  15</span> Teste <em>t</em> para Amostras Pareadas<a href="teste-t-para-amostras-pareadas.html#teste-t-para-amostras-pareadas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Um <strong>teste <em>t</em> pareado</strong> é usado para estimar se as médias de duas medidas relacionadas são significativamente diferentes uma da outra. Esse teste é usado quando duas variáveis contínuas são relacionadas porque são coletadas do mesmo participante em momentos diferentes (antes e depois), de locais diferentes na mesma pessoa ao mesmo tempo ou de casos e seus controles correspondentes.</p>
+<div id="pacotes-necessários-6" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Pacotes necessários<a href="teste-t-para-amostras-pareadas.html#pacotes-necessários-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="teste-t-para-amostras-pareadas.html#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(readxl,</span>
+<span id="cb1-2"><a href="teste-t-para-amostras-pareadas.html#cb1-2" aria-hidden="true" tabindex="-1"></a>               dplyr,</span>
+<span id="cb1-3"><a href="teste-t-para-amostras-pareadas.html#cb1-3" aria-hidden="true" tabindex="-1"></a>               tidyr,</span>
+<span id="cb1-4"><a href="teste-t-para-amostras-pareadas.html#cb1-4" aria-hidden="true" tabindex="-1"></a>               car,</span>
+<span id="cb1-5"><a href="teste-t-para-amostras-pareadas.html#cb1-5" aria-hidden="true" tabindex="-1"></a>               rstatix,</span>
+<span id="cb1-6"><a href="teste-t-para-amostras-pareadas.html#cb1-6" aria-hidden="true" tabindex="-1"></a>               ggplot2,</span>
+<span id="cb1-7"><a href="teste-t-para-amostras-pareadas.html#cb1-7" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
+<span id="cb1-8"><a href="teste-t-para-amostras-pareadas.html#cb1-8" aria-hidden="true" tabindex="-1"></a>               kableExtra,</span>
+<span id="cb1-9"><a href="teste-t-para-amostras-pareadas.html#cb1-9" aria-hidden="true" tabindex="-1"></a>               lsr,</span>
+<span id="cb1-10"><a href="teste-t-para-amostras-pareadas.html#cb1-10" aria-hidden="true" tabindex="-1"></a>               dabestr,</span>
+<span id="cb1-11"><a href="teste-t-para-amostras-pareadas.html#cb1-11" aria-hidden="true" tabindex="-1"></a>               sciplot,</span>
+<span id="cb1-12"><a href="teste-t-para-amostras-pareadas.html#cb1-12" aria-hidden="true" tabindex="-1"></a>               psych)</span></code></pre></div>
 </div>
-<div id="dados-2" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Dados<a href="teste-t-para-amostras-independentes.html#dados-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O banco de dados a ser carregado encontra-se <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosPop.xlsx">aqui</a>. Ele é constituído por medidas de altura (em metros) de dois grupos de mulheres, pertencentes a duas regiões geográficas hipotéticas diferentes. Salve o mesmo no diretório de trabalho.<br />
-Crie um objeto <code>dados</code> para recebê-lo, a partir do diretório de trabalho, executando o seguinte código:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="teste-t-para-amostras-independentes.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosPop.xlsx&quot;</span>)</span></code></pre></div>
-<p>A função <code>read_excel()</code> do pacote <code>readxl</code> carregou o arquivo <code>dadosPop.xlsx</code>. Os dados podem ser visualizados, usando a função <code>glimpse()</code> do pacote <code>dplyr</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="teste-t-para-amostras-independentes.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
-<pre><code>## Rows: 60
-## Columns: 3
-## $ id     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, …
-## $ altura &lt;dbl&gt; 1.50, 1.56, 1.63, 1.66, 1.60, 1.65, 1.49, 1.60, 1.56, 1.58, 1.5…
-## $ pop    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
-<p>Observa-se que temos 60 mulheres, sendo 30 moradoras na região 1 e 30 na região 2. Foram coletadas `as alturas em metros de todas as participantes.</p>
-<p>Se quisermos exibir os dados de uma forma, visualmente, mais elegante e em uma apresentação mais amigável, pode-se usar a função <code>kable()</code> do pacote <code>knitr</code> e a função <code>kable_styling()</code> do pacote <code>kableExtra</code>. A função <code>kable ()</code> usa a função <code>head()</code> embutida. Ao executar os códigos, serão exibido apenas 10 linhas do banco de dados (se não for especificado, mostra apenas 6 linhas). Isto evita uma poluição visual:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="teste-t-para-amostras-independentes.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(dados, <span class="dv">10</span>), </span>
-<span id="cb5-2"><a href="teste-t-para-amostras-independentes.html#cb5-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Id&quot;</span>, <span class="st">&quot;Altura&quot;</span>, <span class="st">&quot;População&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>))</span></code></pre></div>
+<div id="leitura-e-exploração-dos-dados" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Leitura e exploração dos dados<a href="teste-t-para-amostras-pareadas.html#leitura-e-exploração-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O banco de dados é constituído por uma amostra de 15 escolares portadores de asma não controlada. Fizeram avaliação da sua função pulmonar no início do uso de um novo corticoide inalatório. Após 60 dias, repetiram a avaliação da função pulmonar. Para obter o banco de dados, clique <a href="https://github.com/petronioliveira/Arquivos/blob/main/dadosPar.xlsx">aqui</a>. Faça o downloado para o seu diretório de trabalho.</p>
+<p>Crie um objeto <code>dados</code> para recebê-lo, a partir do diretório de trabalho, executando o seguinte código:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="teste-t-para-amostras-pareadas.html#cb2-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span> (<span class="st">&quot;C:/Users/petro/Dropbox/Git_repositório/Arquivos/dadosPar.xlsx&quot;</span>)</span></code></pre></div>
+<p>A função <code>read_excel()</code> do pacote <code>readxl</code> abre o arquivo <code>dadosPar.xlsx</code>. Eles podem ser visualizados, usando a função <code>head()</code> que mostra estrutura e o formato dos dados:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="teste-t-para-amostras-pareadas.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dados)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##      id basal final
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1  1.3   1.53
+## 2     2  1.47  1.63
+## 3     3  2.06  2.35
+## 4     4  1.95  2.7 
+## 5     5  1.47  2.01
+## 6     6  1.13  1.53</code></pre>
+<p>O dataframe <code>dados</code> está no formato amplo (<em>wide</em>). Vamos transformá-lo para o formato longo (<em>long</em>), usando a função <code>pivot_longer ()</code> do pacote <code>tidyr</code>. ESte processo não é obrigatório, mas vamos realizá-lo para fins de treinamento. O novo banco de dados será atribuído ao denominado <code>dadosL</code>. A função <code>pivot_longer ()</code> necessita dos seguintes argumentos:</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Argumento</strong></th>
+<th align="left"><strong>Significado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">dados</td>
+<td align="left">dataframe a ser pivotado, tranformado;</td>
+</tr>
+<tr class="even">
+<td align="left">cols</td>
+<td align="left">colunas a serem transformadas no formato longo;</td>
+</tr>
+<tr class="odd">
+<td align="left">names_to</td>
+<td align="left">Especifica o nome da coluna a ser criada a partir dos dados armazenados nos nomes das colunas de dados;</td>
+</tr>
+<tr class="even">
+<td align="left">values_to</td>
+<td align="left">Especifica o nome da coluna a ser criada a partir dos dados armazenados nos valores das células;</td>
+</tr>
+<tr class="odd">
+<td align="left">…</td>
+<td align="left">possui outros argumento. Ver ajuda.</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="teste-t-para-amostras-pareadas.html#cb5-1" aria-hidden="true" tabindex="-1"></a>dadosL <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="teste-t-para-amostras-pareadas.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(basal, final), </span>
+<span id="cb5-3"><a href="teste-t-para-amostras-pareadas.html#cb5-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;momento&quot;</span>, </span>
+<span id="cb5-4"><a href="teste-t-para-amostras-pareadas.html#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">&quot;medidas&quot;</span>)</span></code></pre></div>
+<p>A estrutura do banco de dados <code>dadosL</code> é:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="teste-t-para-amostras-pareadas.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dadosL)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##      id momento medidas
+##   &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1     1 basal      1.3 
+## 2     1 final      1.53
+## 3     2 basal      1.47
+## 4     2 final      1.63
+## 5     3 basal      2.06
+## 6     3 final      2.35</code></pre>
+<div id="medidas-resumidoras" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Medidas Resumidoras<a href="teste-t-para-amostras-pareadas.html#medidas-resumidoras" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para resumir as variáveis, usaremos as funções <code>group_by ()</code>, <code>summarise ()</code> e mutate () do pacote <code>dplyr</code>, aplicadas ao formato longo <code>dadosL</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="teste-t-para-amostras-pareadas.html#cb8-1" aria-hidden="true" tabindex="-1"></a>resumo <span class="ot">&lt;-</span> dadosL <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="teste-t-para-amostras-pareadas.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(momento) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="teste-t-para-amostras-pareadas.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span> (),</span>
+<span id="cb8-4"><a href="teste-t-para-amostras-pareadas.html#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">media =</span> <span class="fu">mean</span>(medidas),</span>
+<span id="cb8-5"><a href="teste-t-para-amostras-pareadas.html#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span> (medidas),</span>
+<span id="cb8-6"><a href="teste-t-para-amostras-pareadas.html#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span> (medidas),</span>
+<span id="cb8-7"><a href="teste-t-para-amostras-pareadas.html#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">IIQ =</span> <span class="fu">IQR</span> (medidas)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="teste-t-para-amostras-pareadas.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ep =</span> dp<span class="sc">/</span><span class="fu">sqrt</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="teste-t-para-amostras-pareadas.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">me =</span> ep <span class="sc">*</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>), n <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb8-10"><a href="teste-t-para-amostras-pareadas.html#cb8-10" aria-hidden="true" tabindex="-1"></a>resumo</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 8
+##   momento     n media    dp mediana   IIQ    ep    me
+##   &lt;chr&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 basal      15  1.31 0.427    1.26  0.48 0.110 0.236
+## 2 final      15  1.69 0.471    1.59  0.38 0.122 0.261</code></pre>
+</div>
+<div id="visualização-dos-dados" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> Visualização dos dados<a href="teste-t-para-amostras-pareadas.html#visualização-dos-dados" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tabela" class="section level4 hasAnchor" number="15.2.2.1">
+<h4><span class="header-section-number">15.2.2.1</span> Tabela<a href="teste-t-para-amostras-pareadas.html#tabela" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>É possível exibir os dados, tanto o banco de dados <code>dados</code> como o <code>dadosL</code>, de uma maneira mais elegante, usando a função <code>kable()</code> do pacote <code>knitr</code> e a função <code>kable_styling()</code> do pacote <code>kableExtra</code>. A função <code>kable ()</code> usa a função <code>head()</code> embutida. Ao executar os códigos, se não for especificado, é mostrado apenas 6 linhas. Iremos usar o formato amplo e todas as suas 15 linhas:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="teste-t-para-amostras-pareadas.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(dados, <span class="dv">15</span>), </span>
+<span id="cb10-2"><a href="teste-t-para-amostras-pareadas.html#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Id&quot;</span>, <span class="st">&quot;Basal&quot;</span>, <span class="st">&quot;Final&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>, <span class="st">&quot;condensed&quot;</span>, <span class="st">&quot;responsive&quot;</span>))</span></code></pre></div>
 <table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -493,10 +576,10 @@ Crie um objeto <code>dados</code> para recebê-lo, a partir do diretório de tra
 Id
 </th>
 <th style="text-align:right;">
-Altura
+Basal
 </th>
 <th style="text-align:right;">
-População
+Final
 </th>
 </tr>
 </thead>
@@ -506,10 +589,10 @@ População
 1
 </td>
 <td style="text-align:right;">
-1.50
+1.30
 </td>
 <td style="text-align:right;">
-1
+1.53
 </td>
 </tr>
 <tr>
@@ -517,10 +600,10 @@ População
 2
 </td>
 <td style="text-align:right;">
-1.56
+1.47
 </td>
 <td style="text-align:right;">
-1
+1.63
 </td>
 </tr>
 <tr>
@@ -528,10 +611,10 @@ População
 3
 </td>
 <td style="text-align:right;">
-1.63
+2.06
 </td>
 <td style="text-align:right;">
-1
+2.35
 </td>
 </tr>
 <tr>
@@ -539,10 +622,10 @@ População
 4
 </td>
 <td style="text-align:right;">
-1.66
+1.95
 </td>
 <td style="text-align:right;">
-1
+2.70
 </td>
 </tr>
 <tr>
@@ -550,10 +633,10 @@ População
 5
 </td>
 <td style="text-align:right;">
-1.60
+1.47
 </td>
 <td style="text-align:right;">
-1
+2.01
 </td>
 </tr>
 <tr>
@@ -561,10 +644,10 @@ População
 6
 </td>
 <td style="text-align:right;">
-1.65
+1.13
 </td>
 <td style="text-align:right;">
-1
+1.53
 </td>
 </tr>
 <tr>
@@ -572,10 +655,10 @@ População
 7
 </td>
 <td style="text-align:right;">
-1.49
+1.48
 </td>
 <td style="text-align:right;">
-1
+1.66
 </td>
 </tr>
 <tr>
@@ -583,10 +666,10 @@ População
 8
 </td>
 <td style="text-align:right;">
-1.60
+0.94
 </td>
 <td style="text-align:right;">
-1
+1.59
 </td>
 </tr>
 <tr>
@@ -594,10 +677,10 @@ População
 9
 </td>
 <td style="text-align:right;">
-1.56
+1.05
 </td>
 <td style="text-align:right;">
-1
+1.50
 </td>
 </tr>
 <tr>
@@ -605,10 +688,65 @@ População
 10
 </td>
 <td style="text-align:right;">
-1.58
+0.87
 </td>
 <td style="text-align:right;">
-1
+1.61
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+1.17
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1.21
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.78
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+1.99
+</td>
+<td style="text-align:right;">
+2.37
 </td>
 </tr>
 </tbody>
@@ -618,216 +756,246 @@ População
 <li><em>striped</em>: adiciona listras zebradas à tabela;</li>
 <li><em>hover</em>: adiciona cor de fundo cinza nas linhas da tabela;</li>
 <li><em>condensed</em>: torna a tabela mais compacta;</li>
-<li><em>responsive</em>: faz rolagem horizontal quando há menos de 768 px (20,32 cm).</li>
+<li><em>responsive</em>: faz rolagem horizontal quando há menos de 768 px (20,32 cm)</li>
 </ul>
 </div>
-<div id="exploração-dos-dados-1" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> Exploração dos dados<a href="teste-t-para-amostras-independentes.html#exploração-dos-dados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Observando a saída da função <code>glimpse ()</code>, verifica-se que todas as variáveis estão como variáveis numéricas (<em>dbl = double</em>). A variável <code>pop</code> deve ser transformada para fator:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="teste-t-para-amostras-independentes.html#cb6-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>pop <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>pop)</span></code></pre></div>
-<p>Agora, se observarmos, novamente, a estrutura do banco de dados, usando a função <code>glimse ()</code>, novamente, a variável <code>pop</code> está como fator.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="teste-t-para-amostras-independentes.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span> (dados)</span></code></pre></div>
-<pre><code>## Rows: 60
-## Columns: 3
-## $ id     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, …
-## $ altura &lt;dbl&gt; 1.50, 1.56, 1.63, 1.66, 1.60, 1.65, 1.49, 1.60, 1.56, 1.58, 1.5…
-## $ pop    &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
-<div id="medidas-resumidoras-de-interesse" class="section level3 hasAnchor" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> Medidas resumidoras de interesse<a href="teste-t-para-amostras-independentes.html#medidas-resumidoras-de-interesse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Será calculada a média e o desvio padrão da variável <code>altura</code> de acordo com a população (<code>pop</code>), usando a função <code>group_by ()</code> do pacote <code>dplyr</code> e <code>get_summary_stats()</code> do pacote <code>rstatix</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="teste-t-para-amostras-independentes.html#cb9-1" aria-hidden="true" tabindex="-1"></a>dados1 <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="teste-t-para-amostras-independentes.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span> (pop) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="teste-t-para-amostras-independentes.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_summary_stats</span> (altura, </span>
-<span id="cb9-4"><a href="teste-t-para-amostras-independentes.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type =</span> <span class="st">&quot;mean_sd&quot;</span>)</span>
-<span id="cb9-5"><a href="teste-t-para-amostras-independentes.html#cb9-5" aria-hidden="true" tabindex="-1"></a>dados1</span></code></pre></div>
-<pre><code>## # A tibble: 2 × 5
-##   pop   variable     n  mean    sd
-##   &lt;fct&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 1     altura      30  1.60 0.062
-## 2 2     altura      30  1.39 0.074</code></pre>
-<p>Para maiores informações sobre estes pacotes acione a ajuda.<br />
-### Observação visual dos dados, através de boxplots</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="teste-t-para-amostras-independentes.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(dados<span class="sc">$</span>altura<span class="sc">~</span>dados<span class="sc">$</span>pop,</span>
-<span id="cb11-2"><a href="teste-t-para-amostras-independentes.html#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&quot;Altura de mulheres (m)&quot;</span>,</span>
-<span id="cb11-3"><a href="teste-t-para-amostras-independentes.html#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;População&quot;</span>,</span>
-<span id="cb11-4"><a href="teste-t-para-amostras-independentes.html#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;peachpuff&quot;</span>, <span class="st">&quot;salmon&quot;</span>),</span>
-<span id="cb11-5"><a href="teste-t-para-amostras-independentes.html#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">1</span>)</span>
-<span id="cb11-6"><a href="teste-t-para-amostras-independentes.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span> (dados<span class="sc">$</span>altura<span class="sc">~</span>dados<span class="sc">$</span>pop, </span>
-<span id="cb11-7"><a href="teste-t-para-amostras-independentes.html#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">method =</span> <span class="st">&quot;jitter&quot;</span>,</span>
-<span id="cb11-8"><a href="teste-t-para-amostras-independentes.html#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">jitter =</span> <span class="fl">0.05</span>,</span>
-<span id="cb11-9"><a href="teste-t-para-amostras-independentes.html#cb11-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">vertical =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-10"><a href="teste-t-para-amostras-independentes.html#cb11-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
-<span id="cb11-11"><a href="teste-t-para-amostras-independentes.html#cb11-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">pch =</span> <span class="dv">20</span>, </span>
-<span id="cb11-12"><a href="teste-t-para-amostras-independentes.html#cb11-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div id="gráficos-1" class="section level4 hasAnchor" number="15.2.2.2">
+<h4><span class="header-section-number">15.2.2.2</span> Gráficos<a href="teste-t-para-amostras-pareadas.html#gráficos-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Apenas por uma questão didática, vamos apresentar várias maneiras de mostrar os dados visualmente. Podem ser usados qualquer um dos tipos a seguir, pois todos dão, praticamente, a mesma informação.</p>
+<p><strong>Gráfico de barra de erro</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="teste-t-para-amostras-pareadas.html#cb11-1" aria-hidden="true" tabindex="-1"></a>resumo <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="teste-t-para-amostras-pareadas.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>momento, <span class="at">y=</span>media, <span class="at">fill=</span>momento)) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="teste-t-para-amostras-pareadas.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="fl">0.4</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="teste-t-para-amostras-pareadas.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="teste-t-para-amostras-pareadas.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>media<span class="sc">-</span>me, <span class="at">ymax=</span>media<span class="sc">+</span>me), <span class="at">width=</span><span class="fl">0.1</span>,</span>
+<span id="cb11-6"><a href="teste-t-para-amostras-pareadas.html#cb11-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">position=</span><span class="fu">position_dodge</span>(.<span class="dv">9</span>)) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="teste-t-para-amostras-pareadas.html#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Basal x Final - IC95%&quot;</span> , </span>
+<span id="cb11-8"><a href="teste-t-para-amostras-pareadas.html#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">&quot;Momento&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Volume Forçado em 1 seg (L)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb11-9"><a href="teste-t-para-amostras-pareadas.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="teste-t-para-amostras-pareadas.html#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="teste-t-para-amostras-pareadas.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;peachpuff&quot;</span>,<span class="st">&quot;salmon&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Neste gráfico, a altura da barra representa a média do VEF1 nos diferentes momentos (basal e final).O erro corresponde a margem de erro (me) a partir do ponto (média), ou seja, é o intervalo de confiança de 95%.</p>
+<p><strong>Boxplot</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="teste-t-para-amostras-pareadas.html#cb12-1" aria-hidden="true" tabindex="-1"></a>dadosL <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="teste-t-para-amostras-pareadas.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> momento, <span class="at">y =</span> medidas, <span class="at">fill =</span> momento)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="teste-t-para-amostras-pareadas.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="at">stat =</span> <span class="st">&quot;boxplot&quot;</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="teste-t-para-amostras-pareadas.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span> (<span class="at">outlier.color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb12-5"><a href="teste-t-para-amostras-pareadas.html#cb12-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">outlier.shape =</span> <span class="dv">1</span>,</span>
+<span id="cb12-6"><a href="teste-t-para-amostras-pareadas.html#cb12-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">outlier.size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="teste-t-para-amostras-pareadas.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;peachpuff&quot;</span>, <span class="st">&quot;salmon&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="teste-t-para-amostras-pareadas.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;VEF no 1º seg (L)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="teste-t-para-amostras-pareadas.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Momento&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="teste-t-para-amostras-pareadas.html#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, </span>
+<span id="cb12-11"><a href="teste-t-para-amostras-pareadas.html#cb12-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, </span>
+<span id="cb12-12"><a href="teste-t-para-amostras-pareadas.html#cb12-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">shape =</span> <span class="dv">19</span>, <span class="at">size =</span> <span class="dv">2</span>,  <span class="at">color=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="teste-t-para-amostras-pareadas.html#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb12-14"><a href="teste-t-para-amostras-pareadas.html#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme(text = element_text(size = 15)) +</span></span>
+<span id="cb12-15"><a href="teste-t-para-amostras-pareadas.html#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>A altura da caixa (box) dos boxplots é o intervalo interquartil (IIQ) e corresponde a 50% dos dados. A linha que corta horizontalmente a caixa é a mediana. Os bigodes da caixa (whiskers) em suas extrimidades são os limites inferior e superior dos dados, excluindo os valores atípicos (outliers), representado no boxplot final por um ponto vermelho, acima do limite superior. Os losangos em vermelho (opcionais) representam as médias.</p>
+<p><strong>Gráfico de linha</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="teste-t-para-amostras-pareadas.html#cb13-1" aria-hidden="true" tabindex="-1"></a>resumo <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="teste-t-para-amostras-pareadas.html#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>momento, <span class="at">y=</span>media, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="teste-t-para-amostras-pareadas.html#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="teste-t-para-amostras-pareadas.html#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">linetype =</span><span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="teste-t-para-amostras-pareadas.html#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>media <span class="sc">-</span> me, </span>
+<span id="cb13-6"><a href="teste-t-para-amostras-pareadas.html#cb13-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ymax=</span>media <span class="sc">+</span> me), </span>
+<span id="cb13-7"><a href="teste-t-para-amostras-pareadas.html#cb13-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">width=</span><span class="fl">0.1</span>,</span>
+<span id="cb13-8"><a href="teste-t-para-amostras-pareadas.html#cb13-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;salmon4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="teste-t-para-amostras-pareadas.html#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb13-10"><a href="teste-t-para-amostras-pareadas.html#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&#39;Momento&#39;</span>,</span>
+<span id="cb13-11"><a href="teste-t-para-amostras-pareadas.html#cb13-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">y=</span><span class="st">&#39;VEF1 (L)&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Este gráfico de linha com representação da margem de erro tem a mesma interpretação do gráfico de barra de erro. A escolha do tipo de gráfico depende da ênfase do autor sobre os dados.</p>
 </div>
 </div>
-<div id="definição-das-hipóteses-estatísticas" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> Definição das hipóteses estatísticas<a href="teste-t-para-amostras-independentes.html#definição-das-hipóteses-estatísticas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Será usado um teste bicaudal:</p>
-<p><span class="math inline">\(H_{0}\)</span>: <span class="math inline">\(\mu_{pop1} = \mu_{pop2}\)</span></p>
-<p><span class="math inline">\(H_{A}\)</span>: <span class="math inline">\(\mu_{pop1} ≠ \mu_{pop2}\)</span></p>
+<div id="criação-de-uma-variável-que-represente-a-diferença-entre-as-médias" class="section level3 hasAnchor" number="15.2.3">
+<h3><span class="header-section-number">15.2.3</span> Criação de uma variável que represente a diferença entre as médias<a href="teste-t-para-amostras-pareadas.html#criação-de-uma-variável-que-represente-a-diferença-entre-as-médias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>À diferença entre as média basal e final será atribuído o nome <code>dif</code>. Para realizar esta ação, usaremos o banco de dados amplo (<code>dados</code>):</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="teste-t-para-amostras-pareadas.html#cb14-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>dif <span class="ot">&lt;-</span> dados<span class="sc">$</span>basal <span class="sc">-</span> dados<span class="sc">$</span>final</span>
+<span id="cb14-2"><a href="teste-t-para-amostras-pareadas.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> (dados)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##      id basal final   dif
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1  1.3   1.53 -0.23
+## 2     2  1.47  1.63 -0.16
+## 3     3  2.06  2.35 -0.29
+## 4     4  1.95  2.7  -0.75
+## 5     5  1.47  2.01 -0.54
+## 6     6  1.13  1.53 -0.4</code></pre>
+<p>Atenção, agora, o banco de dados apresenta uma nova variável <code>dif</code>, pois o foco do teste <em>t</em> pareado é essa diferença entre as médias, basal e final, a média das diferenças.</p>
 </div>
-<div id="regra-de-decisão-1" class="section level2 hasAnchor" number="14.5">
-<h2><span class="header-section-number">14.5</span> Regra de decisão<a href="teste-t-para-amostras-independentes.html#regra-de-decisão-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O nível significância, <span class="math inline">\(\alpha\)</span>, escolhido é igual a <code>0.05</code>. A distribuição <em>t</em> é dependente dos graus de liberdade, dados por:</p>
-<p>No exemplo,</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="teste-t-para-amostras-independentes.html#cb12-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;1&quot;</span>))</span>
-<span id="cb12-2"><a href="teste-t-para-amostras-independentes.html#cb12-2" aria-hidden="true" tabindex="-1"></a>n1</span></code></pre></div>
-<pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="teste-t-para-amostras-independentes.html#cb14-1" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">which</span>(dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;2&quot;</span>))</span>
-<span id="cb14-2"><a href="teste-t-para-amostras-independentes.html#cb14-2" aria-hidden="true" tabindex="-1"></a>n2</span></code></pre></div>
-<pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="teste-t-para-amostras-independentes.html#cb16-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span><span class="dv">2</span></span>
-<span id="cb16-2"><a href="teste-t-para-amostras-independentes.html#cb16-2" aria-hidden="true" tabindex="-1"></a>gl</span></code></pre></div>
-<pre><code>## [1] 58</code></pre>
-<p>Para um <span class="math inline">\(\alpha\)</span> = 0.05, o valor crítico de <em>t</em> para gl = 58 e uma hipótese alternativa bicaudal é obtido com a função <code>qt (p, df)</code>, onde</p>
-<p><span class="math inline">\(df = gl\)</span> e<br />
-<span class="math inline">\(p = 1 - \alpha/2\)</span></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="teste-t-para-amostras-independentes.html#cb18-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb18-2"><a href="teste-t-para-amostras-independentes.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span> (<span class="fu">qt</span>((<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), gl), <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] 2.002</code></pre>
+<div id="resumo-da-variável-dif" class="section level3 hasAnchor" number="15.2.4">
+<h3><span class="header-section-number">15.2.4</span> Resumo da variável <code>dif</code><a href="teste-t-para-amostras-pareadas.html#resumo-da-variável-dif" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="teste-t-para-amostras-pareadas.html#cb16-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="teste-t-para-amostras-pareadas.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span> (dif),</span>
+<span id="cb16-3"><a href="teste-t-para-amostras-pareadas.html#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">dp =</span> <span class="fu">sd</span> (dif),</span>
+<span id="cb16-4"><a href="teste-t-para-amostras-pareadas.html#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span> (dif),</span>
+<span id="cb16-5"><a href="teste-t-para-amostras-pareadas.html#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">IIQ =</span> <span class="fu">IQR</span> (dif),</span>
+<span id="cb16-6"><a href="teste-t-para-amostras-pareadas.html#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mim =</span> <span class="fu">min</span> (dif),</span>
+<span id="cb16-7"><a href="teste-t-para-amostras-pareadas.html#cb16-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span> (dif))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 6
+##    media    dp mediana   IIQ   mim     max
+##    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 -0.377 0.218   -0.38 0.285 -0.75 -0.0400</code></pre>
+<p>Existe uma diferença de 0,37L entre o VEF1 basal e o final. A pergunta que se faz é: Esta diferença tem significância estatística? Os gráficos sugerem que sim!</p>
+</div>
+</div>
+<div id="definição-das-hipóteses-estatísticas-1" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Definição das hipóteses estatísticas<a href="teste-t-para-amostras-pareadas.html#definição-das-hipóteses-estatísticas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Será usado um teste bicaudal. Se a intervenção não produz efeito, então:</p>
+<p><span class="math inline">\(H_{0}\)</span>: <span class="math inline">\(\mu_{dif} = 0\)</span></p>
+<p>Se a intervenção produz efeito, então:</p>
+<p><span class="math inline">\(H_{A}\)</span>: <span class="math inline">\(\mu_{dif} ≠ 0\)</span></p>
+</div>
+<div id="regra-de-decisão-2" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Regra de decisão<a href="teste-t-para-amostras-pareadas.html#regra-de-decisão-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O nível significância, <span class="math inline">\(\alpha\)</span>, escolhido é igual a 0,05. O número de graus de liberdade é igual a:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="teste-t-para-amostras-pareadas.html#cb18-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(dados)</span>
+<span id="cb18-2"><a href="teste-t-para-amostras-pareadas.html#cb18-2" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb18-3"><a href="teste-t-para-amostras-pareadas.html#cb18-3" aria-hidden="true" tabindex="-1"></a>gl</span></code></pre></div>
+<pre><code>## [1] 14</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="teste-t-para-amostras-pareadas.html#cb20-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb20-2"><a href="teste-t-para-amostras-pareadas.html#cb20-2" aria-hidden="true" tabindex="-1"></a>tc <span class="ot">&lt;-</span> <span class="fu">round</span> (<span class="fu">qt</span>((<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>), gl), <span class="dv">3</span>)</span>
+<span id="cb20-3"><a href="teste-t-para-amostras-pareadas.html#cb20-3" aria-hidden="true" tabindex="-1"></a>tc                                   <span class="co"># t crítico</span></span></code></pre></div>
+<pre><code>## [1] 2.145</code></pre>
 <p>Portanto, se</p>
 <p><span class="math inline">\(|t_{calculado}| &lt; t_{crítico}|\)</span> -&gt; não rejeitar <span class="math inline">\(H_{0}\)</span></p>
 <p><span class="math inline">\(|t_{calculado}| &gt; t_{crítico}|\)</span> -&gt; rejeitar <span class="math inline">\(H_{0}\)</span></p>
 </div>
-<div id="avaliação-dos-pressupostos" class="section level2 hasAnchor" number="14.6">
-<h2><span class="header-section-number">14.6</span> Avaliação dos pressupostos<a href="teste-t-para-amostras-independentes.html#avaliação-dos-pressupostos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O teste <em>t</em> assume que:</p>
-<ol style="list-style-type: decimal">
-<li>As amostras são independentes;</li>
-<li>Deve haver distribuição normal. Entretanto, quando as amostras são grandes (teorema do limite central), isso não é muito importante;</li>
-<li>Exista homocedasticidade, ou seja, as variâncias devem ser iguais.</li>
-</ol>
-<div id="avaliação-da-normalidade" class="section level3 hasAnchor" number="14.6.1">
-<h3><span class="header-section-number">14.6.1</span> Avaliação da normalidade<a href="teste-t-para-amostras-independentes.html#avaliação-da-normalidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="teste-t-para-amostras-independentes.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dados<span class="sc">$</span>altura[dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;1&quot;</span>], </span>
-<span id="cb20-2"><a href="teste-t-para-amostras-independentes.html#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">1</span>, </span>
-<span id="cb20-3"><a href="teste-t-para-amostras-independentes.html#cb20-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb20-4"><a href="teste-t-para-amostras-independentes.html#cb20-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">&quot;Gráfico Q-Q - População 1&quot;</span>,</span>
-<span id="cb20-5"><a href="teste-t-para-amostras-independentes.html#cb20-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">&quot;Quantis amostrais&quot;</span>, </span>
-<span id="cb20-6"><a href="teste-t-para-amostras-independentes.html#cb20-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;Quantis teóricos&quot;</span>,</span>
-<span id="cb20-7"><a href="teste-t-para-amostras-independentes.html#cb20-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.lab =</span> <span class="dv">1</span>, </span>
-<span id="cb20-8"><a href="teste-t-para-amostras-independentes.html#cb20-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.axis =</span> <span class="dv">1</span>,</span>
-<span id="cb20-9"><a href="teste-t-para-amostras-independentes.html#cb20-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.main =</span> <span class="dv">1</span>,</span>
-<span id="cb20-10"><a href="teste-t-para-amostras-independentes.html#cb20-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">las =</span> <span class="dv">1</span>)</span>
-<span id="cb20-11"><a href="teste-t-para-amostras-independentes.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dados<span class="sc">$</span>altura[dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;1&quot;</span>], </span>
-<span id="cb20-12"><a href="teste-t-para-amostras-independentes.html#cb20-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb20-13"><a href="teste-t-para-amostras-independentes.html#cb20-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb20-14"><a href="teste-t-para-amostras-independentes.html#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="teste-t-para-amostras-independentes.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(dados<span class="sc">$</span>altura[dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;2&quot;</span>], </span>
-<span id="cb21-2"><a href="teste-t-para-amostras-independentes.html#cb21-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">1</span>, </span>
-<span id="cb21-3"><a href="teste-t-para-amostras-independentes.html#cb21-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-4"><a href="teste-t-para-amostras-independentes.html#cb21-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">&quot;Gráfico Q-Q - População 2&quot;</span>,</span>
-<span id="cb21-5"><a href="teste-t-para-amostras-independentes.html#cb21-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">&quot;Quantis amostrais&quot;</span>, </span>
-<span id="cb21-6"><a href="teste-t-para-amostras-independentes.html#cb21-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;Quantis teóricos&quot;</span>,</span>
-<span id="cb21-7"><a href="teste-t-para-amostras-independentes.html#cb21-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.lab =</span> <span class="dv">1</span>, </span>
-<span id="cb21-8"><a href="teste-t-para-amostras-independentes.html#cb21-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.axis =</span> <span class="dv">1</span>,</span>
-<span id="cb21-9"><a href="teste-t-para-amostras-independentes.html#cb21-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex.main =</span> <span class="dv">1</span>,</span>
-<span id="cb21-10"><a href="teste-t-para-amostras-independentes.html#cb21-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">las =</span> <span class="dv">1</span>)</span>
-<span id="cb21-11"><a href="teste-t-para-amostras-independentes.html#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(dados<span class="sc">$</span>altura[dados<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;2&quot;</span>], </span>
-<span id="cb21-12"><a href="teste-t-para-amostras-independentes.html#cb21-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb21-13"><a href="teste-t-para-amostras-independentes.html#cb21-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb21-14"><a href="teste-t-para-amostras-independentes.html#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="teste-t-para-amostras-independentes.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span> (<span class="at">data =</span> dados<span class="sc">$</span>altura, </span>
-<span id="cb22-2"><a href="teste-t-para-amostras-independentes.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">INDICES =</span> dados<span class="sc">$</span>pop, </span>
-<span id="cb22-3"><a href="teste-t-para-amostras-independentes.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> shapiro.test) </span></code></pre></div>
-<pre><code>## dados$pop: 1
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  dd[x, ]
-## W = 0.97051, p-value = 0.5531
-## 
-## ------------------------------------------------------------ 
-## dados$pop: 2
-## 
-##  Shapiro-Wilk normality test
-## 
-## data:  dd[x, ]
-## W = 0.94846, p-value = 0.1537</code></pre>
-<p>Tanto o <em>QQPlot</em> como o teste de <em>Shapiro-Wilk</em> mostram que os dados se ajustam à distribuição normal.</p>
-</div>
-<div id="avaliação-da-homogeneidade-das-variâncias-usando-o-teste-de-levene" class="section level3 hasAnchor" number="14.6.2">
-<h3><span class="header-section-number">14.6.2</span> Avaliação da homogeneidade das variâncias, usando o teste de Levene<a href="teste-t-para-amostras-independentes.html#avaliação-da-homogeneidade-das-variâncias-usando-o-teste-de-levene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="teste-t-para-amostras-independentes.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(altura <span class="sc">~</span> pop, <span class="at">center =</span> mean, <span class="at">data =</span> dados)</span></code></pre></div>
-<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = mean)
-##       Df F value Pr(&gt;F)
-## group  1  0.1599 0.6907
-##       58</code></pre>
-<p>O valor <em>P</em> do teste de <em>Levene</em> é &gt; 0.05, indicando que não é possível rejeitar a hipóteses nula de igualdade das variâncias.</p>
-</div>
-</div>
-<div id="cálculo-da-estatística-do-teste" class="section level2 hasAnchor" number="14.7">
-<h2><span class="header-section-number">14.7</span> Cálculo da estatística do teste<a href="teste-t-para-amostras-independentes.html#cálculo-da-estatística-do-teste" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Usamos a função <code>t.test()</code> que tem os seguintes argumentos:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="teste-t-para-amostras-independentes.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(altura <span class="sc">~</span> pop, </span>
-<span id="cb26-2"><a href="teste-t-para-amostras-independentes.html#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> dados,</span>
-<span id="cb26-3"><a href="teste-t-para-amostras-independentes.html#cb26-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb26-4"><a href="teste-t-para-amostras-independentes.html#cb26-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb26-5"><a href="teste-t-para-amostras-independentes.html#cb26-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb26-6"><a href="teste-t-para-amostras-independentes.html#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="verificação-dos-pressupostos" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Verificação dos pressupostos<a href="teste-t-para-amostras-pareadas.html#verificação-dos-pressupostos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Aqui, verifica-se a normalidade da diferença entre as médias:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="teste-t-para-amostras-pareadas.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(dados<span class="sc">$</span>dif)</span></code></pre></div>
 <pre><code>## 
-##  Two Sample t-test
+##  Shapiro-Wilk normality test
 ## 
-## data:  altura by pop
-## t = 12.056, df = 58, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+## data:  dados$dif
+## W = 0.94216, p-value = 0.4103</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="teste-t-para-amostras-pareadas.html#cb24-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">sample =</span> dif)) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="teste-t-para-amostras-pareadas.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="teste-t-para-amostras-pareadas.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>(<span class="at">col =</span><span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="teste-t-para-amostras-pareadas.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Diferença Basal-Inicial&quot;</span>, </span>
+<span id="cb24-5"><a href="teste-t-para-amostras-pareadas.html#cb24-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Quantis teóricos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="teste-t-para-amostras-pareadas.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb24-7"><a href="teste-t-para-amostras-pareadas.html#cb24-7" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Pelos resultados, podemos aceitar que os dados tem assimetria. Entretanto, esta não é suficientemente grande para rejeitar a hipóteses nula (teste de Shapiro-Wilk com <em>P</em> &gt; 0,05)</p>
+</div>
+<div id="cálculo-do-teste-estatístico-1" class="section level2 hasAnchor" number="15.6">
+<h2><span class="header-section-number">15.6</span> Cálculo do teste Estatístico<a href="teste-t-para-amostras-pareadas.html#cálculo-do-teste-estatístico-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O cálculo do teste <em>t</em> pareado usa a mesma função do teste <em>t</em> para amostras independentes, <code>t.test ()</code>, mudando o argumento <code>paired =TRUE</code>(padrão) por <code>paired =FALSE</code>. Assim:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="teste-t-para-amostras-pareadas.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dados<span class="sc">$</span>basal, </span>
+<span id="cb25-2"><a href="teste-t-para-amostras-pareadas.html#cb25-2" aria-hidden="true" tabindex="-1"></a>       dados<span class="sc">$</span>final, </span>
+<span id="cb25-3"><a href="teste-t-para-amostras-pareadas.html#cb25-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb25-4"><a href="teste-t-para-amostras-pareadas.html#cb25-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-5"><a href="teste-t-para-amostras-pareadas.html#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb25-6"><a href="teste-t-para-amostras-pareadas.html#cb25-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  dados$basal and dados$final
+## t = -6.6969, df = 14, p-value = 1.016e-05
+## alternative hypothesis: true mean difference is not equal to 0
 ## 95 percent confidence interval:
-##  0.1767997 0.2472003
+##  -0.4973000 -0.2560333
 ## sample estimates:
-## mean in group 1 mean in group 2 
-##        1.602333        1.390333</code></pre>
+## mean difference 
+##      -0.3766667</code></pre>
 <ul>
-<li><em>t</em> é o valor estatístico do teste t,</li>
+<li><em>t</em> é o valor estatístico do teste t pareado,</li>
 <li><em>df</em> são os graus de liberdade ,</li>
 <li><em>p-value</em> é o valor <em>P</em> do teste t.</li>
 <li><em>conf.int</em> é o IC95% da diferença média;</li>
-<li><em>sample estimates</em> são o valores médios das populações 1 e 2.</li>
+<li><em>sample estimates</em> é estimativa da diferença média</li>
 </ul>
-<p>NOTA: Quando as variâncias não forem homogêneas, mas houver normalidade, pode ser usado o teste <em>t</em> trocando o argumento <code>var.equal=TRUE</code> por <code>var.equal=FALSE</code> que corresponde a aproximação de Welch para os graus de liberdade.</p>
+<p>Também pode ser calculado usando a fórmula <code>y ~ x</code> com os dados no formato longo (<code>dadosL</code>):</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="teste-t-para-amostras-pareadas.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> medidas <span class="sc">~</span> momento, </span>
+<span id="cb27-2"><a href="teste-t-para-amostras-pareadas.html#cb27-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> dadosL, </span>
+<span id="cb27-3"><a href="teste-t-para-amostras-pareadas.html#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&#39;two.sided&#39;</span>, </span>
+<span id="cb27-4"><a href="teste-t-para-amostras-pareadas.html#cb27-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  medidas by momento
+## t = -6.6969, df = 14, p-value = 1.016e-05
+## alternative hypothesis: true mean difference is not equal to 0
+## 95 percent confidence interval:
+##  -0.4973000 -0.2560333
+## sample estimates:
+## mean difference 
+##      -0.3766667</code></pre>
 </div>
-<div id="conclusão-1" class="section level2 hasAnchor" number="14.8">
-<h2><span class="header-section-number">14.8</span> Conclusão<a href="teste-t-para-amostras-independentes.html#conclusão-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Conclui-se, portanto, que a altura das mulheres da população 1 é diferente da altura das mulheres da população 2, a diferença (<span class="math inline">\(\mu_{pop1} - \mu_{pop2}\)</span>) encontrada é estatisticamente significativa (t = 12,06, gl = 58, P = 2,2 x 10^-16), com uma confiança de 95%.</p>
-<div id="apresentação-gráfica-dos-resultados-1" class="section level3 hasAnchor" number="14.8.1">
-<h3><span class="header-section-number">14.8.1</span> Apresentação gráfica dos resultados<a href="teste-t-para-amostras-independentes.html#apresentação-gráfica-dos-resultados-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Podemos exibir o gráfico da diferença média, descrito por Gardner-Altman (1986), usando o pacote <code>dabestr</code> com as funções <code>dabest ()</code>, <code>mean_diff ()</code> e <code>plot ()</code> com um objeto <code>dabest_effsize</code> (<code>mean_diff</code>, por exemplo). Para detalhes consulte <a href="https://cran.r-project.org/web/packages/dabestr/dabestr.pdf">dabestr</a>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="teste-t-para-amostras-independentes.html#cb28-1" aria-hidden="true" tabindex="-1"></a>dois.grupos <span class="ot">&lt;-</span> </span>
-<span id="cb28-2"><a href="teste-t-para-amostras-independentes.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="teste-t-para-amostras-independentes.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dabest</span>(pop, altura, </span>
-<span id="cb28-4"><a href="teste-t-para-amostras-independentes.html#cb28-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">idx =</span> <span class="fu">c</span>(<span class="st">&quot;2&quot;</span>, <span class="st">&quot;1&quot;</span>), </span>
-<span id="cb28-5"><a href="teste-t-para-amostras-independentes.html#cb28-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb28-6"><a href="teste-t-para-amostras-independentes.html#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="teste-t-para-amostras-independentes.html#cb28-7" aria-hidden="true" tabindex="-1"></a>difMedia <span class="ot">&lt;-</span> <span class="fu">mean_diff</span>(dois.grupos, <span class="at">ci =</span> <span class="dv">95</span>)</span>
-<span id="cb28-8"><a href="teste-t-para-amostras-independentes.html#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="teste-t-para-amostras-independentes.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(difMedia, </span>
-<span id="cb28-10"><a href="teste-t-para-amostras-independentes.html#cb28-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">color.column =</span> pop,</span>
-<span id="cb28-11"><a href="teste-t-para-amostras-independentes.html#cb28-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">&quot;pink4&quot;</span>, <span class="st">&quot;salmon3&quot;</span>),</span>
-<span id="cb28-12"><a href="teste-t-para-amostras-independentes.html#cb28-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">show.legend =</span> F,</span>
-<span id="cb28-13"><a href="teste-t-para-amostras-independentes.html#cb28-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">rawplot.ylabel =</span> <span class="st">&quot;Altura de Mulheres (m)&quot;</span>,</span>
-<span id="cb28-14"><a href="teste-t-para-amostras-independentes.html#cb28-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">effsize.ylabel =</span> <span class="st">&quot;Diferença Média&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-</div>
-</div>
-<div id="tamanho-do-efeito" class="section level2 hasAnchor" number="14.9">
-<h2><span class="header-section-number">14.9</span> Tamanho do efeito<a href="teste-t-para-amostras-independentes.html#tamanho-do-efeito" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>O tamanho do efeito (<em>effect size</em>) é uma medida quantitativa da magnitude do efeito. Quanto maior o tamanho do efeito, mais forte é a relação entre duas variáveis.
-No exemplo mostrado, como não há uma diferença estatisticamente significativa, não faz sentido se verificar o tamanho do efeito.
-Quando existe um efeito significativo (<em>P</em> &lt; 0.05), o valor do tamanho do efeito mostrará se o efeito foi pequeno, médio ou grande. Isso tem mais relevância do que simplesmente informar o tamanho do valor <em>P</em>.
-Comumente, calcula-se o <code>d de Cohen</code> para encontrar a magnitude do efeito na comparação entre duas médias. É também conhecida como <strong>diferença média padronizada</strong>.</p>
+<div id="conclusão-2" class="section level2 hasAnchor" number="15.7">
+<h2><span class="header-section-number">15.7</span> Conclusão<a href="teste-t-para-amostras-pareadas.html#conclusão-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conclui-se, o VEF1 dos escolares asmáticos se modificou significativamente entre o início e após 60 dias do uso de um novo medicamento com uma confiança de 95%. A diferença (<span class="math inline">\(\mu_{basal} - \mu_{final}\)</span>) encontrada é estatisticamente significativa (t = 12,06, gl = 58, P = 2,2 x 10<sup>-16</sup>), com uma confiança de 95%.
+Observe que o intervalo de confiança de 95% da diferença de -0,38 está todo abaixo de zero, confirmando a significância.</p>
 <p><span class="math display">\[
-d = \frac{\overline{x}_{1} - \overline{x}_{2}}{s_0}
-\]</span></p>
-<p>Onde <span class="math inline">\(s_{0}\)</span> é o desvio padrão combinado das duas médias:</p>
-<p><span class="math display">\[
-s_0 = \sqrt\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2 -2}
-\]</span></p>
-<p>O <strong>R</strong> tem uma função <code>cohensD ()</code> do pacote <code>lsr</code> para calcular a magnitude do efeito.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="teste-t-para-amostras-independentes.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cohensD</span> (altura <span class="sc">~</span> pop, <span class="at">data =</span> dados)</span></code></pre></div>
-<pre><code>## [1] 3.112768</code></pre>
+IC_{95\%}(\mu_{diff})\rightarrow(-0.497, -0.256)
+\]</span>
+## Apresentação gráfica dos resultados
+Podemos exibir o gráfico da diferença média, descrito por Gardner-Altman (1986), usando o pacote <code>dabestr</code> com as funções <code>dabest ()</code>, <code>mean_diff ()</code> e <code>plot ()</code> com um objeto <code>dabest_effsize</code> (<code>mean_diff</code>, por exemplo). Para detalhes consulte <a href="https://cran.r-project.org/web/packages/dabestr/dabestr.pdf">dabestr</a>.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="teste-t-para-amostras-pareadas.html#cb29-1" aria-hidden="true" tabindex="-1"></a>grupos.pareados <span class="ot">&lt;-</span> </span>
+<span id="cb29-2"><a href="teste-t-para-amostras-pareadas.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  dadosL <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="teste-t-para-amostras-pareadas.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dabest</span>(momento, medidas, </span>
+<span id="cb29-4"><a href="teste-t-para-amostras-pareadas.html#cb29-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">idx =</span> <span class="fu">c</span>(<span class="st">&quot;final&quot;</span>, <span class="st">&quot;basal&quot;</span>), </span>
+<span id="cb29-5"><a href="teste-t-para-amostras-pareadas.html#cb29-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-6"><a href="teste-t-para-amostras-pareadas.html#cb29-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">id.column =</span> id)</span>
+<span id="cb29-7"><a href="teste-t-para-amostras-pareadas.html#cb29-7" aria-hidden="true" tabindex="-1"></a>grupos.pareados</span></code></pre></div>
+<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
+## =============================================================
+## 
+## Good evening!
+## The current time is 18:00  on terça-feira setembro 13, 2022.
+## 
+## Dataset    :  .
+## The first five rows are:
+## # A tibble: 5 × 3
+##      id momento medidas
+##   &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;
+## 1     1 basal      1.3 
+## 2     1 final      1.53
+## 3     2 basal      1.47
+## 4     2 final      1.63
+## 5     3 basal      2.06
+## 
+## X Variable :  momento
+## Y Variable :  medidas
+## 
+## Paired effect size(s) will be computed for:
+##   1. basal minus final</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="teste-t-para-amostras-pareadas.html#cb31-1" aria-hidden="true" tabindex="-1"></a>difMedia <span class="ot">&lt;-</span> <span class="fu">mean_diff</span>(grupos.pareados, <span class="at">ci =</span> <span class="dv">95</span>)</span>
+<span id="cb31-2"><a href="teste-t-para-amostras-pareadas.html#cb31-2" aria-hidden="true" tabindex="-1"></a>difMedia</span></code></pre></div>
+<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
+## =============================================================
+## 
+## Good evening!
+## The current time is 18:00  on terça-feira setembro 13, 2022.
+## 
+## Dataset    :  .
+## X Variable :  momento
+## Y Variable :  medidas
+## 
+## Paired mean difference of basal (n = 15) minus final (n = 15)
+##  -0.377 [95CI  -0.712; -0.0613]
+## 
+## 
+## 5000 bootstrap resamples.
+## All confidence intervals are bias-corrected and accelerated.</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="teste-t-para-amostras-pareadas.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(difMedia, </span>
+<span id="cb33-2"><a href="teste-t-para-amostras-pareadas.html#cb33-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">color.column =</span> momento,</span>
+<span id="cb33-3"><a href="teste-t-para-amostras-pareadas.html#cb33-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb33-4"><a href="teste-t-para-amostras-pareadas.html#cb33-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">rawplot.ylabel =</span> <span class="st">&quot;VEF1 (L)&quot;</span>,</span>
+<span id="cb33-5"><a href="teste-t-para-amostras-pareadas.html#cb33-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">effsize.ylabel =</span> <span class="st">&quot;Diferença Média&quot;</span>,</span>
+<span id="cb33-6"><a href="teste-t-para-amostras-pareadas.html#cb33-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">slopegraph =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="tamanho-do-efeito-1" class="section level2 hasAnchor" number="15.8">
+<h2><span class="header-section-number">15.8</span> Tamanho do Efeito<a href="teste-t-para-amostras-pareadas.html#tamanho-do-efeito-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>O tamanho do efeito pode ser determinado como no teste <em>t</em> independente, com o teste d de Cohen, usando a função <code>cohensD ()</code> do pacote <code>lsr</code>:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="teste-t-para-amostras-pareadas.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cohensD</span> (dados<span class="sc">$</span>basal, dados<span class="sc">$</span>final)</span></code></pre></div>
+<pre><code>## [1] 0.8379499</code></pre>
 <p>Os pesquisadores costumam usar as seguintes diretrizes (LAKENS, 2013) para interpretar o resultado:</p>
 <table>
 <thead>
@@ -855,78 +1023,16 @@ s_0 = \sqrt\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2 -2}
 </tr>
 </tbody>
 </table>
-<p>O pacote <code>dabestr</code> fornece funções que permitem também calcular a magnitude do efeito. São as funções <code>cohens_d ()</code> e <code>hedges_g ()</code> que é correção exata de Hedges para o d de Cohen, ambas usam um objeto gerado pela função <code>dabest ()</code>. Têm a vantagem de liberarem os intervalos de confiança.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="teste-t-para-amostras-independentes.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cohens_d</span>(dois.grupos, <span class="at">ci =</span> <span class="dv">95</span>)</span></code></pre></div>
-<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
-## =============================================================
-## 
-## Good afternoon!
-## The current time is 17:59  on terça-feira setembro 13, 2022.
-## 
-## Dataset    :  .
-## X Variable :  pop
-## Y Variable :  altura
-## 
-## Unpaired Cohen&#39;s d of 1 (n = 30) minus 2 (n = 30)
-##  3.11 [95CI  2.08; 4.1]
-## 
-## 
-## 5000 bootstrap resamples.
-## All confidence intervals are bias-corrected and accelerated.</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="teste-t-para-amostras-independentes.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hedges_g</span>(dois.grupos, <span class="at">ci =</span> <span class="dv">95</span>)</span></code></pre></div>
-<pre><code>## dabestr (Data Analysis with Bootstrap Estimation in R) v0.3.0
-## =============================================================
-## 
-## Good afternoon!
-## The current time is 17:59  on terça-feira setembro 13, 2022.
-## 
-## Dataset    :  .
-## X Variable :  pop
-## Y Variable :  altura
-## 
-## Unpaired Hedges&#39; g of 1 (n = 30) minus 2 (n = 30)
-##  3.07 [95CI  2.06; 4.05]
-## 
-## 
-## 5000 bootstrap resamples.
-## All confidence intervals are bias-corrected and accelerated.</code></pre>
+<p>Neste caso, temos uma magnitude de efeito que é considerada grande.</p>
 </div>
-<div id="exercício-3" class="section level2 hasAnchor" number="14.10">
-<h2><span class="header-section-number">14.10</span> Exercício<a href="teste-t-para-amostras-independentes.html#exercício-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Suponha que eu esteja atendendo uma mulher que mede 1,50 m, a qual população existe maior probabilidade de ela pertencer?</p>
-<p><strong>População 1</strong></p>
-<p>Verificar a probabilidade de se encontra mulheres com esta altura na população 1, calculando o seu escore z na população 1.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="teste-t-para-amostras-independentes.html#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fl">1.50</span></span>
-<span id="cb35-2"><a href="teste-t-para-amostras-independentes.html#cb35-2" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> dados1<span class="sc">$</span>mean [<span class="dv">1</span>]</span>
-<span id="cb35-3"><a href="teste-t-para-amostras-independentes.html#cb35-3" aria-hidden="true" tabindex="-1"></a>dp1 <span class="ot">&lt;-</span> dados1<span class="sc">$</span>sd [<span class="dv">1</span>]</span>
-<span id="cb35-4"><a href="teste-t-para-amostras-independentes.html#cb35-4" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span>  (x <span class="sc">-</span> mu1)<span class="sc">/</span>dp1</span>
-<span id="cb35-5"><a href="teste-t-para-amostras-independentes.html#cb35-5" aria-hidden="true" tabindex="-1"></a>z1 </span></code></pre></div>
-<pre><code>## [1] -1.645161</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="teste-t-para-amostras-independentes.html#cb37-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">pnorm</span> (z1)</span>
-<span id="cb37-2"><a href="teste-t-para-amostras-independentes.html#cb37-2" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
-<pre><code>## [1] 0.04996828</code></pre>
-<p>Na população 1, apenas 5% das mulheres tem altura abaixo de 1,50, 95% é mais alta do que este valor.</p>
-<p><strong>População 2</strong></p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="teste-t-para-amostras-independentes.html#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span>  <span class="fl">1.50</span></span>
-<span id="cb39-2"><a href="teste-t-para-amostras-independentes.html#cb39-2" aria-hidden="true" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> dados1<span class="sc">$</span>mean [<span class="dv">2</span>]</span>
-<span id="cb39-3"><a href="teste-t-para-amostras-independentes.html#cb39-3" aria-hidden="true" tabindex="-1"></a>dp2 <span class="ot">&lt;-</span> dados1<span class="sc">$</span>sd [<span class="dv">2</span>]</span>
-<span id="cb39-4"><a href="teste-t-para-amostras-independentes.html#cb39-4" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span>  (x <span class="sc">-</span> mu2)<span class="sc">/</span>dp2</span>
-<span id="cb39-5"><a href="teste-t-para-amostras-independentes.html#cb39-5" aria-hidden="true" tabindex="-1"></a>z2 </span></code></pre></div>
-<pre><code>## [1] 1.486486</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="teste-t-para-amostras-independentes.html#cb41-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">pnorm</span> (z2)</span>
-<span id="cb41-2"><a href="teste-t-para-amostras-independentes.html#cb41-2" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
-<pre><code>## [1] 0.9314248</code></pre>
-<p>Na população 2, esta mulher estaria a 1.49 desvios padrão distante da média. Isto significa que se ela pertence a população 2, ela seria considerada alta, pois, praticamente 93.14% das mulheres desta população seriam menores do que ela.</p>
-<p>Na realidade, ela pode pertencer a qualquer uma das populações. Entretanto, como poucas mulheres na população 1 tem altura dessa magnitude e muitas mulheres da população 2 tem esta altura ou menos, poucas estão acima, seria mais provável ela ser da população 2, mas poderia ser uma “baixinha” da população 1!</p>
-</div>
-<div id="leitura-adicional-7" class="section level2 hasAnchor" number="14.11">
-<h2><span class="header-section-number">14.11</span> Leitura Adicional<a href="teste-t-para-amostras-independentes.html#leitura-adicional-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="leitura-adicional-8" class="section level2 hasAnchor" number="15.9">
+<h2><span class="header-section-number">15.9</span> Leitura Adicional<a href="teste-t-para-amostras-pareadas.html#leitura-adicional-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Altman DG. <strong>Practical Statistics for Medical Research</strong>. Boca Raton, FL: Chapman &amp; Hall/CRC; 1991. Comparing groups - continuous data; 191-8.</p></li>
+<li><p>Altman DG. <strong>Practical Statistics for Medical Research</strong>. Boca Raton, FL: Chapman &amp; Hall/CRC; 1991. Comparing groups - continuous data; 189-91.</p></li>
 <li><p>Gardner MJ, Altman DG.Confidence intervals rather than P values: estimation rather than hypothesis testing.BMJ 1986; 292:746-50.</p></li>
-<li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Testes Paramétricos;p.135-7.</p></li>
+<li><p>Oliveira Filho PF. <strong>Epidemiologia e Bioestatística: fundamentos para a leitura crítica</strong>. 2ª ed. Rio de Janeiro: Editora Rubio Ltda; 2022. Testes Paramétricos;p.137-8.</p></li>
 <li><p>Vu J, Harrington D. <strong>Introductory Statistics for the
-Life and Biomedical Sciences</strong>. Openintro; 2021. Normal distribution; p.152-67. Disponível em: <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./05%3A_Inference_for_Numerical_Data" class="uri">https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./05%3A_Inference_for_Numerical_Data</a></p></li>
+Life and Biomedical Sciences</strong>. Openintro; 2021. Inference for Numerical Data; p.152-67. Disponível em: <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./05%3A_Inference_for_Numerical_Data" class="uri">https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_OpenIntro_Statistics_(Diez_et_al)./05%3A_Inference_for_Numerical_Data</a></p></li>
 </ol>
 <p></br>
 </br></p>
@@ -938,8 +1044,8 @@ Life and Biomedical Sciences</strong>. Openintro; 2021. Normal distribution; p.1
           </div>
         </div>
       </div>
-<a href="teste-de-hipóteses.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="teste-t-para-amostras-pareadas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="teste-t-para-amostras-independentes.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -970,7 +1076,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/14-teste-t-Student.Rmd",
+"link": "https://github.com/petronioliveira/ini-bio-r/edit/master/15-teste-t-amostras-pareadas.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -978,7 +1084,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/14-teste-t-Student.Rmd",
+"link": "https://github.com/petronioliveira/ini-bio-r/blob/master/15-teste-t-amostras-pareadas.Rmd",
 "text": null
 },
 "download": null,
